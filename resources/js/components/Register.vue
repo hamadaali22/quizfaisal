@@ -1,0 +1,100 @@
+<template>
+   <div>
+     <section class="login">
+       <div class="container">
+           <div class="row mt-5 p-3">
+               <div class="col">
+                   <img  :src="contactInfo.image" class="img-fluid pt-3 mt-5 " alt="">
+               </div>
+               <form class="col text-center" method="post">
+                   <h4 class="m-3"> REGESTRIEN</h4>
+                   <input type="email" class="w-100 mb-2" placeholder="Email"  v-model="email" >
+                   <input type="password" class="w-100 mb-2" placeholder="Password"  v-model="password">
+
+                  <input type="text" class="w-100 mb-2" placeholder="Name" v-model="name">
+                  <input type="text" class="w-100 mb-2" placeholder="Handynummer" v-model="mobile">
+                  <!-- <input type="text" class="w-100 mb-2" placeholder="Sprache" v-model="Language"> -->
+                  <!-- <input type="text" class="w-100 mb-2" placeholder="Land" v-model="Country"> -->
+
+
+                  <select class="w-100 mb-2 form-control formselect" v-model="country">
+                    <option selected value=""> Country </option>
+                    <option  value="eg">eg</option>
+                    <option  value="vdfvfd">vdfvfd</option>
+                    <option  value="vdfvfd">vdfvfd</option>
+                    <option  value="vdfvfd">vdfvfd</option>
+                    <option  value="vdfvfd">vdfvfd</option>
+                    <option  value="vdfvfd">vdfvfd</option>
+                  </select>
+                  <select class="w-100 mb-2 form-control formselect" v-model="language">
+                    <option selected value=""> Language </option>
+                    <option  value="ar">ar</option>
+                    <option  value="vdfvfd">vdfvfd</option>
+                    <option  value="vdfvfd">vdfvfd</option>
+                    <option  value="vdfvfd">vdfvfd</option>
+                    <option  value="vdfvfd">vdfvfd</option>
+                    <option  value="vdfvfd">vdfvfd</option>
+                  </select>
+                <input type="submit" @click.prevent="submitRegister"   id="btn" value="REGESTRIEN" class="mt-2">
+                   <div class="d-flex justify-content-between">
+                       <!-- <a href="#">Register</a> -->
+                      <router-link to="login" style="color:#6298bf">ANMELDEN</router-link>
+                      <!-- <a href="#" style="color:#6298bf">Forget password</a> -->
+                   </div>
+               </form>
+           </div>
+       </div>
+      </section>
+   </div>
+</template>
+
+<script>
+export default {
+ data(){
+    return {
+             password : '',
+             email : '',
+             name : '',
+             mobile : '',
+             language : '',
+             country : '',
+
+         }
+     },
+     computed:{
+       contactInfo(){
+          return this.$store.state.contactInfo;
+       }
+     },
+     created(){
+       console.log(this.$store.state.userToken);
+
+     },
+     mounted(){
+       this.$store.dispatch('getContactinfo');
+
+     },
+     methods:{
+       submitRegister(){
+           //console.log('submitted');
+           //client sid  localstorage sessionstorage indexed db   state managment system
+           //vue vuex
+
+           //this.$store.state.userToken = "amine"
+
+           //this.$store.commit('setUserToken',{userToken:'sdmfjsdkfjlsds'})
+            // console.log(this.$store.getters.isLogged)
+            // console.log(this.$store.state.userToken);
+            console.log(this.name);
+            console.log(this.email);
+            console.log(this.password);
+            console.log(this.mobile);
+            console.log(this.language);
+            console.log(this.country);
+            let  {name,email,password,mobile,language,country} = this;
+            this.$store.dispatch('RegisterUser',{name,email,password,mobile,language,country})
+
+       }
+     }
+}
+</script>

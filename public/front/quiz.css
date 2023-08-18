@@ -1,0 +1,112 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.back{
+  background-color: #3d83b3;
+}
+.border-raduis {
+  border-radius: 10px;
+  border: #e2f3ff 1px solid !important;
+}
+.bg-information{
+  background-color: #e2f3ff;
+}
+audio::-webkit-media-controls-panel{
+  background-color: #E2F3FF !important;
+}
+.questions .main-text, .questions .main-quiz{
+  height: 100vh;
+  overflow: auto;
+  border: 2px solid #3d83b3;
+  border-radius: 8px;
+}
+/* width */
+.questions .main-text::-webkit-scrollbar , .questions .main-quiz::-webkit-scrollbar{
+    width: 10px;
+  }
+
+  /* Track */
+  .questions .main-text::-webkit-scrollbar-track , .questions .main-quiz::-webkit-scrollbar-track{
+    background: #f1f1f1;
+  }
+
+  /* Handle */
+  .questions .main-text::-webkit-scrollbar-thumb , .questions .main-quiz::-webkit-scrollbar-thumb{
+    background: #888;
+  }
+
+  /* Handle on hover */
+  .questions .main-text::-webkit-scrollbar-thumb:hover , .questions .main-quiz::-webkit-scrollbar-thumb:hover{
+    background: #555;
+  }
+ .multi-item{
+    border-radius: 10px;
+    cursor: pointer;
+  }
+ .multi-item:hover{
+    background-color: #3e83b3 !important;
+  }
+ .multi-label-img{
+    height: 100px;
+  }
+  select{
+    border-radius: 10px;
+    outline: none;
+  }
+  footer .links a i{
+    font-size: 25px !important;
+    color: #fff !important;
+  }
+  .next h3{
+    width: fit-content;
+    cursor: pointer;
+  }
+
+  /* Home page */
+  .home-main-section {
+    /* height: 80vh; */
+  }
+  /* Goethe page */
+  .level{
+    background-color: #3d83b3;
+    border-radius: 20px;
+    cursor: pointer;
+    margin: auto;
+    font-size: 25px;
+  }
+  .level:hover ,#btn:hover,.next h3:hover{
+    opacity: 0.8;
+  }
+  /* login page */
+  .login .row{
+    background-color: #eee;
+    height: fit-content;
+  }
+  .login .row input{
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    padding: 10px;
+    margin-right: 7px;
+  }
+  #btn{
+    border-radius: 20px;
+    background-color: #3d83b3;
+    color: #fff;
+    width: 30%;
+    cursor: pointer;
+  }
+
+
+  element.style {
+  }
+  a {
+      color: #f8f9fa ;
+  }
+  .a-link:hover{
+    /* background-color: #3d83b3; */
+    color: #fff;
+    text-decoration: none
+  }

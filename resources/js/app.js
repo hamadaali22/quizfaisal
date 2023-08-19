@@ -260,6 +260,17 @@ const store = new Vuex.Store({
             })
             .then(err => console.log(err))
         },
+        getExamsTelc({state,commit},payload){
+          // console.log(payload);
+            axios.get(state.basName+'telc-exams?level_id='+payload)
+            .then(res => {
+              console.log(res.data.data);
+              store.commit('updateExams', res.data.data.exam);
+              store.commit('updateLevelDesc', res.data.data.level);
+
+            })
+            .then(err => console.log(err))
+        },
         getQuestions({state,commit},payload){
           console.log(payload);
           // axios.get(state.basName+'exams?level_id='+payload)

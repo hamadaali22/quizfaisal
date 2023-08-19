@@ -8,6 +8,10 @@ import Questions from '../components/Questions.vue'
 import Home from '../components/Home.vue'
 import Levels from '../components/Levels.vue'
 import Exams from '../components/Exams.vue'
+
+import Telcs from '../components/Telcs.vue'
+import ExamsTelc from '../components/ExamsTelc.vue'
+
 import SubQuestions from '../components/SubQuestions.vue'
 import ImageProcessing from '../components/ImageProcessing.vue'
 import Result from '../components/Result.vue'
@@ -19,6 +23,15 @@ const routes = [
     { path: '/levels', component: Levels, name: 'Levels' },
     // { path: '/exams', component: Exams, name: 'Exams' },
     { path: '/level/:id', component: Exams, name: 'Exams' },
+
+    { path: '/telcs', component: Telcs, name: 'Telcs' },
+    { path: '/telc/:id', component: ExamsTelc, name: 'ExamsTelc' },
+
+
+
+
+
+
     { path: '/login', component: Login, name: 'Login' },
     { path: '/register', component: Register, name: 'Register' },
     { path: '/forgetpassword', component: ForgetPassword, name: 'ForgetPassword' },

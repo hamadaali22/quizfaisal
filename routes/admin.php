@@ -18,15 +18,54 @@ Route::get('admin-login', 'Auth\LoginController@LoginAdmin')->name('admin-login'
 		return view('front.activate');
 	})->name('activation.message');
 
+
+	
+
 	Route::group(['prefix' => 'admin'], function () {
 
     // Route::get('forgot/password', 'Auth\UserLoginController@forgotPassword');
     // Route::post('forgot/password', 'Auth\UserLoginController@submitForgot')->name('forgot.password.post');
 		//
-    Route::get('reset-user-password/{token}', 'Auth\UserLoginController@resetUserPasswordGet')->name('reset-user-password');
-    Route::post('reset-user-password', 'Auth\UserLoginController@resetUserPasswordPost')->name('reset-user-password-post');
+	    Route::get('reset-user-password/{token}', 'Auth\UserLoginController@resetUserPasswordGet')->name('reset-user-password');
+	    Route::post('reset-user-password', 'Auth\UserLoginController@resetUserPasswordPost')->name('reset-user-password-post');
+
+	    	Route::get('/sms-message', function(){
+			
+			$curl = curl_init();
+
+			curl_setopt_array($curl, [
+				CURLOPT_URL => "https://getitsms-whatsapp-apis.p.rapidapi.com/45?your_number=201015024714&your_message=your%20message",
+				CURLOPT_RETURNTRANSFER => true,
+				CURLOPT_ENCODING => "",
+				CURLOPT_MAXREDIRS => 10,
+				CURLOPT_TIMEOUT => 30,
+				CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+				CURLOPT_CUSTOMREQUEST => "POST",
+				CURLOPT_POSTFIELDS => json_encode([
+					'your_number' => '201015024714',
+					'your_message' => 'your message'
+				]),
+				CURLOPT_HTTPHEADER => [
+					"X-RapidAPI-Host: getitsms-whatsapp-apis.p.rapidapi.com",
+					"X-RapidAPI-Key: 7e840e8ec9mshe876dabeed464d0p1d8bccjsneb6d367c8e0d",
+					"content-type: application/json"
+				],
+			]);
+
+			$response = curl_exec($curl);
+			$err = curl_error($curl);
+
+			curl_close($curl);
+
+			if ($err) {
+				echo "cURL Error #:" . $err;
+			} else {
+				echo $response;
+			}
 
 
+
+		});
 
 	});
 	Route::group(['middleware' => 'auth', 'namespace' => 'Admin','prefix' => 'admin'], function () {

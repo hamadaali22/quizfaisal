@@ -5,7 +5,7 @@
             <p v-html="contactInfo.about"></p>
         </div>
         <div class="col-lg m-auto">
-            <img  :src="contactInfo.image" class="img-fluid" alt="">
+            <img  :src="contactInfo.image" class="img-fluid w-100" alt="">
         </div>
     </section>
   </div>

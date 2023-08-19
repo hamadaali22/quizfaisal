@@ -11,10 +11,11 @@
 
                 <li class="nav-item p-1 active "><router-link to="/" class="nav-link text-light">HOME</router-link></li>
                 <!-- <li v-if="isLogged" class="nav-item p-1 active "><router-link to="levels" class="nav-link text-light">GOETHE</router-link></li> -->
-                <li class="nav-item p-1 active "><router-link to="levels" class="nav-link text-light">GOETHE</router-link></li>
+                <li class="nav-item p-1 active "><router-link to="/levels" class="nav-link text-light">GOETHE</router-link></li>
+                <li class="nav-item p-1 active "><router-link to="/telcs" class="nav-link text-light">Telc</router-link></li>
                 <li v-if="!isLogged" class="nav-item p-1 active "><router-link to="login" class="nav-link text-light">ANMELDEN</router-link></li>
-                <li v-if="!isLogged"  class="nav-item p-1 active "><router-link to="register" class="nav-link text-light">REGESTRIEN</router-link></li>
-                <li  v-if="isLogged" @click.stop="logout" class="nav-item p-1 active "><router-link to="register" class="nav-link text-light">LOGOUT</router-link></li>
+                <li v-if="!isLogged" class="nav-item p-1 active "><router-link to="register" class="nav-link text-light">REGESTRIEN</router-link></li>
+                <li v-if="isLogged" @click.stop="logout" class="nav-item p-1 active "><router-link to="register" class="nav-link text-light">LOGOUT</router-link></li>
 
 
 

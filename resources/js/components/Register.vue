@@ -19,21 +19,31 @@
 
                   <select class="w-100 mb-2 form-control formselect" v-model="country">
                     <option selected value=""> Country </option>
-                    <option  value="eg">eg</option>
-                    <option  value="vdfvfd">vdfvfd</option>
-                    <option  value="vdfvfd">vdfvfd</option>
-                    <option  value="vdfvfd">vdfvfd</option>
-                    <option  value="vdfvfd">vdfvfd</option>
-                    <option  value="vdfvfd">vdfvfd</option>
+                    <option  value="Deutschland">Deutschland</option>
+                    <option  value="Österreich">Österreich</option>
+                      <option  value="Schweiz">Schweiz</option>
+                    <option  value="Niederlande">Niederlande</option>
+                    <option  value="Frankreich">Frankreich</option>
+                    <option  value="Polen">Polen</option>
+                    <option  value="Tschechische Republik">Tschechische Republik</option>
+                    <!-- <option  value="Republik">Republik</option> -->
+                    <option  value="Ungarn">Ungarn</option>
+                    <option  value="Dänemark">Dänemark</option>
+                    <option  value="Großbritanien">Großbritanien</option>
+                    <option  value="USA">USA</option>
+                    <option  value="Brasilien">Brasilien</option>
+                    <option  value="China">China</option>
+                    <option  value="Indien">Indien</option>
+                    <option  value="andere">andere</option>
                   </select>
                   <select class="w-100 mb-2 form-control formselect" v-model="language">
                     <option selected value=""> Language </option>
-                    <option  value="ar">ar</option>
-                    <option  value="vdfvfd">vdfvfd</option>
-                    <option  value="vdfvfd">vdfvfd</option>
-                    <option  value="vdfvfd">vdfvfd</option>
-                    <option  value="vdfvfd">vdfvfd</option>
-                    <option  value="vdfvfd">vdfvfd</option>
+                    <option  value="Arabisch">Arabisch</option>
+                    <option  value="Deutsch">Deutsch</option>
+                    <option  value="Englisch">Englisch</option>
+                    <option  value=" Französisch"> Französisch</option>
+                    <option  value="Spanisch ">Spanisch </option>
+                    <option  value="andere ">andere </option>
                   </select>
                 <input type="submit" @click.prevent="submitRegister"   id="btn" value="REGESTRIEN" class="mt-2">
                    <div class="d-flex justify-content-between">

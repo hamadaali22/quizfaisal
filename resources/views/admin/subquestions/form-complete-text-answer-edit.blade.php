@@ -69,6 +69,49 @@
             <span id="titleError" style="color: red;"></span>
         </div>
     </div>
+    <div class="col-md-2 col-sm-6 second-choice-hidden" >  
+        <div class="form-group">
+            <label>eleven</label>
+            <input type="text" name="eleven" class="form-control titleId" value="{{$complete_n_eleven}}">
+            <span id="titleError" style="color: red;"></span>
+        </div>
+    </div>
+    <div class="col-md-2 col-sm-6 second-choice-hidden" >  
+        <div class="form-group">
+            <label>twelve</label>
+            <input type="text" name="twelve" class="form-control titleId" value="{{$complete_n_twelve}}">
+            <span id="titleError" style="color: red;"></span>
+        </div>
+    </div>
+    <div class="col-md-2 col-sm-6 second-choice-hidden">  
+        <div class="form-group">
+            <label>thirteen</label>
+            <input type="text" name="thirteen" class="form-control titleId" value="{{$complete_n_thirteen}}">
+            <span id="titleError" style="color: red;"></span>
+        </div>
+    </div>
+    <div class="col-md-2 col-sm-6 second-choice-hidden">  
+        <div class="form-group">
+            <label>fourteen</label>
+            <input type="text" name="fourteen" class="form-control titleId" value="{{$complete_n_fourteen}}">
+            <span id="titleError" style="color: red;"></span>
+        </div>
+    </div>
+    <div class="col-md-2 col-sm-6 second-choice-hidden" >  
+        <div class="form-group">
+            <label>fifteen</label>
+            <input type="text" name="fifteen" class="form-control titleId" value="{{$complete_n_fifteen}}">
+            <span id="titleError" style="color: red;"></span>
+        </div>
+    </div>
+    <div class="col-md-2 col-sm-6 second-choice-hidden" >  
+        <div class="form-group">
+            <label>sixteen</label>
+            <input type="text" name="sixteen" class="form-control titleId" value="{{$complete_n_sixteen}}">
+            <span id="titleError" style="color: red;"></span>
+        </div>
+    </div>
+
 </div>                                 
                                      
                                    

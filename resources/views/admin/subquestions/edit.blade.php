@@ -156,6 +156,13 @@
 <input type="hidden" id="answer-eight" value="{{$subquestion->answer->eight}}" >
 <input type="hidden" id="answer-nine" value="{{$subquestion->answer->nine}}" >
 <input type="hidden" id="answer-ten" value="{{$subquestion->answer->ten}}" >
+
+<input type="hidden" id="answer-eleven" value="{{$subquestion->answer->eleven}}" >
+<input type="hidden" id="answer-twelve" value="{{$subquestion->answer->twelve}}" >
+<input type="hidden" id="answer-thirteen" value="{{$subquestion->answer->thirteen}}" >
+<input type="hidden" id="answer-fourteen" value="{{$subquestion->answer->fourteen}}" >
+<input type="hidden" id="answer-fifteen" value="{{$subquestion->answer->fifteen}}" >
+<input type="hidden" id="answer-sixteen" value="{{$subquestion->answer->sixteen}}" >
 @endif
 </section>
 <!-- <?php
@@ -182,6 +189,13 @@ $videos=session()->get('videos_sessions');
   let complete_n_eight = document.getElementById('answer-eight');
   let complete_n_nine= document.getElementById('answer-nine');
   let complete_n_ten= document.getElementById('answer-ten');
+
+  let complete_n_eleven= document.getElementById('answer-eleven');
+  let complete_n_twelve= document.getElementById('answer-twelve');
+  let complete_n_thirteen= document.getElementById('answer-thirteen');
+  let complete_n_fourteen= document.getElementById('answer-fourteen');
+  let complete_n_fifteen= document.getElementById('answer-fifteen');
+  let complete_n_sixteen= document.getElementById('answer-sixteen');
 
   var answer_type =<?php echo json_encode($subquestion->answer_type) ?>;
   var is_multy =<?php echo json_encode($subquestion->is_multy) ?>;
@@ -232,7 +246,13 @@ $('.complete-answer1').hide();
                         'complete_n_seven' => '${complete_n_seven.value}',
                         'complete_n_eight' => '${complete_n_eight.value}',
                         'complete_n_nine' => '${complete_n_nine.value}',
-                        'complete_n_ten' => '${complete_n_ten.value}'])`);
+                        'complete_n_ten' => '${complete_n_ten.value}',
+                        'complete_n_eleven' => '${complete_n_eleven.value}',
+                        'complete_n_twelve' => '${complete_n_twelve.value}',
+                        'complete_n_thirteen' => '${complete_n_thirteen.value}',
+                        'complete_n_fourteen' => '${complete_n_fourteen.value}',
+                        'complete_n_fifteen' => '${complete_n_fifteen.value}',
+                        'complete_n_sixteen' => '${complete_n_sixteen.value}'])`);
       }
       if(is_complete=='number'){
         $('.complete-number-answer1').show();
@@ -305,7 +325,16 @@ function showNumberTextAnswer(answer_typeid,addanswer){
                         'complete_n_seven' => '${complete_n_seven.value}',
                         'complete_n_eight' => '${complete_n_eight.value}',
                         'complete_n_nine' => '${complete_n_nine.value}',
-                        'complete_n_ten' => '${complete_n_ten.value}'])`);
+                        'complete_n_ten' => '${complete_n_ten.value}',
+
+                        'complete_n_eleven' => '${complete_n_eleven.value}',
+                        'complete_n_twelve' => '${complete_n_twelve.value}',
+                        'complete_n_thirteen' => '${complete_n_thirteen.value}',
+                        'complete_n_fourteen' => '${complete_n_fourteen.value}',
+                        'complete_n_fifteen' => '${complete_n_fifteen.value}',
+                        'complete_n_sixteen' => '${complete_n_sixteen.value}'])`);
+
+                       
   }
 }
 

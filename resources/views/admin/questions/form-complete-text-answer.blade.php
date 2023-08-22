@@ -72,4 +72,46 @@
             <span id="titleError" style="color: red;"></span>
         </div>
     </div>
+    <div class="col-md-2 col-sm-6 second-choice-hidden" >  
+        <div class="form-group">
+            <label>Eleven</label>
+            <input type="text" name="eleven[]" class="form-control titleId">
+            <span id="titleError" style="color: red;"></span>
+        </div>
+    </div>
+    <div class="col-md-2 col-sm-6 second-choice-hidden" >  
+        <div class="form-group">
+            <label>Twelve</label>
+            <input type="text" name="twelve[]" class="form-control titleId">
+            <span id="titleError" style="color: red;"></span>
+        </div>
+    </div>
+    <div class="col-md-2 col-sm-6 second-choice-hidden" >  
+        <div class="form-group">
+            <label>Thirteen</label>
+            <input type="text" name="thirteen[]" class="form-control titleId">
+            <span id="titleError" style="color: red;"></span>
+        </div>
+    </div>
+    <div class="col-md-2 col-sm-6 second-choice-hidden" >  
+        <div class="form-group">
+            <label>Fourteen</label>
+            <input type="text" name="fourteen[]" class="form-control titleId">
+            <span id="titleError" style="color: red;"></span>
+        </div>
+    </div>
+    <div class="col-md-2 col-sm-6 second-choice-hidden">  
+        <div class="form-group">
+            <label>Fifteen</label>
+            <input type="text" name="fifteen[]" class="form-control titleId">
+            <span id="titleError" style="color: red;"></span>
+        </div>
+    </div>
+     <div class="col-md-2 col-sm-6 second-choice-hidden" >  
+        <div class="form-group">
+            <label>Sixteen</label>
+            <input type="text" name="sixteen[]" class="form-control titleId">
+            <span id="titleError" style="color: red;"></span>
+        </div>
+    </div>
 </div>  

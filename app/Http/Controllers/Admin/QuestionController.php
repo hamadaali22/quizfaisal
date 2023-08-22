@@ -156,6 +156,12 @@ class QuestionController extends Controller
                     $add_answer->eight    = $request->eight[$i];
                     $add_answer->nine    = $request->nine[$i];
                     $add_answer->ten    = $request->ten[$i];
+                    $add_answer->eleven    = $request->eleven[$i];
+                    $add_answer->twelve    = $request->twelve[$i];
+                    $add_answer->thirteen    = $request->thirteen[$i];
+                    $add_answer->fourteen    = $request->fourteen[$i];
+                    $add_answer->fifteen    = $request->fifteen[$i];
+                    $add_answer->sixteen    = $request->sixteen[$i];
                     $add_answer->save();
 
 

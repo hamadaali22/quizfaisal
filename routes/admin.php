@@ -18,8 +18,11 @@ Route::get('admin-login', 'Auth\LoginController@LoginAdmin')->name('admin-login'
 		return view('front.activate');
 	})->name('activation.message');
 
+// API ID
+//api_0b5d3b67-b2b3-4d76-b9d2-15de2755f70a
 
-	
+// API Version ID
+// apiversion_84d2658b-e6fc-45f8-9875-8716a2c2a1ff
 
 	Route::group(['prefix' => 'admin'], function () {
 
@@ -29,26 +32,25 @@ Route::get('admin-login', 'Auth\LoginController@LoginAdmin')->name('admin-login'
 	    Route::get('reset-user-password/{token}', 'Auth\UserLoginController@resetUserPasswordGet')->name('reset-user-password');
 	    Route::post('reset-user-password', 'Auth\UserLoginController@resetUserPasswordPost')->name('reset-user-password-post');
 
-	    	Route::get('/sms-message', function(){
+// 2982|V3EXbIhIPhAdM1WY87znKVZS57kledfJyLbENI1Z
+	    	Route::get('/send-otp', function(){
+
 			
 			$curl = curl_init();
 
 			curl_setopt_array($curl, [
-				CURLOPT_URL => "https://getitsms-whatsapp-apis.p.rapidapi.com/45?your_number=201015024714&your_message=your%20message",
+				CURLOPT_URL => "https://whatsapp-otp-verification.p.rapidapi.com/auth/client-request-otp",
 				CURLOPT_RETURNTRANSFER => true,
 				CURLOPT_ENCODING => "",
 				CURLOPT_MAXREDIRS => 10,
 				CURLOPT_TIMEOUT => 30,
 				CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 				CURLOPT_CUSTOMREQUEST => "POST",
-				CURLOPT_POSTFIELDS => json_encode([
-					'your_number' => '201015024714',
-					'your_message' => 'your message'
-				]),
+				CURLOPT_POSTFIELDS => "phone=201015024714&country=EG&message=Your%20OTP%3A%20*%7Bcode%7D*%20-%20You%20have%20*5%20minutes*%20to%20enter%20this%20code",
 				CURLOPT_HTTPHEADER => [
-					"X-RapidAPI-Host: getitsms-whatsapp-apis.p.rapidapi.com",
+					"X-RapidAPI-Host: whatsapp-otp-verification.p.rapidapi.com",
 					"X-RapidAPI-Key: 7e840e8ec9mshe876dabeed464d0p1d8bccjsneb6d367c8e0d",
-					"content-type: application/json"
+					"content-type: application/x-www-form-urlencoded"
 				],
 			]);
 
@@ -62,8 +64,45 @@ Route::get('admin-login', 'Auth\LoginController@LoginAdmin')->name('admin-login'
 			} else {
 				echo $response;
 			}
+			
+			
 
+		});
 
+	    	Route::get('/verify-otp', function(){
+
+			
+						
+			$curl = curl_init();
+
+			curl_setopt_array($curl, [
+				CURLOPT_URL => "https://whatsapp-otp-verification.p.rapidapi.com/auth/client-verify-otp",
+				CURLOPT_RETURNTRANSFER => true,
+				CURLOPT_ENCODING => "",
+				CURLOPT_MAXREDIRS => 10,
+				CURLOPT_TIMEOUT => 30,
+				CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+				CURLOPT_CUSTOMREQUEST => "POST",
+				CURLOPT_POSTFIELDS => "requestId=%3CREQUIRED%3E&otp=%3CREQUIRED%3E",
+				CURLOPT_HTTPHEADER => [
+					"X-RapidAPI-Host: whatsapp-otp-verification.p.rapidapi.com",
+					"X-RapidAPI-Key: 7e840e8ec9mshe876dabeed464d0p1d8bccjsneb6d367c8e0d",
+					"content-type: application/x-www-form-urlencoded"
+				],
+			]);
+
+			$response = curl_exec($curl);
+			$err = curl_error($curl);
+
+			curl_close($curl);
+
+			if ($err) {
+				echo "cURL Error #:" . $err;
+			} else {
+				echo $response;
+			}
+			
+			
 
 		});
 

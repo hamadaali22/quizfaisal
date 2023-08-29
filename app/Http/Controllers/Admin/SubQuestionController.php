@@ -120,12 +120,12 @@ class SubQuestionController extends Controller
                 $add_answer->eight    = $request->eight;
                 $add_answer->nine    = $request->nine;
                 $add_answer->ten    = $request->ten;
-                $add_answer->eleven    = $request->eleven[$i];
-                $add_answer->twelve    = $request->twelve[$i];
-                $add_answer->thirteen    = $request->thirteen[$i];
-                $add_answer->fourteen    = $request->fourteen[$i];
-                $add_answer->fifteen    = $request->fifteen[$i];
-                $add_answer->sixteen    = $request->sixteen[$i];
+                $add_answer->eleven    = $request->eleven;
+                $add_answer->twelve    = $request->twelve;
+                $add_answer->thirteen    = $request->thirteen;
+                $add_answer->fourteen    = $request->fourteen;
+                $add_answer->fifteen    = $request->fifteen;
+                $add_answer->sixteen    = $request->sixteen;
                 $add_answer->save();
         }
 

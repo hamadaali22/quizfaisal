@@ -8,7 +8,7 @@
 
           <p v-html="item.bio"></p>
         </div>
-        <p class="col ml-3  text-center pt-4 mt-2 "><span>00</span>:<span>00</span>:<span>00</span></p>
+        <!-- <p class="col ml-3  text-center pt-4 mt-2 "><span>00</span>:<span>00</span>:<span>00</span></p> -->
         <div v-if="item.type == 'listening'" class="col-11 audio-parent text-center pt-1 bg-white">
           <audio controls class="align-items-center w-50"   controlsList="nodownload">
             <source :src="item.file" type="audio/ogg">
@@ -67,22 +67,21 @@
                       <!-- <h6>question question question question question question question question ?</h6> -->
                       <ul class="multi-choice list-unstyled p-2">
                           <p>{{SubQuestions.title}}</p>
-                          <li class="multi-item q-9 border border-raduis pt-2 pl-3 mb-1" :id="'subq'+index+'image_a'" v-on:click="dissapear(index,item.exam_id,SubQuestions.question_id,SubQuestions.id,SubQuestions.expected_answer,'a','subq'+index+'image_a','image_a',SubQuestions.answer_type)">
-                              <input class=" multi-input d-none" type="radio" name="q-9" value="mars" id="img-1">
-                              <label class="multi-label" for="img-1" id="mars">A.<img :src="SubQuestions.image_a" class="img-fluid multi-label-img" alt=""></label>
-                          </li>
-                          <li class="multi-item q-9 border border-raduis pt-2 pl-3 mb-1" :id="'subq'+index+'image_b'" v-on:click="dissapear(index,item.exam_id,SubQuestions.question_id,SubQuestions.id,SubQuestions.expected_answer,'b','subq'+index+'image_b','image_b',SubQuestions.answer_type)">
-                              <input class=" multi-input d-none" type="radio" name="q-9" value="jupiter" id="img-2">
-                              <label class="multi-label" for="img-2" id="jupiter">B.<img :src="SubQuestions.image_b" class="img-fluid  multi-label-img" alt=""></label>
-                          </li>
-                          <!-- <li class="multi-item q-9 border border-raduis pt-2 pl-3 mb-1">
-                              <input class=" multi-input d-none" type="radio" name="q-9" value="venus" id="img-3">
-                              <label class="multi-label" for="img-3" id="venus">C.<img src="https://xn--deutschprfungen-7vb.com/faisal/img/questions-image/20230531121052.jpg" class="img-fluid  multi-label-img" alt=""></label>
-                          </li>
-                          <li class="multi-item q-9 border border-raduis pt-2 pl-3 mb-1">
-                              <input class=" multi-input d-none" type="radio" name="q-9" value="saturn" id="img-4">
-                              <label class="multi-label" for="img-4" id="saturn">D.<img src="https://xn--deutschprfungen-7vb.com/faisal/img/questions-image/20230531121052.jpg" class="img-fluid multi-label-img" alt=""></label>
-                          </li> -->
+                          <div class="row">
+                            <div class="col-sm-6 ">
+                              <li class="mr-2 multi-item q-9 border border-raduis pt-2 pl-3 mb-1 text-center" :id="'subq'+index+'image_a'" v-on:click="dissapear(index,item.exam_id,SubQuestions.question_id,SubQuestions.id,SubQuestions.expected_answer,'a','subq'+index+'image_a','image_a',SubQuestions.answer_type)">
+                                  <input class=" multi-input d-none" type="radio" name="q-9" value="mars" id="img-1">
+                                  <label class="multi-label" for="img-1" id="mars">A.<img :src="SubQuestions.image_a" class="img-fluid multi-label-img" alt=""></label>
+                              </li>
+                            </div>
+                            <div class="col-sm-6 ">
+                              <li class="mr-2 multi-item q-9 border border-raduis pt-2 pl-3 mb-1  text-center" :id="'subq'+index+'image_b'" v-on:click="dissapear(index,item.exam_id,SubQuestions.question_id,SubQuestions.id,SubQuestions.expected_answer,'b','subq'+index+'image_b','image_b',SubQuestions.answer_type)">
+                                  <input class=" multi-input d-none" type="radio" name="q-9" value="jupiter" id="img-2">
+                                  <label class="multi-label" for="img-2" id="jupiter">B.<img :src="SubQuestions.image_b" class="img-fluid  multi-label-img" alt=""></label>
+                              </li>
+                            </div>
+
+                          </div>
                       </ul>
                   </div>
 
@@ -91,7 +90,8 @@
                 <!-- true_false -->
                   <div  v-if="SubQuestions.answer_type == 'true_false'" v-bind:class="[SubQuestions.color == 'b'  ? 'bg-information' : '']">
                       <div class="true-false p-3 ">
-                        <ul class="multi-choice list-unstyled p-2 d-flex flex-wrap ">
+                        <ul class="multi-choice list-unstyled p-2 d-flex  ">
+
                           <h6 class="w-100">{{SubQuestions.title}} </h6>
                           <li class="multi-item q-2 border border-raduis pt-2 pl-3 pr-3 mr-5" :id="'subq'+index+'a'" v-on:click="dissapear(index,item.exam_id,SubQuestions.question_id,SubQuestions.id,SubQuestions.expected_answer,SubQuestions.first_choice,'subq'+index+'a','a',SubQuestions.answer_type)">
                             <input class=" multi-input d-none" type="radio" name="q-2" value="true" id="true-1">
@@ -101,6 +101,7 @@
                             <input class="multi-input d-none" type="radio" name="q-2" value="false" id="false-1">
                             <label class="multi-label"  id="false">{{SubQuestions.second_choice}}</label>
                           </li>
+
                         </ul>
                       </div>
                       <div v-if="SubQuestions.bannarImage != null"  class="picture multi-item">

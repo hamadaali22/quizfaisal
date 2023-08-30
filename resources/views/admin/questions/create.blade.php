@@ -161,6 +161,7 @@
                   <option value=""  selected>Select</option>
                   <option value="number" >Number</option>
                   <option value="text">text</option>
+                  <option value="write">write</option>
                 </select>
                 <span id="isMultyError" style="color: red;"></span>
               </div>
@@ -291,7 +292,11 @@ function showNumberTextAnswer(answer_typeid,addanswer){
   }
   if(answer_val.value == "text"){
     $('#'+addanswer).append(`@include('admin.questions.form-complete-text-answer')`);
-    
+
+  }
+  if(answer_val.value == "write"){
+    $('#'+addanswer).append(`@include('admin.questions.form-complete-write-answer')`);
+
   }
 }
 
@@ -413,7 +418,8 @@ function addVideo(){
   onchange="showNumberTextAnswer('isComplete${videoid}','addanswer${videoid}')" >
   <option value=""  selected>Select</option>
   <option value="number" >Number</option>
-  <option value="text">Word</option>
+  <option value="text">text</option>
+  <option value="write">write</option>
   </select>
   <span id="isMultyError" style="color: red;"></span>
   </div>

@@ -28426,6 +28426,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -67851,8 +67852,6 @@ var render = function() {
               [_c("p", { domProps: { innerHTML: _vm._s(item.bio) } })]
             ),
             _vm._v(" "),
-            _vm._m(0, true),
-            _vm._v(" "),
             item.type == "listening"
               ? _c(
                   "div",
@@ -68143,113 +68142,129 @@ var render = function() {
                                 [
                                   _c("p", [_vm._v(_vm._s(SubQuestions.title))]),
                                   _vm._v(" "),
-                                  _c(
-                                    "li",
-                                    {
-                                      staticClass:
-                                        "multi-item q-9 border border-raduis pt-2 pl-3 mb-1",
-                                      attrs: { id: "subq" + index + "image_a" },
-                                      on: {
-                                        click: function($event) {
-                                          return _vm.dissapear(
-                                            index,
-                                            item.exam_id,
-                                            SubQuestions.question_id,
-                                            SubQuestions.id,
-                                            SubQuestions.expected_answer,
-                                            "a",
-                                            "subq" + index + "image_a",
-                                            "image_a",
-                                            SubQuestions.answer_type
-                                          )
-                                        }
-                                      }
-                                    },
-                                    [
-                                      _c("input", {
-                                        staticClass: " multi-input d-none",
-                                        attrs: {
-                                          type: "radio",
-                                          name: "q-9",
-                                          value: "mars",
-                                          id: "img-1"
-                                        }
-                                      }),
-                                      _vm._v(" "),
+                                  _c("div", { staticClass: "row" }, [
+                                    _c("div", { staticClass: "col-sm-6 " }, [
                                       _c(
-                                        "label",
+                                        "li",
                                         {
-                                          staticClass: "multi-label",
-                                          attrs: { for: "img-1", id: "mars" }
+                                          staticClass:
+                                            "mr-2 multi-item q-9 border border-raduis pt-2 pl-3 mb-1 text-center",
+                                          attrs: {
+                                            id: "subq" + index + "image_a"
+                                          },
+                                          on: {
+                                            click: function($event) {
+                                              return _vm.dissapear(
+                                                index,
+                                                item.exam_id,
+                                                SubQuestions.question_id,
+                                                SubQuestions.id,
+                                                SubQuestions.expected_answer,
+                                                "a",
+                                                "subq" + index + "image_a",
+                                                "image_a",
+                                                SubQuestions.answer_type
+                                              )
+                                            }
+                                          }
                                         },
                                         [
-                                          _vm._v("A."),
-                                          _c("img", {
-                                            staticClass:
-                                              "img-fluid multi-label-img",
+                                          _c("input", {
+                                            staticClass: " multi-input d-none",
                                             attrs: {
-                                              src: SubQuestions.image_a,
-                                              alt: ""
+                                              type: "radio",
+                                              name: "q-9",
+                                              value: "mars",
+                                              id: "img-1"
                                             }
-                                          })
+                                          }),
+                                          _vm._v(" "),
+                                          _c(
+                                            "label",
+                                            {
+                                              staticClass: "multi-label",
+                                              attrs: {
+                                                for: "img-1",
+                                                id: "mars"
+                                              }
+                                            },
+                                            [
+                                              _vm._v("A."),
+                                              _c("img", {
+                                                staticClass:
+                                                  "img-fluid multi-label-img",
+                                                attrs: {
+                                                  src: SubQuestions.image_a,
+                                                  alt: ""
+                                                }
+                                              })
+                                            ]
+                                          )
                                         ]
                                       )
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "li",
-                                    {
-                                      staticClass:
-                                        "multi-item q-9 border border-raduis pt-2 pl-3 mb-1",
-                                      attrs: { id: "subq" + index + "image_b" },
-                                      on: {
-                                        click: function($event) {
-                                          return _vm.dissapear(
-                                            index,
-                                            item.exam_id,
-                                            SubQuestions.question_id,
-                                            SubQuestions.id,
-                                            SubQuestions.expected_answer,
-                                            "b",
-                                            "subq" + index + "image_b",
-                                            "image_b",
-                                            SubQuestions.answer_type
-                                          )
-                                        }
-                                      }
-                                    },
-                                    [
-                                      _c("input", {
-                                        staticClass: " multi-input d-none",
-                                        attrs: {
-                                          type: "radio",
-                                          name: "q-9",
-                                          value: "jupiter",
-                                          id: "img-2"
-                                        }
-                                      }),
-                                      _vm._v(" "),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("div", { staticClass: "col-sm-6 " }, [
                                       _c(
-                                        "label",
+                                        "li",
                                         {
-                                          staticClass: "multi-label",
-                                          attrs: { for: "img-2", id: "jupiter" }
+                                          staticClass:
+                                            "mr-2 multi-item q-9 border border-raduis pt-2 pl-3 mb-1  text-center",
+                                          attrs: {
+                                            id: "subq" + index + "image_b"
+                                          },
+                                          on: {
+                                            click: function($event) {
+                                              return _vm.dissapear(
+                                                index,
+                                                item.exam_id,
+                                                SubQuestions.question_id,
+                                                SubQuestions.id,
+                                                SubQuestions.expected_answer,
+                                                "b",
+                                                "subq" + index + "image_b",
+                                                "image_b",
+                                                SubQuestions.answer_type
+                                              )
+                                            }
+                                          }
                                         },
                                         [
-                                          _vm._v("B."),
-                                          _c("img", {
-                                            staticClass:
-                                              "img-fluid  multi-label-img",
+                                          _c("input", {
+                                            staticClass: " multi-input d-none",
                                             attrs: {
-                                              src: SubQuestions.image_b,
-                                              alt: ""
+                                              type: "radio",
+                                              name: "q-9",
+                                              value: "jupiter",
+                                              id: "img-2"
                                             }
-                                          })
+                                          }),
+                                          _vm._v(" "),
+                                          _c(
+                                            "label",
+                                            {
+                                              staticClass: "multi-label",
+                                              attrs: {
+                                                for: "img-2",
+                                                id: "jupiter"
+                                              }
+                                            },
+                                            [
+                                              _vm._v("B."),
+                                              _c("img", {
+                                                staticClass:
+                                                  "img-fluid  multi-label-img",
+                                                attrs: {
+                                                  src: SubQuestions.image_b,
+                                                  alt: ""
+                                                }
+                                              })
+                                            ]
+                                          )
                                         ]
                                       )
-                                    ]
-                                  )
+                                    ])
+                                  ])
                                 ]
                               )
                             ])
@@ -68271,7 +68286,7 @@ var render = function() {
                               "ul",
                               {
                                 staticClass:
-                                  "multi-choice list-unstyled p-2 d-flex flex-wrap "
+                                  "multi-choice list-unstyled p-2 d-flex  "
                               },
                               [
                                 _c("h6", { staticClass: "w-100" }, [
@@ -68597,20 +68612,7 @@ var render = function() {
     2
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("p", { staticClass: "col ml-3  text-center pt-4 mt-2 " }, [
-      _c("span", [_vm._v("00")]),
-      _vm._v(":"),
-      _c("span", [_vm._v("00")]),
-      _vm._v(":"),
-      _c("span", [_vm._v("00")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

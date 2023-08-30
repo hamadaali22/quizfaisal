@@ -18,7 +18,7 @@
       </div>
     </div>
   </div>
-  
+
   @if(session()->has('message'))
   @include('admin.includes.alerts.success')
   @endif
@@ -45,7 +45,7 @@
 
               <!-- <div class="col-md-12"><hr/></div> -->
 
-             
+
                 <div class="row form-row education-cont" >
                     <div class="row form-row col-md-12">
                         <div class="col-md-4 col-sm-6">
@@ -90,7 +90,8 @@
                             onchange="showNumberTextAnswer('isComplete1','addanswer1')" >
                                 <option value=""  selected>Select</option>
                                 <option value="number" >Number</option>
-                                <option value="text">Word</option>
+                                <option value="text">text</option>
+                                <option value="write">write</option>
                             </select>
                             <span id="isMultyError" style="color: red;"></span>
                         </div>
@@ -217,7 +218,9 @@ function showNumberTextAnswer(answer_typeid,addanswer){
   }
   if(answer_val.value == "text"){
     $('#'+addanswer).append(`@include('admin.questions.form-complete-text-answer-add')`);
-   
+  }
+  if(answer_val.value == "write"){
+    $('#'+addanswer).append(`@include('admin.questions.form-complete-write-answer-add')`);
   }
 }
 

@@ -33,10 +33,10 @@
 
     <script src="{{asset('js/app.js')}}"></script>
 
-    <script type="text/javascript">
+    <!-- <script type="text/javascript">
        $(document).bind("contextmenu",function(e){
        return false;
        });
-    </script>
+    </script> -->
 </body>
 </html>

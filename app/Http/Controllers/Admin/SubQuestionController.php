@@ -1,14 +1,14 @@
 <?php
+  namespace App\Http\Controllers\Admin;
+  use App\Http\Controllers\Controller;
+  use App\SubQuestion;
+  use App\Question;
+  use App\Exam;
+  use App\Level;
+  use Illuminate\Http\Request;
+  use App\Answer;
+  use App\ExpectedAnswer;
 
-namespace App\Http\Controllers\Admin;
-use App\Http\Controllers\Controller;
-
-use App\SubQuestion;
-use App\Question;
-use App\Exam;
-use App\Level;
-use Illuminate\Http\Request;
-use App\Answer;
 class SubQuestionController extends Controller
 {
     public function __construct()
@@ -56,8 +56,6 @@ class SubQuestionController extends Controller
 
     public function store(Request $request)
     {
-        // dd('dc');
-
         $questions=Question::where('id',$request->question_id)->first();
         $add = new SubQuestion;
         $add->exam_id    = $questions->exam_id;
@@ -108,25 +106,37 @@ class SubQuestionController extends Controller
         }
         $add->save();
         if($request->answer_type=='complete'){
-                $add_answer = new Answer;
-                $add_answer->subquestion_id    = $add->id;
-                $add_answer->one    = $request->one;
-                $add_answer->two    = $request->two;
-                $add_answer->three    = $request->three;
-                $add_answer->four    = $request->four;
-                $add_answer->five    = $request->five;
-                $add_answer->six    = $request->six;
-                $add_answer->seven    = $request->seven;
-                $add_answer->eight    = $request->eight;
-                $add_answer->nine    = $request->nine;
-                $add_answer->ten    = $request->ten;
-                $add_answer->eleven    = $request->eleven;
-                $add_answer->twelve    = $request->twelve;
-                $add_answer->thirteen    = $request->thirteen;
-                $add_answer->fourteen    = $request->fourteen;
-                $add_answer->fifteen    = $request->fifteen;
-                $add_answer->sixteen    = $request->sixteen;
-                $add_answer->save();
+            if ($request->is_complete !='write') {
+              $add_answer = new Answer;
+              $add_answer->subquestion_id    = $add->id;
+              $add_answer->one    = $request->one;
+              $add_answer->two    = $request->two;
+              $add_answer->three    = $request->three;
+              $add_answer->four    = $request->four;
+              $add_answer->five    = $request->five;
+              $add_answer->six    = $request->six;
+              $add_answer->seven    = $request->seven;
+              $add_answer->eight    = $request->eight;
+              $add_answer->nine    = $request->nine;
+              $add_answer->ten    = $request->ten;
+              $add_answer->eleven    = $request->eleven;
+              $add_answer->twelve    = $request->twelve;
+              $add_answer->thirteen    = $request->thirteen;
+              $add_answer->fourteen    = $request->fourteen;
+              $add_answer->fifteen    = $request->fifteen;
+              $add_answer->sixteen    = $request->sixteen;
+              $add_answer->save();
+            }else {
+              $expecte_answer = new ExpectedAnswer;
+              $expecte_answer->subquestion_id    = $add->id;
+              $expecte_answer->one    = $request->one;
+              $expecte_answer->two    = $request->two;
+              $expecte_answer->three    = $request->three;
+              $expecte_answer->four    = $request->four;
+              $expecte_answer->five    = $request->five;
+              $expecte_answer->six    = $request->six;
+              $expecte_answer->save();
+            }
         }
 
         return back()->with("message", 'Added successfully');
@@ -139,6 +149,7 @@ class SubQuestionController extends Controller
     public function edit(SubQuestion $subquestion)
     {
         $subquestion->answer=Answer::where('subquestion_id',$subquestion->id)->first();
+        $subquestion->expected_write_answer=ExpectedAnswer::where('subquestion_id',$subquestion->id)->first();
         // dd($subquestion);
         return view('admin.subquestions.edit',compact('subquestion'));
     }
@@ -194,28 +205,43 @@ class SubQuestionController extends Controller
         }
         $edit->save();
         if($request->answer_type=='complete'){
-            $delete_answer = Answer::where('subquestion_id',$subquestion->id)->first();
-            $delete_answer->delete();
+            if ($request->is_complete !='write') {
+              $delete_answer = Answer::where('subquestion_id',$subquestion->id)->first();
+              $delete_answer->delete();
 
-            $add_answer = new Answer;
-            $add_answer->subquestion_id    = $edit->id;
-            $add_answer->one    = $request->one;
-            $add_answer->two    = $request->two;
-            $add_answer->three    = $request->three;
-            $add_answer->four    = $request->four;
-            $add_answer->five    = $request->five;
-            $add_answer->six    = $request->six;
-            $add_answer->seven    = $request->seven;
-            $add_answer->eight    = $request->eight;
-            $add_answer->nine    = $request->nine;
-            $add_answer->ten    = $request->ten;
-            $add_answer->eleven    = $request->eleven;
-            $add_answer->twelve    = $request->twelve;
-            $add_answer->thirteen    = $request->thirteen;
-            $add_answer->fourteen    = $request->fourteen;
-            $add_answer->fifteen    = $request->fifteen;
-            $add_answer->sixteen    = $request->sixteen;
-            $add_answer->save();
+              $add_answer = new Answer;
+              $add_answer->subquestion_id    = $edit->id;
+              $add_answer->one    = $request->one;
+              $add_answer->two    = $request->two;
+              $add_answer->three    = $request->three;
+              $add_answer->four    = $request->four;
+              $add_answer->five    = $request->five;
+              $add_answer->six    = $request->six;
+              $add_answer->seven    = $request->seven;
+              $add_answer->eight    = $request->eight;
+              $add_answer->nine    = $request->nine;
+              $add_answer->ten    = $request->ten;
+              $add_answer->eleven    = $request->eleven;
+              $add_answer->twelve    = $request->twelve;
+              $add_answer->thirteen    = $request->thirteen;
+              $add_answer->fourteen    = $request->fourteen;
+              $add_answer->fifteen    = $request->fifteen;
+              $add_answer->sixteen    = $request->sixteen;
+              $add_answer->save();
+            }else {
+              $delete_answer_expected = ExpectedAnswer::where('subquestion_id',$subquestion->id)->first();
+              $delete_answer_expected->delete();
+
+              $expecte_answer = new ExpectedAnswer;
+              $expecte_answer->subquestion_id    = $edit->id;
+              $expecte_answer->one    = $request->one;
+              $expecte_answer->two    = $request->two;
+              $expecte_answer->three    = $request->three;
+              $expecte_answer->four    = $request->four;
+              $expecte_answer->five    = $request->five;
+              $expecte_answer->six    = $request->six;
+              $expecte_answer->save();
+            }
         }
         // dd($request->all());
 

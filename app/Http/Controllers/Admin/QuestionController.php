@@ -8,7 +8,7 @@ use App\Level;
 use App\SubQuestion;
 use App\Answer;
 use Illuminate\Http\Request;
-
+use App\ExpectedAnswer;
 class QuestionController extends Controller
 {
     public function __construct()
@@ -144,25 +144,37 @@ class QuestionController extends Controller
 
 
                 if($request->answer_type[$i]=='complete'){
-                    $add_answer = new Answer;
-                    $add_answer->subquestion_id    = $add_video->id;
-                    $add_answer->one    = $request->one[$i];
-                    $add_answer->two    = $request->two[$i];
-                    $add_answer->three    = $request->three[$i];
-                    $add_answer->four    = $request->four[$i];
-                    $add_answer->five    = $request->five[$i];
-                    $add_answer->six    = $request->six[$i];
-                    $add_answer->seven    = $request->seven[$i];
-                    $add_answer->eight    = $request->eight[$i];
-                    $add_answer->nine    = $request->nine[$i];
-                    $add_answer->ten    = $request->ten[$i];
-                    $add_answer->eleven    = $request->eleven[$i];
-                    $add_answer->twelve    = $request->twelve[$i];
-                    $add_answer->thirteen    = $request->thirteen[$i];
-                    $add_answer->fourteen    = $request->fourteen[$i];
-                    $add_answer->fifteen    = $request->fifteen[$i];
-                    $add_answer->sixteen    = $request->sixteen[$i];
-                    $add_answer->save();
+                    if ($request->is_complete[$i] !='write') {
+                      $add_answer = new Answer;
+                      $add_answer->subquestion_id    = $add_video->id;
+                      $add_answer->one    = $request->one[$i];
+                      $add_answer->two    = $request->two[$i];
+                      $add_answer->three    = $request->three[$i];
+                      $add_answer->four    = $request->four[$i];
+                      $add_answer->five    = $request->five[$i];
+                      $add_answer->six    = $request->six[$i];
+                      $add_answer->seven    = $request->seven[$i];
+                      $add_answer->eight    = $request->eight[$i];
+                      $add_answer->nine    = $request->nine[$i];
+                      $add_answer->ten    = $request->ten[$i];
+                      $add_answer->eleven    = $request->eleven[$i];
+                      $add_answer->twelve    = $request->twelve[$i];
+                      $add_answer->thirteen    = $request->thirteen[$i];
+                      $add_answer->fourteen    = $request->fourteen[$i];
+                      $add_answer->fifteen    = $request->fifteen[$i];
+                      $add_answer->sixteen    = $request->sixteen[$i];
+                      $add_answer->save();
+                   }else {
+                     $add_expecte_answer = new ExpectedAnswer;
+                     $add_expecte_answer->subquestion_id    = $add_video->id;
+                     $add_expecte_answer->one    = $request->one[$i];
+                     $add_expecte_answer->two    = $request->two[$i];
+                     $add_expecte_answer->three    = $request->three[$i];
+                     $add_expecte_answer->four    = $request->four[$i];
+                     $add_expecte_answer->five    = $request->five[$i];
+                     $add_expecte_answer->six    = $request->six[$i];
+                     $add_expecte_answer->save();
+                   }
 
 
 

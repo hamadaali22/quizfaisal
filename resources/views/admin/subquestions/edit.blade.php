@@ -84,9 +84,10 @@
                             <label> Select number or Word </label>
                             <select name="is_complete" class="form-control formselect" id="isComplete1"
                             onchange="showNumberTextAnswer('isComplete1','addanswer1')" >
-                                <option value=""  selected>Select</option>
-                                <option value="number" {{ $subquestion->is_complete  == 'number' ? "selected" : "" }}>number</option>
+                              <option value=""  selected>Select</option>
+                              <option value="number" {{ $subquestion->is_complete  == 'number' ? "selected" : "" }}>number</option>
                               <option value="text" {{ $subquestion->is_complete  == 'text' ? "selected" : "" }}>text</option>
+                              <option value="write" {{ $subquestion->is_complete  == 'write' ? "selected" : "" }}>write</option>
                             </select>
                             <span id="isMultyError" style="color: red;"></span>
                         </div>
@@ -163,6 +164,17 @@
 <input type="hidden" id="answer-fourteen" value="{{$subquestion->answer->fourteen}}" >
 <input type="hidden" id="answer-fifteen" value="{{$subquestion->answer->fifteen}}" >
 <input type="hidden" id="answer-sixteen" value="{{$subquestion->answer->sixteen}}" >
+
+
+@endif
+
+@if($subquestion->expected_write_answer)
+  <input type="hidden" id="answer-expected-one" value="{{$subquestion->expected_write_answer->one}}" >
+  <input type="hidden" id="answer-expected-two" value="{{$subquestion->expected_write_answer->two}}" >
+  <input type="hidden" id="answer-expected-three" value="{{$subquestion->expected_write_answer->three}}" >
+  <input type="hidden" id="answer-expected-four" value="{{$subquestion->expected_write_answer->four}}" >
+  <input type="hidden" id="answer-expected-five" value="{{$subquestion->expected_write_answer->five}}" >
+  <input type="hidden" id="answer-expected-six" value="{{$subquestion->expected_write_answer->six}}" >
 @endif
 </section>
 <!-- <?php
@@ -197,6 +209,25 @@ $videos=session()->get('videos_sessions');
   let complete_n_fifteen= document.getElementById('answer-fifteen');
   let complete_n_sixteen= document.getElementById('answer-sixteen');
 
+
+  let complete_expected_one= document.getElementById('answer-expected-one');
+  let complete_expected_two = document.getElementById('answer-expected-two');
+  let complete_expected_three= document.getElementById('answer-expected-three');
+  let complete_expected_four = document.getElementById('answer-expected-four');
+  let complete_expected_five = document.getElementById('answer-expected-five');
+  let complete_expected_six = document.getElementById('answer-expected-six');
+
+if(is_complete == 'write'){
+    $('.complete-write-answer1').show();
+      $('#addanswer1').append(`@include('admin.subquestions.form-complete-write-answer-edit',[
+                    'complete_expected_one' => '${complete_expected_one.value}',
+                    'complete_expected_two' => '${complete_expected_two.value}',
+                    'complete_expected_three' => '${complete_expected_three.value}',
+                    'complete_expected_four' => '${complete_expected_four.value}',
+                    'complete_expected_five' => '${complete_expected_five.value}',
+                    'complete_expected_six' => '${complete_expected_six.value}'])`);
+  }
+
   var answer_type =<?php echo json_encode($subquestion->answer_type) ?>;
   var is_multy =<?php echo json_encode($subquestion->is_multy) ?>;
   var is_complete =<?php echo json_encode($subquestion->is_complete) ?>;
@@ -208,6 +239,7 @@ $('.text-answer1').hide();
 $('.number-answer1').hide();
 $('.true-false1').hide();
 $('.complete-text-answer1').hide();
+$('.complete-write-answer1').hide();
 $('.complete-number-answer1').hide();
 
 $('.image-answer1').hide();
@@ -259,6 +291,17 @@ $('.complete-answer1').hide();
           $('#addanswer1').append(`@include('admin.subquestions.form-complete-number-answer-edit',[
               'complete_n_one' => '${complete_n_one.value}','complete_n_two' => '${complete_n_two.value}'])`);
       }
+      if(is_complete == 'write'){
+        $('.complete-write-answer1').show();
+          $('#addanswer1').append(`@include('admin.subquestions.form-complete-write-answer-edit',[
+                        'complete_expected_one' => '${complete_expected_one.value}',
+                        'complete_expected_two' => '${complete_expected_two.value}',
+                        'complete_expected_three' => '${complete_expected_three.value}',
+                        'complete_expected_four' => '${complete_expected_four.value}',
+                        'complete_expected_five' => '${complete_expected_five.value}',
+                        'complete_expected_six' => '${complete_expected_six.value}'])`);
+      }
+
   }
   if(answer_type =='true_false'){
         $('.true-false1').show();
@@ -333,9 +376,18 @@ function showNumberTextAnswer(answer_typeid,addanswer){
                         'complete_n_fourteen' => '${complete_n_fourteen.value}',
                         'complete_n_fifteen' => '${complete_n_fifteen.value}',
                         'complete_n_sixteen' => '${complete_n_sixteen.value}'])`);
-
-                       
   }
+
+    if(answer_val.value == "write"){
+       $('#'+addanswer).append(`@include('admin.subquestions.form-complete-write-answer-edit',[
+           'complete_expected_one' => '${complete_expected_one.value}',
+           'complete_expected_two' => '${complete_expected_two.value}',
+           'complete_expected_three' => '${complete_expected_three.value}',
+           'complete_expected_four' => '${complete_expected_four.value}',
+           'complete_expected_five' => '${complete_expected_five.value}',
+           'complete_expected_six' => '${complete_expected_six.value}'])`);
+    }
+
 }
 
 

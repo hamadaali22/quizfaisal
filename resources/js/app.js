@@ -57,7 +57,7 @@ const store = new Vuex.Store({
         questions:[],
         CurrentPage:null,
         Results:{},
-        basName:"https://xn--deutschprfungen-7vb.com/api/",
+        basName:"https://deutschtests.com/api/",
         examAnswer:[],
         // levelId:null,
         contactInfo:'',
@@ -139,7 +139,7 @@ const store = new Vuex.Store({
     actions: {
         RegisterUser({ commit }, payload) {
 
-            axios.post('https://xn--deutschprfungen-7vb.com/api/register', payload)
+            axios.post('https://deutschtests.com/api/register', payload)
                 .then(res => {
                 if(res.data.status==true){
                   var resTitle='Erfolgreich registriert';
@@ -164,7 +164,7 @@ const store = new Vuex.Store({
                 })
         },
         LoginUser({ commit }, payload) {
-          axios.post('https://xn--deutschprfungen-7vb.com/api/login', payload)
+          axios.post('https://deutschtests.com/api/login', payload)
               .then(res => {
                   console.log(res.data);
                   if(res.data.status==true){
@@ -200,7 +200,7 @@ const store = new Vuex.Store({
               })
         },
         ForgetPassword({ commit }, payload) {
-          axios.post('https://xn--deutschprfungen-7vb.com/api/forgetpassword', payload)
+          axios.post('https://deutschtests.com/api/forgetpassword', payload)
               .then(res => {
                   console.log(res.data);
                   if(res.data.status==true){
@@ -232,7 +232,7 @@ const store = new Vuex.Store({
         },
 
         getContactinfo({commit}){
-           axios.get('https://xn--deutschprfungen-7vb.com/api/contactinfo')
+           axios.get('https://deutschtests.com/api/contactinfo')
           .then(res =>{
             // console.log(res.data.data);
             store.commit('updateContactinfo', res.data.data);

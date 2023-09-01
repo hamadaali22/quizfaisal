@@ -302,7 +302,7 @@
                 //   });
               }else{
                 let data={'data':this.questionAnswer};
-                axios.post('https://xn--deutschprfungen-7vb.com/api/save-exam', data)
+                axios.post('https://deutschtests.com/api/save-exam', data)
                 .then(res => {
                     console.log(res)
                     commit('setUserToken', res.data.token)

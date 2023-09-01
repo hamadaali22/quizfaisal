@@ -265,7 +265,7 @@ class HomeController extends Controller
         $edit-> save();
 
         $user = User::find($edit->id);
-        $user->photo= "https://xn--deutschprfungen-7vb.com/img/profiles/".$user->photo;
+        $user->photo= "https://deutschtests.com/img/profiles/".$user->photo;
         return $this -> returnDataa('data',$user,'updated successfully');
 
     }
@@ -273,9 +273,9 @@ class HomeController extends Controller
     {
          $contactinfo = ContactInfo::first();
 
-         $contactinfo->logo="https://xn--deutschprfungen-7vb.com/img/settings/".$contactinfo->logo;
-         $contactinfo->favicon="https://xn--deutschprfungen-7vb.com/img/settings/".$contactinfo->favicon;
-         $contactinfo->image="https://xn--deutschprfungen-7vb.com/img/settings/".$contactinfo->image;
+         $contactinfo->logo="https://deutschtests.com/img/settings/".$contactinfo->logo;
+         $contactinfo->favicon="https://deutschtests.com/img/settings/".$contactinfo->favicon;
+         $contactinfo->image="https://deutschtests.com/img/settings/".$contactinfo->image;
 
 
          return $this -> returnDataa(

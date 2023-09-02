@@ -68,7 +68,7 @@
                   <select name="type" class="form-control formselect" id="typeid" >
                     <option value=""  selected>Select</option>
                     <option value="listening" {{ old('type') == 'listening' ? "selected" : "" }}>listening</option>
-                    <option value="listening and image" {{ old('type') == 'listening image' ? "selected" : "" }}>listening and image</option>
+                    <option value="listening and image" {{ old('type') == 'listening and image' ? "selected" : "" }}>listening and image</option>
                     <option value="reading" {{ old('type') == 'reading' ? "selected" : "" }}>reading</option>
                     <option value="image" {{ old('type') == 'image' ? "selected" : "" }}>image</option>
                     <option value="sub" {{ old('type') == 'sub' ? "selected" : "" }}>sub</option>

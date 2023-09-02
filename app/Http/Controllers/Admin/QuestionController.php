@@ -236,7 +236,7 @@ class QuestionController extends Controller
                 $edit->paragraph = $edit->paragraph;
             }
         }
-        if($request->type =='listening image'){
+        if($request->type =='listening and image'){
             if($files = $request->file('file')) {
                 $profileImage = date('YmdHis') . "." . $files->getClientOriginalExtension();
                 $destinationPath = 'img/questions-file';
@@ -245,7 +245,7 @@ class QuestionController extends Controller
             }else{
                 $edit->file = $edit->file;
             }
-
+            dd($request->file('image'));
             if ($image = $request->file('image')) {
                 $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
                 $destinationPath = 'img/questions-image';

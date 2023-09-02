@@ -64,7 +64,7 @@
                   <select name="type" class="form-control formselect" id="typeid">
                     <option value=""  selected>Select</option>
                     <option value="listening" {{ $question->type  == 'listening' ? "selected" : "" }}>listening</option>
-                    <option value="listening and image" {{ $question->type == 'listening image' ? "selected" : "" }}>listening and image</option>
+                    <option value="listening and image" {{ $question->type == 'listening and image' ? "selected" : "" }}>listening and image</option>
                     <option value="reading" {{ $question->type == 'reading' ? "selected" : "" }}>reading</option>
                     <option value="image" {{ $question->type == 'image' ? "selected" : "" }}>image</option>
                     <option value="sub" {{ $question->type == 'sub' ? "selected" : "" }}>sub</option>

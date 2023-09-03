@@ -35,7 +35,7 @@ Route::get('admin-login', 'Auth\LoginController@LoginAdmin')->name('admin-login'
 // 2982|V3EXbIhIPhAdM1WY87znKVZS57kledfJyLbENI1Z
 	    	Route::get('/send-otp', function(){
 
-			
+
 			$curl = curl_init();
 
 			curl_setopt_array($curl, [
@@ -64,15 +64,15 @@ Route::get('admin-login', 'Auth\LoginController@LoginAdmin')->name('admin-login'
 			} else {
 				echo $response;
 			}
-			
-			
+
+
 
 		});
 
 	    	Route::get('/verify-otp', function(){
 
-			
-						
+
+
 			$curl = curl_init();
 
 			curl_setopt_array($curl, [
@@ -101,8 +101,8 @@ Route::get('admin-login', 'Auth\LoginController@LoginAdmin')->name('admin-login'
 			} else {
 				echo $response;
 			}
-			
-			
+
+
 
 		});
 
@@ -117,6 +117,7 @@ Route::get('admin-login', 'Auth\LoginController@LoginAdmin')->name('admin-login'
 		    Route::resource('exams','ExamController');
 		    Route::get('telc-exams','ExamController@telcExams');
 		    Route::resource('questions','QuestionController');
+				Route::get('questionsTelc','QuestionController@questionsTelc');
 		    Route::resource('subquestions','SubQuestionController');
 		    Route::get('allsubquestions/{id}','SubQuestionController@allSubquestions');
 

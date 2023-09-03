@@ -20,10 +20,36 @@ class QuestionController extends Controller
     {
         $exams=Exam::all();
         $levels=Level::all();
-        $questions=Question::orderBy('order','ASC')->get();
-        foreach ($questions as $item) {
-            $item->level= Level::where('id',$item->level_id)->first();
-            $item->exam=Exam::where('id',$item->exam_id)->first();
+        $allquestions=Question::orderBy('order','ASC')->get();
+        $questions=[];
+        foreach ($allquestions as $item) {
+            $exam=Exam::where('id',$item->exam_id)->first();
+            if($exam->section !='telc'){
+              $questions[]=$item;
+            }
+        }
+        foreach ($questions as $_item) {
+            $_item->exam=Exam::where('id',$_item->exam_id)->first();
+            $_item->level= Level::where('id',$_item->level_id)->first();
+        }
+        return view('admin.questions.all',compact('questions','levels','exams'));
+    }
+
+    public function questionsTelc()
+    {
+        $exams=Exam::all();
+        $levels=Level::all();
+        $allquestions=Question::orderBy('order','ASC')->get();
+        $questions=[];
+        foreach ($allquestions as $item) {
+            $exam=Exam::where('id',$item->exam_id)->first();
+            if($exam->section=='telc'){
+              $questions[]=$item;
+            }
+        }
+        foreach ($questions as $_item) {
+            $_item->exam=Exam::where('id',$_item->exam_id)->first();
+            $_item->level= Level::where('id',$_item->level_id)->first();
         }
         return view('admin.questions.all',compact('questions','levels','exams'));
     }
@@ -245,7 +271,7 @@ class QuestionController extends Controller
             }else{
                 $edit->file = $edit->file;
             }
-            dd($request->file('image'));
+            // dd($request->file('image'));
             if ($image = $request->file('image')) {
                 $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
                 $destinationPath = 'img/questions-image';

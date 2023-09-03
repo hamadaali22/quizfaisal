@@ -18,6 +18,9 @@
         <li class="nav-item {{ Request::is('admin/questions') ? 'active' : '' }}">
             <a href="{{url('admin/questions')}}"><i class="la la-envelope"></i><span class="menu-title" data-i18n="">Questions</span></a>
         </li>
+        <li class="nav-item {{ Request::is('admin/questionsTelc') ? 'active' : '' }}">
+            <a href="{{url('admin/questionsTelc')}}"><i class="la la-envelope"></i><span class="menu-title" data-i18n="">Questions telc</span></a>
+        </li>
         <li class="nav-item {{ Request::is('admin/lanswersevels') ? 'active' : '' }}">
             <a href="{{url('admin/answers')}}"><i class="la la-envelope"></i><span class="menu-title" data-i18n="">Answers</span></a>
         </li>

@@ -104,15 +104,46 @@
 
                         </ul>
                       </div>
-                      <div v-if="SubQuestions.bannarImage != null"  class="picture multi-item">
-                        <img   :src="SubQuestions.bannarImage" alt="bannar image" class="img-fluid">
+                      <div v-if="SubQuestions.bannarImage != null"  class="picture multi-item  pl-5">
+                        <img   :src="SubQuestions.bannarImage" alt="bannar image" class="img-fluid ">
                     </div>
                   </div>
               <!-- complete -->
                 <div  v-if="SubQuestions.answer_type == 'complete'">
                     <div v-if="SubQuestions.is_complete == 'write'" class="dropdown d-flex justify-content-between mt-3">
-                      <label for="cars">{{SubQuestions.title}}</label>
-                      <label for="cars">{{SubQuestions.last_title}}</label>
+
+                        <div v-if="SubQuestions.answer_location == 'beginning'" class="d-flex">
+                          <input type="text" style="border:none; outline:none;min-width:200px; padding:0px 10px" placeholder=" ...................................... ">
+                          <span> {{SubQuestions.title}} </span>
+                          <span> {{SubQuestions.last_title}} </span>
+                        </div>
+
+                        <div v-if="SubQuestions.answer_location == 'middle'" class="d-flex">
+                          <span> {{SubQuestions.title}} </span>
+                          <input type="text" style="border:none; outline:none;min-width:200px; padding:0px 10px" placeholder=" ........................................ ">
+                          <span> {{SubQuestions.last_title}} </span>
+                        </div>
+
+                        <div v-if="SubQuestions.answer_location == 'end'" class="d-flex">
+                          <span> {{SubQuestions.title}} </span>
+                          <input type="text" style="border:none; outline:none;min-width:200px; padding:0px 10px" placeholder=" ......................................... ">
+                          <span> {{SubQuestions.last_title}} </span>
+                        </div>
+
+
+<!--
+                      <div v-if="SubQuestions.answer_location == 'middle'">
+                        <label for="cars">{{SubQuestions.title}}</label>
+                        <input type="text" name="" class="form-control" />
+                        <label for="cars">{{SubQuestions.last_title}}</label>
+                      </div> -->
+
+                      <!-- <div v-if="SubQuestions.answer_location == 'end'">
+                        <label for="cars">{{SubQuestions.title}}</label>
+                        <label for="cars">{{SubQuestions.last_title}}</label>
+                        <input type="text" name="" class="form-control" />
+                      </div> -->
+
                     </div>
                     <!-- <div v-if="SubQuestions.answer != null" class="dropdown d-flex justify-content-between mt-3">
                         <label for="cars">{{SubQuestions.title}}</label>
@@ -241,7 +272,7 @@
                   let answera = this.$el.querySelector("#"+subQuestionClass);
                     answera.style.color = '#fff';
                     answera.style.background = '#3e83b3';
-
+                    // answer.style.border="2px solid #3d83b3"
                   let answerb = this.$el.querySelector("#subq"+index+'b');
                       answerb.style.color = '';
                       answerb.style.background = '';

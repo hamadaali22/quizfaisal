@@ -6,6 +6,9 @@
 .back{
   background-color: #3d83b3;
 }
+/* .active{
+  border: 3px solid #3d83b3 !important;
+} */
 .border-raduis {
   border-radius: 10px;
   border: #e2f3ff 1px solid !important;

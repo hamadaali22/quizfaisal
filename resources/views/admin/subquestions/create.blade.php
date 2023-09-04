@@ -48,14 +48,6 @@
 
                 <div class="row form-row education-cont" >
                     <div class="row form-row col-md-12">
-                        <div class="col-md-4 col-sm-6">
-                          <div class="form-group">
-                            <label>Title</label>
-                            <input type="text" name="title" class="form-control titleId">
-                            <span id="titleError" style="color: red;"></span>
-                          </div>
-                        </div>
-
                         <div class="form-group col-md-4 col-sm-6">
                           <label> Select Answer Type </label>
                           <select name="answer_type" class="form-control formselect answerTypeId" id="answerType1"
@@ -74,6 +66,7 @@
                             </select>
                             <span id="answerTypeError" style="color: red;"></span>
                         </div>
+
                         <div class="form-group col-md-4 col-sm-6 is_multy-hidden1" id="is_multy-hidden1">
                             <label> Select text or imag </label>
                             <select name="is_multy" class="form-control formselect" id="isMulty1"
@@ -94,6 +87,20 @@
                                 <option value="write">write</option>
                             </select>
                             <span id="isMultyError" style="color: red;"></span>
+                        </div>
+                        <div class="col-md-4 col-sm-6">
+                          <div class="form-group">
+                            <label>Title</label>
+                            <input type="text" name="title" class="form-control titleId">
+                            <span id="titleError" style="color: red;"></span>
+                          </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 title-hidden">
+                          <div class="form-group">
+                            <label>Title 2</label>
+                            <input type="text" name="last_title" class="form-control titleId">
+                            <span id="titleError" style="color: red;"></span>
+                          </div>
                         </div>
                         <div class="col-md-4 col-sm-6">
                             <div class="form-group">
@@ -158,10 +165,12 @@ $videos=session()->get('videos_sessions');
 
 
 <script>
+
 $('.loader-container').hide();
 // $('.file-hidden').hide();
 // $('.paragraph-hidden').hide();
 // $('.image-hidden').hide();
+$('.title-hidden').hide();
 $('.is_multy-hidden1').hide();
 $('.is_complete_hidden1').hide();
 
@@ -220,6 +229,8 @@ function showNumberTextAnswer(answer_typeid,addanswer){
     $('#'+addanswer).append(`@include('admin.questions.form-complete-text-answer-add')`);
   }
   if(answer_val.value == "write"){
+    $('.title-hidden').show();
+
     $('#'+addanswer).append(`@include('admin.questions.form-complete-write-answer-add')`);
   }
 }

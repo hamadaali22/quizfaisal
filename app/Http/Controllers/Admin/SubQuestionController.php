@@ -85,6 +85,9 @@ class SubQuestionController extends Controller
         if(isset($request->title)){
             $add->title    = $request->title;
         }
+        if(isset($request->last_title)){
+            $add->last_title    = $request->last_title;
+        }
         if(isset($request->answer_type)){
             $add->answer_type    = $request->answer_type;
         }

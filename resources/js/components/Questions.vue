@@ -10,7 +10,7 @@
         </div>
         <!-- <p class="col ml-3  text-center pt-4 mt-2 "><span>00</span>:<span>00</span>:<span>00</span></p> -->
         <div v-if="item.type == 'listening'" class="col-11 audio-parent text-center pt-1 bg-white">
-          <audio controls class="align-items-center w-50"   controlsList="nodownload">
+          <audio controls class="align-items-center w-50" controlsList="nodownload">
             <source :src="item.file" type="audio/ogg">
               <source :src="item.file" type="audio/mpeg">
                 Your browser does not support the audio element.
@@ -109,8 +109,12 @@
                     </div>
                   </div>
               <!-- complete -->
-                <div  v-if="SubQuestions.answer_type == 'complete'"  >
-                     <div v-if="SubQuestions.answer != null" class="dropdown d-flex justify-content-between mt-3">
+                <div  v-if="SubQuestions.answer_type == 'complete'">
+                    <div v-if="SubQuestions.is_complete == 'write'" class="dropdown d-flex justify-content-between mt-3">
+                      <label for="cars">{{SubQuestions.title}}</label>
+                      <label for="cars">{{SubQuestions.last_title}}</label>
+                    </div>
+                    <!-- <div v-if="SubQuestions.answer != null" class="dropdown d-flex justify-content-between mt-3">
                         <label for="cars">{{SubQuestions.title}}</label>
                        <select  @change="onChange($event,item.exam_id,SubQuestions.question_id,SubQuestions.id,SubQuestions.expected_answer)"  id="cars" >
                           <option selected value=""> wählen </option>
@@ -131,7 +135,7 @@
                           <option :value="SubQuestions.answer.fifteen">{{SubQuestions.answer.fifteen}}</option>
                           <option :value="SubQuestions.answer.sixteen">{{SubQuestions.answer.sixteen}}</option>
                        </select>
-                   </div>
+                   </div> -->
                 </div>
 
 

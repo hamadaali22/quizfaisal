@@ -20,7 +20,7 @@ class ExamController extends Controller
     {
         $levels=Level::get();
         $exams=Exam::orderBy('id', 'DESC')->where('section','telc')->get();
-        foreach ($exams as $item) {   
+        foreach ($exams as $item) {
             $item->level= Level::where('id',$item->level_id)->first();
         }
         return view('admin.exams.all-telc',compact('exams','levels'));
@@ -28,8 +28,8 @@ class ExamController extends Controller
     public function index()
     {
         $levels=Level::get();
-        $exams=Exam::orderBy('id', 'DESC')->get();
-        foreach ($exams as $item) {   
+        $exams=Exam::orderBy('id', 'DESC')->where('section',null)->get();
+        foreach ($exams as $item) {
             $item->level= Level::where('id',$item->level_id)->first();
         }
         return view('admin.exams.all',compact('exams','levels'));
@@ -41,8 +41,8 @@ class ExamController extends Controller
         $add->level_id    = $request->level_id;
         $add->section    = $request->section;
         $add->save();
-        
-        return back()->with("message", 'Added successfully'); 
+
+        return back()->with("message", 'Added successfully');
     }
 
     public function edit(Exam $exam)
@@ -51,7 +51,7 @@ class ExamController extends Controller
         return view('admin.exams.edit',compact('levels','exam'));
     }
 
-    public function update(Request $request, Exam $exam){        
+    public function update(Request $request, Exam $exam){
         $edit = Exam::findOrFail($exam->id);
         $edit->name    = $request->name;
         $edit->level_id    = $request->level_id;
@@ -65,17 +65,17 @@ class ExamController extends Controller
             // dd('gggghytghgt');
             if($delete){
                 $questions= Question::where('exam_id',$delete->id)->get();
-                foreach ($questions as $question) {         
+                foreach ($questions as $question) {
                     // $delete_question = Question::findOrFail($question->id);
                     $question->delete();
                 }
                 $subquestions= SubQuestion::where('exam_id',$delete->id)->get();
-                foreach ($subquestions as $subquestion) {         
+                foreach ($subquestions as $subquestion) {
                     // $delete_question = SubQuestion::findOrFail($question->id);
                     $subquestion->delete();
                 }
                 $examanswers= ExamAnswer::where('exam_id',$delete->id)->get();
-                foreach ($examanswers as $examanswer) {         
+                foreach ($examanswers as $examanswer) {
                     // $delete_question = SubQuestion::findOrFail($question->id);
                     $examanswer->delete();
                 }
@@ -83,8 +83,8 @@ class ExamController extends Controller
             $delete->delete();
             // File::delete(public_path("assets_admin/img/curriculums/". $delete->image));
             // File::delete("/home/u9ak0fjx/public_html/assets_admin/img/tutorials/" . $delete->image);
-       
-            return redirect()->route('exams.index')->with("message",'The exam has been deleted'); 
-    } 
-    
+
+            return redirect()->route('exams.index')->with("message",'The exam has been deleted');
+    }
+
 }

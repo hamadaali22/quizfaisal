@@ -28427,6 +28427,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -28462,12 +28468,16 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     // let {examId} = this;
+    // this.scrollToTop();
     this.$store.dispatch('getQuestions', {
       examId: this.examId,
       pageId: this.pageId
     });
   },
   methods: {
+    // scrollToTop() {
+    //   window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+    // },
     onChange: function onChange(event, examId, questionId, subQuestionId, expected_answer) {
       var sub_q_ans = {
         'user_id': this.userId,
@@ -28620,6 +28630,11 @@ __webpack_require__.r(__webpack_exports__);
           user_id: this.$store.state.userToken.id,
           examId: this.examId,
           pageId: this.getCurrentPage + 1
+        });
+        window.scrollTo({
+          top: 0,
+          left: 0,
+          behavior: 'smooth'
         });
       }
     }
@@ -68555,6 +68570,90 @@ var render = function() {
                                         }
                                       },
                                       [_vm._v(_vm._s(SubQuestions.answer.ten))]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "option",
+                                      {
+                                        domProps: {
+                                          value: SubQuestions.answer.eleven
+                                        }
+                                      },
+                                      [
+                                        _vm._v(
+                                          _vm._s(SubQuestions.answer.eleven)
+                                        )
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "option",
+                                      {
+                                        domProps: {
+                                          value: SubQuestions.answer.twelve
+                                        }
+                                      },
+                                      [
+                                        _vm._v(
+                                          _vm._s(SubQuestions.answer.twelve)
+                                        )
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "option",
+                                      {
+                                        domProps: {
+                                          value: SubQuestions.answer.thirteen
+                                        }
+                                      },
+                                      [
+                                        _vm._v(
+                                          _vm._s(SubQuestions.answer.thirteen)
+                                        )
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "option",
+                                      {
+                                        domProps: {
+                                          value: SubQuestions.answer.fourteen
+                                        }
+                                      },
+                                      [
+                                        _vm._v(
+                                          _vm._s(SubQuestions.answer.fourteen)
+                                        )
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "option",
+                                      {
+                                        domProps: {
+                                          value: SubQuestions.answer.fifteen
+                                        }
+                                      },
+                                      [
+                                        _vm._v(
+                                          _vm._s(SubQuestions.answer.fifteen)
+                                        )
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "option",
+                                      {
+                                        domProps: {
+                                          value: SubQuestions.answer.sixteen
+                                        }
+                                      },
+                                      [
+                                        _vm._v(
+                                          _vm._s(SubQuestions.answer.sixteen)
+                                        )
+                                      ]
                                     )
                                   ]
                                 )

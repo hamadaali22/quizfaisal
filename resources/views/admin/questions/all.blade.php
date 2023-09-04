@@ -75,7 +75,7 @@
                             <th>#</th>
                             <th>exam </th>
                             <th>type </th>
-                            <th>paragraph </th>
+                            <!-- <th>paragraph </th> -->
                             <th>image </th>
                             <th>file </th>
                             <th class="text-center">Actions</th>
@@ -100,9 +100,9 @@
                               <td>
                                   {{ $_item->type }}
                               </td>
-                              <td>
+                              <!-- <td>
                                   {{ Str::limit($_item->paragraph, 50 ) }}
-                              </td>
+                              </td> -->
                               <td>
                                   @if($_item->image)
                                       <img class="avatar-img" src="{{asset('img/questions-image/'.$_item->image) }}" width="90px">

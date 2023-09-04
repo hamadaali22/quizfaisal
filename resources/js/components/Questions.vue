@@ -124,6 +124,12 @@
                           <option :value="SubQuestions.answer.eight">{{SubQuestions.answer.eight}}</option>
                           <option :value="SubQuestions.answer.nine">{{SubQuestions.answer.nine}}</option>
                           <option :value="SubQuestions.answer.ten">{{SubQuestions.answer.ten}}</option>
+                          <option :value="SubQuestions.answer.eleven">{{SubQuestions.answer.eleven}}</option>
+                          <option :value="SubQuestions.answer.twelve">{{SubQuestions.answer.twelve}}</option>
+                          <option :value="SubQuestions.answer.thirteen">{{SubQuestions.answer.thirteen}}</option>
+                          <option :value="SubQuestions.answer.fourteen">{{SubQuestions.answer.fourteen}}</option>
+                          <option :value="SubQuestions.answer.fifteen">{{SubQuestions.answer.fifteen}}</option>
+                          <option :value="SubQuestions.answer.sixteen">{{SubQuestions.answer.sixteen}}</option>
                        </select>
                    </div>
                 </div>
@@ -153,6 +159,7 @@
       </div>
     </template>
     <script>
+
   import swal from "sweetalert";
     export default {
 
@@ -184,10 +191,15 @@
       },
       mounted(){
         // let {examId} = this;
+        // this.scrollToTop();
         this.$store.dispatch('getQuestions', { examId: this.examId,pageId:this.pageId });
       },
-      methods: {
 
+
+      methods: {
+        // scrollToTop() {
+        //   window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+        // },
         onChange(event,examId,questionId,subQuestionId,expected_answer) {
           let sub_q_ans={'user_id': this.userId,'answerid':event.target.value,'examId': examId,'questionId':questionId ,'subQuestionId':subQuestionId ,'expected_answer':expected_answer}
           if(this.names.includes(subQuestionId)){
@@ -313,6 +325,7 @@
                 this.questionAnswer=[];
                 console.log(this.getCurrentPage+1+' page');
                 this.$store.dispatch('getQuestions', {user_id: this.$store.state.userToken.id, examId: this.examId,pageId:this.getCurrentPage+1 });
+                window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
               }
         },
 

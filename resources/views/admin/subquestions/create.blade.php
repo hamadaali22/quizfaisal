@@ -51,7 +51,6 @@
                         <div class="form-group col-md-4 col-sm-6">
                           <label> Select Answer Type </label>
                           <select name="answer_type" class="form-control formselect answerTypeId" id="answerType1"
-
                           onchange="answerType('answerType1','is_multy-hidden1','is_complete_hidden1','addanswer1')">
                           <option value=""  selected>Select</option>
                           <option value="multiple_choice">
@@ -101,6 +100,16 @@
                             <input type="text" name="last_title" class="form-control titleId">
                             <span id="titleError" style="color: red;"></span>
                           </div>
+                        </div>
+                        <div class="form-group col-md-4 col-sm-6 ">
+                            <label> Select Answer location </label>
+                            <select name="answer_location" class="form-control formselec" >
+                                <option value=""  selected>Select</option>
+                                <option value="beginning" >beginning</option>
+                                <option value="middle">middle</option>
+                                <option value="end">end</option>
+                            </select>
+                            <span id="isMultyError" style="color: red;"></span>
                         </div>
                         <div class="col-md-4 col-sm-6">
                             <div class="form-group">

@@ -49,14 +49,6 @@
 
                 <div class="row form-row education-cont">
                     <div class="row form-row col-md-12">
-                        <div class="col-md-4 col-sm-6">
-                          <div class="form-group">
-                            <label>Title  </label>
-                            <input type="text" name="title" class="form-control titleId" value="{{$subquestion->title}}">
-                            <span id="titleError" style="color: red;"></span>
-                          </div>
-                        </div>
-
                         <div class="form-group col-md-4 col-sm-6">
                           <label> Select Answer Type </label>
                           <select name="answer_type" class="form-control formselect answerTypeId" id="answerType1"
@@ -88,6 +80,30 @@
                               <option value="number" {{ $subquestion->is_complete  == 'number' ? "selected" : "" }}>number</option>
                               <option value="text" {{ $subquestion->is_complete  == 'text' ? "selected" : "" }}>text</option>
                               <option value="write" {{ $subquestion->is_complete  == 'write' ? "selected" : "" }}>write</option>
+                            </select>
+                            <span id="isMultyError" style="color: red;"></span>
+                        </div>
+                        <div class="col-md-4 col-sm-6">
+                          <div class="form-group">
+                            <label>Title  </label>
+                            <input type="text" name="title" class="form-control titleId" value="{{$subquestion->title}}">
+                            <span id="titleError" style="color: red;"></span>
+                          </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 title-hidden">
+                          <div class="form-group">
+                            <label>Title 2</label>
+                            <input type="text" name="last_title" class="form-control titleId" value="{{$subquestion->last_title}}">
+                            <span id="titleError" style="color: red;"></span>
+                          </div>
+                        </div>
+                        <div class="form-group col-md-4 col-sm-6 answer-location">
+                            <label> Select Answer location </label>
+                            <select name="answer_location" class="form-control formselec" >
+                                <option value=""  selected>Select</option>
+                                <option value="beginning" {{ $subquestion->answer_location  == 'beginning' ? "selected" : "" }}>beginning</option>
+                                <option value="middle" {{ $subquestion->answer_location  == 'middle' ? "selected" : "" }}>middle</option>
+                                <option value="end" {{ $subquestion->answer_location  == 'end' ? "selected" : "" }}>end</option>
                             </select>
                             <span id="isMultyError" style="color: red;"></span>
                         </div>
@@ -217,16 +233,6 @@ $videos=session()->get('videos_sessions');
   let complete_expected_five = document.getElementById('answer-expected-five');
   let complete_expected_six = document.getElementById('answer-expected-six');
 
-if(is_complete == 'write'){
-    $('.complete-write-answer1').show();
-      $('#addanswer1').append(`@include('admin.subquestions.form-complete-write-answer-edit',[
-                    'complete_expected_one' => '${complete_expected_one.value}',
-                    'complete_expected_two' => '${complete_expected_two.value}',
-                    'complete_expected_three' => '${complete_expected_three.value}',
-                    'complete_expected_four' => '${complete_expected_four.value}',
-                    'complete_expected_five' => '${complete_expected_five.value}',
-                    'complete_expected_six' => '${complete_expected_six.value}'])`);
-  }
 
   var answer_type =<?php echo json_encode($subquestion->answer_type) ?>;
   var is_multy =<?php echo json_encode($subquestion->is_multy) ?>;
@@ -240,6 +246,8 @@ $('.number-answer1').hide();
 $('.true-false1').hide();
 $('.complete-text-answer1').hide();
 $('.complete-write-answer1').hide();
+$('.title-hidden').hide();
+$('.answer-location').hide();
 $('.complete-number-answer1').hide();
 
 $('.image-answer1').hide();
@@ -292,6 +300,8 @@ $('.complete-answer1').hide();
               'complete_n_one' => '${complete_n_one.value}','complete_n_two' => '${complete_n_two.value}'])`);
       }
       if(is_complete == 'write'){
+        $('.title-hidden').show();
+        $('.answer-location').show();
         $('.complete-write-answer1').show();
           $('#addanswer1').append(`@include('admin.subquestions.form-complete-write-answer-edit',[
                         'complete_expected_one' => '${complete_expected_one.value}',

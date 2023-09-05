@@ -27,8 +27,8 @@ function choose(answers){
                 item.style.color="#000"
 
             })
-            // item.style.backgroundColor="#3d83b3"
-            item.style.border="2px solid #3d83b3"
+            item.style.backgroundColor="#3d83b3"
+            // item.style.border="2px solid #3d83b3"
 
             item.style.color="#fff"
         }

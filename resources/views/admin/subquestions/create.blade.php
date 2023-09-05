@@ -101,7 +101,7 @@
                             <span id="titleError" style="color: red;"></span>
                           </div>
                         </div>
-                        <div class="form-group col-md-4 col-sm-6 ">
+                        <div class="form-group col-md-4 col-sm-6 answer-location">
                             <label> Select Answer location </label>
                             <select name="answer_location" class="form-control formselec" >
                                 <option value=""  selected>Select</option>
@@ -180,6 +180,7 @@ $('.loader-container').hide();
 // $('.paragraph-hidden').hide();
 // $('.image-hidden').hide();
 $('.title-hidden').hide();
+$('.answer-location').hide();
 $('.is_multy-hidden1').hide();
 $('.is_complete_hidden1').hide();
 
@@ -239,7 +240,7 @@ function showNumberTextAnswer(answer_typeid,addanswer){
   }
   if(answer_val.value == "write"){
     $('.title-hidden').show();
-
+    $('.answer-location').show();
     $('#'+addanswer).append(`@include('admin.questions.form-complete-write-answer-add')`);
   }
 }

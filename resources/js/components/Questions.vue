@@ -69,13 +69,13 @@
                           <p>{{SubQuestions.title}}</p>
                           <div class="row">
                             <div class="col-sm-6 ">
-                              <li class="mr-2 multi-item q-9 border border-raduis pt-2 pl-3 mb-1 text-center" :id="'subq'+index+'image_a'" v-on:click="dissapear(index,item.exam_id,SubQuestions.question_id,SubQuestions.id,SubQuestions.expected_answer,'a','subq'+index+'image_a','image_a',SubQuestions.answer_type)">
+                              <li class="mr-2 multi-item q-9  border-raduis pt-2 pl-3 mb-1 text-center" :id="'subq'+index+'image_a'" v-on:click="dissapear(index,item.exam_id,SubQuestions.question_id,SubQuestions.id,SubQuestions.expected_answer,'a','subq'+index+'image_a','image_a',SubQuestions.answer_type)">
                                   <input class=" multi-input d-none" type="radio" name="q-9" value="mars" id="img-1">
                                   <label class="multi-label" for="img-1" id="mars">A.<img :src="SubQuestions.image_a" class="img-fluid multi-label-img" alt=""></label>
                               </li>
                             </div>
                             <div class="col-sm-6 ">
-                              <li class="mr-2 multi-item q-9 border border-raduis pt-2 pl-3 mb-1  text-center" :id="'subq'+index+'image_b'" v-on:click="dissapear(index,item.exam_id,SubQuestions.question_id,SubQuestions.id,SubQuestions.expected_answer,'b','subq'+index+'image_b','image_b',SubQuestions.answer_type)">
+                              <li class="mr-2 multi-item q-9  border-raduis pt-2 pl-3 mb-1  text-center" :id="'subq'+index+'image_b'" v-on:click="dissapear(index,item.exam_id,SubQuestions.question_id,SubQuestions.id,SubQuestions.expected_answer,'b','subq'+index+'image_b','image_b',SubQuestions.answer_type)">
                                   <input class=" multi-input d-none" type="radio" name="q-9" value="jupiter" id="img-2">
                                   <label class="multi-label" for="img-2" id="jupiter">B.<img :src="SubQuestions.image_b" class="img-fluid  multi-label-img" alt=""></label>
                               </li>
@@ -145,7 +145,7 @@
                       </div> -->
 
                     </div>
-                    <!-- <div v-if="SubQuestions.answer != null" class="dropdown d-flex justify-content-between mt-3">
+                    <div v-if="SubQuestions.answer != null" class="dropdown d-flex justify-content-between mt-3">
                         <label for="cars">{{SubQuestions.title}}</label>
                        <select  @change="onChange($event,item.exam_id,SubQuestions.question_id,SubQuestions.id,SubQuestions.expected_answer)"  id="cars" >
                           <option selected value=""> wählen </option>
@@ -166,7 +166,7 @@
                           <option :value="SubQuestions.answer.fifteen">{{SubQuestions.answer.fifteen}}</option>
                           <option :value="SubQuestions.answer.sixteen">{{SubQuestions.answer.sixteen}}</option>
                        </select>
-                   </div> -->
+                   </div>
                 </div>
 
 
@@ -272,7 +272,7 @@
                   let answera = this.$el.querySelector("#"+subQuestionClass);
                     answera.style.color = '#fff';
                     answera.style.background = '#3e83b3';
-                    // answer.style.border="2px solid #3d83b3"
+                    // answera.style.border="2px solid #3d83b3"
                   let answerb = this.$el.querySelector("#subq"+index+'b');
                       answerb.style.color = '';
                       answerb.style.background = '';
@@ -290,6 +290,7 @@
                   let answerb = this.$el.querySelector("#"+subQuestionClass);
                       answerb.style.color = '#fff';
                       answerb.style.background = '#3e83b3';
+                      // answerb.style.border="2px solid #3d83b3"
                 if(answerType=='multiple_choice'){
                   let answerc = this.$el.querySelector("#subq"+index+'c');
                       answerc.style.color = '';
@@ -310,24 +311,30 @@
                   let answerc = this.$el.querySelector("#"+subQuestionClass);
                       answerc.style.color = '#fff';
                       answerc.style.background = '#3e83b3';
+                      // answerc.style.border="2px solid #3d83b3"
             }
 
             if(aswerNum =='image_a'){
                 let answera = this.$el.querySelector("#"+subQuestionClass);
                   answera.style.color = '#fff';
-                  answera.style.background = '#3e83b3';
-
+                  // answera.style.background = '#3e83b3';
+                  answera.style.border='';
+                  // answera.style.border-radius='';
+                  answera.style.border="2px solid #3d83b3";
                 let answerb = this.$el.querySelector("#subq"+index+'image_b');
                   answerb.style.color = '';
                   answerb.style.background = '';
+                  answerb.style.border='';
             }
             if(aswerNum =='image_b'){
                 let answera = this.$el.querySelector("#subq"+index+'image_a');
                     answera.style.color = '';
                     answera.style.background = '';
+                    answera.style.border='';
                 let answerb = this.$el.querySelector("#"+subQuestionClass);
                       answerb.style.color = '#fff';
-                      answerb.style.background = '#3e83b3';
+                      // answerb.style.background = '#3e83b3';
+                      answerb.style.border="2px solid #3d83b3"
             }
 
         },

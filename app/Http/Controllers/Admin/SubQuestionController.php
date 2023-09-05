@@ -191,6 +191,12 @@ class SubQuestionController extends Controller
         if(isset($request->title)){
             $edit->title    = $request->title;
         }
+        if(isset($request->last_title)){
+            $edit->last_title    = $request->last_title;
+        }
+        if(isset($request->answer_location)){
+            $edit->answer_location    = $request->answer_location;
+        }
         if(isset($request->answer_type)){
             $edit->answer_type    = $request->answer_type;
         }

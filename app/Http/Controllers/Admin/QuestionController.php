@@ -146,6 +146,12 @@ class QuestionController extends Controller
                 if(isset($request->title[$i])){
                     $add_video->title    = $request->title[$i];
                 }
+                if(isset($request->last_title[$i])){
+                    $add_video->last_title    = $request->last_title[$i];
+                }
+                if(isset($request->answer_location[$i])){
+                    $add_video->answer_location    = $request->answer_location[$i];
+                }
 
                 if(isset($request->answer_type[$i])){
                     $add_video->answer_type    = $request->answer_type[$i];

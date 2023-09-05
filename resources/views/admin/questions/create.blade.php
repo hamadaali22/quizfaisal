@@ -118,29 +118,14 @@
               <div class="education-info" id="addvideo">
                 <div class="row form-row education-cont" style="background-color: #f0f1f6;border-bottom-color: red; padding: 10px;    margin: 24px;">
                   <div class="row form-row col-md-12">
-                    <div class="col-md-4 col-sm-6">
-                      <div class="form-group">
-                        <label>Title</label>
-                        <input type="text" name="title[]" class="form-control titleId">
-                        <span id="titleError" style="color: red;"></span>
-                      </div>
-                    </div>
-
                     <div class="form-group col-md-4 col-sm-6">
                       <label> Select Answer Type </label>
                       <select name="answer_type[]" class="form-control formselect answerTypeId" id="answerType1"
-
                       onchange="answerType('answerType1','is_multy-hidden1','is_complete_hidden1','addanswer1')">
-                      <option value=""  selected>Select</option>
-                      <option value="multiple_choice">
-                        Multiple Choice
-                      </option>
-                      <option value="true_false">
-                        true or false
-                      </option>
-                      <option value="complete">
-                        complete
-                      </option>
+                        <option value=""  selected>Select</option>
+                        <option value="multiple_choice">  Multiple Choice</option>
+                        <option value="true_false">true or false</option>
+                        <option value="complete">complete</option>
                     </select>
                     <span id="answerTypeError" style="color: red;"></span>
                   </div>
@@ -157,13 +142,64 @@
                 <div class="form-group col-md-4 col-sm-6 is_complete_hidden1" id="is_complete_hidden1">
                   <label> Select number or Word </label>
                   <select name="is_complete[]" class="form-control formselect" id="isComplete1"
-                  onchange="showNumberTextAnswer('isComplete1','addanswer1')" >
-                  <option value=""  selected>Select</option>
-                  <option value="number" >Number</option>
-                  <option value="text">text</option>
-                  <option value="write">write</option>
+                  onchange="showNumberTextAnswer('isComplete1','addanswer1','title-hidden1','answer-location1')" >
+                    <option value=""  selected>Select</option>
+                    <option value="number" >Number</option>
+                    <option value="text">text</option>
+                    <option value="write">write</option>
                 </select>
                 <span id="isMultyError" style="color: red;"></span>
+              </div>
+
+             <!--  <div class="col-md-4">
+                <div class="form-group">
+                  <label>title </label>
+                  <input type="text" name="title[]"  class="form-control titleId">
+                  <span id="titleError" style="color: red;"></span>
+                </div>
+              </div>
+              <div class="col-md-4 title-hidden${videoid}">
+                <div class="form-group">
+                  <label>title 2</label>
+                  <input type="text" name="last_title[]"  class="form-control titleId">
+                  <span id="titleError" style="color: red;"></span>
+                </div>
+              </div>
+              <div class="form-group col-md-4 col-sm-6 answer-location${videoid}" >
+                <label> Select text or imag </label>
+                <select name="answer_location[]" class="form-control formselect" id="isMulty${videoid}" onchange="showTextImageAnswer('isMulty${videoid}','addanswer${videoid}')" >
+                  <option value=""  selected>Select</option>
+                  <option value="text" >text</option>
+                  <option value="image">image</option>
+                </select>
+                <span id="isMultyError" style="color: red;"></span>
+              </div>
+ -->
+
+
+              <div class="col-md-4 col-sm-6">
+                <div class="form-group">
+                  <label>Title</label>
+                  <input type="text" name="title[]" class="form-control titleId">
+                  <span id="titleError" style="color: red;"></span>
+                </div>
+              </div>
+              <div class="col-md-4 col-sm-6 title-hidden1">
+                <div class="form-group">
+                  <label>Title 2</label>
+                  <input type="text" name="last_title[]" class="form-control titleId">
+                  <span id="titleError" style="color: red;"></span>
+                </div>
+              </div>
+              <div class="form-group col-md-4 col-sm-6 answer-location1">
+                  <label> Select Answer location </label>
+                  <select name="answer_location[]" class="form-control formselec" >
+                      <option value=""  selected>Select</option>
+                      <option value="beginning" >beginning</option>
+                      <option value="middle">middle</option>
+                      <option value="end">end</option>
+                  </select>
+                  <span id="isMultyError" style="color: red;"></span>
               </div>
               <div class="col-md-4 col-sm-6">
                 <div class="form-group">
@@ -233,6 +269,10 @@ $videos=session()->get('videos_sessions');
 
 <script>
 $('.loader-container').hide();
+
+$('.title-hidden1').hide();
+$('.answer-location1').hide();
+
 $('.file-hidden').hide();
 $('.paragraph-hidden').hide();
 $('.image-hidden').hide();
@@ -282,7 +322,7 @@ function showTextImageAnswer(answer_typeid,addanswer){
   }
 }
 
-function showNumberTextAnswer(answer_typeid,addanswer){
+function showNumberTextAnswer(answer_typeid,addanswer,titleHidden,answerLocation){
   var answer_val = document.getElementById(answer_typeid);
   console.log(answer_val.value);
 
@@ -290,11 +330,13 @@ function showNumberTextAnswer(answer_typeid,addanswer){
   if(answer_val.value == "number"){
     $('#'+addanswer).append(`@include('admin.questions.form-complete-number-answer')`);
   }
+
   if(answer_val.value == "text"){
     $('#'+addanswer).append(`@include('admin.questions.form-complete-text-answer')`);
-
   }
   if(answer_val.value == "write"){
+    $('.'+titleHidden).show();
+    $('.'+answerLocation).show();
     $('#'+addanswer).append(`@include('admin.questions.form-complete-write-answer')`);
 
   }
@@ -377,13 +419,7 @@ function addVideo(){
   const itemid = Math.random();
   $('#addvideo').append(`<div class="row form-row education-cont" id="itemid${itemid}" style="background-color: #f0f1f6;border-bottom-color: red; padding: 10px;margin: 24px;">
   <div class="row form-row col-md-12 ">
-  <div class="col-md-4">
-  <div class="form-group">
-  <label>title </label>
-  <input type="text" name="title[]"  class="form-control titleId">
-  <span id="titleError" style="color: red;"></span>
-  </div>
-  </div>
+
 
 
   <div class="form-group col-md-4 col-sm-6">
@@ -415,7 +451,7 @@ function addVideo(){
   <div class="form-group col-md-4 col-sm-6 is_complete_hidden${videoid}" id="is_complete_hidden${videoid}">
   <label> Select number or Word </label>
   <select name="is_complete[]" class="form-control formselect" id="isComplete${videoid}"
-  onchange="showNumberTextAnswer('isComplete${videoid}','addanswer${videoid}')" >
+  onchange="showNumberTextAnswer('isComplete${videoid}','addanswer${videoid}','title-hidden${videoid}','answer-location${videoid}')" >
   <option value=""  selected>Select</option>
   <option value="number" >Number</option>
   <option value="text">text</option>
@@ -423,6 +459,35 @@ function addVideo(){
   </select>
   <span id="isMultyError" style="color: red;"></span>
   </div>
+
+
+  <div class="col-md-4">
+    <div class="form-group">
+      <label>title </label>
+      <input type="text" name="title[]"  class="form-control titleId">
+      <span id="titleError" style="color: red;"></span>
+  </div>
+  </div>
+  <div class="col-md-4 title-hidden${videoid}">
+    <div class="form-group">
+      <label>title 2</label>
+      <input type="text" name="last_title[]"  class="form-control titleId">
+      <span id="titleError" style="color: red;"></span>
+    </div>
+  </div>
+  <div class="form-group col-md-4 col-sm-6 answer-location${videoid}" >
+    <label> Select text or imag </label>
+    <select name="answer_location[]" class="form-control formselect"  >
+      <option value=""  selected>Select</option>
+      <option value="beginning" >beginning</option>
+      <option value="middle">middle</option>
+      <option value="end">end</option>
+    </select>
+    <span id="isMultyError" style="color: red;"></span>
+  </div>
+
+
+
   <div class="col-md-4 col-sm-6">
   <div class="form-group">
   <label>Expected Answer</label>
@@ -454,6 +519,9 @@ function addVideo(){
   $('.hidden'+videoid).hide();
   $('.is_multy-hidden'+videoid).hide();
   $('.is_complete_hidden'+videoid).hide();
+
+  $('.title-hidden'+videoid).hide();
+  $('.answer-location'+videoid).hide();
 }
 
 function Validateallinput() {
@@ -698,3 +766,13 @@ function Validateallinput() {
 
 </script>
 @endsection
+
+
+<!--
+<div class="col-md-4">
+<div class="form-group">
+<label>title </label>
+<input type="text" name="title[]"  class="form-control titleId">
+<span id="titleError" style="color: red;"></span>
+</div>
+</div> -->

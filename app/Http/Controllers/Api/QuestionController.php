@@ -18,6 +18,8 @@ use App\SubQuestion;
 use App\Answer;
 // use App\stuendAnswer;
 use App\ExamAnswer;
+use App\ExpectedAnswer;
+
 class QuestionController extends Controller
 {
     use GeneralTrait;
@@ -150,29 +152,49 @@ class QuestionController extends Controller
        $data=ExamAnswer::where("user_id" , $request->user_id)->where("exam_id" , $request->exam_id)->get();
        foreach ($data as $item) {
            $question=Question::where('id',$item->question_id)->first();
-           if($question){
-               if($question->type =='listening'){
-                 // $subquestion_listening=SubQuestion::where("id" , $item->id)->first();
-                 // $count_listen +=count($subquestion_listening);
-                   if($item->answer === $item->expected_answer){
-                       $count_listen_succes +=1;
-                   }
-               }elseif($question->type =='listening and image'){
-                 // $subquestion_listening=SubQuestion::where("id" , $item->id)->first();
-                 // $count_listen +=count($subquestion_listening);
-                   if($item->answer === $item->expected_answer){
-                       $count_listen_succes +=1;
-                   }
-               }else{
-                   if($item->answer === $item->expected_answer){
-                       $count_read_succes +=1;
-                   }
-               }
-           }
+           $subquestion=SubQuestion::where('id',$item->subquestion_id)->first();
+            if ($question) {
+                // dd($subquestion);
+                if($subquestion){
+                    if($subquestion->is_complete !='write'){
+                        if($question->type =='listening'){
+                           if($item->answer === $item->expected_answer){
+                               $count_listen_succes +=1;
+                           }
+                        }elseif($question->type =='listening and image'){
+                            if($item->answer === $item->expected_answer){
+                               $count_listen_succes +=1;
+                           }
+                        }else{
+                            if($item->answer === $item->expected_answer){
+                                $count_read_succes +=1;
+                            }
+                        }
+                    }else{
+                        $expected_answer=ExpectedAnswer::where('subquestion_id',$subquestion->id)->get();
+                        foreach ($expected_answer as $expected) {
+                            if($item->answer == $expected->one){
+                              $count_read_succes +=1;
+                            }elseif($item->answer == $expected->two){
+                                $count_read_succes +=1;
+                            }elseif($item->answer == $expected->three){
+                                $count_read_succes +=1;
+                            }elseif($item->answer == $expected->four){
+                                $count_read_succes +=1;
+                            }elseif($item->answer == $expected->five){
+                                $count_read_succes +=1;
+                            }elseif($item->answer == $expected->six){
+                                $count_read_succes +=1;
+                            }else {
+                                echo 'cdfcf';
+                            }
+                        }
+                     }
+                }
+            }
            $item->question=$question;
            $item->exam=Exam::where('id',$item->exam_id)->first();
            $item->user=User::where('id',$item->user_id)->first();
-           // $count4=count($data);
        }
        $allquestion=Question::where('exam_id',$request->exam_id)->get();
        foreach ($allquestion as $_item) {
@@ -187,25 +209,17 @@ class QuestionController extends Controller
              $count_read +=count($subquestion_read);
          }
        }
-       // $count4=count($data);
-       // return $count1;
-       // return $count4;
+
        if($count_listen_succes !=0){
-            // dd($count_listen_succes . 'count_listen_succes');
-            //   dd($count_listen . 'count_listen');
            $count_listen_percent=($count_listen_succes / $count_listen) * 100;
        }else{
            $count_listen_percent=0;
        }
        if($count_read_succes !=0){
-        //   dd($count_read_succes . 'count_read_succes');
-        //   dd($count_read . 'count_read');
            $count_read_percent=($count_read_succes / $count_read) * 100;
        }else{
            $count_read_percent=0;
        }
-       // $count_read_percent=($count_read_succes / $count_read) * 100;
-       // $count_listen_percent=($count_listen_succes / $count_listen) * 100;
        $home  =[
                    'count_read_succes'=> $count_read_succes,
                    'count_read'=> $count_read,
@@ -213,9 +227,6 @@ class QuestionController extends Controller
                    'count_listen_succes'=> $count_listen_succes,
                    'count_listen'=> $count_listen,
                    'count_listen_percent'=> round($count_listen_percent, 1),
-
-
-                   // 'count4'=>$count4,
                ];
        return $this->returnDataa('data', $home,'');
     }

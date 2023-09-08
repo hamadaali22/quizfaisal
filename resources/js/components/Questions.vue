@@ -111,43 +111,30 @@
               <!-- complete -->
                 <div  v-if="SubQuestions.answer_type == 'complete'">
                     <div v-if="SubQuestions.is_complete == 'write'" class="dropdown d-flex justify-content-between mt-3">
+                      <!-- <input type="text"  @input="CompleteWrite($event,index,item.exam_id,SubQuestions.question_id,SubQuestions.id,SubQuestions.expected_answer)" /> -->
 
                         <div v-if="SubQuestions.answer_location == 'beginning'" class="d-flex">
-                          <input type="text" style="border:none; outline:none;min-width:200px; padding:0px 10px" placeholder=" ...................................... ">
+                          <input type="text"  @input="CompleteWrite($event,index,item.exam_id,SubQuestions.question_id,SubQuestions.id,SubQuestions.expected_answer)"  style="border:none; outline:none;min-width:200px; padding:0px 10px" placeholder=" ...................................... ">
                           <span> {{SubQuestions.title}} </span>
                           <span> {{SubQuestions.last_title}} </span>
                         </div>
 
                         <div v-if="SubQuestions.answer_location == 'middle'" class="d-flex">
                           <span> {{SubQuestions.title}} </span>
-                          <input type="text" style="border:none; outline:none;min-width:200px; padding:0px 10px" placeholder=" ........................................ ">
+                          <input type="text" @input="CompleteWrite($event,index,item.exam_id,SubQuestions.question_id,SubQuestions.id,SubQuestions.expected_answer)"  style="border:none; outline:none;min-width:200px; padding:0px 10px" placeholder=" ........................................ ">
                           <span> {{SubQuestions.last_title}} </span>
                         </div>
 
                         <div v-if="SubQuestions.answer_location == 'end'" class="d-flex">
                           <span> {{SubQuestions.title}} </span>
-                          <input type="text" style="border:none; outline:none;min-width:200px; padding:0px 10px" placeholder=" ......................................... ">
+
                           <span> {{SubQuestions.last_title}} </span>
+                            <input  @input="CompleteWrite($event,index,item.exam_id,SubQuestions.question_id,SubQuestions.id,SubQuestions.expected_answer)" type="text" style="border:none; outline:none;min-width:200px; padding:0px 10px" placeholder=" ......................................... ">
                         </div>
-
-
-<!--
-                      <div v-if="SubQuestions.answer_location == 'middle'">
-                        <label for="cars">{{SubQuestions.title}}</label>
-                        <input type="text" name="" class="form-control" />
-                        <label for="cars">{{SubQuestions.last_title}}</label>
-                      </div> -->
-
-                      <!-- <div v-if="SubQuestions.answer_location == 'end'">
-                        <label for="cars">{{SubQuestions.title}}</label>
-                        <label for="cars">{{SubQuestions.last_title}}</label>
-                        <input type="text" name="" class="form-control" />
-                      </div> -->
-
                     </div>
                     <div v-if="SubQuestions.answer != null" class="dropdown d-flex justify-content-between mt-3">
                         <label for="cars">{{SubQuestions.title}}</label>
-                       <select  @change="onChange($event,item.exam_id,SubQuestions.question_id,SubQuestions.id,SubQuestions.expected_answer)"  id="cars" >
+                       <select  @change="onChange($event,index,item.exam_id,SubQuestions.question_id,SubQuestions.id,SubQuestions.expected_answer)"  id="cars" >
                           <option selected value=""> wählen </option>
                           <option  :value="SubQuestions.answer.one">{{SubQuestions.answer.one}}</option>
                           <option :value="SubQuestions.answer.two">{{SubQuestions.answer.two}}</option>
@@ -191,6 +178,7 @@
           </section>
           <br />
         </div>
+
       </div>
     </template>
     <script>
@@ -232,10 +220,8 @@
 
 
       methods: {
-        // scrollToTop() {
-        //   window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-        // },
-        onChange(event,examId,questionId,subQuestionId,expected_answer) {
+        CompleteWrite(event,index,examId,questionId,subQuestionId,expected_answer) {
+          console.log(event.target.value);
           let sub_q_ans={'user_id': this.userId,'answerid':event.target.value,'examId': examId,'questionId':questionId ,'subQuestionId':subQuestionId ,'expected_answer':expected_answer}
           if(this.names.includes(subQuestionId)){
               this.$delete(this.names, index);
@@ -246,7 +232,21 @@
               this.names.push(subQuestionId);
               this.questionAnswer.push(sub_q_ans);
           }
-            console.log(event.target.value);
+          // console.log(  this.questionAnswer);
+          console.log(sub_q_ans);
+        },
+        onChange(event,index,examId,questionId,subQuestionId,expected_answer) {
+          let sub_q_ans={'user_id': this.userId,'answerid':event.target.value,'examId': examId,'questionId':questionId ,'subQuestionId':subQuestionId ,'expected_answer':expected_answer}
+          if(this.names.includes(subQuestionId)){
+              this.$delete(this.names, index);
+              this.$delete(this.questionAnswer, index);
+              this.names.push(subQuestionId);
+              this.questionAnswer.push(sub_q_ans);
+          }else{
+              this.names.push(subQuestionId);
+              this.questionAnswer.push(sub_q_ans);
+          }
+            // console.log(index+'mmmm');
               console.log(  this.questionAnswer);
         },
         dissapear (index,examId,questionId,subQuestionId,expected_answer,answerId,subQuestionClass,aswerNum,answerType) {

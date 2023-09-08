@@ -186,7 +186,6 @@ class QuestionController extends Controller
                             }elseif($item->answer == $expected->six){
                                 $count_read_succes +=1;
                             }else {
-                                echo 'cdfcf';
                             }
                         }
                      }

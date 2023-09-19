@@ -5,7 +5,12 @@
             <p v-html="contactInfo.about"></p>
         </div>
         <div class="col-lg m-auto">
-            <img  :src="contactInfo.image" class="img-fluid w-100" alt="">
+          <!-- <img  :src="contactInfo.image" class="img-fluid " alt=""> -->
+          <img  src="http://127.0.0.1:8000/img/settings/home1.png" class="img-fluid " alt="">
+          <img  src="http://127.0.0.1:8000/img/settings/home1.png" class="img-fluid " alt="">
+          <img  src="http://127.0.0.1:8000/img/settings/home1.png" class="img-fluid " alt="">
+          <img  src="http://127.0.0.1:8000/img/settings/home1.png" class="img-fluid " alt="">
+          
         </div>
     </section>
   </div>

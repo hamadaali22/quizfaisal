@@ -33,6 +33,7 @@ Route::group(['middleware' => ['api'], 'namespace' => 'Api'], function () {
     Route::post('save-exam', 'QuestionController@SaveExam');
     Route::get('results', 'QuestionController@results');
     Route::get('contactinfo', 'HomeController@contactInfo');
+    Route::get('check-user-auth', 'HomeController@checkUserAuth');
 
 
 

@@ -282,4 +282,11 @@ class HomeController extends Controller
              'data',$contactinfo,'erifhr'
          );
      }
+     public function checkUserAuth(Request $request)
+     {
+         $user = Auth::guard('user-api')->user();
+         if(!$user)
+            return $this->returnError('You must login first');
+         // return $this -> returnDataa('data',$user,'');
+     }
 }

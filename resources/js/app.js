@@ -230,6 +230,21 @@ const store = new Vuex.Store({
                   console.log(err)
               })
         },
+        CheckUserAuth({ state }){
+           const headers = {
+               'Content-Type': 'application/json',
+               'Authorization': 'Bearer '+state.userToken
+           };
+            axios.get('https://deutschtests.com/api/check-user-auth',headers)
+            .then(res => {
+              if(res.data=='You must login first'){
+                state.userToken = null;
+                localStorage.removeItem('userToken');
+                // window.location.pathname = "/"
+              }
+            })
+            .then(err => console.log(err))
+        },
 
         getContactinfo({commit}){
            axios.get('https://deutschtests.com/api/contactinfo')

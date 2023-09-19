@@ -27643,6 +27643,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
+  mounted: function mounted() {
+    this.$store.dispatch('CheckUserAuth');
+  },
   created: function created() {
     this.updateToken();
     console.log(this.$store.state.userToken + 'is my token'); // this.logout();
@@ -27724,6 +27727,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
 //
 //
 //
@@ -67562,39 +67566,17 @@ var render = function() {
           _c("p", { domProps: { innerHTML: _vm._s(_vm.contactInfo.about) } })
         ]),
         _vm._v(" "),
-        _vm._m(0)
+        _c("div", { staticClass: "row col-lg m-auto" }, [
+          _c("img", {
+            staticClass: "img-fluid w-100",
+            attrs: { src: _vm.contactInfo.image, alt: "" }
+          })
+        ])
       ]
     )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-lg m-auto" }, [
-      _c("img", {
-        staticClass: "img-fluid ",
-        attrs: { src: "http://127.0.0.1:8000/img/settings/home1.png", alt: "" }
-      }),
-      _vm._v(" "),
-      _c("img", {
-        staticClass: "img-fluid ",
-        attrs: { src: "http://127.0.0.1:8000/img/settings/home1.png", alt: "" }
-      }),
-      _vm._v(" "),
-      _c("img", {
-        staticClass: "img-fluid ",
-        attrs: { src: "http://127.0.0.1:8000/img/settings/home1.png", alt: "" }
-      }),
-      _vm._v(" "),
-      _c("img", {
-        staticClass: "img-fluid ",
-        attrs: { src: "http://127.0.0.1:8000/img/settings/home1.png", alt: "" }
-      })
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -87454,8 +87436,23 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_4__["default"].Store({
         console.log(err);
       });
     },
-    getContactinfo: function getContactinfo(_ref4) {
-      var commit = _ref4.commit;
+    CheckUserAuth: function CheckUserAuth(_ref4) {
+      var state = _ref4.state;
+      var headers = {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + state.userToken
+      };
+      axios.get('https://deutschtests.com/api/check-user-auth', headers).then(function (res) {
+        if (res.data == 'You must login first') {
+          state.userToken = null;
+          localStorage.removeItem('userToken'); // window.location.pathname = "/"
+        }
+      }).then(function (err) {
+        return console.log(err);
+      });
+    },
+    getContactinfo: function getContactinfo(_ref5) {
+      var commit = _ref5.commit;
       axios.get('https://deutschtests.com/api/contactinfo').then(function (res) {
         // console.log(res.data.data);
         store.commit('updateContactinfo', res.data.data);
@@ -87463,9 +87460,9 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_4__["default"].Store({
         console.log(err);
       });
     },
-    getLevels: function getLevels(_ref5) {
-      var state = _ref5.state,
-          commit = _ref5.commit;
+    getLevels: function getLevels(_ref6) {
+      var state = _ref6.state,
+          commit = _ref6.commit;
       axios.get(state.basName + 'levels').then(function (res) {
         console.log(res.data.data);
         store.commit('updateLevels', res.data.data);
@@ -87473,9 +87470,9 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_4__["default"].Store({
         return console.log(err);
       });
     },
-    getExams: function getExams(_ref6, payload) {
-      var state = _ref6.state,
-          commit = _ref6.commit;
+    getExams: function getExams(_ref7, payload) {
+      var state = _ref7.state,
+          commit = _ref7.commit;
       // console.log(payload);
       axios.get(state.basName + 'exams?level_id=' + payload).then(function (res) {
         console.log(res.data.data);
@@ -87485,9 +87482,9 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_4__["default"].Store({
         return console.log(err);
       });
     },
-    getExamsTelc: function getExamsTelc(_ref7, payload) {
-      var state = _ref7.state,
-          commit = _ref7.commit;
+    getExamsTelc: function getExamsTelc(_ref8, payload) {
+      var state = _ref8.state,
+          commit = _ref8.commit;
       // console.log(payload);
       axios.get(state.basName + 'telc-exams?level_id=' + payload).then(function (res) {
         console.log(res.data.data);
@@ -87497,9 +87494,9 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_4__["default"].Store({
         return console.log(err);
       });
     },
-    getQuestions: function getQuestions(_ref8, payload) {
-      var state = _ref8.state,
-          commit = _ref8.commit;
+    getQuestions: function getQuestions(_ref9, payload) {
+      var state = _ref9.state,
+          commit = _ref9.commit;
       console.log(payload); // axios.get(state.basName+'exams?level_id='+payload)
 
       axios.get(state.basName + 'questions?exam_id=' + payload.examId + '&page=' + payload.pageId).then(function (res) {
@@ -87522,9 +87519,9 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_4__["default"].Store({
         return console.log(err);
       });
     },
-    getQuestionResult: function getQuestionResult(_ref9, payload) {
-      var state = _ref9.state,
-          commit = _ref9.commit;
+    getQuestionResult: function getQuestionResult(_ref10, payload) {
+      var state = _ref10.state,
+          commit = _ref10.commit;
       console.log(payload); // axios.get(state.basName+'exams?level_id='+payload)
 
       axios.get(state.basName + 'results?user_id=' + payload.userId + '&exam_id=' + payload.examId).then(function (res) {

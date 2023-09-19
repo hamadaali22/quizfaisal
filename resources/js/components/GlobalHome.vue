@@ -5,6 +5,9 @@
 </template>
 <script>
     export default {
+      mounted(){
+        this.$store.dispatch('CheckUserAuth');
+      },
       created(){
           this.updateToken();
           console.log(this.$store.state.userToken+'is my token');

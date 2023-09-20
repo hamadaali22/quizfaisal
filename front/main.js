@@ -28,9 +28,23 @@ function choose(answers){
 
             })
             item.style.backgroundColor="#3d83b3"
+            // item.style.border="2px solid #3d83b3"
+
             item.style.color="#fff"
         }
     })
 }
+//
+// function choose(answers){
+//     answers.forEach((item)=>{
+//         item.onclick=function(){
+//             item.children[1].click()
+//             answers.forEach((item)=>{
+//                 item.classList.remove("active")
+//             })
+//             item.classList.add("active")
+//         }
+//     })
+// }
 
 console.log('dfvdfvfdvffffffffff');

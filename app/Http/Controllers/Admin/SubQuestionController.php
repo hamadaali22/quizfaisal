@@ -216,6 +216,9 @@ class SubQuestionController extends Controller
         if(isset($request->third_choice)){
             $edit->third_choice    = $request->third_choice;
         }
+        if(isset($request->color)){
+            $edit->color    = $request->color;
+        }
         $edit->save();
         if($request->answer_type=='complete'){
             if ($request->is_complete !='write') {

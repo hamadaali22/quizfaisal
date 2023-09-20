@@ -123,6 +123,13 @@
                             @enderror
                             <span id="bannerError" style="color: red;"></span>
                         </div>
+                        <div class="col-md-4 col-sm-6 title-hidden">
+                          <div class="form-group">
+                            <label>color</label>
+                            <input type="text" name="color" class="form-control titleId">
+                            <!-- <span id="titleError" style="color: red;"></span> -->
+                          </div>
+                        </div>
                     </div>
                     <div class="education-info col-md-12 " id="addanswer1">
                       <hr />

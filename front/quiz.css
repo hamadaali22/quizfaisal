@@ -6,9 +6,12 @@
 .back{
   background-color: #3d83b3;
 }
+/* .active{
+  border: 3px solid #3d83b3 !important;
+} */
 .border-raduis {
   border-radius: 10px;
-  border: #e2f3ff 1px solid !important;
+  border: #e2f3ff 1px solid ;
 }
 .bg-information{
   background-color: #e2f3ff;
@@ -46,11 +49,10 @@ audio::-webkit-media-controls-panel{
     cursor: pointer;
   }
  .multi-item:hover{
-    background-color: #3e83b3 !important;
+    /* background-color: #3e83b3 !important; */
   }
  .multi-label-img{
-    height: 150px;
-
+    height: 100px;
   }
   select{
     border-radius: 10px;

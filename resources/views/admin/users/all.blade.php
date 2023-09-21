@@ -1,7 +1,7 @@
 
 
 @extends('layout.admin_main')
-@section('content') 
+@section('content')
 
     <div class="content-header row">
         <div class="content-header-left col-md-6 col-12 mb-2 breadcrumb-new">
@@ -11,10 +11,10 @@
               <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.html">Home</a>
                 </li>
-                
+
                 <li class="breadcrumb-item active">المستخدمين
                 </li>
-              </ol> 
+              </ol>
             </div>
           </div>
         </div>
@@ -71,7 +71,7 @@
                         <tbody>
                             @foreach ($data as $key => $user)
                                 <tr>
-                                    <td>{{ ++$i }}</td>
+                                    <td>{{$key}}</td>
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
                                     <td>
@@ -93,7 +93,7 @@
                                         @endif
                                     </td>
                                     <td>
-                                        @can('تعديل مستخدم')                            
+                                        @can('تعديل مستخدم')
                                             <a href="{{ route('users.edit', $user->id) }}"  class="btn btn-sm bg-success-light"  >
                                                 <i class="fe fe-pencil"></i> تعديل
                                             </a>
@@ -103,13 +103,13 @@
                                                                         data-user_id="{{ $user->id }}" data-username="{{ $user->name }}"
                                                                         data-toggle="modal" href="#delete" title="حذف">
                                                                         <i class="fe fe-trash"></i> حذف
-                                        </a>                               
+                                        </a>
                                         @endcan
                                     </td>
                                     </tr>
                                     @endforeach
                         </tbody>
-                      
+
                     </table>
                   </div>
                 </div>
@@ -121,7 +121,7 @@
           <div class="modal fade" id="delete" aria-hidden="true" role="dialog">
                 <div class="modal-dialog modal-dialog-centered" role="document" >
                     <div class="modal-content">
-                   
+
                         <div class="modal-body">
                             <div class="form-content p-2">
                                 <h4 class="modal-title">حذف</h4>
@@ -154,9 +154,9 @@
 
      $('#delete').on('show.bs.modal', function (event) {
 
-      var button = $(event.relatedTarget) 
+      var button = $(event.relatedTarget)
 
-      var user_id = button.data('user_id') 
+      var user_id = button.data('user_id')
       var modal = $(this)
 
       modal.find('.modal-body #user_id').val(user_id);
@@ -167,7 +167,7 @@
 
 
 
-       
+
 
 
 @endsection

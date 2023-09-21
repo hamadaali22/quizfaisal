@@ -68258,10 +68258,7 @@ var render = function() {
                                             "label",
                                             {
                                               staticClass: "multi-label",
-                                              attrs: {
-                                                for: "img-1",
-                                                id: "mars"
-                                              }
+                                              attrs: { id: "mars" }
                                             },
                                             [
                                               _vm._v("A."),
@@ -68319,10 +68316,7 @@ var render = function() {
                                             "label",
                                             {
                                               staticClass: "multi-label",
-                                              attrs: {
-                                                for: "img-2",
-                                                id: "jupiter"
-                                              }
+                                              attrs: { id: "jupiter" }
                                             },
                                             [
                                               _vm._v("B."),

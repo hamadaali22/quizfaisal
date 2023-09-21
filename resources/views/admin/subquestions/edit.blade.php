@@ -123,7 +123,7 @@
                             @enderror
                             <span id="bannerError" style="color: red;"></span>
                         </div>
-                        <div class="col-md-4 col-sm-6 title-hidden">
+                        <div class="col-md-4 col-sm-6">
                           <div class="form-group">
                             <label>color</label>
                             <input type="text" name="color" class="form-control titleId">
@@ -662,3 +662,16 @@ function Validateallinput() {
 
 </script>
 @endsection
+
+
+
+
+
+<!-- 
+rwifheru fieruhfre frieuhfer reohfer
+feorhfe rufheriuv sfvks nvwfrwd
+vdsh ovsdhvfs
+oiivfvf
+vsfvf svsf
+vsfv srfrwf
+refe rfre -->

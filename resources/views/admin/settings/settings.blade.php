@@ -73,9 +73,63 @@
 												<div class="col-md-10">
 													<label>image about sit</label>
 													<input type="file" name="image" class="form-control">
-
 												</div>
 											</div>
+
+                      <div class="form-group row">
+												<div class="col-md-2">
+													<img class="avatar-img" src="{{asset('img/settings/'.$contactInfo->b1) }}" alt="Speciality" width="120" height="100">
+												</div>
+												<div class="col-md-10">
+													<label>b1</label>
+													<input type="file" name="b1" class="form-control">
+												</div>
+											</div>
+                      <div class="form-group row">
+												<div class="col-md-2">
+													<img class="avatar-img" src="{{asset('img/settings/'.$contactInfo->a2) }}" alt="Speciality" width="120" height="100">
+												</div>
+												<div class="col-md-10">
+													<label>a2</label>
+													<input type="file" name="a2" class="form-control">
+												</div>
+											</div>
+                      <div class="form-group row">
+												<div class="col-md-2">
+													<img class="avatar-img" src="{{asset('img/settings/'.$contactInfo->a1) }}" alt="Speciality" width="120" height="100">
+												</div>
+												<div class="col-md-10">
+													<label>a1</label>
+													<input type="file" name="a1" class="form-control">
+												</div>
+											</div>
+                      <div class="form-group row">
+												<div class="col-md-2">
+													<img class="avatar-img" src="{{asset('img/settings/'.$contactInfo->b2) }}" alt="Speciality" width="120" height="100">
+												</div>
+												<div class="col-md-10">
+													<label>b2</label>
+													<input type="file" name="b2" class="form-control">
+												</div>
+											</div>
+                      <div class="form-group row">
+												<div class="col-md-2">
+													<img class="avatar-img" src="{{asset('img/settings/'.$contactInfo->c1) }}" alt="Speciality" width="120" height="100">
+												</div>
+												<div class="col-md-10">
+													<label>c1</label>
+													<input type="file" name="c1" class="form-control">
+												</div>
+											</div>
+                      <div class="form-group row">
+                        <div class="col-md-2">
+                          <img class="avatar-img" src="{{asset('img/settings/'.$contactInfo->m1) }}" alt="Speciality" width="120" height="100">
+                        </div>
+                        <div class="col-md-10">
+                          <label>maindesign</label>
+                          <input type="file" name="m1" class="form-control">
+                        </div>
+                      </div>
                       <!-- <div class="form-group row">
                         <div class="col-md-2">
                           <img class="avatar-img" src="{{asset('img/settings/'.$contactInfo->logo) }}" alt="Speciality" width="120" height="100">

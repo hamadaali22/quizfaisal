@@ -111,6 +111,72 @@ class ProfileController extends Controller
         }else{
             $edit->favicon  = $edit->favicon;
         }
+        if($filea1=$request->file('a1'))
+        {
+            $file_extensiona1 = $request -> file('a1') -> getClientOriginalExtension();
+            $file_namea1 = 'a1'.time().'.'. $file_extensiona1;
+            $file_nameonea1 = $file_namea1;
+            $patha1 = 'img/settings';
+            $request-> file('a1') ->move($patha1,$file_namea1);
+            $edit->a1  = $file_nameonea1;
+        }else{
+            $edit->a1  = $edit->a1;
+        }
+        if($filea2=$request->file('a2'))
+        {
+            $file_extensiona2 = $request -> file('a2') -> getClientOriginalExtension();
+            $file_namea2 = 'a2'.time().'.'. $file_extensiona2;
+            $file_nameonea2 = $file_namea2;
+            $patha2 = 'img/settings';
+            $request-> file('a2') ->move($patha2,$file_namea2);
+            $edit->a2  = $file_nameonea2;
+        }else{
+            $edit->a2  = $edit->a2;
+        }
+        if($fileb1=$request->file('b1'))
+        {
+            $file_extensionb1 = $request -> file('b1') -> getClientOriginalExtension();
+            $file_nameb1 = 'b1'.time().'.'. $file_extensionb1;
+            $file_nameoneb1 = $file_nameb1;
+            $pathb1 = 'img/settings';
+            $request-> file('b2') ->move($pathb1,$file_nameb1);
+            $edit->b1  = $file_nameoneb1;
+        }else{
+            $edit->b1  = $edit->b1;
+        }
+        if($fileb2=$request->file('b2'))
+        {
+            $file_extensionb2 = $request -> file('b2') -> getClientOriginalExtension();
+            $file_nameb2 = 'b2'.time().'.'. $file_extensionb2;
+            $file_nameoneb2 = $file_nameb2;
+            $pathb2 = 'img/settings';
+            $request-> file('b2') ->move($pathb2,$file_nameb2);
+            $edit->b2  = $file_nameoneb2;
+        }else{
+            $edit->b2  = $edit->b2;
+        }
+        if($filec1=$request->file('c1'))
+        {
+            $file_extensionc1 = $request -> file('c1') -> getClientOriginalExtension();
+            $file_namec1 = 'c1'.time().'.'. $file_extensionc1;
+            $file_nameonec1 = $file_namec1;
+            $pathc1 = 'img/settings';
+            $request-> file('c1') ->move($pathc1,$file_namec1);
+            $edit->c1  = $file_nameonec1;
+        }else{
+            $edit->c1  = $edit->c1;
+        }
+        if($filem1=$request->file('m1'))
+        {
+            $file_extensionm1 = $request -> file('m1') -> getClientOriginalExtension();
+            $file_namem1 = 'm1'.time().'.'. $file_extensionm1;
+            $file_nameonem1 = $file_namem1;
+            $pathm1 = 'img/settings';
+            $request-> file('m1') ->move($pathm1,$file_namem1);
+            $edit->m1  = $file_nameonem1;
+        }else{
+            $edit->m1  = $edit->m1;
+        }
         $edit->title = $request->title;
         $edit->about = $request->about;
         $edit->level_desc  = $request->level_desc;

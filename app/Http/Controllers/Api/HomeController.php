@@ -277,6 +277,14 @@ class HomeController extends Controller
          $contactinfo->favicon="https://deutschtests.com/img/settings/".$contactinfo->favicon;
          $contactinfo->image="https://deutschtests.com/img/settings/".$contactinfo->image;
 
+         $contactinfo->image="https://deutschtests.com/img/settings/".$contactinfo->a1;
+         $contactinfo->image="https://deutschtests.com/img/settings/".$contactinfo->a2;
+         $contactinfo->image="https://deutschtests.com/img/settings/".$contactinfo->b1;
+         $contactinfo->image="https://deutschtests.com/img/settings/".$contactinfo->b2;
+         $contactinfo->image="https://deutschtests.com/img/settings/".$contactinfo->c1;
+         $contactinfo->image="https://deutschtests.com/img/settings/".$contactinfo->m1;
+
+
 
          return $this -> returnDataa(
              'data',$contactinfo,'erifhr'

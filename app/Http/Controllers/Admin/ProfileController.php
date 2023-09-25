@@ -139,11 +139,12 @@ class ProfileController extends Controller
             $file_nameb1 = 'b1'.time().'.'. $file_extensionb1;
             $file_nameoneb1 = $file_nameb1;
             $pathb1 = 'img/settings';
-            $request-> file('b2') ->move($pathb1,$file_nameb1);
+            $request-> file('b1') ->move($pathb1,$file_nameb1);
             $edit->b1  = $file_nameoneb1;
         }else{
             $edit->b1  = $edit->b1;
         }
+
         if($fileb2=$request->file('b2'))
         {
             $file_extensionb2 = $request -> file('b2') -> getClientOriginalExtension();

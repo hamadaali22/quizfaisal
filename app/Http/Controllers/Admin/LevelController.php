@@ -28,12 +28,12 @@ class LevelController extends Controller
     {
         return view('admin.levels.create');
     }
-    
 
-    
+
+
     public function store(Request $request)
     {
-        $this->validate( $request,[          
+        $this->validate( $request,[
                 'name'=>'required',
             ],
             [
@@ -43,11 +43,12 @@ class LevelController extends Controller
         $add = new Level;
         $add->name    = $request->name;
         $add->description    = $request->description;
+        $add->description_telc    = $request->description_telc;
         $add->save();
-        return redirect()->back()->with("message", 'Added successfully'); 
+        return redirect()->back()->with("message", 'Added successfully');
     }
 
-    
+
     public function edit(Level $level)
     {
         return view('admin.levels.edit',compact('level'));
@@ -56,7 +57,7 @@ class LevelController extends Controller
     public function update(Request $request)
     {
         $edit = Level::findOrFail($request->id);
-       
+
         if($request->name !=''){
             $edit->name    = $request->name;
         }else{
@@ -68,23 +69,23 @@ class LevelController extends Controller
          }else{
             $edit->description    = $edit->description;
          }
-       
+
          $edit->save();
-        return redirect()->route('levels.index')->with("message", 'Updated successfully'); 
+        return redirect()->route('levels.index')->with("message", 'Updated successfully');
     }
 
 
     public function destroy(Request $request )
     {
-        
+
             $level = Level::findOrFail($request->id);
             // $subcategory=SubCategory::where('id',$category->categoryId)->get();
             // foreach ($subcategory as $item) {
             //     $category= SubCategory::where('id',$item->id)->first();
             //     $category->delete();
-               
+
             // }
              $level->delete();
-             return redirect()->route('levels.index')->with("message",'The level has been deleted'); 
-    } 
+             return redirect()->route('levels.index')->with("message",'The level has been deleted');
+    }
 }

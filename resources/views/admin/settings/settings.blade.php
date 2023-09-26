@@ -64,7 +64,7 @@
 											</div>
                       <div class="form-group">
                         <label>telc description </label>
-                        <textarea name="exam_desc" id="ckeditor" cols="30" rows="15"  class="form-control ckeditor" >{{$contactInfo->telc_desc}}</textarea>
+                        <textarea name="telc_desc" id="ckeditor" cols="30" rows="15"  class="form-control ckeditor" >{{$contactInfo->telc_desc}}</textarea>
                       </div>
 											<div class="form-group row">
 												<div class="col-md-2">

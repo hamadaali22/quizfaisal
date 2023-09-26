@@ -148,6 +148,14 @@
 	                  @enderror
 	                  <span id="descriptionError" style="color: red;"></span>
 	                </div>
+									<div class="form-group col-md-12 col-sm-6 ">
+	                  <label>description telc</label>
+	                  <textarea name="description_telc"  cols="20" rows="1"  class="form-control ckeditor" id='descriptionid'>{{old('description_telc')}}</textarea>
+	                  @error('description_telc')
+	                  <span class="text-danger">{{$message}}</span>
+	                  @enderror
+	                  <span id="descriptionError" style="color: red;"></span>
+	                </div>
 								</div>
 								<button type="submit" class="btn btn-primary btn-block">Add level </button>
 							</form>

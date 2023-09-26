@@ -59,12 +59,12 @@
 												<textarea name="about" id="ckeditor" cols="30" rows="15"  class="form-control ckeditor">{{$contactInfo->about}}</textarea>
 											</div>
 											<div class="form-group">
-												<label>level text </label>
+												<label>GOETHE description </label>
 												<textarea name="level_desc" id="ckeditor" cols="30" rows="15"  class="form-control ckeditor" >{{$contactInfo->level_desc}}</textarea>
 											</div>
                       <div class="form-group">
-                        <label>exam text </label>
-                        <textarea name="exam_desc" id="ckeditor" cols="30" rows="15"  class="form-control ckeditor" >{{$contactInfo->exam_desc}}</textarea>
+                        <label>telc description </label>
+                        <textarea name="exam_desc" id="ckeditor" cols="30" rows="15"  class="form-control ckeditor" >{{$contactInfo->telc_desc}}</textarea>
                       </div>
 											<div class="form-group row">
 												<div class="col-md-2">

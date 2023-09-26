@@ -84,7 +84,7 @@ class ExamController extends Controller
             // File::delete(public_path("assets_admin/img/curriculums/". $delete->image));
             // File::delete("/home/u9ak0fjx/public_html/assets_admin/img/tutorials/" . $delete->image);
 
-            return redirect()->route('exams.index')->with("message",'The exam has been deleted');
+            return back()->with("message",'The exam has been deleted');
     }
 
 }

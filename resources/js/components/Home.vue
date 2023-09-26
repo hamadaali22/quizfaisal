@@ -2,6 +2,7 @@
   <div>
     <section class="row home-main-section p-5 container-fluid">
         <div class="col-lg m-auto pl-4">
+            <h4 v-html="contactInfo.title"></h4>
             <p v-html="contactInfo.about"></p>
         </div>
          <!-- <div class="row col-lg m-auto"> -->
@@ -12,34 +13,28 @@
           <!-- <img  src="http://127.0.0.1:8000/img/settings/home1.png" class="img-fluid w-30" alt=""> -->
 
         <!-- </div> -->
-        <div class="col-lg m-auto">
-            <div class="row">
-                <div class="col-4">
-                    <img  :src="contactInfo.b1" class="img-fluid w-100" alt="">
-                    <!-- <img src="http://127.0.0.1:8000/img/settings/b1.png" class="img-fluid w-100" alt=""> -->
-                </div>
-                <div class="col-4">
-                    <img  :src="contactInfo.a2" class="img-fluid w-100" alt="">
-                    <!-- <img src="http://127.0.0.1:8000/img/settings/1stpageA2.png" class="img-fluid w-100" alt=""> -->
-                </div>
-                <div class="col-4">
-                    <img  :src="contactInfo.a1" class="img-fluid w-100" alt="">
-                    <!-- <img src="http://127.0.0.1:8000/img/settings/1stpage-A1.png" class="img-fluid w-100" alt=""> -->
-                </div>
-            </div>
-            <div class="row mt-3 mb-5">
-                <div class="col-4">
-                    <img  :src="contactInfo.b2" class="img-fluid w-100" alt="">
-                    <!-- <img src="http://127.0.0.1:8000/img/settings/1stpageB2-red.png" class="img-fluid mb-3 w-100" alt=""> -->
-                    <img  :src="contactInfo.c1" class="img-fluid w-100" alt="">
-                    <!-- <img src="http://127.0.0.1:8000/img/settings/1stPage-C1.png" class="img-fluid w-100" alt=""> -->
-                </div>
-                <div class="col-8">
-                    <img  :src="contactInfo.m1" class="img-fluid w-100" alt="">
-                    <!-- <img src="http://127.0.0.1:8000/img/settings/1stpage-maindesign.png" class="img-fluid w-100" alt=""> -->
-                </div>
-            </div>
+        <div class="col-lg ">
+          <div class="row">
+             <div class="col-4">
+                 <img  :src="contactInfo.b1" class="img-fluid w-100" alt="Deutsch-Prüfungen">
+             </div>
+             <div class="col-4">
+                 <img  :src="contactInfo.a2" class="img-fluid w-100" alt="Telc Deutsch">
+             </div>
+             <div class="col-4">
+                 <img  :src="contactInfo.a1" class="img-fluid w-100" alt="Goethe Deutsch">
+             </div>
           </div>
+          <div class="row mt-3 mb-5">
+             <div class="col-4">
+                 <img  :src="contactInfo.b2" class="img-fluid w-100" alt="Teste dein Deusch">
+                 <img  :src="contactInfo.c1" class="img-fluid w-100" alt="Deutsch Tests online frei">
+             </div>
+             <div class="col-8">
+                 <img  :src="contactInfo.m1" class="img-fluid w-100" alt="Deutsch Tests online">
+             </div>
+          </div>
+        </div>
 
 
 

@@ -277,12 +277,12 @@ class HomeController extends Controller
          $contactinfo->favicon="https://deutschtests.com/img/settings/".$contactinfo->favicon;
          $contactinfo->image="https://deutschtests.com/img/settings/".$contactinfo->image;
 
-         $contactinfo->image="https://deutschtests.com/img/settings/".$contactinfo->a1;
-         $contactinfo->image="https://deutschtests.com/img/settings/".$contactinfo->a2;
-         $contactinfo->image="https://deutschtests.com/img/settings/".$contactinfo->b1;
-         $contactinfo->image="https://deutschtests.com/img/settings/".$contactinfo->b2;
-         $contactinfo->image="https://deutschtests.com/img/settings/".$contactinfo->c1;
-         $contactinfo->image="https://deutschtests.com/img/settings/".$contactinfo->m1;
+         $contactinfo->a1="https://deutschtests.com/img/settings/".$contactinfo->a1;
+         $contactinfo->a2="https://deutschtests.com/img/settings/".$contactinfo->a2;
+         $contactinfo->b1="https://deutschtests.com/img/settings/".$contactinfo->b1;
+         $contactinfo->b2="https://deutschtests.com/img/settings/".$contactinfo->b2;
+         $contactinfo->c1="https://deutschtests.com/img/settings/".$contactinfo->c1;
+         $contactinfo->m1="https://deutschtests.com/img/settings/".$contactinfo->m1;
 
 
 

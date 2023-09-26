@@ -2,7 +2,7 @@
    <div>
      <section class="row home-main-section p-5 container-fluid">
        <div class="col-lg m-auto pl-4">
-        <p v-html="contactInfo.level_desc"></p>
+        <p v-html="contactInfo.telc_desc"></p>
        </div>
        <h2 class="text-center ">Telc</h2>
 

@@ -2,7 +2,7 @@
   <div>
     <section class="row home-main-section p-5 container-fluid">
       <div class="col-lg m-auto pl-4">
-      <p v-html="getLevelDesc.description"></p>
+      <p v-html="getLevelDesc.description_telc"></p>
       <!-- <p>{{getLevelDesc.description}}</p> -->
       </div>
       <!-- <h2 class="text-center ">A1</h2> -->

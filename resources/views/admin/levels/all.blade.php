@@ -95,6 +95,7 @@
 															<a class="btn btn-sm bg-success-light" data-toggle="modal"
 																data-name="{{ $_item->name }}"
 																data-description="{{ $_item->description }}"
+																data-description_telc="{{ $_item->description_telc }}"
 																data-catid="{{ $_item->id }}"
 																data-target="#edit">
 																 <button type="button" class="btn btn-outline-success "><i class="la la-edit"></i></button>
@@ -186,6 +187,16 @@
 	                  @enderror
 	                  <span id="short_detailError" style="color: red;"></span>
 	                </div>
+
+	                <div class="form-group col-md-12 col-sm-6 paragraph-hidden">
+	                  <label>description telc</label>
+	                  <textarea name="description_telc"  cols="20" rows="1"  class="form-control ckeditor" id='description_telcId'></textarea>
+	                  @error('description_telc')
+	                  <span class="text-danger">{{$message}}</span>
+	                  @enderror
+	                  <span id="short_detailError" style="color: red;"></span>
+	                </div>
+
 								</div>
 								<button type="submit" class="btn btn-primary btn-block"> Save Changing</button>
 							</form>
@@ -234,18 +245,20 @@
       var button = $(event.relatedTarget)
       var name = button.data('name')
       var description = button.data('description')
+      var description_telc = button.data('description_telc')
 
       var cat_id = button.data('catid')
       var modal = $(this)
 
       modal.find('.modal-body #name').val(name);
       modal.find('.modal-body #descriptionId').val(description);
+      modal.find('.modal-body #description_telcId').val(description_telc);
 
       modal.find('.modal-body #cat_id').val(cat_id);
     })
 
 
-	 $('#delete').on('show.bs.modal', function (event) {
+	 	$('#delete').on('show.bs.modal', function (event) {
 
       var button = $(event.relatedTarget)
 
@@ -253,7 +266,7 @@
       var modal = $(this)
 
       modal.find('.modal-body #cat_id').val(cat_id);
-})
+		})
 
 
 </script>

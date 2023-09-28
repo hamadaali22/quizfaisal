@@ -64,11 +64,16 @@ class LevelController extends Controller
             $edit->name    = $edit->name;
         }
 
-        if($request->name !=''){
+        if($request->description !=''){
             $edit->description    = $request->description;
          }else{
             $edit->description    = $edit->description;
          }
+         if($request->description_telc !=''){
+             $edit->description_telc    = $request->description_telc;
+          }else{
+             $edit->description_telc    = $edit->description_telc;
+          }
 
          $edit->save();
         return redirect()->route('levels.index')->with("message", 'Updated successfully');

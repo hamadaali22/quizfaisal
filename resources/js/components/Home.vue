@@ -2,7 +2,8 @@
   <div>
     <section class="row home-main-section p-5 container-fluid">
         <div class="col-lg m-auto pl-4">
-            <h4 v-html="contactInfo.title"></h4>
+            <h1 v-html="contactInfo.title" style="font-size: 19px;"></h1>
+            <h2 v-html="contactInfo.title2" style="font-size: 16px;"></h2>
             <p v-html="contactInfo.about"></p>
         </div>
          <!-- <div class="row col-lg m-auto"> -->

@@ -34,6 +34,8 @@ Route::group(['middleware' => ['api'], 'namespace' => 'Api'], function () {
     Route::get('results', 'QuestionController@results');
     Route::get('contactinfo', 'HomeController@contactInfo');
     Route::get('check-user-auth', 'HomeController@checkUserAuth');
+    Route::get('goethe-user-exams', 'QuestionController@goetheUserExams');
+    Route::get('goethe-report-exams', 'QuestionController@goetheReportExams');
 
 
 

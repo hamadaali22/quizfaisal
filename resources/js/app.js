@@ -61,6 +61,8 @@ const store = new Vuex.Store({
         examAnswer:[],
         // levelId:null,
         contactInfo:'',
+        goetheUserExam:[],
+        GoetheReportExam:[],
     },
     getters: { //center
         isLogged(state) {
@@ -134,7 +136,13 @@ const store = new Vuex.Store({
         },
         updateContactinfo(state, contactinfo){
                   state.contactInfo = contactinfo;
-                },
+        },
+        updateGoetheUserExams(state, exams){
+            state.goetheUserExam = exams;
+        },
+        updateGoetheReportExam(state, exams){
+            state.GoetheReportExam = exams;
+        },
     },
     actions: {
         RegisterUser({ commit }, payload) {
@@ -283,6 +291,28 @@ const store = new Vuex.Store({
               store.commit('updateExams', res.data.data.exam);
               store.commit('updateLevelDesc', res.data.data.level);
 
+            })
+            .then(err => console.log(err))
+        },
+        getGoetheUserExams({state,commit},payload){
+            axios.get(state.basName+'goethe-user-exams?user_id='+payload.userId)
+            .then(res => {
+              console.log('dddd');
+              console.log(res.data.data);
+              console.log('ddd');
+              store.commit('updateGoetheUserExams', res.data.data);
+            })
+            .then(err => console.log(err))
+        },
+        getGoetheReportExams({state,commit},payload){
+          console.log(payload.userId);
+          console.log(payload.examId+'ex');
+            axios.get(state.basName+'goethe-report-exams?user_id='+payload.userId+'&exam_id='+payload.examId)
+            .then(res => {
+              console.log('dddd');
+              console.log(res.data.data);
+              console.log('ddd');
+              store.commit('updateGoetheReportExam', res.data.data.data);
             })
             .then(err => console.log(err))
         },

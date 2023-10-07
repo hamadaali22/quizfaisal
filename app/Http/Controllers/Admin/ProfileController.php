@@ -179,6 +179,7 @@ class ProfileController extends Controller
             $edit->m1  = $edit->m1;
         }
         $edit->title = $request->title;
+        $edit->title2 = $request->title2;
         $edit->about = $request->about;
         $edit->level_desc  = $request->level_desc;
         $edit->telc_desc  = $request->telc_desc;

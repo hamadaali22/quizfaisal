@@ -17,18 +17,19 @@ import ImageProcessing from '../components/ImageProcessing.vue'
 import Result from '../components/Result.vue'
 import ForgetPassword from '../components/ForgetPassword.vue'
 
+import GoetheUserExam from '../components/GoetheUserExam.vue'
+import GoetheReport from '../components/GoetheReport.vue'
+import TelcReport from '../components/TelcReport.vue'
 const routes = [
     { path: '/home', component: Home, name: 'Home' },
     { path: '/', component: Home, name: 'Home' },
-    { path: '/levels', component: Levels, name: 'Levels' },
+
+    { path: '/goethe-tests', component: Levels, name: 'Levels' },
     // { path: '/exams', component: Exams, name: 'Exams' },
     { path: '/level/:id', component: Exams, name: 'Exams' },
 
-    { path: '/telcs', component: Telcs, name: 'Telcs' },
+    { path: '/telc-tests', component: Telcs, name: 'Telcs' },
     { path: '/telc/:id', component: ExamsTelc, name: 'ExamsTelc' },
-
-
-
 
 
 
@@ -37,8 +38,13 @@ const routes = [
     { path: '/forgetpassword', component: ForgetPassword, name: 'ForgetPassword' },
     { path: '/result', component: Result, name: 'Result' },
 
+    { path: '/goethe-user-exam', component: GoetheUserExam, name: 'GoetheUserExam' },
+    // { path: '/goethe-report', component: GoetheReport, name: 'GoetheReport' },
+    { path: '/telc-report', component: TelcReport, name: 'TelcReport' },
+
     // { path: '/quiz', component: Quiz, name: 'Quiz' },
     { path: '/exam/:id', component: Questions, name: 'Questions' },
+    { path: '/goethe-report/:id', component: GoetheReport, name: 'GoetheReport' },
     { path: '/examplecomponent', component: ExampleComponent, name: 'ExampleComponent' },
     { path: '/imageprocessing', component: ImageProcessing, name: 'ImageProcessing' },
 

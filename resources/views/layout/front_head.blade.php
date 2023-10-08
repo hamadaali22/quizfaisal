@@ -10,13 +10,15 @@
         <title> Deutsch Tests online |Deutsch-Prüfungen</title>
         <meta content=" Deutsch Tests online, Deutsch-Prüfungen, Goethe Deutsch, Telc Deutsch, Teste dein Deutsch" name="keywords">
         <meta content="Goethe Deutsch-Prüfungen und Telc Deutsch-Prüfungen zum Üben. Das Ergebnis erscheint am Prüfungsende. Schau unsere Deutsch Tests online an und Teste dein Deutsch!" name="description">
-        <link rel="canonical" href="https://deutschtests.com"/>
+
+        <link rel="canonical" href="https://deutschtests.com/"/>
     @elseif(Request::is(['goethe-tests']))
-        <title>  Tests</title>
+        <title>Goethe Deutsch-Prüfungen von Goethe A1 bis Goethe C1 Prüfung</title>
         <meta content="Telc Deutsch-Prüfungen, Telc A1 Prüfung, Telc C1 Prüfung, Tecl C1 hoschole, prüfung telc b1" name="keywords">
         <meta content="Goethe Deutsch-Prüfungen mit Lesenverstehen und Hörenverstehen von Goethe A1 Prüfung bis Goethe C1 Prüfung. Schau unsere Deutsch Tests online an & Test dein Deutsch" name="description">
         <link rel="canonical" href="https://deutschtests.com/goethe-tests"/>
     @elseif(Request::is(['telc-tests']))
+        <title>Telc Deutsch-Prüfungen | Telc A1 Prüfung bis Telc C1 Prüfung</title>
         <meta content="Goethe Deutsch-Prüfungen, Goethe A1 Prüfung, Goethe C1 Prüfung, Lesenverstehen üben, deutsch online lernen" name="keywords">
         <meta content="Telc Deutsch-Prüfungen mit Lesenverstehen und Hörenverstehen von Telc A1 Prüfung bis Telc C1 Prüfung. Schau unsere Deutsch Tests online an & Test dein Deutsch" name="description">
         <link rel="canonical" href="https://deutschtests.com/telc-tests"/>

@@ -48,7 +48,7 @@
                       <div class="answers">
                         <ul class="multi-choice list-unstyled" v-if="SubQuestions.exam_answer !=null">
                           <h6>{{SubQuestions.title}}</h6>
-                          <h6 v-if="SubQuestions.exam_answer !=null ">{{SubQuestions.exam_answer.answer}} - {{SubQuestions.expected_answer}}</h6>
+                          <!-- <h6 v-if="SubQuestions.exam_answer !=null ">{{SubQuestions.exam_answer.answer}} - {{SubQuestions.expected_answer}}</h6> -->
                       <!-- first -->
                           <li class="multi-item q-1 border border-raduis pt-2 pl-3 mb-1" v-if="SubQuestions.first_choice == SubQuestions.exam_answer.answer
                                                                           && SubQuestions.first_choice == SubQuestions.exam_answer.expected_answer" :style="'background: #28D094'">

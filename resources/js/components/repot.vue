@@ -1,3 +1,10 @@
+
+
+
+SubQuestions.first_choice == SubQuestions.exam_answer.answer
+                                                && SubQuestions.first_choice == SubQuestions.exam_answer.expected_answer ? 'background: #28D094' : '',
+                                                SubQuestions.first_choice != SubQuestions.exam_answer.answer
+                                                && SubQuestions.first_choice == SubQuestions.exam_answer.expected_answer ? 'background: #28D094' : ''
 <template>
   <div>
 
@@ -46,101 +53,61 @@
                   <!-- <div v-if="SubQuestions.is_multy == 'text'" class="mcq p-3 " > -->
                   <div v-if="SubQuestions.is_multy == 'text'" class="mcq p-3 " v-bind:class="[SubQuestions.color == 'b'  ? 'bg-information' : '']">
                       <div class="answers">
-                        <ul class="multi-choice list-unstyled" v-if="SubQuestions.exam_answer !=null">
+                        <ul class="multi-choice list-unstyled">
                           <h6>{{SubQuestions.title}}</h6>
-                          <h6 v-if="SubQuestions.exam_answer !=null ">{{SubQuestions.exam_answer.answer}} - {{SubQuestions.expected_answer}}</h6>
-                      <!-- first -->
-                          <li class="multi-item q-1 border border-raduis pt-2 pl-3 mb-1" v-if="SubQuestions.first_choice == SubQuestions.exam_answer.answer
-                                                                          && SubQuestions.first_choice == SubQuestions.exam_answer.expected_answer" :style="'background: #28D094'">
+  <!-- v-bind:class="[SubQuestions.first_choice ==SubQuestions.expected_answer ? 'isAnswerNotRight' : '']" -->
+<!-- SubQuestions.expected_answer == SubQuestions.exam_answer.answer  ? 'isAnswerRight' : '' , -->
+<!-- v-bind:class="[ SubQuestions.first_choice == SubQuestions.exam_answer.answer ? 'isAnswerNotRight' : ''
+                    /* ,SubQuestions.expected_answer == SubQuestions.exam_answer.answer  ? 'isAnswerRight' : '' */
+                ] " -->
+
+
+                <!-- v-bind:class="[ SubQuestions.second_choice == SubQuestions.exam_answer.answer ? 'isAnswerNotRight' : ''
+                                    /* ,SubQuestions.expected_answer == SubQuestions.exam_answer.answer  ? 'isAnswerRight' : '' */
+                                ] " -->
+
+                                <!-- :style="SubQuestions.first_choice == SubQuestions.exam_answer.answer ? 'background: #f6bfc4': '',
+                                                                        SubQuestions.first_choice == SubQuestions.exam_answer.expected_answer ? 'background: #28D094': '',
+                                                                         SubQuestions.exam_answer.expected_answer  !=SubQuestions.first_choice ? 'background: #f6bfc4': ''" -->
+
+                          <!-- SubQuestions.first_choice == SubQuestions.exam_answer.answer ? 'background: #28D094': '', -->
+                          <h6 v-if="SubQuestions.exam_answer !=null ">{{SubQuestions.exam_answer.answer}} - {{SubQuestions.expected_answer}} </h6>
+
+                          <li class="multi-item q-1 border border-raduis pt-2 pl-3 mb-1"
+                                v-if="SubQuestions.exam_answer ==null" :id="'subq'+index+'a'" v-on:click="dissapear(index,item.exam_id,SubQuestions.question_id,SubQuestions.id,SubQuestions.expected_answer,SubQuestions.first_choice,'subq'+index+'a','a',SubQuestions.answer_type)"  >
                             <input class=" multi-input d-none" type="radio" name="q-1" value="mars" id="mars">
                             <label  class="multi-label"  id="mars">{{SubQuestions.first_choice}}</label>
                           </li>
-                          <li class="multi-item q-1 border border-raduis pt-2 pl-3 mb-1" v-else-if=" SubQuestions.first_choice == SubQuestions.exam_answer.expected_answer" :style="'background: #28D094'">
-                            <input class=" multi-input d-none" type="radio" name="q-1" value="mars" id="mars">
-                            <label  class="multi-label"  id="mars">{{SubQuestions.first_choice}}</label>
-                          </li>
-                          <li class="multi-item q-1 border border-raduis pt-2 pl-3 mb-1" v-else-if="SubQuestions.first_choice == SubQuestions.expected_answer" :style="'background: #28D094'">
-                            <input class=" multi-input d-none" type="radio" name="q-1" value="mars" id="mars">
-                            <label  class="multi-label"  id="mars">{{SubQuestions.first_choice}}</label>
-                          </li>
-                          <li class="multi-item q-1 border border-raduis pt-2 pl-3 mb-1" v-else-if="SubQuestions.first_choice == SubQuestions.exam_answer.answer
-                                                                          && SubQuestions.first_choice != SubQuestions.exam_answer.expected_answer" :style="'background: #f6bfc4'">
-                            <input class=" multi-input d-none" type="radio" name="q-1" value="mars" id="mars">
-                            <label  class="multi-label"  id="mars">{{SubQuestions.first_choice}}</label>
-                          </li>
-                          <li class="multi-item q-1 border border-raduis pt-2 pl-3 mb-1" v-else>
-                            <input class=" multi-input d-none" type="radio" name="q-1" value="mars" id="mars">
-                            <label  class="multi-label"  id="mars">{{SubQuestions.first_choice}}</label>
-                          </li>
-                    <!-- end -->
-                    <!-- second -->
-                          <li class="multi-item q-1 border border-raduis pt-2 pl-3 mb-1" v-if="SubQuestions.second_choice == SubQuestions.exam_answer.answer
-                                                                          && SubQuestions.second_choice == SubQuestions.exam_answer.expected_answer" :style="'background: #28D094'">
-                            <input class=" multi-input d-none" type="radio" name="q-1" value="jupiter" id="jupiter" >
-                            <label class="multi-label"  id="jupiter">{{SubQuestions.second_choice}}</label>
-                          </li>
-                          <li class="multi-item q-1 border border-raduis pt-2 pl-3 mb-1" v-else-if="SubQuestions.second_choice == SubQuestions.exam_answer.answer
-                                                                          && SubQuestions.second_choice == SubQuestions.exam_answer.expected_answer" :style="'background: #28D094'">
-                            <input class=" multi-input d-none" type="radio" name="q-1" value="jupiter" id="jupiter" >
-                            <label class="multi-label"  id="jupiter">{{SubQuestions.second_choice}}</label>
-                          </li>
-                          <li class="multi-item q-1 border border-raduis pt-2 pl-3 mb-1" v-else-if="SubQuestions.second_choice == SubQuestions.expected_answer" :style="'background: #28D094'">
-                            <input class=" multi-input d-none" type="radio" name="q-1" value="jupiter" id="jupiter" >
-                            <label class="multi-label"  id="jupiter">{{SubQuestions.second_choice}}</label>
-                          </li>
-                          <li class="multi-item q-1 border border-raduis pt-2 pl-3 mb-1" v-else-if="SubQuestions.second_choice == SubQuestions.exam_answer.answer
-                                                                          && SubQuestions.second_choice != SubQuestions.exam_answer.expected_answer" :style="'background: #f6bfc4'">
-                            <input class=" multi-input d-none" type="radio" name="q-1" value="mars" id="mars">
-                            <label  class="multi-label"  id="mars">{{SubQuestions.second_choice}}</label>
-                          </li>
-                          <li class="multi-item q-1 border border-raduis pt-2 pl-3 mb-1" v-else>
-                            <input class=" multi-input d-none" type="radio" name="q-1" value="jupiter" id="jupiter" >
-                            <label class="multi-label"  id="jupiter">{{SubQuestions.second_choice}}</label>
-                          </li>
-                  <!-- end -->
-                  <!-- third -->
-                          <li class="multi-item q-1 border border-raduis pt-2 pl-3 mb-1" v-if="SubQuestions.third_choice == SubQuestions.exam_answer.answer
-                                                                          && SubQuestions.third_choice == SubQuestions.exam_answer.expected_answer" :style="'background: #28D094'"  >
-                            <input class=" multi-input d-none" type="radio" name="q-1" value="venus" id="venus"  />
-                            <label class="multi-label"  id="venus">{{SubQuestions.third_choice}}</label>
-                          </li>
-                          <li class="multi-item q-1 border border-raduis pt-2 pl-3 mb-1" v-else-if="SubQuestions.third_choice == SubQuestions.exam_answer.answer
-                                                                          && SubQuestions.third_choice == SubQuestions.exam_answer.expected_answer" :style="'background: #28D094'" >
-                            <input class=" multi-input d-none" type="radio" name="q-1" value="venus" id="venus"  />
-                            <label class="multi-label"  id="venus">{{SubQuestions.third_choice}}</label>
-                          </li>
-                          <li class="multi-item q-1 border border-raduis pt-2 pl-3 mb-1" v-else-if="SubQuestions.third_choice == SubQuestions.expected_answer" :style="'background: #28D094'" >
-                            <input class=" multi-input d-none" type="radio" name="q-1" value="venus" id="venus"  />
-                            <label class="multi-label"  id="venus">{{SubQuestions.third_choice}}</label>
-                          </li>
-                          <li class="multi-item q-1 border border-raduis pt-2 pl-3 mb-1" v-else-if="SubQuestions.third_choice == SubQuestions.exam_answer.answer
-                                                                          && SubQuestions.third_choice != SubQuestions.exam_answer.expected_answer" :style="'background: #f6bfc4'">
-                            <input class=" multi-input d-none" type="radio" name="q-1" value="mars" id="mars">
-                            <label  class="multi-label"  id="mars">{{SubQuestions.third_choice}}</label>
-                          </li>
-                          <li class="multi-item q-1 border border-raduis pt-2 pl-3 mb-1" v-else>
-                            <input class=" multi-input d-none" type="radio" name="q-1" value="venus" id="venus"  />
-                            <label class="multi-label"  id="venus">{{SubQuestions.third_choice}}</label>
-                          </li>
-                  <!--  -->
-                        </ul>
-                        <ul class="multi-choice list-unstyled" v-else>
-                          <h6>{{SubQuestions.title}}</h6>
-                          <li class="multi-item q-1 border border-raduis pt-2 pl-3 mb-1">
+                          <li class="multi-item q-1 border border-raduis pt-2 pl-3 mb-1"
+                                v-else="SubQuestions.exam_answer !=null"  :style="SubQuestions.first_choice == SubQuestions.exam_answer.expected_answer
+                                                                                && SubQuestions.first_choice == SubQuestions.exam_answer.answer ? 'background: #28D094' : '',
+                                                                            SubQuestions.first_choice == SubQuestions.expected_answer   ? 'background: #28D094': '',
+                                                                            SubQuestions.first_choice != SubQuestions.exam_answer.answer   ? '': 'background: #f6bfc4'"
+                                :id="'subq'+index+'a'"  v-on:click="dissapear(index,item.exam_id,SubQuestions.question_id,SubQuestions.id,SubQuestions.expected_answer,SubQuestions.first_choice,'subq'+index+'a','a',SubQuestions.answer_type)"  >
                             <input class=" multi-input d-none" type="radio" name="q-1" value="mars" id="mars">
                             <label  class="multi-label"  id="mars">{{SubQuestions.first_choice}}</label>
                           </li>
 
-                          <li class="multi-item q-1 border border-raduis pt-2 pl-3 mb-1">
+                          <li class="multi-item q-1 border border-raduis pt-2 pl-3 mb-1"
+                                    v-if="SubQuestions.exam_answer !=null" :style="SubQuestions.second_choice == SubQuestions.expected_answer   ? 'background: #28D094': '',
+                                    SubQuestions.firssecond_choicet_choice != SubQuestions.exam_answer.answer   ? '': 'background: #f6bfc4',
+                                    SubQuestions.second_choice == SubQuestions.exam_answer.expected_answer
+                                                                                    && SubQuestions.second_choice == SubQuestions.exam_answer.answer ? 'background: #28D094' : ''
+                                                                                "
+
+                                                        :id="'subq'+index+'b'" v-on:click="dissapear(index,item.exam_id,SubQuestions.question_id,SubQuestions.id,SubQuestions.expected_answer,SubQuestions.second_choice,'subq'+index+'b','b',SubQuestions.answer_type)" >
                             <input class=" multi-input d-none" type="radio" name="q-1" value="jupiter" id="jupiter" >
                             <label class="multi-label"  id="jupiter">{{SubQuestions.second_choice}}</label>
                           </li>
-
-                          <li class="multi-item q-1 border border-raduis pt-2 pl-3 mb-1">
+                          <li class="multi-item q-1 border border-raduis pt-2 pl-3 mb-1"
+                                    v-if="SubQuestions.exam_answer !=null" :style="SubQuestions.third_choice == SubQuestions.exam_answer.expected_answer
+                                                                                    && SubQuestions.third_choice == SubQuestions.exam_answer.answer ? 'background: #28D094' : '',
+                                                                                    SubQuestions.third_choice != SubQuestions.exam_answer.answer   ? '': 'background: #f6bfc4',
+                                                                                    SubQuestions.third_choice == SubQuestions.expected_answer   ? 'background: #28D094': ''"
+                                              :id="'subq'+index+'c'" v-on:click="dissapear(index,item.exam_id,SubQuestions.question_id,SubQuestions.id,SubQuestions.expected_answer,SubQuestions.third_choice,'subq'+index+'c','c',SubQuestions.answer_type)" >
                             <input class=" multi-input d-none" type="radio" name="q-1" value="venus" id="venus"  />
                             <label class="multi-label"  id="venus">{{SubQuestions.third_choice}}</label>
                           </li>
-
                         </ul>
                       </div>
                   </div>

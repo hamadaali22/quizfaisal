@@ -1,8 +1,7 @@
-
-
 @extends('layout.admin_main')
 @section('content')
-
+<script src="{{asset('admin/vendors/js/editors/ckeditor/ckeditor.js')}}" type="text/javascript"></script>
+<script src="  {{asset('admin/js/scripts/editors/editor-ckeditor.js')}}" type="text/javascript"></script>
 		<div class="content-header row">
 			        <div class="content-header-left col-md-6 col-12 mb-2 breadcrumb-new">
 			          <h3 class="content-header-title mb-0 d-inline-block">levels</h3><br>
@@ -74,6 +73,7 @@
 													<th>#</th>
 													<th>level Name</th>
 													<th>description</th>
+													<th>description_telc</th>
 													<th class="text-center">Actions</th>
 												</tr>
 											</thead>
@@ -91,19 +91,24 @@
 														{{$_item->description}}
 													</td>
 													<td class="text-center">
+														{{$_item->description_telc}}
+													</td>
+													<td class="text-center">
 														<div class="actions">
-															<a class="btn btn-sm bg-success-light" data-toggle="modal"
+															<!-- <a class="btn btn-sm bg-success-light" data-toggle="modal"
 																data-name="{{ $_item->name }}"
 																data-description="{{ $_item->description }}"
 																data-description_telc="{{ $_item->description_telc }}"
 																data-catid="{{ $_item->id }}"
 																data-target="#edit">
 																 <button type="button" class="btn btn-outline-success "><i class="la la-edit"></i></button>
-															</a>
-															<a  data-toggle="modal" data-catid="{{ $_item->id }}" data-target="#delete" class="delete-course">
-				                                           <button type="button" class=" btn btn-outline-warning"><i class="la la-trash-o"></i></button>
-
-				                                        </a>
+															</a> -->
+															<a href="{{route('levels.edit',$_item->id)}}" class="edit-course" >
+																		<button type="button" class="btn btn-outline-success "><i class="la la-edit"></i></button>
+																	</a>
+															<a data-toggle="modal" data-catid="{{ $_item->id }}" data-target="#delete" class="delete-course">
+				                          <button type="button" class=" btn btn-outline-warning"><i class="la la-trash-o"></i></button>
+				                      </a>
 														</div>
 													</td>
 												</tr>
@@ -198,7 +203,7 @@
 
 	                <div class="form-group col-md-12 col-sm-6 paragraph-hidden">
 	                  <label>description telc</label>
-	                  <textarea name="description_telc"  cols="20" rows="1"  class="form-control ckeditor" id='description_telcId'></textarea>
+	                  <textarea name="description_telc"  cols="20" rows="1"  class="form-control " ></textarea>
 	                  @error('description_telc')
 	                  <span class="text-danger">{{$message}}</span>
 	                  @enderror

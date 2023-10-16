@@ -5,7 +5,7 @@
        <div class="col-lg m-auto pl-4">
         <p v-html="contactInfo.level_desc"></p>
        </div>
-       <h2 class="text-center ">GOETHE</h2>
+       <h2 class="text-center "></h2>
 
        <div class="col-lg m-auto">
             <div v-for="item in getLevels" :key="item.id" class="level w-100 text-center text-light mt-1 pt-2 pb-2">

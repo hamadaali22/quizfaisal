@@ -15,7 +15,7 @@ use Crypt;
 use Hash;
 use Auth;
 use App\UserTokens;
-// use DB;
+
 class UserLoginController extends Controller
 {
     // use AuthenticatesUsers;

@@ -42,11 +42,9 @@
         </div>
         <div class="card-content collpase show">
           <div class="card-body">
-
             <form  method="post" action=" {{route('levels.update',$level->id)}}" enctype="multipart/form-data">
               @csrf
               @method('put')
-
               <div class="row form-row">
                 <input type="hidden" name="id" value="{{$level->id}}" >
                 <!-- <div class="col-12 col-sm-6">
@@ -60,6 +58,12 @@
               <div class="form-group">
                 <label>Level Name </label>
                 <input type="text" name="name" class="form-control" id="name" value="{{$level->name}}">
+              </div>
+            </div>
+            <div class="col-12 col-sm-12">
+              <div class="form-group">
+                <label>Level telc Name </label>
+                <input type="text" name="name2" class="form-control" id="name2" value="{{$level->name2}}">
               </div>
             </div>
             <div class="form-group col-md-12 col-sm-6 paragraph-hidden">

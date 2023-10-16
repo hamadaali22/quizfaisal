@@ -42,6 +42,7 @@ class LevelController extends Controller
         );
         $add = new Level;
         $add->name    = $request->name;
+        $add->name2    = $request->name2;
         $add->description    = $request->description;
         $add->description_telc    = $request->description_telc;
         $add->save();
@@ -63,6 +64,11 @@ class LevelController extends Controller
         }else{
             $edit->name    = $edit->name;
         }
+        if($request->name2 !=''){
+            $edit->name2    = $request->name2;
+        }else{
+            $edit->name2    = $edit->name2;
+        }
 
         if($request->description !=''){
             $edit->description    = $request->description;
@@ -79,18 +85,16 @@ class LevelController extends Controller
         return redirect()->route('levels.index')->with("message", 'Updated successfully');
     }
 
-
     public function destroy(Request $request )
     {
-
-            $level = Level::findOrFail($request->id);
-            // $subcategory=SubCategory::where('id',$category->categoryId)->get();
-            // foreach ($subcategory as $item) {
+        $level = Level::findOrFail($request->id);
+        // $subcategory=SubCategory::where('id',$category->categoryId)->get();
+        // foreach ($subcategory as $item) {
             //     $category= SubCategory::where('id',$item->id)->first();
             //     $category->delete();
 
             // }
-             $level->delete();
-             return redirect()->route('levels.index')->with("message",'The level has been deleted');
+        $level->delete();
+        return redirect()->route('levels.index')->with("message",'The level has been deleted');
     }
 }

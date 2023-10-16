@@ -8,7 +8,7 @@
 
        <div class="col-lg m-auto">
             <div v-for="item in getLevels" :key="item.id" class="level w-100 text-center text-light mt-1 pt-2 pb-2">
-                <router-link :to="'/telc/'+item.id" class="a-link">{{ item.name }}</router-link>
+                <router-link :to="'/telc-tests/'+item.name2+'/'+item.id" class="a-link">{{ item.name2 }}</router-link>
             </div>
 
             <!-- <div class="level w-100 text-center text-light mt-1 pt-2 pb-2">A1</div>

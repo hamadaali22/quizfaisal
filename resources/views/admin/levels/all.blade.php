@@ -88,6 +88,9 @@
 														{{$_item->name}}
 													</td>
 													<td class="text-center">
+														{{$_item->name2}}
+													</td>
+													<td class="text-center">
 														{{$_item->description}}
 													</td>
 													<td class="text-center">
@@ -143,6 +146,12 @@
 										<div class="form-group">
 											<label>Level Name</label>
 											<input type="text" name="name" class="form-control" value="{{old('name')}}">
+										</div>
+									</div>
+									<div class="col-12 col-md-12  col-sm-6">
+										<div class="form-group">
+											<label>Level telc Name</label>
+											<input type="text" name="name2" class="form-control" value="{{old('name2')}}">
 										</div>
 									</div>
 									<div class="form-group col-md-12 col-sm-6 ">

@@ -23,7 +23,19 @@
         <meta content="Telc Deutsch-Prüfungen mit Lesenverstehen und Hörenverstehen von Telc A1 Prüfung bis Telc C1 Prüfung. Schau unsere Deutsch Tests online an & Test dein Deutsch" name="description">
         <link rel="canonical" href="https://deutschtests.com/telc-tests"/>
     @endif
-
+    @if(request()->is('goethe-tests/*'))
+        <title> Goethe Prüfung A1 | Prüfung A1 Goethe </title>
+        <meta content=" goethe prüfung a1, prüfung a1 goethe, goethe a1 zertifikat, a1 goethe prüfung, Start deutsch A1" name="keywords">
+        <meta content=" Modelltests für Goethe Prüfung A1. Sie können hier für Start Deutsch A1 üben. Bereiten Sie sich auf Goethe A1 Zertifiakt vor! Ihr Ergebnis erfahren sofort. " name="description">
+        <link rel="canonical" href="https://deutschtests.com/goethe-tests/Start-deutsch-A1"/>
+    @endif
+    @if(request()->is('telc-tests/*'))
+        <title> Telc A1 Prüfung |Telc A1 Modelltest </title>
+        <meta content="telc a1 prüfung, telc a1 zertifikat, a1 telc prüfung, Telc A1 Modelltest, A1 Deutsch-Test" name="keywords">
+        <meta content=" Modelltests für Telc A1 Prüfung.Sie können hier für A1 Telc Prüfung üben. Bereiten Sie sich auf Telc A1 Zertifikat vor! Ihr Ergebnis erfahren Sie sofort." name="description">
+        <link rel="canonical" href=" https://deutschtests.com/telc-tests/A1-Deutsch-Test"/>
+    @endif
+    <!-- <title>{{URL::current()}}</title> -->
   <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XM2JPDHKJE"></script>
 

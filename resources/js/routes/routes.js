@@ -26,10 +26,10 @@ const routes = [
 
     { path: '/goethe-tests', component: Levels, name: 'Levels' },
     // { path: '/exams', component: Exams, name: 'Exams' },
-    { path: '/goethe-tests/:name/:id', component: Exams, name: 'Exams' },
+    { path: '/goethe-tests/:name', component: Exams, name: 'Exams' },
 
     { path: '/telc-tests', component: Telcs, name: 'Telcs' },
-    { path: '/telc-tests/:name/:id', component: ExamsTelc, name: 'ExamsTelc' },
+    { path: '/telc-tests/:name', component: ExamsTelc, name: 'ExamsTelc' },
 
 
 

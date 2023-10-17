@@ -273,8 +273,8 @@ const store = new Vuex.Store({
             .then(err => console.log(err))
         },
         getExams({state,commit},payload){
-          // console.log(payload);
-            axios.get(state.basName+'exams?level_id='+payload)
+          console.log(payload);
+            axios.get(state.basName+'exams?levelName='+payload)
             .then(res => {
               console.log(res.data.data);
               store.commit('updateExams', res.data.data.exam);
@@ -285,7 +285,7 @@ const store = new Vuex.Store({
         },
         getExamsTelc({state,commit},payload){
           // console.log(payload);
-            axios.get(state.basName+'telc-exams?level_id='+payload)
+            axios.get(state.basName+'telc-exams?levelName='+payload)
             .then(res => {
               console.log(res.data.data);
               store.commit('updateExams', res.data.data.exam);

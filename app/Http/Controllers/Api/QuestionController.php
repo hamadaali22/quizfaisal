@@ -30,7 +30,7 @@ class QuestionController extends Controller
     }
     public function telcExams(Request $request)
     {
-        $level=Level::where("name2" , $request->levelName)->first();
+        $level=Level::where("slug2" , $request->levelSlug)->first();
         $exam=Exam::where("level_id" , $level->id)->where('section','telc')->get();
         $home  =[
             'exam'=> $exam,
@@ -40,7 +40,7 @@ class QuestionController extends Controller
     }
     public function exams(Request $request)
     {
-        $level=Level::where("name" , $request->levelName)->first();
+        $level=Level::where("slug" , $request->levelSlug)->first();
         $exam=Exam::where("level_id" , $level->id)->where('section',null)->get();
         $home  =[
             'exam'=> $exam,

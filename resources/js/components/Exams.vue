@@ -26,8 +26,8 @@ export default {
 
     data(){
         return {
-            levelId:this.$route.params.id,
-            levelName:this.$route.params.name,
+            // levelId:this.$route.params.id,
+            levelslug:this.$route.params.slug,
         }
     },
     computed:{
@@ -52,8 +52,8 @@ export default {
     },
     mounted(){
 
-      let {levelName} = this;
-      this.$store.dispatch('getExams',levelName);
+      let {levelslug} = this;
+      this.$store.dispatch('getExams',levelslug);
       this.$store.dispatch('getContactinfo');
 
     },

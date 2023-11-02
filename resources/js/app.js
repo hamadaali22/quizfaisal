@@ -63,6 +63,7 @@ const store = new Vuex.Store({
         contactInfo:'',
         goetheUserExam:[],
         GoetheReportExam:[],
+        TelcUserExam:[],
     },
     getters: { //center
         isLogged(state) {
@@ -142,6 +143,9 @@ const store = new Vuex.Store({
         },
         updateGoetheReportExam(state, exams){
             state.GoetheReportExam = exams;
+        },
+        updateTelcUserExams(state, exams){
+            state.TelcUserExam = exams;
         },
     },
     actions: {
@@ -305,17 +309,32 @@ const store = new Vuex.Store({
             .then(err => console.log(err))
         },
         getGoetheReportExams({state,commit},payload){
-          console.log(payload.userId);
+          console.log(payload.pageId);
           console.log(payload.examId+'ex');
-            axios.get(state.basName+'goethe-report-exams?user_id='+payload.userId+'&exam_id='+payload.examId)
+            axios.get(state.basName+'goethe-report-exams?user_id='+payload.userId+'&exam_id='+payload.examId+'&page='+payload.pageId)
+            .then(res => {
+              console.log(res.data.data);
+
+              if(res.data.data.data.length !=0){
+                store.commit('updateGoetheReportExam', res.data.data.data);
+                store.commit('updateCurrentPage', res.data.data.current_page);
+              }else {
+                 router.push({ name: 'Result', params: { user_id: payload.userId,examId:payload.examId } })
+              }
+            })
+            .then(err => console.log(err))
+        },
+        getTelcUserExams({state,commit},payload){
+            axios.get(state.basName+'telc-user-exams?user_id='+payload.userId)
             .then(res => {
               console.log('dddd');
               console.log(res.data.data);
               console.log('ddd');
-              store.commit('updateGoetheReportExam', res.data.data.data);
+              store.commit('updateTelcUserExams', res.data.data);
             })
             .then(err => console.log(err))
         },
+
         getQuestions({state,commit},payload){
           console.log(payload);
           // axios.get(state.basName+'exams?level_id='+payload)

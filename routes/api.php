@@ -37,6 +37,8 @@ Route::group(['middleware' => ['api'], 'namespace' => 'Api'], function () {
     Route::get('goethe-user-exams', 'QuestionController@goetheUserExams');
     Route::get('goethe-report-exams', 'QuestionController@goetheReportExams');
 
+    Route::get('telc-user-exams', 'QuestionController@telcUserExams');
+
 
 
 //   Route::group(['middleware' => ['api','changeLanguage','checkDoctor:patient-api'], 'namespace' => 'Api'], function () {

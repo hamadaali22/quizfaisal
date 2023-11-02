@@ -59,8 +59,11 @@ class QuestionController extends Controller
         foreach ($exams as $item) {
             if (!in_array($item->exam_id, $values)) {
                 $values[]=$item->exam_id;
-                $exam=Exam::where("id" , $item->exam_id)->first();
-                $data[]=$exam;
+                $exam=Exam::where("id" , $item->exam_id)->where('section',null)->first();
+                if($exam){
+                  $values[]=$item->exam_id;
+                  $data[]=$exam;
+                }
             }
         }
         return $this->returnDataa('data', $data,'');
@@ -112,6 +115,23 @@ class QuestionController extends Controller
     }
 
 
+
+    public function telcUserExams(Request $request)
+    {
+            $exams=ExamAnswer::where("user_id" , $request->user_id)->get();
+            $values=[];
+            $data=[];
+            foreach ($exams as $item) {
+                if (!in_array($item->exam_id, $values)) {
+                    $exam=Exam::where("id" , $item->exam_id)->where('section','telc')->first();
+                    if($exam){
+                      $values[]=$item->exam_id;
+                      $data[]=$exam;
+                    }
+                }
+            }
+            return $this->returnDataa('data', $data,'');
+        }
 
 
 

@@ -461,7 +461,7 @@
 
                 this.questionAnswer=[];
                 // console.log(this.getCurrentPage+1+' page');
-                this.$store.dispatch('getGoetheReportExams', {user_id: this.$store.state.userToken.id, examId: this.examId,pageId:this.getCurrentPage+1 });
+                this.$store.dispatch('getGoetheReportExams', {userId: this.$store.state.userToken.id, examId: this.examId,pageId:this.getCurrentPage+1 });
                 window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
               // }
         },

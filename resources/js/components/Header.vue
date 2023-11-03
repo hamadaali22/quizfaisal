@@ -15,8 +15,8 @@
                 <li class="nav-item p-1 active "><router-link to="/telc-tests" class="nav-link text-light">Telc</router-link></li>
                 <li v-if="!isLogged" class="nav-item p-1 active "><router-link to="/login" class="nav-link text-light">ANMELDEN</router-link></li>
                 <li v-if="!isLogged" class="nav-item p-1 active "><router-link to="/register" class="nav-link text-light">REGESTRIEN</router-link></li>
-                <li v-if="isLogged" class="nav-item p-1 active "><router-link to="/goethe-user-exam" class="nav-link text-light">goethe user exam</router-link></li>
-                <li v-if="isLogged" class="nav-item p-1 active "><router-link to="/telc-user-exam" class="nav-link text-light">telc user exam</router-link></li>
+                <li v-if="isLogged" class="nav-item p-1 active "><router-link to="/goethe-user-exam" class="nav-link text-light">Meine Tests</router-link></li>
+                <!-- <li v-if="isLogged" class="nav-item p-1 active "><router-link to="/telc-user-exam" class="nav-link text-light">telc user exam</router-link></li> -->
 
                 <li v-if="isLogged" @click.stop="logout" class="nav-item p-1 active "><router-link to="register" class="nav-link text-light">abmelden</router-link></li>
 

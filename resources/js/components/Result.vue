@@ -14,6 +14,11 @@
                 <div class="col pt-4 border border-raduis"><span>{{getResult.count_listen_percent}}</span>%</div>
                 <div class="col pt-4 border border-raduis"><p v-if="getResult.count_listen_percent >= 60">bestanden</p><p v-else>Nicht bestanden</p></div>
             </div>
+            <br>
+            <div class="level w-50 text-center text-light mt-1 pt-2 pb-2">
+              <router-link v-if="isLogged" :to="'/goethe-report/'+this.examId" class="a-link">report about exam</router-link>
+              <!-- <router-link v-else :to="'/login'" class="a-link">{{ item.name }}</router-link> -->
+            </div>
             <!-- <div class="row text-center">
                 <div class="col back pt-4 border border-raduis text-light"><h6>Total</h6></div>
                 <div class="col pt-4 border border-raduis"><span>{{getResult.total}}</span>/<span>100</span></div>
@@ -36,6 +41,9 @@ export default {
   computed:{
     getResult(){
       return this.$store.state.Results
+    },
+    isLogged(){
+      return this.$store.getters.isLogged
     }
   },
 

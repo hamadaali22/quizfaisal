@@ -67,21 +67,27 @@ class HomeController extends Controller
                 $code = $this->returnCodeAccordingToInput($validator);
                 return $this->returnValidationError($code, $validator);
             }
-            $credentials = $request->only(['email','password']);
-            $token =  Auth::guard('user-api') -> attempt($credentials);
-            if(!$token)
-                return $this -> returnError('falsche Email oder Passwort');
+            $checkUser = User::where("email" , $request->email)->first();
+            if($checkUser){
+               if($checkUser->is_activated ==0)
+               {
+                  return $this -> returnError('Das Konto ist nicht aktiviert');
+                }else {
+                  $credentials = $request->only(['email','password']);
+                  $token =  Auth::guard('user-api') -> attempt($credentials);
+                  if(!$token)
+                      return $this -> returnError('falsche Email oder Passwort');
 
-            $UserData = User::where("email" , $request->email)->first();
-
-
-            $UserData->token=$token;
-
-            $UserData->save();
-            // $buyer = User::where('id',$UserData->id)->first();
-
-            // $buyer->photo= "http://findfamily.net/care/img/profiles/".$buyer->photo;
-            return $this -> returnDataa('data',$UserData,'Sie haben sich erfolgreich angemeldet');
+                  $UserData = User::where("email" , $request->email)->first();
+                  $UserData->token=$token;
+                  $UserData->save();
+                  // $buyer = User::where('id',$UserData->id)->first();
+                  // $buyer->photo= "http://findfamily.net/care/img/profiles/".$buyer->photo;
+                  return $this -> returnDataa('data',$UserData,'Sie haben sich erfolgreich angemeldet');
+              }
+            }else {
+              return $this -> returnError('falsche Email oder Passwort');
+            }
         }catch (\Exception $ex){
             return $this->returnError( $ex->getMessage());
         }

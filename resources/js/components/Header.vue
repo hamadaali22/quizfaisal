@@ -9,16 +9,16 @@
         <div class="collapse navbar-collapse" id="x">
             <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
 
-                <li class="nav-item p-1 active "><router-link to="/" class="nav-link text-light">HOME</router-link></li>
+                <li class="nav-item p-1 active "><router-link to="/" class="nav-link text-light">Home</router-link></li>
                 <!-- <li v-if="isLogged" class="nav-item p-1 active "><router-link to="levels" class="nav-link text-light">GOETHE</router-link></li> -->
-                <li class="nav-item p-1 active "><router-link to="/goethe-tests" class="nav-link text-light">GOETHE</router-link></li>
+                <li class="nav-item p-1 active "><router-link to="/goethe-tests" class="nav-link text-light">Gotehe</router-link></li>
                 <li class="nav-item p-1 active "><router-link to="/telc-tests" class="nav-link text-light">Telc</router-link></li>
-                <li v-if="!isLogged" class="nav-item p-1 active "><router-link to="/login" class="nav-link text-light">ANMELDEN</router-link></li>
-                <li v-if="!isLogged" class="nav-item p-1 active "><router-link to="/register" class="nav-link text-light">REGESTRIEN</router-link></li>
-                <li v-if="isLogged" class="nav-item p-1 active "><router-link to="/goethe-user-exam" class="nav-link text-light">Meine Tests</router-link></li>
+                <li v-if="!isLogged" class="nav-item p-1 active "><router-link to="/login" class="nav-link text-light">Anmelden</router-link></li>
+                <li v-if="!isLogged" class="nav-item p-1 active "><router-link to="/register" class="nav-link text-light">Registrieren</router-link></li>
+                <li v-if="isLogged" class="nav-item p-1 active "><router-link to="/goethe-user-exam" class="nav-link text-light">Mein detailliertes Ergebnis</router-link></li>
                 <!-- <li v-if="isLogged" class="nav-item p-1 active "><router-link to="/telc-user-exam" class="nav-link text-light">telc user exam</router-link></li> -->
 
-                <li v-if="isLogged" @click.stop="logout" class="nav-item p-1 active "><router-link to="register" class="nav-link text-light">abmelden</router-link></li>
+                <li v-if="isLogged" @click.stop="logout" class="nav-item p-1 active "><router-link to="register" class="nav-link text-light">Abmelden</router-link></li>
 
 
 

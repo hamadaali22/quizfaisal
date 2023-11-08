@@ -313,28 +313,137 @@
                     <div v-if="SubQuestions.is_complete == 'write'" class="dropdown d-flex justify-content-between mt-3">
                       <!-- <input type="text"  @input="CompleteWrite($event,index,item.exam_id,SubQuestions.question_id,SubQuestions.id,SubQuestions.expected_answer)" /> -->
 
-                        <div v-if="SubQuestions.answer_location == 'beginning'" class="d-flex">
+                        <div v-if="SubQuestions.answer_location == 'beginning'" class=" list-unstyled">
                           <input type="text"  @input="CompleteWrite($event,index,item.exam_id,SubQuestions.question_id,SubQuestions.id,SubQuestions.expected_answer)"  style="border:none; outline:none;min-width:200px; padding:0px 10px" placeholder=" ...................................... ">
                           <span> {{SubQuestions.title}} </span>
                           <span> {{SubQuestions.last_title}} </span>
+                          <span v-if="SubQuestions.exam_answer !=null" v-for=" (expected, index) in SubQuestions.expectedanswer" >
+                            <li  class="multi-item q-2 border border-raduis pt-2 pl-3 pr-3 mr-5 list-unstyled" v-if="expected.one == SubQuestions.exam_answer.answer" :style="'background: #28D094'">
+                              <input class=" multi-input d-none" type="radio" name="q-2" value="true" id="true-1">
+                              <label class="multi-label"  id="true"> {{SubQuestions.exam_answer.answer}}</label>
+                            </li>
+                            <li  class="multi-item q-2 border border-raduis pt-2 pl-3 pr-3 mr-5" v-else-if="expected.two == SubQuestions.exam_answer.answer" :style="'background: #28D094'">
+                              <input class=" multi-input d-none" type="radio" name="q-2" value="true" id="true-1">
+                              <label class="multi-label"  id="true"> {{SubQuestions.exam_answer.answer}}</label>
+                            </li>
+                            <li  class="multi-item q-2 border border-raduis pt-2 pl-3 pr-3 mr-5" v-else-if="expected.three == SubQuestions.exam_answer.answer" :style="'background: #28D094'">
+                              <input class=" multi-input d-none" type="radio" name="q-2" value="true" id="true-1">
+                              <label class="multi-label"  id="true"> {{SubQuestions.exam_answer.answer}}</label>
+                            </li>
+                            <li  class="multi-item q-2 border border-raduis pt-2 pl-3 pr-3 mr-5" v-else-if="expected.four == SubQuestions.exam_answer.answer" :style="'background: #28D094'">
+                              <input class=" multi-input d-none" type="radio" name="q-2" value="true" id="true-1">
+                              <label class="multi-label"  id="true"> {{SubQuestions.exam_answer.answer}}</label>
+                            </li>
+                            <li  class="multi-item q-2 border border-raduis pt-2 pl-3 pr-3 mr-5" v-else-if="expected.five == SubQuestions.exam_answer.answer" :style="'background: #28D094'">
+                              <input class=" multi-input d-none" type="radio" name="q-2" value="true" id="true-1">
+                              <label class="multi-label"  id="true"> {{SubQuestions.exam_answer.answer}}</label>
+                            </li>
+                            <li  class="multi-item q-2 border border-raduis pt-2 pl-3 pr-3 mr-5" v-else-if="expected.six == SubQuestions.exam_answer.answer" :style="'background: #28D094'">
+                              <input class=" multi-input d-none" type="radio" name="q-2" value="true" id="true-1">
+                              <label class="multi-label"  id="true"> {{SubQuestions.exam_answer.answer}}</label>
+                            </li>
+                            <span v-else class="d-flex list-unstyled">
+                                <li class="multi-item q-2 border border-raduis pt-2 pl-3 pr-3 mr-5" :style="'background: #f6bfc4'">
+                                  <input class=" multi-input d-none" type="radio" name="q-2" value="true" id="true-1">
+                                  <label class="multi-label"  id="true"> {{SubQuestions.exam_answer.answer}}</label>
+                                </li>
+                                <li class="multi-item q-2 border border-raduis pt-2 pl-3 pr-3 mr-5" :style="'background: #28D094'">
+                                  <input class=" multi-input d-none" type="radio" name="q-2" value="true" id="true-1">
+                                  <label class="multi-label"  id="true"> {{expected.one}}</label>
+                                </li>
+                            </span>
+                          </span>
                         </div>
 
-                        <div v-if="SubQuestions.answer_location == 'middle'" class="d-flex">
+                        <div v-if="SubQuestions.answer_location == 'middle'" class="list-unstyled">
                           <span> {{SubQuestions.title}} </span>
                           <input type="text" @input="CompleteWrite($event,index,item.exam_id,SubQuestions.question_id,SubQuestions.id,SubQuestions.expected_answer)"  style="border:none; outline:none;min-width:200px; padding:0px 10px" placeholder=" ........................................ ">
                           <span> {{SubQuestions.last_title}} </span>
+
+                          <span v-if="SubQuestions.exam_answer !=null" v-for=" (expected, index) in SubQuestions.expectedanswer" >
+                            <li  class="multi-item q-2 border border-raduis pt-2 pl-3 pr-3 mr-5 list-unstyled" v-if="expected.one == SubQuestions.exam_answer.answer" :style="'background: #28D094'">
+                              <input class=" multi-input d-none" type="radio" name="q-2" value="true" id="true-1">
+                              <label class="multi-label"  id="true"> {{SubQuestions.exam_answer.answer}}</label>
+                            </li>
+                            <li  class="multi-item q-2 border border-raduis pt-2 pl-3 pr-3 mr-5" v-else-if="expected.two == SubQuestions.exam_answer.answer" :style="'background: #28D094'">
+                              <input class=" multi-input d-none" type="radio" name="q-2" value="true" id="true-1">
+                              <label class="multi-label"  id="true"> {{SubQuestions.exam_answer.answer}}</label>
+                            </li>
+                            <li  class="multi-item q-2 border border-raduis pt-2 pl-3 pr-3 mr-5" v-else-if="expected.three == SubQuestions.exam_answer.answer" :style="'background: #28D094'">
+                              <input class=" multi-input d-none" type="radio" name="q-2" value="true" id="true-1">
+                              <label class="multi-label"  id="true"> {{SubQuestions.exam_answer.answer}}</label>
+                            </li>
+                            <li  class="multi-item q-2 border border-raduis pt-2 pl-3 pr-3 mr-5" v-else-if="expected.four == SubQuestions.exam_answer.answer" :style="'background: #28D094'">
+                              <input class=" multi-input d-none" type="radio" name="q-2" value="true" id="true-1">
+                              <label class="multi-label"  id="true"> {{SubQuestions.exam_answer.answer}}</label>
+                            </li>
+                            <li  class="multi-item q-2 border border-raduis pt-2 pl-3 pr-3 mr-5" v-else-if="expected.five == SubQuestions.exam_answer.answer" :style="'background: #28D094'">
+                              <input class=" multi-input d-none" type="radio" name="q-2" value="true" id="true-1">
+                              <label class="multi-label"  id="true"> {{SubQuestions.exam_answer.answer}}</label>
+                            </li>
+                            <li  class="multi-item q-2 border border-raduis pt-2 pl-3 pr-3 mr-5" v-else-if="expected.six == SubQuestions.exam_answer.answer" :style="'background: #28D094'">
+                              <input class=" multi-input d-none" type="radio" name="q-2" value="true" id="true-1">
+                              <label class="multi-label"  id="true"> {{SubQuestions.exam_answer.answer}}</label>
+                            </li>
+                            <span v-else class="d-flex list-unstyled">
+                                <li class="multi-item q-2 border border-raduis pt-2 pl-3 pr-3 mr-5" :style="'background: #f6bfc4'">
+                                  <input class=" multi-input d-none" type="radio" name="q-2" value="true" id="true-1">
+                                  <label class="multi-label"  id="true"> {{SubQuestions.exam_answer.answer}}</label>
+                                </li>
+                                <li class="multi-item q-2 border border-raduis pt-2 pl-3 pr-3 mr-5" :style="'background: #28D094'">
+                                  <input class=" multi-input d-none" type="radio" name="q-2" value="true" id="true-1">
+                                  <label class="multi-label"  id="true"> {{expected.one}}</label>
+                                </li>
+                            </span>
+                          </span>
+
                         </div>
 
-                        <div v-if="SubQuestions.answer_location == 'end'" class="d-flex">
+                        <div v-if="SubQuestions.answer_location == 'end'" class=" list-unstyled">
                           <span> {{SubQuestions.title}} </span>
-
                           <span> {{SubQuestions.last_title}} </span>
                             <input  @input="CompleteWrite($event,index,item.exam_id,SubQuestions.question_id,SubQuestions.id,SubQuestions.expected_answer)" type="text" style="border:none; outline:none;min-width:200px; padding:0px 10px" placeholder=" ......................................... ">
+                            <span v-if="SubQuestions.exam_answer !=null" v-for=" (expected, index) in SubQuestions.expectedanswer" >
+                              <li  class="multi-item q-2 border border-raduis pt-2 pl-3 pr-3 mr-5 list-unstyled" v-if="expected.one == SubQuestions.exam_answer.answer" :style="'background: #28D094'">
+                                <input class=" multi-input d-none" type="radio" name="q-2" value="true" id="true-1">
+                                <label class="multi-label"  id="true"> {{SubQuestions.exam_answer.answer}}</label>
+                              </li>
+                              <li  class="multi-item q-2 border border-raduis pt-2 pl-3 pr-3 mr-5" v-else-if="expected.two == SubQuestions.exam_answer.answer" :style="'background: #28D094'">
+                                <input class=" multi-input d-none" type="radio" name="q-2" value="true" id="true-1">
+                                <label class="multi-label"  id="true"> {{SubQuestions.exam_answer.answer}}</label>
+                              </li>
+                              <li  class="multi-item q-2 border border-raduis pt-2 pl-3 pr-3 mr-5" v-else-if="expected.three == SubQuestions.exam_answer.answer" :style="'background: #28D094'">
+                                <input class=" multi-input d-none" type="radio" name="q-2" value="true" id="true-1">
+                                <label class="multi-label"  id="true"> {{SubQuestions.exam_answer.answer}}</label>
+                              </li>
+                              <li  class="multi-item q-2 border border-raduis pt-2 pl-3 pr-3 mr-5" v-else-if="expected.four == SubQuestions.exam_answer.answer" :style="'background: #28D094'">
+                                <input class=" multi-input d-none" type="radio" name="q-2" value="true" id="true-1">
+                                <label class="multi-label"  id="true"> {{SubQuestions.exam_answer.answer}}</label>
+                              </li>
+                              <li  class="multi-item q-2 border border-raduis pt-2 pl-3 pr-3 mr-5" v-else-if="expected.five == SubQuestions.exam_answer.answer" :style="'background: #28D094'">
+                                <input class=" multi-input d-none" type="radio" name="q-2" value="true" id="true-1">
+                                <label class="multi-label"  id="true"> {{SubQuestions.exam_answer.answer}}</label>
+                              </li>
+                              <li  class="multi-item q-2 border border-raduis pt-2 pl-3 pr-3 mr-5" v-else-if="expected.six == SubQuestions.exam_answer.answer" :style="'background: #28D094'">
+                                <input class=" multi-input d-none" type="radio" name="q-2" value="true" id="true-1">
+                                <label class="multi-label"  id="true"> {{SubQuestions.exam_answer.answer}}</label>
+                              </li>
+                              <span v-else class="d-flex list-unstyled">
+                                  <li class="multi-item q-2 border border-raduis pt-2 pl-3 pr-3 mr-5" :style="'background: #f6bfc4'">
+                                    <input class=" multi-input d-none" type="radio" name="q-2" value="true" id="true-1">
+                                    <label class="multi-label"  id="true"> {{SubQuestions.exam_answer.answer}}</label>
+                                  </li>
+                                  <li class="multi-item q-2 border border-raduis pt-2 pl-3 pr-3 mr-5" :style="'background: #28D094'">
+                                    <input class=" multi-input d-none" type="radio" name="q-2" value="true" id="true-1">
+                                    <label class="multi-label"  id="true"> {{expected.one}}</label>
+                                  </li>
+                              </span>
+                            </span>
                         </div>
                     </div>
-                    <div v-if="SubQuestions.answer != null " class="multi-choice list-unstyled p-2 d-flex  ">
+                    <div v-if="SubQuestions.answer != null " class="multi-choice list-unstyled p-2   ">
                         <label for="cars">{{SubQuestions.title}}</label>
-                        <span v-if="SubQuestions.exam_answer !=null">
+                        <span v-if="SubQuestions.exam_answer !=null" class="d-flex">
                           <li class="multi-item q-2 border border-raduis pt-2 pl-3 pr-3 mr-5" v-if="SubQuestions.expected_answer == SubQuestions.exam_answer.answer" :style="'background: #28D094'">
                             <input class=" multi-input d-none" type="radio" name="q-2" value="true" id="true-1">
                             <label class="multi-label"  id="true"> {{SubQuestions.exam_answer.expected_answer}}</label>

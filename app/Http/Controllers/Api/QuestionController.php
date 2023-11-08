@@ -106,6 +106,10 @@ class QuestionController extends Controller
                 }
                 $sub->exam_answer=ExamAnswer::where("user_id" , $request->user_id)
                                               ->where("subquestion_id" , $sub->id)->first();
+                $expectedanswer=ExpectedAnswer::where("subquestion_id" , $sub->id)->first();
+                if($expectedanswer){
+                    $sub->expectedanswer=$expectedanswer;
+                }
             }
             $item->subquestion=$subquestion;
 

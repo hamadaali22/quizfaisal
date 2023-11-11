@@ -235,15 +235,25 @@ class HomeController extends Controller
        }
        // return \Response::json($arr);
    }
-    public function UserProfileUpdate(Request $request)
+     public function getUserData()
     {
-        // dd('sduygcsd');
-        // exit();
+        $user = Auth::guard('user-api')->user();
+         if(!$user)
+            return $this->returnError('يجب تسجيل الدخول أولا');
+
+            $user->photo= "https://deutschtests.com/img/profiles/".$user->photo;
+
+
+        return $this -> returnDataa(
+            'data',$user,'riuhfer'
+        );
+    }
+    public function profileUpdate(Request $request)
+    {
         $user = Auth::guard('user-api')->user();
         if(!$user)
             return $this->returnError('You must login first ');
         $edit = User::findOrFail($user->id);
-        // dd('ddd');
         if($file=$request->file('photo'))
          {
             $file_extension = $request -> file('photo')->getClientOriginalExtension();
@@ -256,17 +266,27 @@ class HomeController extends Controller
             $edit->photo  = $edit->photo;
         }
 
-        if(isset($request->first_name)){
-            $edit->first_name  = $request->first_name;
+        if(isset($request->name)){
+            $edit->name  = $request->name;
         }else{
-            $edit->first_name  = $edit->first_name;
+            $edit->name  = $edit->name;
+        }
+        if(isset($request->mobile)){
+            $edit->mobile  = $request->mobile;
+        }else{
+            $edit->mobile  = $edit->mobile;
+        }
+        if(isset($request->country)){
+            $edit->country  = $request->country;
+        }else{
+            $edit->country  = $edit->country;
+        }
+        if(isset($request->language)){
+            $edit->language  = $request->language;
+        }else{
+            $edit->language  = $edit->language;
         }
 
-        if(isset($request->last_name)){
-            $edit->last_name  = $request->last_name;
-        }else{
-            $edit->last_name  = $edit->last_name;
-        }
 
         $edit-> save();
 

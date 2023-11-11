@@ -263,17 +263,17 @@ class QuestionController extends Controller
                         $expected_answer=ExpectedAnswer::where('subquestion_id',$subquestion->id)->get();
                         foreach ($expected_answer as $expected) {
                             if($item->answer == $expected->one){
-                              $count_read_succes +=1;
+                              $count_listen_succes +=1;
                             }elseif($item->answer == $expected->two){
-                                $count_read_succes +=1;
+                                $count_listen_succes +=1;
                             }elseif($item->answer == $expected->three){
-                                $count_read_succes +=1;
+                                $count_listen_succes +=1;
                             }elseif($item->answer == $expected->four){
-                                $count_read_succes +=1;
+                                $count_listen_succes +=1;
                             }elseif($item->answer == $expected->five){
-                                $count_read_succes +=1;
+                                $count_listen_succes +=1;
                             }elseif($item->answer == $expected->six){
-                                $count_read_succes +=1;
+                                $count_listen_succes +=1;
                             }else {
                             }
                         }

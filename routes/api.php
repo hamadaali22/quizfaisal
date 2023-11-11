@@ -48,7 +48,8 @@ Route::group(['middleware' => ['api'], 'namespace' => 'Api'], function () {
   	Route::post('login', 'HomeController@login');
   	Route::post('register', 'HomeController@register');
     Route::post('forget-password', 'HomeController@forgetPassword');
-
+    Route::post('profile-update', 'HomeController@profileUpdate');
+    Route::get('user-data', 'HomeController@getUserData');
     Route::get('all-courses', 'HomeController@allcourses');
     Route::get('allcourses-lives', 'HomeController@allcoursesLive');
     Route::post('change_password', 'HomeController@change_password');

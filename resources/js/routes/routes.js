@@ -5,6 +5,8 @@ import ExampleComponent from '../components/ExampleComponent.vue'
 import Login from '../components/Login.vue'
 import Register from '../components/Register.vue'
 import Questions from '../components/Questions.vue'
+import Profile from '../components/profile.vue'
+
 import Home from '../components/Home.vue'
 import Levels from '../components/Levels.vue'
 import Exams from '../components/Exams.vue'
@@ -37,6 +39,7 @@ const routes = [
     { path: '/login', component: Login, name: 'Login' },
     { path: '/register', component: Register, name: 'Register' },
     { path: '/forgetpassword', component: ForgetPassword, name: 'ForgetPassword' },
+    { path: '/profile', component: Profile, name: 'Profile' },
     { path: '/result', component: Result, name: 'Result' },
 
     { path: '/goethe-user-exam', component: GoetheUserExam, name: 'GoetheUserExam' },

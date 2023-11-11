@@ -16,7 +16,7 @@
             </div>
             <br>
             <div class="level w-50 text-center text-light mt-1 pt-2 pb-2">
-              <router-link v-if="isLogged" :to="'/goethe-report/'+this.examId" class="a-link">report about exam</router-link>
+              <router-link v-if="isLogged" :to="'/goethe-report/'+this.examId" class="a-link">Ihr detailliertes Ergebnis</router-link>
               <!-- <router-link v-else :to="'/login'" class="a-link">{{ item.name }}</router-link> -->
             </div>
             <!-- <div class="row text-center">

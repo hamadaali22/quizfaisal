@@ -293,7 +293,7 @@ class HomeController extends Controller
 
 
         $edit-> save();
-        return $request->all();
+        // return $request->all();
         $user = User::find($edit->id);
         $user->photo= "https://deutschtests.com/img/profiles/".$user->photo;
         return $this -> returnDataa('data',$user,'updated successfully');

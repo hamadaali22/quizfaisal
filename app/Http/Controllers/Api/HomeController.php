@@ -106,9 +106,9 @@ class HomeController extends Controller
                 'password'   => Hash::make($request->password),
                 'roles_name' =>3,
                 'api_token' => hash('sha256', $token),
-                'mobile'=>$request->mobile,
-                'language'=>$request->language,
-                'country'=>$request->country,
+                // 'mobile'=>$request->mobile,
+                // 'language'=>$request->language,
+                // 'country'=>$request->country,
             ]);
 
             $user = $add->toArray();
@@ -235,8 +235,10 @@ class HomeController extends Controller
        }
        // return \Response::json($arr);
    }
-     public function getUserData()
+     public function getUserData(Request $request)
     {
+        // $token = $request->bearerToken();
+        // return $token;
         $user = Auth::guard('user-api')->user();
          if(!$user)
             return $this->returnError('يجب تسجيل الدخول أولا');
@@ -250,12 +252,14 @@ class HomeController extends Controller
     }
     public function profileUpdate(Request $request)
     {
+        // return $request->all();
         $user = Auth::guard('user-api')->user();
         if(!$user)
             return $this->returnError('You must login first ');
+
         $edit = User::findOrFail($user->id);
         if($file=$request->file('photo'))
-         {
+        {
             $file_extension = $request -> file('photo')->getClientOriginalExtension();
             $file_name = time().'.'.$file_extension;
             $file_nameone = $file_name;
@@ -289,7 +293,7 @@ class HomeController extends Controller
 
 
         $edit-> save();
-
+        return $request->all();
         $user = User::find($edit->id);
         $user->photo= "https://deutschtests.com/img/profiles/".$user->photo;
         return $this -> returnDataa('data',$user,'updated successfully');

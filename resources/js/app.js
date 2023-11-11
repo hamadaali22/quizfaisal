@@ -176,7 +176,7 @@ const store = new Vuex.Store({
                 })
         },
         LoginUser({ commit }, payload) {
-          axios.post('https://deutschtests.com/api/login', payload)
+          axios.post('https://deutschtests.com/login', payload)
               .then(res => {
                   console.log(res.data);
                   if(res.data.status==true){
@@ -241,6 +241,39 @@ const store = new Vuex.Store({
               .catch(err => {
                   console.log(err)
               })
+        },
+        userUpdate({ commit,state }, payload) {
+            console.log('vreferfr');
+            console.log(state.userToken.token);
+            console.log('ferfrefrfre');
+
+          const headers = {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer '+state.userToken.token
+          };
+            axios.post('https://deutschtests.com/api/profile-update', payload,{headers})
+                .then(res => {
+                if(res.data.status==true){
+                  var resTitle='uvbujhbjh';
+                }else {
+                  var resTitle='jbjhbj';
+                }
+                // if(res.data.status==true){
+                //     router.push({ name: 'Login'})
+                // }
+                  swal({
+                      title: resTitle,
+                      text: res.data.msg,
+                      icon: "success",
+                      timer: 10500
+                  });
+                    console.log(res.data)
+                    // commit('setUserToken', res.data.token)
+
+                })
+                .catch(err => {
+                    console.log(err)
+                })
         },
         CheckUserAuth({ state }){
            const headers = {

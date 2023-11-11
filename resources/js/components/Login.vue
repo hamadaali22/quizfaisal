@@ -4,10 +4,10 @@
        <div class="container">
            <div class="row mt-5 p-3">
                <div class="col">
-                   <img  :src="contactInfo.image" class="img-fluid pt-3 mt-5 " alt="">
+                   <img  :src="contactInfo.image" class="img-fluid pt-3 mt-5 " alt="" style="max-width: 77%;">
                </div>
                <form class="col text-center" method="post">
-                   <h4 class="m-3">ANMELDEN</h4>
+                   <h4 class="m-3  mt-5 p-3">ANMELDEN</h4>
 
                       <!-- <router-link  to="/levels" title="Wishlist">
                         <div class="icon">

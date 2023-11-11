@@ -4,12 +4,12 @@
        <div class="container">
            <div class="row mt-5 p-3">
                <div class="col">
-                   <img  :src="contactInfo.image" class="img-fluid pt-3 mt-5 " alt="">
+                   <img  :src="this.userData.photo" class="img-fluid pt-3 mt-5 " alt="">
                </div>
                <form class="col text-center" method="post">
-                   <h4 class="m-3"> REGESTRIEN  cc{{this.userData}}</h4>
-                   <input type="email" class="w-100 mb-2" placeholder="Email"  v-model="email" >
-                   <input type="password" class="w-100 mb-2" placeholder="Password"  v-model="password">
+                   <h4 class="m-3"> REGESTRIEN {{this.userData.name}}</h4>
+                   <!-- <input type="email" class="w-100 mb-2" placeholder="Email"  v-model="email" > -->
+                   <!-- <input type="password" class="w-100 mb-2" placeholder="Password"  v-model="password"> -->
 
                   <input type="text" class="w-100 mb-2" placeholder="Name" v-model="name">
                   <input type="text" class="w-100 mb-2" placeholder="Handynummer" v-model="mobile">
@@ -45,7 +45,7 @@
                     <option  value="Spanisch ">Spanisch </option>
                     <option  value="andere ">andere </option>
                   </select>
-                <input type="submit" @click.prevent="submitRegister"   id="btn" value="REGESTRIEN" class="mt-2">
+                <input type="submit" @click.prevent="userUpdate"   id="btn" value="speichern" class="mt-2">
                    <div class="d-flex justify-content-between">
                        <!-- <a href="#">Register</a> -->
                       <router-link to="login" style="color:#6298bf">ANMELDEN</router-link>
@@ -62,15 +62,13 @@
 export default {
  data(){
     return {
-             password : '',
-             email : '',
+             // password : '',
+             // email : '',
              name : '',
              mobile : '',
              language : '',
              country : '',
             userData:'',
-            mytoken:'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvZGV1dHNjaHRlc3RzLmNvbVwvYXBpXC9sb2dpbiIsImlhdCI6MTY5OTY5ODcwNiwiZXhwIjoxNjk5NzAyMzA2LCJuYmYiOjE2OTk2OTg3MDYsImp0aSI6ImY3SWJ2VTk2U1NLYVI5UmciLCJzdWIiOjE5LCJwcnYiOiI4N2UwYWYxZWY5ZmQxNTgxMmZkZWM5NzE1M2ExNGUwYjA0NzU0NmFhIn0.uKNQ8GFDQvPaZFNiNT8QPic3NSgezGQ5iPibrxpA7vA',
-
          }
      },
      computed:{
@@ -82,7 +80,7 @@ export default {
         this.getUserdata();
 
        console.log('fffffffffvb');
-       // console.log(this.$store.state.userToken.token);
+       console.log(this.$store.state.userToken.token);
 
 
      },
@@ -91,25 +89,26 @@ export default {
 
      },
      methods:{
-       submitRegister(){
-            let  {name,email,password,mobile,language,country} = this;
-            this.$store.dispatch('RegisterUser',{name,email,password,mobile,language,country})
+       userUpdate(){
+            let  {name,mobile,language,country} = this;
+            this.$store.dispatch('userUpdate',{name,mobile,language,country})
        },
        getUserdata(){
             const headers = {
                'Content-Type': 'application/json',
-               'Authorization': 'Bearer '+this.mytoken
+               'Authorization': 'Bearer '+this.$store.state.userToken.token
              };
-             axios.get('https://deutschtests.com/api/user-data',headers)
+             axios.get('https://deutschtests.com/api/user-data',{headers})
              .then(res => {
-                  console.log('xxxxxxz');
                   console.log(res.data);
-                  console.log('xxxxxxz');
-
-                 this.userData = res.data.data;
+                  this.userData = res.data.data;
+                  this.name=res.data.data.name
+                  this.mobile=res.data.data.mobile
+                  this.language=res.data.data.language
+                  this.country=res.data.data.country
                 })
                .then(err => console.log(err))
-           }
+        }
      }
 }
 </script>

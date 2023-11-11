@@ -4,20 +4,20 @@
        <div class="container">
            <div class="row mt-5 p-3">
                <div class="col">
-                   <img  :src="contactInfo.image" class="img-fluid pt-3 mt-5 " alt="">
+                   <img  :src="contactInfo.image" class="img-fluid pt-3 mt-5 " alt="" style="max-width: 77%;">
                </div>
-               <form class="col text-center" method="post">
-                   <h4 class="m-3"> REGESTRIEN</h4>
+               <form class="col text-center mt-5 p-3" method="post">
+                   <h4 class="m-3 "> REGESTRIEN</h4>
                    <input type="email" class="w-100 mb-2" placeholder="Email"  v-model="email" >
                    <input type="password" class="w-100 mb-2" placeholder="Password"  v-model="password">
 
                   <input type="text" class="w-100 mb-2" placeholder="Name" v-model="name">
-                  <input type="text" class="w-100 mb-2" placeholder="Handynummer" v-model="mobile">
+                  <!-- <input type="text" class="w-100 mb-2" placeholder="Handynummer" v-model="mobile"> -->
                   <!-- <input type="text" class="w-100 mb-2" placeholder="Sprache" v-model="Language"> -->
                   <!-- <input type="text" class="w-100 mb-2" placeholder="Land" v-model="Country"> -->
 
 
-                  <select class="w-100 mb-2 form-control formselect" v-model="country">
+                  <!-- <select class="w-100 mb-2 form-control formselect" v-model="country">
                     <option selected value=""> Country </option>
                     <option  value="Deutschland">Deutschland</option>
                     <option  value="Österreich">Österreich</option>
@@ -26,7 +26,6 @@
                     <option  value="Frankreich">Frankreich</option>
                     <option  value="Polen">Polen</option>
                     <option  value="Tschechische Republik">Tschechische Republik</option>
-                    <!-- <option  value="Republik">Republik</option> -->
                     <option  value="Ungarn">Ungarn</option>
                     <option  value="Dänemark">Dänemark</option>
                     <option  value="Großbritanien">Großbritanien</option>
@@ -44,7 +43,7 @@
                     <option  value=" Französisch"> Französisch</option>
                     <option  value="Spanisch ">Spanisch </option>
                     <option  value="andere ">andere </option>
-                  </select>
+                  </select> -->
                 <input type="submit" @click.prevent="submitRegister"   id="btn" value="REGESTRIEN" class="mt-2">
                    <div class="d-flex justify-content-between">
                        <!-- <a href="#">Register</a> -->

@@ -28374,6 +28374,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   methods: {
     logout: function logout() {
@@ -29410,7 +29412,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
 //
 //
 //
@@ -30697,14 +30698,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      password: '',
-      email: '',
+      // password : '',
+      // email : '',
       name: '',
       mobile: '',
       language: '',
       country: '',
-      userData: '',
-      mytoken: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvZGV1dHNjaHRlc3RzLmNvbVwvYXBpXC9sb2dpbiIsImlhdCI6MTY5OTY5ODcwNiwiZXhwIjoxNjk5NzAyMzA2LCJuYmYiOjE2OTk2OTg3MDYsImp0aSI6ImY3SWJ2VTk2U1NLYVI5UmciLCJzdWIiOjE5LCJwcnYiOiI4N2UwYWYxZWY5ZmQxNTgxMmZkZWM5NzE1M2ExNGUwYjA0NzU0NmFhIn0.uKNQ8GFDQvPaZFNiNT8QPic3NSgezGQ5iPibrxpA7vA'
+      userData: ''
     };
   },
   computed: {
@@ -30714,23 +30714,20 @@ __webpack_require__.r(__webpack_exports__);
   },
   created: function created() {
     this.getUserdata();
-    console.log('fffffffffvb'); // console.log(this.$store.state.userToken.token);
+    console.log('fffffffffvb');
+    console.log(this.$store.state.userToken.token);
   },
   mounted: function mounted() {
     this.$store.dispatch('getContactinfo');
   },
   methods: {
-    submitRegister: function submitRegister() {
+    userUpdate: function userUpdate() {
       var name = this.name,
-          email = this.email,
-          password = this.password,
           mobile = this.mobile,
           language = this.language,
           country = this.country;
-      this.$store.dispatch('RegisterUser', {
+      this.$store.dispatch('userUpdate', {
         name: name,
-        email: email,
-        password: password,
         mobile: mobile,
         language: language,
         country: country
@@ -30741,13 +30738,17 @@ __webpack_require__.r(__webpack_exports__);
 
       var headers = {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + this.mytoken
+        'Authorization': 'Bearer ' + this.$store.state.userToken.token
       };
-      axios.get('https://deutschtests.com/api/user-data', headers).then(function (res) {
-        console.log('xxxxxxz');
+      axios.get('https://deutschtests.com/api/user-data', {
+        headers: headers
+      }).then(function (res) {
         console.log(res.data);
-        console.log('xxxxxxz');
         _this.userData = res.data.data;
+        _this.name = res.data.data.name;
+        _this.mobile = res.data.data.mobile;
+        _this.language = res.data.data.language;
+        _this.country = res.data.data.country;
       }).then(function (err) {
         return console.log(err);
       });
@@ -72498,6 +72499,24 @@ var render = function() {
             _vm.isLogged
               ? _c(
                   "li",
+                  { staticClass: "nav-item p-1 active " },
+                  [
+                    _c(
+                      "router-link",
+                      {
+                        staticClass: "nav-link text-light",
+                        attrs: { to: "/profile" }
+                      },
+                      [_vm._v("Profile")]
+                    )
+                  ],
+                  1
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.isLogged
+              ? _c(
+                  "li",
                   {
                     staticClass: "nav-item p-1 active ",
                     on: {
@@ -72848,6 +72867,7 @@ var render = function() {
           _c("div", { staticClass: "col" }, [
             _c("img", {
               staticClass: "img-fluid pt-3 mt-5 ",
+              staticStyle: { "max-width": "77%" },
               attrs: { src: _vm.contactInfo.image, alt: "" }
             })
           ]),
@@ -72856,7 +72876,7 @@ var render = function() {
             "form",
             { staticClass: "col text-center", attrs: { method: "post" } },
             [
-              _c("h4", { staticClass: "m-3" }, [_vm._v("ANMELDEN")]),
+              _c("h4", { staticClass: "m-3  mt-5 p-3" }, [_vm._v("ANMELDEN")]),
               _vm._v(" "),
               _c("input", {
                 directives: [
@@ -73997,15 +74017,19 @@ var render = function() {
           _c("div", { staticClass: "col" }, [
             _c("img", {
               staticClass: "img-fluid pt-3 mt-5 ",
+              staticStyle: { "max-width": "77%" },
               attrs: { src: _vm.contactInfo.image, alt: "" }
             })
           ]),
           _vm._v(" "),
           _c(
             "form",
-            { staticClass: "col text-center", attrs: { method: "post" } },
+            {
+              staticClass: "col text-center mt-5 p-3",
+              attrs: { method: "post" }
+            },
             [
-              _c("h4", { staticClass: "m-3" }, [_vm._v(" REGESTRIEN")]),
+              _c("h4", { staticClass: "m-3 " }, [_vm._v(" REGESTRIEN")]),
               _vm._v(" "),
               _c("input", {
                 directives: [
@@ -74072,180 +74096,6 @@ var render = function() {
                   }
                 }
               }),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.mobile,
-                    expression: "mobile"
-                  }
-                ],
-                staticClass: "w-100 mb-2",
-                attrs: { type: "text", placeholder: "Handynummer" },
-                domProps: { value: _vm.mobile },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.mobile = $event.target.value
-                  }
-                }
-              }),
-              _vm._v(" "),
-              _c(
-                "select",
-                {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.country,
-                      expression: "country"
-                    }
-                  ],
-                  staticClass: "w-100 mb-2 form-control formselect",
-                  on: {
-                    change: function($event) {
-                      var $$selectedVal = Array.prototype.filter
-                        .call($event.target.options, function(o) {
-                          return o.selected
-                        })
-                        .map(function(o) {
-                          var val = "_value" in o ? o._value : o.value
-                          return val
-                        })
-                      _vm.country = $event.target.multiple
-                        ? $$selectedVal
-                        : $$selectedVal[0]
-                    }
-                  }
-                },
-                [
-                  _c("option", { attrs: { selected: "", value: "" } }, [
-                    _vm._v(" Country ")
-                  ]),
-                  _vm._v(" "),
-                  _c("option", { attrs: { value: "Deutschland" } }, [
-                    _vm._v("Deutschland")
-                  ]),
-                  _vm._v(" "),
-                  _c("option", { attrs: { value: "Österreich" } }, [
-                    _vm._v("Österreich")
-                  ]),
-                  _vm._v(" "),
-                  _c("option", { attrs: { value: "Schweiz" } }, [
-                    _vm._v("Schweiz")
-                  ]),
-                  _vm._v(" "),
-                  _c("option", { attrs: { value: "Niederlande" } }, [
-                    _vm._v("Niederlande")
-                  ]),
-                  _vm._v(" "),
-                  _c("option", { attrs: { value: "Frankreich" } }, [
-                    _vm._v("Frankreich")
-                  ]),
-                  _vm._v(" "),
-                  _c("option", { attrs: { value: "Polen" } }, [
-                    _vm._v("Polen")
-                  ]),
-                  _vm._v(" "),
-                  _c("option", { attrs: { value: "Tschechische Republik" } }, [
-                    _vm._v("Tschechische Republik")
-                  ]),
-                  _vm._v(" "),
-                  _c("option", { attrs: { value: "Ungarn" } }, [
-                    _vm._v("Ungarn")
-                  ]),
-                  _vm._v(" "),
-                  _c("option", { attrs: { value: "Dänemark" } }, [
-                    _vm._v("Dänemark")
-                  ]),
-                  _vm._v(" "),
-                  _c("option", { attrs: { value: "Großbritanien" } }, [
-                    _vm._v("Großbritanien")
-                  ]),
-                  _vm._v(" "),
-                  _c("option", { attrs: { value: "USA" } }, [_vm._v("USA")]),
-                  _vm._v(" "),
-                  _c("option", { attrs: { value: "Brasilien" } }, [
-                    _vm._v("Brasilien")
-                  ]),
-                  _vm._v(" "),
-                  _c("option", { attrs: { value: "China" } }, [
-                    _vm._v("China")
-                  ]),
-                  _vm._v(" "),
-                  _c("option", { attrs: { value: "Indien" } }, [
-                    _vm._v("Indien")
-                  ]),
-                  _vm._v(" "),
-                  _c("option", { attrs: { value: "andere" } }, [
-                    _vm._v("andere")
-                  ])
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "select",
-                {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.language,
-                      expression: "language"
-                    }
-                  ],
-                  staticClass: "w-100 mb-2 form-control formselect",
-                  on: {
-                    change: function($event) {
-                      var $$selectedVal = Array.prototype.filter
-                        .call($event.target.options, function(o) {
-                          return o.selected
-                        })
-                        .map(function(o) {
-                          var val = "_value" in o ? o._value : o.value
-                          return val
-                        })
-                      _vm.language = $event.target.multiple
-                        ? $$selectedVal
-                        : $$selectedVal[0]
-                    }
-                  }
-                },
-                [
-                  _c("option", { attrs: { selected: "", value: "" } }, [
-                    _vm._v(" Language ")
-                  ]),
-                  _vm._v(" "),
-                  _c("option", { attrs: { value: "Arabisch" } }, [
-                    _vm._v("Arabisch")
-                  ]),
-                  _vm._v(" "),
-                  _c("option", { attrs: { value: "Deutsch" } }, [
-                    _vm._v("Deutsch")
-                  ]),
-                  _vm._v(" "),
-                  _c("option", { attrs: { value: "Englisch" } }, [
-                    _vm._v("Englisch")
-                  ]),
-                  _vm._v(" "),
-                  _c("option", { attrs: { value: " Französisch" } }, [
-                    _vm._v(" Französisch")
-                  ]),
-                  _vm._v(" "),
-                  _c("option", { attrs: { value: "Spanisch " } }, [
-                    _vm._v("Spanisch ")
-                  ]),
-                  _vm._v(" "),
-                  _c("option", { attrs: { value: "andere " } }, [
-                    _vm._v("andere ")
-                  ])
-                ]
-              ),
               _vm._v(" "),
               _c("input", {
                 staticClass: "mt-2",
@@ -78036,7 +77886,7 @@ var render = function() {
           _c("div", { staticClass: "col" }, [
             _c("img", {
               staticClass: "img-fluid pt-3 mt-5 ",
-              attrs: { src: _vm.contactInfo.image, alt: "" }
+              attrs: { src: this.userData.photo, alt: "" }
             })
           ]),
           _vm._v(" "),
@@ -78045,52 +77895,8 @@ var render = function() {
             { staticClass: "col text-center", attrs: { method: "post" } },
             [
               _c("h4", { staticClass: "m-3" }, [
-                _vm._v(" REGESTRIEN  cc" + _vm._s(this.userData))
+                _vm._v(" REGESTRIEN " + _vm._s(this.userData.name))
               ]),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.email,
-                    expression: "email"
-                  }
-                ],
-                staticClass: "w-100 mb-2",
-                attrs: { type: "email", placeholder: "Email" },
-                domProps: { value: _vm.email },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.email = $event.target.value
-                  }
-                }
-              }),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.password,
-                    expression: "password"
-                  }
-                ],
-                staticClass: "w-100 mb-2",
-                attrs: { type: "password", placeholder: "Password" },
-                domProps: { value: _vm.password },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.password = $event.target.value
-                  }
-                }
-              }),
               _vm._v(" "),
               _c("input", {
                 directives: [
@@ -78290,11 +78096,11 @@ var render = function() {
               _vm._v(" "),
               _c("input", {
                 staticClass: "mt-2",
-                attrs: { type: "submit", id: "btn", value: "REGESTRIEN" },
+                attrs: { type: "submit", id: "btn", value: "speichern" },
                 on: {
                   click: function($event) {
                     $event.preventDefault()
-                    return _vm.submitRegister.apply(null, arguments)
+                    return _vm.userUpdate.apply(null, arguments)
                   }
                 }
               }),
@@ -95169,7 +94975,7 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_4__["default"].Store({
     },
     LoginUser: function LoginUser(_ref2, payload) {
       var commit = _ref2.commit;
-      axios.post('https://deutschtests.com/api/login', payload).then(function (res) {
+      axios.post('https://deutschtests.com/login', payload).then(function (res) {
         console.log(res.data);
 
         if (res.data.status == true) {
@@ -95236,8 +95042,41 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_4__["default"].Store({
         console.log(err);
       });
     },
-    CheckUserAuth: function CheckUserAuth(_ref4) {
-      var state = _ref4.state;
+    userUpdate: function userUpdate(_ref4, payload) {
+      var commit = _ref4.commit,
+          state = _ref4.state;
+      console.log('vreferfr');
+      console.log(state.userToken.token);
+      console.log('ferfrefrfre');
+      var headers = {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + state.userToken.token
+      };
+      axios.post('https://deutschtests.com/api/profile-update', payload, {
+        headers: headers
+      }).then(function (res) {
+        if (res.data.status == true) {
+          var resTitle = 'uvbujhbjh';
+        } else {
+          var resTitle = 'jbjhbj';
+        } // if(res.data.status==true){
+        //     router.push({ name: 'Login'})
+        // }
+
+
+        swal({
+          title: resTitle,
+          text: res.data.msg,
+          icon: "success",
+          timer: 10500
+        });
+        console.log(res.data); // commit('setUserToken', res.data.token)
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    },
+    CheckUserAuth: function CheckUserAuth(_ref5) {
+      var state = _ref5.state;
       var headers = {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ' + state.userToken
@@ -95251,8 +95090,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_4__["default"].Store({
         return console.log(err);
       });
     },
-    getContactinfo: function getContactinfo(_ref5) {
-      var commit = _ref5.commit;
+    getContactinfo: function getContactinfo(_ref6) {
+      var commit = _ref6.commit;
       axios.get('https://deutschtests.com/api/contactinfo').then(function (res) {
         // console.log(res.data.data);
         store.commit('updateContactinfo', res.data.data);
@@ -95260,9 +95099,9 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_4__["default"].Store({
         console.log(err);
       });
     },
-    getLevels: function getLevels(_ref6) {
-      var state = _ref6.state,
-          commit = _ref6.commit;
+    getLevels: function getLevels(_ref7) {
+      var state = _ref7.state,
+          commit = _ref7.commit;
       axios.get(state.basName + 'levels').then(function (res) {
         console.log(res.data.data);
         store.commit('updateLevels', res.data.data);
@@ -95270,9 +95109,9 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_4__["default"].Store({
         return console.log(err);
       });
     },
-    getExams: function getExams(_ref7, payload) {
-      var state = _ref7.state,
-          commit = _ref7.commit;
+    getExams: function getExams(_ref8, payload) {
+      var state = _ref8.state,
+          commit = _ref8.commit;
       console.log(payload);
       axios.get(state.basName + 'exams?levelSlug=' + payload).then(function (res) {
         console.log(res.data.data);
@@ -95282,9 +95121,9 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_4__["default"].Store({
         return console.log(err);
       });
     },
-    getExamsTelc: function getExamsTelc(_ref8, payload) {
-      var state = _ref8.state,
-          commit = _ref8.commit;
+    getExamsTelc: function getExamsTelc(_ref9, payload) {
+      var state = _ref9.state,
+          commit = _ref9.commit;
       // console.log(payload);
       axios.get(state.basName + 'telc-exams?levelSlug=' + payload).then(function (res) {
         console.log(res.data.data);
@@ -95294,9 +95133,9 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_4__["default"].Store({
         return console.log(err);
       });
     },
-    getGoetheUserExams: function getGoetheUserExams(_ref9, payload) {
-      var state = _ref9.state,
-          commit = _ref9.commit;
+    getGoetheUserExams: function getGoetheUserExams(_ref10, payload) {
+      var state = _ref10.state,
+          commit = _ref10.commit;
       axios.get(state.basName + 'goethe-user-exams?user_id=' + payload.userId).then(function (res) {
         console.log('dddd');
         console.log(res.data.data);
@@ -95306,9 +95145,9 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_4__["default"].Store({
         return console.log(err);
       });
     },
-    getGoetheReportExams: function getGoetheReportExams(_ref10, payload) {
-      var state = _ref10.state,
-          commit = _ref10.commit;
+    getGoetheReportExams: function getGoetheReportExams(_ref11, payload) {
+      var state = _ref11.state,
+          commit = _ref11.commit;
       console.log(payload.pageId);
       console.log(payload.examId + 'ex');
       axios.get(state.basName + 'goethe-report-exams?user_id=' + payload.userId + '&exam_id=' + payload.examId + '&page=' + payload.pageId).then(function (res) {
@@ -95330,9 +95169,9 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_4__["default"].Store({
         return console.log(err);
       });
     },
-    getTelcUserExams: function getTelcUserExams(_ref11, payload) {
-      var state = _ref11.state,
-          commit = _ref11.commit;
+    getTelcUserExams: function getTelcUserExams(_ref12, payload) {
+      var state = _ref12.state,
+          commit = _ref12.commit;
       axios.get(state.basName + 'telc-user-exams?user_id=' + payload.userId).then(function (res) {
         console.log('dddd');
         console.log(res.data.data);
@@ -95342,9 +95181,9 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_4__["default"].Store({
         return console.log(err);
       });
     },
-    getQuestions: function getQuestions(_ref12, payload) {
-      var state = _ref12.state,
-          commit = _ref12.commit;
+    getQuestions: function getQuestions(_ref13, payload) {
+      var state = _ref13.state,
+          commit = _ref13.commit;
       console.log(payload); // axios.get(state.basName+'exams?level_id='+payload)
 
       axios.get(state.basName + 'questions?exam_id=' + payload.examId + '&page=' + payload.pageId).then(function (res) {
@@ -95367,9 +95206,9 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_4__["default"].Store({
         return console.log(err);
       });
     },
-    getQuestionResult: function getQuestionResult(_ref13, payload) {
-      var state = _ref13.state,
-          commit = _ref13.commit;
+    getQuestionResult: function getQuestionResult(_ref14, payload) {
+      var state = _ref14.state,
+          commit = _ref14.commit;
       console.log(payload); // axios.get(state.basName+'exams?level_id='+payload)
 
       axios.get(state.basName + 'results?user_id=' + payload.userId + '&exam_id=' + payload.examId).then(function (res) {

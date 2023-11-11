@@ -176,7 +176,7 @@ const store = new Vuex.Store({
                 })
         },
         LoginUser({ commit }, payload) {
-          axios.post('https://deutschtests.com/login', payload)
+          axios.post('https://deutschtests.com/api/login', payload)
               .then(res => {
                   console.log(res.data);
                   if(res.data.status==true){

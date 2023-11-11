@@ -94975,7 +94975,7 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_4__["default"].Store({
     },
     LoginUser: function LoginUser(_ref2, payload) {
       var commit = _ref2.commit;
-      axios.post('https://deutschtests.com/login', payload).then(function (res) {
+      axios.post('https://deutschtests.com/api/login', payload).then(function (res) {
         console.log(res.data);
 
         if (res.data.status == true) {

@@ -5,6 +5,9 @@
            <div class="row mt-5 p-3">
                <div class="col">
                    <img  :src="this.userData.photo" class="img-fluid pt-3 mt-5 " alt="">
+                    <!-- <input type="file" accept="image/jpeg" @change="uploadImage"> -->
+                    <input type="file" accept="image/*" @change="uploadImage($event)" id="file-input">
+
                </div>
                <form class="col text-center" method="post">
                    <h4 class="m-3"> REGESTRIEN {{this.userData.name}}</h4>
@@ -68,6 +71,7 @@ export default {
              mobile : '',
              language : '',
              country : '',
+             photo:'',
             userData:'',
          }
      },
@@ -93,6 +97,41 @@ export default {
             let  {name,mobile,language,country} = this;
             this.$store.dispatch('userUpdate',{name,mobile,language,country})
        },
+       uploadImage(event) {
+
+
+           let data = new FormData();
+           // data.append('name', 'my-picture');
+           data.append('photo', event.target.files[0]);
+           const headers = {
+               'Content-Type': 'application/json',
+               'Authorization': 'Bearer '+this.$store.state.userToken.token
+           };
+          console.log('ddd');
+          console.log(this.$store.state.userToken.token);
+          console.log('ddd');
+             axios.post('https://deutschtests.com/api/profile-update', data,{headers})
+                 .then(res => {
+                 if(res.data.status==true){
+                   var resTitle='uvbujhbjh';
+                 }else {
+                   var resTitle='jbjhbj';
+                 }
+
+                   swal({
+                       title: resTitle,
+                       text: res.data.msg,
+                       icon: "success",
+                       timer: 10500
+                   });
+                     console.log(res.data)
+                     // commit('setUserToken', res.data.token)
+
+                 })
+                 .catch(err => {
+                     console.log(err)
+                 })
+         },
        getUserdata(){
             const headers = {
                'Content-Type': 'application/json',

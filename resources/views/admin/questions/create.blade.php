@@ -112,9 +112,7 @@
               </div>
               <div class="col-md-12"><hr/></div>
 
-              <div class="col-md-2">
-                <a href="#Save-btn-scroll" onclick="addVideo()" class="btn btn-primary ">Add Subquestions</a>
-              </div>
+              
               <div class="education-info" id="addvideo">
                 <div class="row form-row education-cont" style="background-color: #f0f1f6;border-bottom-color: red; padding: 10px;    margin: 24px;">
                   <div class="row form-row col-md-12">
@@ -227,6 +225,9 @@
 
 
         </div>
+            <div class="col-md-2">
+                <a href="#Save-btn-scroll" onclick="addVideo()" class="btn btn-primary ">Add Subquestions</a>
+              </div>
         <div class="col-md-12" style="color: #FF4961; padding-right: 23px;padding-left: 23px" id="upload-error">  </div>
         <br>
 

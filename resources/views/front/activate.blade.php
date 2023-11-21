@@ -35,7 +35,7 @@
 			    <button type="text" class="btn btn-lg btn-block btn-outline-danger mb-2"
 		                    id="type-error">{{Session::get('Warning')}}
 		            </button>
-			    <a href="/public/login" class="btn btn-primary" style="background-color: #3e83b3 !important;
+			    <a href="/login" class="btn btn-primary" style="background-color: #3e83b3 !important;
     border-color: #3e83b3 !important; ">Gehen Sie zum Anmelden</a>
 			</div>
 		</div>

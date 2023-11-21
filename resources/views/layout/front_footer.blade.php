@@ -1,4 +1,11 @@
-<footer class=" back navbar fixed-bottom">
+<br />
+<br />
+@if(Request::is(['goethe-user-exam']))
+  <footer class="back navbar fixed-bottom">
+@else
+  <footer class="back navbar">
+@endif
+<!-- fixed-bottom -->
     <div class="container ">
         <div class="row col-md-12" style="
     font-size: 15px;">
@@ -9,7 +16,7 @@
                     <!-- <div class="widget-call">
                         <i class="icon-phone"></i>
                         Got Question? Call us 24/7
-                        <a href="tel:#">+0123 456 789</a>         
+                        <a href="tel:#">+0123 456 789</a>
                     </div> -->
                     <div class="links text-center">
                         <img src="{{asset('img/settings/'.$contact->logo) }}" class="footer-logo" alt="“deutschtests Logo" width="80" height="80"><br>
@@ -49,7 +56,7 @@
                         <li><a href="/register">Register</a></li>
                         <li><a href="/login">Anmelden</a></li>
                         <li><a href="/goethe-user-exam">My scores</a></li>
-                        
+
                     </ul><!-- End .widget-list -->
                 </div><!-- End .widget -->
             </div>

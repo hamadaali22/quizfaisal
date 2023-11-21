@@ -3,8 +3,8 @@
   <div>
     <nav class="navbar navbar-expand-lg back w-100 pt-0 pb-0">
         <a href="/" class="navbar-brand text-light" id="brand">
-          <!--Deutschtests-->
-            <img :src="contactInfo.logo" class="footer-logo" alt="Footer Logo" width="80" height="80"><br>
+          <img :src="contactInfo.logo" class="footer-logo" alt="Footer Logo" width="70" height="70">
+          Deutschtests
         </a>
         <a href="#x" data-toggle="collapse" class="navbar-toggler">
             <i class="fa-solid fa-bars navbar-toggler-icon text-light" id="nav-icon"></i>
@@ -42,15 +42,24 @@
 
 <script>
   export default {
+    mounted(){
+      this.$store.dispatch('getContactinfo');
+    },
+   
+    computed:{
+      isLogged(){
+        return this.$store.getters.isLogged
+      },
+      contactInfo(){
+        return this.$store.state.contactInfo
+      }
+    },
     methods:{
       logout(){
          this.$store.commit('logout')
       }
-    },
-    computed:{
-      isLogged(){
-        return this.$store.getters.isLogged
-      }
     }
+ 
+
   }
 </script>

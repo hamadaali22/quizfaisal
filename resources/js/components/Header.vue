@@ -4,8 +4,7 @@
     <nav class="navbar navbar-expand-lg back w-100 pt-0 pb-0">
         <a href="/" class="navbar-brand text-light" id="brand">
           <!--Deutschtests-->
-            <img src="{{asset('img/settings/'.$contact->logo) }}" class="footer-logo" alt="Footer Logo" width="80" height="80"><br>
-
+            <img :src="contactInfo.logo" class="footer-logo" alt="Footer Logo" width="80" height="80"><br>
         </a>
         <a href="#x" data-toggle="collapse" class="navbar-toggler">
             <i class="fa-solid fa-bars navbar-toggler-icon text-light" id="nav-icon"></i>

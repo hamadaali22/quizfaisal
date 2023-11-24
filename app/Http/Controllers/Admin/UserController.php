@@ -11,7 +11,7 @@ use Hash;
 use App\Traits\GeneralTrait;
 use App\Instructor;
 use App\Student;
-
+use App\ExamAnswer;
 class UserController extends Controller
 {
     use GeneralTrait;
@@ -20,6 +20,49 @@ class UserController extends Controller
     {
         $this->middleware('auth');
     }
+	//    
+	public function examsGoethe(Request $request)
+    {
+        $exams=ExamAnswer::where("user_id" , $request->user_id)->get();
+        $values=[];
+        $data=[];
+        foreach ($exams as $item) {
+            if (!in_array($item->exam_id, $values)) {
+                $values[]=$item->exam_id;
+                $exam=Exam::where("id" , $item->exam_id)->where('section',null)->first();
+                if($exam){
+                  $values[]=$item->exam_id;
+                  $data[]=$exam;
+                }
+            }
+        }
+		
+        return view('admin.users.exam',compact('data'));
+    }
+	public function examsTelc(Request $request)
+    {
+            $exams=ExamAnswer::where("user_id" , $request->user_id)->get();
+            $values=[];
+            $data=[];
+            foreach ($exams as $item) {
+                if (!in_array($item->exam_id, $values)) {
+                    $exam=Exam::where("id" , $item->exam_id)->where('section','telc')->first();
+                    if($exam){
+                      $values[]=$item->exam_id;
+                      $data[]=$exam;
+                    }
+                }
+            }
+			return view('admin.users.exam',compact('data'));
+    }
+
+
+
+
+
+
+
+    
 	public function index(Request $request)
 	{
 		$data = User::orderBy('id','DESC')->get();

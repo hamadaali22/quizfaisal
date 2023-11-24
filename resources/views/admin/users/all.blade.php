@@ -65,6 +65,7 @@
                             <th class="wd-20p border-bottom-0">البريد الالكتروني</th>
                             <th class="wd-15p border-bottom-0">حالة المستخدم</th>
                             <th class="wd-15p border-bottom-0">نوع المستخدم</th>
+                            <th class="wd-10p border-bottom-0">الامتحانات</th>
                             <th class="wd-10p border-bottom-0">العمليات</th>
                         </tr>
                       </thead>
@@ -92,7 +93,32 @@
                                         @endforeach
                                         @endif
                                     </td>
-                                    <td>
+                                    <td class="text-center col-md-2">
+                                      <div class="actions">
+                                      <!-- <i class="la la-users"></i> -->
+                                          <a href="{{url('admin/exam/goethe/'.$user->id)}}"  >
+                                          <button type="button" class="btn btn-outline-success ">Goethe</button>
+                                          </a>
+                                          <a href="{{url('admin/exam/telc/'.$user->id)}}"  >
+                                          <button type="button" class="btn btn-outline-success ">Telc</button>  
+                                          </a>
+                                      </div>
+                                    </td>
+                                    <td class="text-center col-md-2">
+                                      <div class="actions">
+                                        @can('تعديل مستخدم')
+                                          <a href="{{ route('users.edit', $user->id) }}" class="edit-course" >
+                                              <button type="button" class="btn btn-outline-success "><i class="la la-edit"></i></button>
+                                          </a>
+                                        @endcan
+                                        @can('حذف مستخدم')
+                                          <a data-toggle="modal" data-catid="{{ $user->id }}" data-target="#delete" class="delete-course">
+                                            <button type="button" class=" btn btn-outline-warning"><i class="la la-trash-o"></i></button>
+                                          </a>
+                                        @endcan
+                                      </div>
+                                    </td>
+                                    <!-- <td>
                                         @can('تعديل مستخدم')
                                             <a href="{{ route('users.edit', $user->id) }}"  class="btn btn-sm bg-success-light"  >
                                                 <i class="fe fe-pencil"></i> تعديل
@@ -105,7 +131,7 @@
                                                                         <i class="fe fe-trash"></i> حذف
                                         </a>
                                         @endcan
-                                    </td>
+                                    </td> -->
                                     </tr>
                                     @endforeach
                         </tbody>

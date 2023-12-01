@@ -71,6 +71,7 @@
                       </thead>
                         <tbody>
                             @foreach ($data as $key => $user)
+                              @if($user->email !="admin@admin.com" &&  $user->email != "Jordandeutschlehrer@gmail.com" )
                                 <tr>
                                     <td>{{$key}}</td>
                                     <td>{{ $user->name }}</td>
@@ -132,8 +133,9 @@
                                         </a>
                                         @endcan
                                     </td> -->
-                                    </tr>
-                                    @endforeach
+                                  </tr>
+                                @endif
+                            @endforeach
                         </tbody>
 
                     </table>

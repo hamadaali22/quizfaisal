@@ -71,15 +71,15 @@
 	                                     <thead>
 												<tr>
 													<th>#</th>
-													<th>level Name</th>
-													<th>description</th>
-													<th>description_telc</th>
-													<th class="text-center">Actions</th>
+													<th>exam Name</th>
+													<th>القراءة</th>
+													<th>السماعي</th>
+													<!--<th class="text-center">Actions</th>-->
 												</tr>
 											</thead>
 											<tbody>
 
-											@foreach ($levels as $_item)
+											@foreach ($data as $_item)
 												<tr>
 													<td class="text-center">
 														{{$_item->id}}
@@ -88,24 +88,24 @@
 														{{$_item->name}}
 													</td>
 													<td class="text-center">
-														{{$_item->name2}}
+														{{$_item->count_read_percent}}
 													</td>
 													<td class="text-center">
-														{{$_item->description}}
+														{{$_item->count_listen_percent}}
 													</td>
-													<td class="text-center">
-														{{$_item->description_telc}}
-													</td>
-													<td class="text-center">
-														<div class="actions">
-															<a href="{{route('levels.edit',$_item->id)}}" class="edit-course" >
-																<button type="button" class="btn btn-outline-success "><i class="la la-edit"></i></button>
-															</a>
-															<a data-toggle="modal" data-catid="{{ $_item->id }}" data-target="#delete" class="delete-course">
-				                          <button type="button" class=" btn btn-outline-warning"><i class="la la-trash-o"></i></button>
-				                      </a>
-														</div>
-													</td>
+													<!--<td class="text-center">-->
+													<!--	{{$_item->description_telc}}-->
+													<!--</td>-->
+													<!--<td class="text-center">-->
+													<!--	<div class="actions">-->
+													<!--		<a href="{{route('levels.edit',$_item->id)}}" class="edit-course" >-->
+													<!--			<button type="button" class="btn btn-outline-success "><i class="la la-edit"></i></button>-->
+													<!--		</a>-->
+													<!--		<a data-toggle="modal" data-catid="{{ $_item->id }}" data-target="#delete" class="delete-course">-->
+				         <!--                 <button type="button" class=" btn btn-outline-warning"><i class="la la-trash-o"></i></button>-->
+				         <!--             </a>-->
+													<!--	</div>-->
+													<!--</td>-->
 												</tr>
 											@endforeach
 

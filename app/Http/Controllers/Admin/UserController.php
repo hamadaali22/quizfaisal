@@ -12,6 +12,9 @@ use App\Traits\GeneralTrait;
 use App\Instructor;
 use App\Student;
 use App\ExamAnswer;
+use App\Exam;
+use App\Question;
+use App\SubQuestion;
 class UserController extends Controller
 {
     use GeneralTrait;
@@ -21,38 +24,234 @@ class UserController extends Controller
         $this->middleware('auth');
     }
 	//    
-	public function examsGoethe(Request $request)
+	public function examsGoethe($id)
     {
-        $exams=ExamAnswer::where("user_id" , $request->user_id)->get();
+        $exams=ExamAnswer::where("user_id" , $id)->get();
         $values=[];
         $data=[];
         foreach ($exams as $item) {
-            if (!in_array($item->exam_id, $values)) {
-                $values[]=$item->exam_id;
-                $exam=Exam::where("id" , $item->exam_id)->where('section',null)->first();
-                if($exam){
-                  $values[]=$item->exam_id;
-                  $data[]=$exam;
-                }
-            }
+			$count_listen_succes=0;
+			$count_listen=0;
+			$count_read_succes=0;
+			$count_read=0;
+
+			$exam=Exam::where("id" , $item->exam_id)->where('section',null)->first();
+			if($exam){
+				$question=Question::where('id',$item->question_id)->first();
+				$subquestion=SubQuestion::where('id',$item->subquestion_id)->first();
+				if ($question) {
+					
+					if($subquestion){
+						if($subquestion->is_complete !='write'){
+							if($question->type =='listening'){
+							if($item->answer === $item->expected_answer){
+								$count_listen_succes =1;
+							}
+							}elseif($question->type =='listening and image'){
+								if($item->answer === $item->expected_answer){
+								$count_listen_succes +=1;
+							}
+							}else{
+								if($item->answer === $item->expected_answer){
+									$count_read_succes +=1;
+								}
+							}
+						}else{
+							$expected_answer=ExpectedAnswer::where('subquestion_id',$subquestion->id)->get();
+							foreach ($expected_answer as $expected) {
+								if($item->answer == $expected->one){
+								$count_listen_succes +=1;
+								}elseif($item->answer == $expected->two){
+									$count_listen_succes +=1;
+								}elseif($item->answer == $expected->three){
+									$count_listen_succes +=1;
+								}elseif($item->answer == $expected->four){
+									$count_listen_succes +=1;
+								}elseif($item->answer == $expected->five){
+									$count_listen_succes +=1;
+								}elseif($item->answer == $expected->six){
+									$count_listen_succes +=1;
+								}else {
+								}
+							}
+						}
+
+					}
+					
+
+					$allquestion=Question::where('exam_id',$item->exam_id)->get();
+					foreach ($allquestion as $_item) {
+						if($_item->type =='listening'){
+						$subquestion_listening=SubQuestion::where("question_id" , $_item->id)->get();
+							$count_listen +=count($subquestion_listening);
+						}elseif($_item->type =='listening and image'){
+						$subquestion_listening=SubQuestion::where("question_id" , $_item->id)->get();
+							$count_listen +=count($subquestion_listening);
+						}else{
+							$subquestion_read=SubQuestion::where("question_id" , $_item->id)->get();
+							$count_read +=count($subquestion_read);
+						}
+					}
+
+					if($count_listen_succes !=0){
+						$count_listen_percent=($count_listen_succes / $count_listen) * 100;
+					}else{
+						$count_listen_percent=0;
+					}
+					if($count_read_succes !=0){
+						$count_read_percent=($count_read_succes / $count_read) * 100;
+					}else{
+						$count_read_percent=0;
+					}
+
+					// dd($count_read_succes);
+
+					$exam->count_read_succes= $count_read_succes;
+					$exam->count_read= $count_read;
+					$exam->count_read_percent=round($count_read_percent, 1);
+					$exam->count_listen_succes= $count_listen_succes;
+					$exam->count_listen= $count_listen;
+					$exam->count_listen_percent= round($count_listen_percent, 1);
+				}
+				// dd($exam);
+				if (!in_array($item->exam_id, $values)) {
+					$values[]=$item->exam_id;
+					
+					
+					$values[]=$item->exam_id;
+					$data[]=$exam;
+					
+				}
+			}
+
+
+			
+
+
+
         }
+
+
+
+
 		
         return view('admin.users.exam',compact('data'));
     }
-	public function examsTelc(Request $request)
+	public function examsTelc($id)
     {
-            $exams=ExamAnswer::where("user_id" , $request->user_id)->get();
+            $exams=ExamAnswer::where("user_id" , $id)->get();
             $values=[];
             $data=[];
-            foreach ($exams as $item) {
-                if (!in_array($item->exam_id, $values)) {
-                    $exam=Exam::where("id" , $item->exam_id)->where('section','telc')->first();
-                    if($exam){
-                      $values[]=$item->exam_id;
-                      $data[]=$exam;
-                    }
-                }
-            }
+			foreach ($exams as $item) {
+				$count_listen_succes=0;
+				$count_listen=0;
+				$count_read_succes=0;
+				$count_read=0;
+	
+				$exam=Exam::where("id" , $item->exam_id)->where('section','telc')->first();
+				if($exam){
+					$question=Question::where('id',$item->question_id)->first();
+					$subquestion=SubQuestion::where('id',$item->subquestion_id)->first();
+					if ($question) {
+						
+						if($subquestion){
+							if($subquestion->is_complete !='write'){
+								if($question->type =='listening'){
+								if($item->answer === $item->expected_answer){
+									$count_listen_succes =1;
+								}
+								}elseif($question->type =='listening and image'){
+									if($item->answer === $item->expected_answer){
+									$count_listen_succes +=1;
+								}
+								}else{
+									if($item->answer === $item->expected_answer){
+										$count_read_succes +=1;
+									}
+								}
+							}else{
+								$expected_answer=ExpectedAnswer::where('subquestion_id',$subquestion->id)->get();
+								foreach ($expected_answer as $expected) {
+									if($item->answer == $expected->one){
+									$count_listen_succes +=1;
+									}elseif($item->answer == $expected->two){
+										$count_listen_succes +=1;
+									}elseif($item->answer == $expected->three){
+										$count_listen_succes +=1;
+									}elseif($item->answer == $expected->four){
+										$count_listen_succes +=1;
+									}elseif($item->answer == $expected->five){
+										$count_listen_succes +=1;
+									}elseif($item->answer == $expected->six){
+										$count_listen_succes +=1;
+									}else {
+									}
+								}
+							}
+	
+						}
+						
+	
+						$allquestion=Question::where('exam_id',$item->exam_id)->get();
+						foreach ($allquestion as $_item) {
+							if($_item->type =='listening'){
+							$subquestion_listening=SubQuestion::where("question_id" , $_item->id)->get();
+								$count_listen +=count($subquestion_listening);
+							}elseif($_item->type =='listening and image'){
+							$subquestion_listening=SubQuestion::where("question_id" , $_item->id)->get();
+								$count_listen +=count($subquestion_listening);
+							}else{
+								$subquestion_read=SubQuestion::where("question_id" , $_item->id)->get();
+								$count_read +=count($subquestion_read);
+							}
+						}
+	
+						if($count_listen_succes !=0){
+							$count_listen_percent=($count_listen_succes / $count_listen) * 100;
+						}else{
+							$count_listen_percent=0;
+						}
+						if($count_read_succes !=0){
+							$count_read_percent=($count_read_succes / $count_read) * 100;
+						}else{
+							$count_read_percent=0;
+						}
+	
+						// dd($count_read_succes);
+	
+						$exam->count_read_succes= $count_read_succes;
+						$exam->count_read= $count_read;
+						$exam->count_read_percent=round($count_read_percent, 1);
+						$exam->count_listen_succes= $count_listen_succes;
+						$exam->count_listen= $count_listen;
+						$exam->count_listen_percent= round($count_listen_percent, 1);
+					}
+					// dd($exam);
+					if (!in_array($item->exam_id, $values)) {
+						$values[]=$item->exam_id;
+						
+						
+						$values[]=$item->exam_id;
+						$data[]=$exam;
+						
+					}
+				}
+	
+	
+				
+	
+	
+	
+			}
+            // foreach ($exams as $item) {
+            //     if (!in_array($item->exam_id, $values)) {
+            //         $exam=Exam::where("id" , $item->exam_id)->where('section','telc')->first();
+            //         if($exam){
+            //           $values[]=$item->exam_id;
+            //           $data[]=$exam;
+            //         }
+            //     }
+            // }
 			return view('admin.users.exam',compact('data'));
     }
 
@@ -66,6 +265,7 @@ class UserController extends Controller
 	public function index(Request $request)
 	{
 		$data = User::orderBy('id','DESC')->get();
+		
 		return view('admin.users.all',compact('data'));
 		// ->with('i', ($request->input('page', 1) - 1) * 5);
 	}

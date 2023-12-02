@@ -113,7 +113,7 @@
                                           </a>
                                         @endcan
                                         @can('حذف مستخدم')
-                                          <a data-toggle="modal" data-catid="{{ $user->id }}" data-target="#delete" class="delete-course">
+                                          <a data-toggle="modal" data-user_id="{{ $user->id }}" data-target="#delete" class="delete-course">
                                             <button type="button" class=" btn btn-outline-warning"><i class="la la-trash-o"></i></button>
                                           </a>
                                         @endcan

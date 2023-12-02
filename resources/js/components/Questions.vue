@@ -188,7 +188,7 @@
 
       data(){
         return {
-          userId:this.$store.state.userToken.id,
+          userId:this.$store.state.userToken,
           examId:this.$route.params.id,
           pageId:'1',
           qnum:-0,
@@ -222,7 +222,13 @@
       methods: {
         CompleteWrite(event,index,examId,questionId,subQuestionId,expected_answer) {
           console.log(event.target.value);
-          let sub_q_ans={'user_id': this.userId,'answerid':event.target.value,'examId': examId,'questionId':questionId ,'subQuestionId':subQuestionId ,'expected_answer':expected_answer}
+          let sub_q_ans;
+          if(this.userId){
+             sub_q_ans={'user_id': this.userId.id,'answerid':event.target.value,'examId': examId,'questionId':questionId ,'subQuestionId':subQuestionId ,'expected_answer':expected_answer}
+          }else{
+             sub_q_ans={'user_id': 0,'answerid':event.target.value,'examId': examId,'questionId':questionId ,'subQuestionId':subQuestionId ,'expected_answer':expected_answer}
+          }
+
           if(this.names.includes(subQuestionId)){
               this.$delete(this.names, index);
               this.$delete(this.questionAnswer, index);
@@ -236,7 +242,13 @@
           console.log(sub_q_ans);
         },
         onChange(event,index,examId,questionId,subQuestionId,expected_answer) {
-          let sub_q_ans={'user_id': this.userId,'answerid':event.target.value,'examId': examId,'questionId':questionId ,'subQuestionId':subQuestionId ,'expected_answer':expected_answer}
+          let sub_q_ans;
+          if(this.userId){
+            sub_q_ans={'user_id': this.userId.id,'answerid':event.target.value,'examId': examId,'questionId':questionId ,'subQuestionId':subQuestionId ,'expected_answer':expected_answer}
+          }else{
+            sub_q_ans={'user_id': 0,'answerid':event.target.value,'examId': examId,'questionId':questionId ,'subQuestionId':subQuestionId ,'expected_answer':expected_answer}
+
+          }
           if(this.names.includes(subQuestionId)){
               this.$delete(this.names, index);
               this.$delete(this.questionAnswer, index);
@@ -251,8 +263,13 @@
         },
         dissapear (index,examId,questionId,subQuestionId,expected_answer,answerId,subQuestionClass,aswerNum,answerType) {
           console.log(subQuestionId);
-            let sub_q_ans={user_id: this.userId,'examId': examId,'questionId':questionId ,'subQuestionId':subQuestionId ,'answerid':answerId,'expected_answer':expected_answer}
-
+          let sub_q_ans;
+          if(this.userId){
+             sub_q_ans={user_id: this.userId.id,'examId': examId,'questionId':questionId ,'subQuestionId':subQuestionId ,'answerid':answerId,'expected_answer':expected_answer}
+          }else{
+             sub_q_ans={user_id: 0,'examId': examId,'questionId':questionId ,'subQuestionId':subQuestionId ,'answerid':answerId,'expected_answer':expected_answer}
+          }
+            
             if(this.names.includes(subQuestionId)){
               for (let i = 0; i < this.names.length; i++) {
                 if(this.names[i]==subQuestionId){
@@ -366,7 +383,12 @@
                 })
                 this.questionAnswer=[];
                 console.log(this.getCurrentPage+1+' page');
-                this.$store.dispatch('getQuestions', {user_id: this.$store.state.userToken.id, examId: this.examId,pageId:this.getCurrentPage+1 });
+                if(this.userId){
+                  this.$store.dispatch('getQuestions', {user_id: this.$store.state.userToken.id, examId: this.examId,pageId:this.getCurrentPage+1 });
+                }else{
+                  this.$store.dispatch('getQuestions', {user_id:0, examId: this.examId,pageId:this.getCurrentPage+1 });
+                }
+                // this.$store.dispatch('getQuestions', {user_id: this.$store.state.userToken.id, examId: this.examId,pageId:this.getCurrentPage+1 });
                 window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
               }
         },

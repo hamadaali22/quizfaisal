@@ -69,10 +69,10 @@ class HomeController extends Controller
             }
             $checkUser = User::where("email" , $request->email)->first();
             if($checkUser){
-               if($checkUser->is_activated ==0)
-               {
-                  return $this -> returnError('Das Konto ist nicht aktiviert');
-                }else {
+                // if($checkUser->is_activated ==0)
+                // {
+                //   return $this -> returnError('Das Konto ist nicht aktiviert');
+                // }else {
                   $credentials = $request->only(['email','password']);
                   $token =  Auth::guard('user-api') -> attempt($credentials);
                   if(!$token)
@@ -84,7 +84,7 @@ class HomeController extends Controller
                   // $buyer = User::where('id',$UserData->id)->first();
                   // $buyer->photo= "http://findfamily.net/care/img/profiles/".$buyer->photo;
                   return $this -> returnDataa('data',$UserData,'Sie haben sich erfolgreich angemeldet');
-              }
+                // }
             }else {
               return $this -> returnError('falsche Email oder Passwort');
             }

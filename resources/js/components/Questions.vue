@@ -386,6 +386,7 @@
                 if(this.userId){
                   this.$store.dispatch('getQuestions', {user_id: this.$store.state.userToken.id, examId: this.examId,pageId:this.getCurrentPage+1 });
                 }else{
+                  this.$toaster.error('Sie müssen sich registrieren, um Ihr Ergebnis zu erhalten und die Musterlösung zu sehen.');
                   this.$store.dispatch('getQuestions', {user_id:0, examId: this.examId,pageId:this.getCurrentPage+1 });
                 }
                 // this.$store.dispatch('getQuestions', {user_id: this.$store.state.userToken.id, examId: this.examId,pageId:this.getCurrentPage+1 });

@@ -23,9 +23,11 @@ import GoetheUserExam from '../components/GoetheUserExam.vue'
 import GoetheReport from '../components/GoetheReport.vue'
 import TelcReport from '../components/TelcReport.vue'
 import TelcUserExam from '../components/TelcUserExam.vue'
+import NoResult from '../components/NoResult.vue'
 const routes = [
     { path: '/home', component: Home, name: 'Home' },
     { path: '/', component: Home, name: 'Home' },
+    { path: '/noresult', component: NoResult, name: 'NoResult' },
 
     { path: '/goethe-tests', component: Levels, name: 'Levels' },
     // { path: '/exams', component: Exams, name: 'Exams' },

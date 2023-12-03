@@ -27,7 +27,7 @@ Vue.use(Toaster, {timeout: 9000})
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('global-home', require('./components/GlobalHome.vue').default);
 Vue.component('header-component', require('./components/Header.vue').default);
-
+Vue.component('footer-component', require('./components/Footer.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -379,7 +379,12 @@ const store = new Vuex.Store({
                   store.commit('updateQuestions', res.data.data.data);
                   store.commit('updateCurrentPage', res.data.data.current_page);
                 }else {
-                   router.push({ name: 'Result', params: { user_id: payload.user_id,examId:payload.examId } })
+                  if(payload.user_id !=0){
+                    router.push({ name: 'Result', params: { user_id: payload.user_id,examId:payload.examId } })
+                  }else{
+                    router.push({ name: 'NoResult' })
+                  }
+                   
                 }
             })
             .then(err => console.log(err))

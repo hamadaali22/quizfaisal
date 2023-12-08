@@ -25,7 +25,7 @@
 
                 <li v-if="isLogged" @click.stop="logout" class="nav-item p-1 active "><router-link to="register" class="nav-link text-light">Abmelden</router-link></li>
 
-                <li class="nav-item p-1 active "><router-link to="/noresult" class="nav-link text-light">noresult</router-link></li>
+                <!-- <li class="nav-item p-1 active "><router-link to="/noresult" class="nav-link text-light">noresult</router-link></li> -->
 
 
 

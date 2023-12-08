@@ -89,7 +89,7 @@
                                     
                                 </div>
                                 <div class="p-2 row col-md-7" style="color: #fff;">
-                                    <h5>Copyright © deutschtest - All Rights Reserved</h5>
+                                    <p>Copyright © deutschtest - All Rights Reserved</p>
                                 </div>
                                 <div class="links text-center">
                                     <a href="#"><i class="fa-brands fa-facebook p-2 mr-2"></i></a>

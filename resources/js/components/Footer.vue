@@ -201,7 +201,7 @@
                         <div class="container" >
                             <div class=" row">
                                 <div class="row col-md-10 ">
-                                    <p>Copyright © deutschtest - All Rights Reserved</p>
+                                    <p>Copyright © Deutschtests - All Rights Reserved</p>
                                 </div>
                                 <div class="links text-center">
                                     <a href="#"><i class="fa-brands fa-facebook p-2 mr-2" style="color:#3e83b3;font-size: 25px !important; "></i></a>

@@ -91,8 +91,59 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row col-md-9" >
-                            <div class="d-flex flex-row">
+                        <div class="row col-md-9 col-xs-12 col-sm-6" >
+
+                            <div class="d-flex flex-column flex-md-row">
+                                <div class="d-flex flex-row ">
+                                    <div class="p-2"><h6 class="widget-title" ><a href="/goethe-tests">Goethe Tests</a></h6></div>
+                                </div>
+                                <div class="d-flex flex-row">
+                                    <div class="p-2" style="font-size: 14px;"><a href="/goethe-tests/goethe-a1-zertifikat" >Goethe A1 Zertifikat</a></div>
+                                    <div class="p-1"></div><div class="p-2"><a href="#">|</a></div>
+                                </div>
+                                <div class="d-flex flex-row">
+                                    <div class="p-2" style="font-size: 14px;"><a href="/goethe-tests/goethe-zertifikat-a2">Goethe A2 Zertifikat</a></div>
+                                    <div class="p-1"></div><div class="p-2"><a href="#">|</a></div>
+                                </div>
+                                <div class="d-flex flex-row">
+                                    <div class="p-2" style="font-size: 14px;"><a href="/goethe-tests/goethe-b1-modelltest">Goethe B1 Modelltest</a></div>
+                                    <div class="p-2"><a href="#">|</a></div>
+                                </div>
+                                <div class="d-flex flex-row">
+                                    <div class="p-2" style="font-size: 14px;"><a href="/goethe-tests/goethe-b2-modelltest">Goethe B2 Modelltest</a></div>
+                                </div>
+                            </div>
+                            <div class="d-flex flex-column flex-md-row">
+                                
+                                <div class="d-flex flex-row ">
+                                    <div class="p-2"><h6 class="widget-title" ><a href="/telc-tests">Telc Tests</a></h6></div>
+                                </div>
+                                <div class="d-flex flex-row">
+                                    <div class="p-1"></div>
+                                    <div class="p-2" style="font-size: 14px;"><a href="/telc-tests/telc-a2-modelltest">Telc A1 Modelltest</a></div>
+                                    <div class="p-2"><a href="#">|</a></div>
+                                </div>
+                               
+                                <div class="d-flex flex-row">
+                                    <div class="p-1"></div>
+                                    <div class="p-2" style="font-size: 14px;"><a href="/telc-tests/telc-a2-modelltest">Telc A2 Modelltest </a></div>
+                                    <div class="p-2"><a href="#">|</a></div>
+                                </div>
+                                <div class="d-flex flex-row">
+                                    <div class="p-1"></div>
+                                    <div class="p-2" style="font-size: 14px;"><a href="/telc-tests/telc-b1-modelltest">Telc B1 Modelltest</a></div>
+                                    <div class="p-2"><a href="#">|</a></div>
+                                </div>
+                                <div class="d-flex flex-row">
+                                    <div class="p-1"></div>
+                                    <div class="p-2" style="font-size: 14px;"><a href="/telc-tests/telc-b2-modelltest">Telc B2 Modelltest </a></div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                            <!-- <div class="d-flex flex-row">
                                 <div class="p-2"><h5 class="widget-title"><a href="/goethe-tests">Goethe Tests</a></h5></div>
                                 <div class="p-2"><a href="/goethe-tests/goethe-a1-zertifikat" >Goethe A1 Zertifikat</a></div>
                                 <div class="p-2"><a href="#">|</a></div>
@@ -112,7 +163,7 @@
                                 <div class="p-2"><a href="/telc-tests/telc-b1-modelltest">Telc B1 Modelltest</a></div>
                                 <div class="p-2"></div><div class="p-1"></div><div class="p-2"><a href="#">|</a></div>
                                 <div class="p-2"><a href="/telc-tests/telc-b1-modelltest">Telc B1 Modelltest</a></div>
-                            </div>
+                            </div> -->
 
                             <!-- <div class="d-flex  flex-column">
                                 <div class="p-2"><h5 class="widget-title"><a href="/goethe-tests">Goethe Tests</a></h5></div>
@@ -176,7 +227,7 @@
                             <div class="d-flex flex-column">
                                 <div class="p-2"><a href="/telc-tests/telc-b2-modelltest">Telc B2 Modelltest </a></div>
                             </div> -->
-                        </div>
+                        <!-- </div> -->
                         
                     </div>
                     <!-- <div class=" row">
@@ -197,13 +248,14 @@
                 <!-- </div> -->
                 
         </footer>
-        <div  style="background-color: #fff; padding-top: 9px;">
+        <!-- padding-top: 9px -->
+        <div  style="background-color: #fff; ;">
                         <div class="container" >
                             <div class=" row">
                                 <div class="row col-md-10 ">
-                                    <p>Copyright © Deutschtests - All Rights Reserved</p>
+                                    <p style="    margin-left: 5px;margin-top: 10px; margin-bottom:0px;"> Copyright © Deutschtests - All Rights Reserved</p>
                                 </div>
-                                <div class="links text-center">
+                                <div class="links text-center ">
                                     <a href="#"><i class="fa-brands fa-facebook p-2 mr-2" style="color:#3e83b3;font-size: 25px !important; "></i></a>
                                     <a href="#"><i class="fa-brands fa-instagram p-2 mr-2" style="color:#3e83b3;font-size: 25px !important; "></i></a>
                                     <a href="#"><i class="fa-brands fa-twitter p-2 mr-2" style="color:#3e83b3;font-size: 25px !important;"></i></a>

@@ -1,23 +1,103 @@
 <template>
    <div>
-
-     <section class="row home-main-section p-5 container-fluid">
-       <div class="col-lg m-auto pl-4">
-        <p v-html="contactInfo.level_desc"></p>
+    <section class="row home-main-section p-4 container-fluid">
+        <div v-for="item in getLevels" :key="item.id" class="col-md-6 m-auto pl-4">
+            <div  class="level  w-100 text-center text-light mt-1 pt-2 pb-2">
+                <router-link :to="'/goethe-tests/'+item.slug" class="a-link">{{ item.name }}</router-link>
+            </div>
        </div>
-       <h2 class="text-center "></h2>
-
+       
+       <!-- <h2 class="text-center "></h2>
        <div class="col-lg m-auto">
             <div v-for="item in getLevels" :key="item.id" class="level w-100 text-center text-light mt-1 pt-2 pb-2">
                 <router-link :to="'/goethe-tests/'+item.slug" class="a-link">{{ item.name }}</router-link>
             </div>
+       </div> -->
+    </section>
+     <section class="row home-main-section p-4 container-fluid">
+       <div class="col-lg pl-4">
+        <p v-html="contactInfo.level_desc"></p>
+       </div>
+       <h2 class="text-center "></h2>
+       <div class="col-lg ">
+          <div class="row">
+             <div class="col-4">
+                 <img  src="https://deutschtests.com/img/Goethe-C1-Prüfung.png" class="img-fluid w-100" alt="Deutsch-Prüfungen">
+             </div>
+             <div class="col-4">
+                 <img  src="https://deutschtests.com/img/Goethe-Deutsch-Prüfungen.png" class="img-fluid w-100" alt="Telc Deutsch">
+             </div>
+             
+          </div>
+          <div class="row">
+            <div class="col-3">
+
+            </div>
+            <div class="col-3" style="    margin-top: -50px;">
+                 <img  src="https://deutschtests.com/img/Goethe-A1-Prüfung.png" class="img-fluid w-100" alt="Teste dein Deusch">
+                 <img  src="https://deutschtests.com/img/goethe-B1-modelltest.png" class="img-fluid w-100" alt="Deutsch Tests online frei">
+             </div>
+             <div class="col-3" style="    margin-top: -28px;">
+                 <img  src="https://deutschtests.com/img/goethe-zertifikat-A2.png" class="img-fluid w-100" alt="Teste dein Deusch">
+                 <img  src="https://deutschtests.com/img/Goethe-B2-modelltest.png" class="img-fluid w-100" alt="Deutsch Tests online frei">
+             </div>
+            
+             
+
+          </div>
+          <div class="row mt-3 mb-5">
+             <div class="col-3" style="    margin-top: -55px;">
+                 <img  src="https://deutschtests.com/img/deutsch-online-lernen.png" class="img-fluid w-100" alt="Deutsch Tests online frei">
+             </div>
+            
+          </div>
+
+
+          <!-- <div class="row">
+             <div class="col-4">
+                 <img  src="https://deutschtests.com/img/Goethe-C1-Prüfung.png" class="img-fluid w-100" alt="Deutsch-Prüfungen">
+             </div>
+             <div class="col-4">
+                 <img  src="https://deutschtests.com/img/Goethe-Deutsch-Prüfungen.png" class="img-fluid w-100" alt="Telc Deutsch">
+             </div>
+             <div class="col-4">
+                 <img  src="https://deutschtests.com/img/Goethe-A1-Prüfung.png" class="img-fluid w-100" alt="Goethe Deutsch">
+             </div>
+             <div class="col-4">
+                 <img  src="https://deutschtests.com/img/goethe-zertifikat-A2.png" class="img-fluid w-100" alt="Telc Deutsch">
+             </div>
+             <div class="col-4">
+                 <img  src="https://deutschtests.com/img/goethe-B1-modelltest.png" class="img-fluid w-100" alt="Goethe Deutsch">
+             </div>
+
+          </div>
+          <div class="row">
+             
+             <div class="col-4">
+                 <img  src="https://deutschtests.com/img/Goethe-A1-Prüfung.png" class="img-fluid w-100" alt="Goethe Deutsch">
+             </div>
+             <div class="col-4">
+                 <img  src="https://deutschtests.com/img/goethe-zertifikat-A2.png" class="img-fluid w-100" alt="Telc Deutsch">
+             </div>
+             <div class="col-4">
+                 <img  src="https://deutschtests.com/img/goethe-B1-modelltest.png" class="img-fluid w-100" alt="Goethe Deutsch">
+             </div>
+
+          </div> -->
+          
+        </div>
+       <!-- <div class="col-lg m-auto"> -->
+
+            <!-- <div v-for="item in getLevels" :key="item.id" class="level w-100 text-center text-light mt-1 pt-2 pb-2">
+                <router-link :to="'/goethe-tests/'+item.slug" class="a-link">{{ item.name }}</router-link>
+            </div> -->
 
             <!-- <div class="level w-100 text-center text-light mt-1 pt-2 pb-2">A1</div>
             <div class="level w-100 text-center text-light mt-1 pt-2 pb-2">A2</div>
             <div class="level w-100 text-center text-light mt-1 pt-2 pb-2">B1</div>
             <div class="level w-100 text-center text-light mt-1 pt-2 pb-2">B2</div>
             <div class="level w-100 text-center text-light mt-1 pt-2 pb-2">C1</div> -->
-       </div>
+       <!-- </div> -->
       </section>
    </div>
 </template>

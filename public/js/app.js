@@ -27450,6 +27450,42 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -69274,24 +69310,92 @@ var render = function() {
         _c(
           "div",
           { staticClass: "col-lg m-auto" },
-          _vm._l(_vm.getExams, function(item) {
-            return _c(
-              "div",
-              {
-                key: item.id,
-                staticClass: "level w-100 text-center text-light mt-1 pt-2 pb-2"
-              },
-              [
-                _c(
-                  "router-link",
-                  { staticClass: "a-link", attrs: { to: "/exam/" + item.id } },
-                  [_vm._v(_vm._s(item.name))]
-                )
-              ],
-              1
-            )
-          }),
-          0
+          [
+            _vm._l(_vm.getExams, function(item) {
+              return _c(
+                "div",
+                {
+                  key: item.id,
+                  staticClass:
+                    "level w-100 text-center text-light mt-1 pt-2 pb-2"
+                },
+                [
+                  _c(
+                    "router-link",
+                    {
+                      staticClass: "a-link",
+                      attrs: { to: "/exam/" + item.id }
+                    },
+                    [_vm._v(_vm._s(item.name))]
+                  )
+                ],
+                1
+              )
+            }),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-4" }),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-5" }, [
+                _c("img", {
+                  staticClass: "img-fluid w-100",
+                  attrs: {
+                    src: _vm.getLevelDesc.goethe1,
+                    alt: "Goethe-Deutsch-Prüfungen"
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-4" }),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-5" }, [
+                _c("img", {
+                  staticClass: "img-fluid w-100",
+                  attrs: {
+                    src: _vm.getLevelDesc.goethe2,
+                    alt: "Goethe-Deutsch-Prüfungen"
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-2" }, [
+                _c("img", {
+                  staticClass: "img-fluid w-100",
+                  attrs: {
+                    src: _vm.getLevelDesc.goethe5,
+                    alt: "Goethe-Deutsch-Prüfungen"
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-2" }, [
+                _c("img", {
+                  staticClass: "img-fluid w-100",
+                  attrs: {
+                    src: _vm.getLevelDesc.goethe4,
+                    alt: "Goethe-Deutsch-Prüfungen"
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-4" }),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-3" }, [
+                _c("img", {
+                  staticClass: "img-fluid w-100",
+                  attrs: {
+                    src: _vm.getLevelDesc.goethe3,
+                    alt: "Goethe-Deutsch-Prüfungen"
+                  }
+                })
+              ])
+            ])
+          ],
+          2
         ),
         _vm._v(" "),
         _c("br"),

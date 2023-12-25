@@ -12,10 +12,46 @@
             <router-link v-else :to="'/login'" class="a-link">{{ item.name }}</router-link> -->
             <router-link  :to="'/exam/'+item.id" class="a-link">{{ item.name }}</router-link>
           </div>
-          <!-- <div class="level w-100 teaxt-center text-light mt-1 pt-2 pb-2">{{this.$route.params.id}}</div>
-          <div class="level w-100 text-center text-light mt-1 pt-2 pb-2">Test 3</div>
-          <div class="level w-100 text-center text-light mt-1 pt-2 pb-2">Test 4</div>
-          <div class="level w-100 text-center text-light mt-1 pt-2 pb-2">Test 5</div> -->
+
+
+
+          <div class="row">
+            <div class="col-4">
+            </div>
+             <div class="col-5">
+                 <img :src="getLevelDesc.goethe1"  class="img-fluid w-100" alt="Goethe-Deutsch-Prüfungen">
+             </div>
+             
+          </div>
+          <div class="row">
+            <div class="col-4">
+            </div>
+             <div class="col-5">
+                 <img  :src="getLevelDesc.goethe2" class="img-fluid w-100" alt="Goethe-Deutsch-Prüfungen">
+             </div>
+             
+          </div>
+          <div class="row">
+            <div class="col-2">
+                 <img  :src="getLevelDesc.goethe5" class="img-fluid w-100" alt="Goethe-Deutsch-Prüfungen">
+             </div>
+            <div class="col-2">
+              <img  :src="getLevelDesc.goethe4" class="img-fluid w-100" alt="Goethe-Deutsch-Prüfungen">
+            </div>
+           
+             <div class="col-4">
+                 
+             </div>
+             
+             <div class="col-3">
+                 <img  :src="getLevelDesc.goethe3" class="img-fluid w-100" alt="Goethe-Deutsch-Prüfungen">
+             </div>
+             
+          </div>
+
+
+
+          
       </div>
       <br><br><br>
   </section>

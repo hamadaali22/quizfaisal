@@ -75,6 +75,75 @@
               <label>description telc</label>
               <textarea name="description_telc"  cols="20" rows="2"   class="form-control ckeditor" id='descriptionId' >{{$level->description_telc}}</textarea>
             </div>
+            
+
+
+            <div class="col-12 col-sm-3">
+              <div class="form-group">
+                <label>goethe 1 </label>
+                <img class="avatar-img" src="{{asset('img/goethe/'.$level->goethe1) }}" width="90px">
+                <input type="file" name="goethe1" class="form-control" id="name2" value="{{$level->goethe1}}">
+              </div>
+            </div>
+            <div class="col-12 col-sm-2">
+              <div class="form-group">
+                <label>goethe 2 </label>
+                <input type="file" name="goethe2" class="form-control" id="name2" value="{{$level->goethe2}}">
+              </div>
+            </div>
+            <div class="col-12 col-sm-2">
+              <div class="form-group">
+                <label>goethe 3</label>
+                <input type="file" name="goethe3" class="form-control" id="name2" value="{{$level->goethe3}}">
+              </div>
+            </div>
+            <div class="col-12 col-sm-2">
+              <div class="form-group">
+                <label>goethe 4 </label>
+                <input type="file" name="goethe4" class="form-control" id="name2" value="{{$level->goethe4}}">
+              </div>
+            </div>
+            <div class="col-12 col-sm-2">
+              <div class="form-group">
+                <label>goethe 5 </label>
+                <input type="file" name="goethe5" class="form-control" id="name2" value="{{$level->goethe5}}">
+              </div>
+            </div>
+
+            <!-- telc -->
+            <div class="col-12 col-sm-3">
+              <div class="form-group">
+                <label>telc 1 </label>
+                <input type="file" name="telc1" class="form-control" id="name2" value="{{$level->telc1}}">
+              </div>
+            </div>
+            <div class="col-12 col-sm-2">
+              <div class="form-group">
+                <label>telc 2 </label>
+                <input type="file" name="telc2" class="form-control" id="name2" value="{{$level->telc2}}">
+              </div>
+            </div>
+            <div class="col-12 col-sm-2">
+              <div class="form-group">
+                <label>telc 3</label>
+                <input type="file" name="telc3" class="form-control" id="name2" value="{{$level->telc3}}">
+              </div>
+            </div>
+            <div class="col-12 col-sm-2">
+              <div class="form-group">
+                <label>telc 4 </label>
+                <input type="file" name="telc4" class="form-control" id="name2" value="{{$level->telc4}}">
+              </div>
+            </div>
+            <div class="col-12 col-sm-2">
+              <div class="form-group">
+                <label>telc 5 </label>
+                <input type="file" name="telc5" class="form-control" id="name2" value="{{$level->telc5}}">
+              </div>
+            </div>
+            
+
+
 
           </div>
           <br/><br/>

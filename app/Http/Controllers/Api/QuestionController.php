@@ -32,11 +32,11 @@ class QuestionController extends Controller
     {
         $level=Level::where("slug2" , $request->levelSlug)->first();
       
-        $level->telc1="https://deutschtests.com/img/goethe/".$level->telc1;
-        $level->telc2="https://deutschtests.com/img/goethe/".$level->telc2;
-        $level->telc3="https://deutschtests.com/img/goethe/".$level->telc3;
-        $level->telc4="https://deutschtests.com/img/goethe/".$level->telc4;
-        $level->telc5="https://deutschtests.com/img/goethe/".$level->telc5;
+        $level->telc1="https://deutschtests.com/img/telc/".$level->telc1;
+        $level->telc2="https://deutschtests.com/img/telc/".$level->telc2;
+        $level->telc3="https://deutschtests.com/img/telc/".$level->telc3;
+        $level->telc4="https://deutschtests.com/img/telc/".$level->telc4;
+        $level->telc5="https://deutschtests.com/img/telc/".$level->telc5;
         $exam=Exam::where("level_id" , $level->id)->where('section','telc')->get();
         $home  =[
             'exam'=> $exam,

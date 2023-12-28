@@ -89,7 +89,7 @@ class LevelController extends Controller
             $request-> file('goethe1') ->move($path,$fileName);
             $edit->goethe1  =$fileName; 
         }else{
-             $edit->goethe1  = $request->goethe1;
+             $edit->goethe1  = $edit->goethe1;
         }
         if($file=$request->file('goethe2'))
         {
@@ -98,7 +98,7 @@ class LevelController extends Controller
             $request-> file('goethe2') ->move($path,$fileName);
             $edit->goethe2  =$fileName; 
         }else{
-             $edit->goethe2  = $request->goethe2;
+             $edit->goethe2  = $edit->goethe2;
         }
 
         if($file=$request->file('goethe3'))
@@ -108,7 +108,7 @@ class LevelController extends Controller
             $request-> file('goethe3') ->move($path,$fileName);
             $edit->goethe3  =$fileName; 
         }else{
-             $edit->goethe3  = $request->goethe3;
+             $edit->goethe3  = $edit->goethe3;
         }
 
         if($file=$request->file('goethe4'))
@@ -118,7 +118,7 @@ class LevelController extends Controller
             $request-> file('goethe4') ->move($path,$fileName);
             $edit->goethe4  =$fileName; 
         }else{
-             $edit->goethe4  = $request->goethe4;
+             $edit->goethe4  = $edit->goethe4;
         }
 
         if($file=$request->file('goethe5'))
@@ -128,7 +128,7 @@ class LevelController extends Controller
             $request-> file('goethe5') ->move($path,$fileName);
             $edit->goethe5  =$fileName; 
         }else{
-             $edit->goethe5  = $request->goethe5;
+             $edit->goethe5  = $edit->goethe5;
         }
 
        
@@ -140,7 +140,7 @@ class LevelController extends Controller
             $request-> file('telc1') ->move($path,$fileName);
             $edit->telc1  =$fileName; 
         }else{
-             $edit->telc1  = $request->telc1;
+             $edit->telc1  = $edit->telc1;
         }
 
         if($file=$request->file('telc2'))
@@ -150,7 +150,7 @@ class LevelController extends Controller
             $request-> file('telc2') ->move($path,$fileName);
             $edit->telc2  =$fileName; 
         }else{
-             $edit->telc2  = $request->telc2;
+             $edit->telc2  = $edit->telc2;
         }
 
         if($file=$request->file('telc3'))
@@ -160,7 +160,7 @@ class LevelController extends Controller
             $request-> file('telc3') ->move($path,$fileName);
             $edit->telc3  =$fileName; 
         }else{
-             $edit->telc3  = $request->telc3;
+             $edit->telc3  = $edit->telc3;
         }
 
         if($file=$request->file('telc4'))
@@ -170,7 +170,7 @@ class LevelController extends Controller
             $request-> file('telc4') ->move($path,$fileName);
             $edit->telc4  =$fileName; 
         }else{
-             $edit->telc4  = $request->telc4;
+             $edit->telc4  = $edit->telc4;
         }
 
         if($file=$request->file('telc5'))
@@ -180,7 +180,7 @@ class LevelController extends Controller
             $request-> file('telc5') ->move($path,$fileName);
             $edit->telc5  =$fileName; 
         }else{
-             $edit->telc5  = $request->telc5;
+             $edit->telc5  = $edit->telc5;
         }
 
         $edit->save();

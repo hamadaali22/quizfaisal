@@ -21,7 +21,7 @@
 			    <div class="alert alert-success">
 					{{ session('message') }}
 				</div>
-			    <a href="/public/login" class="btn btn-primary" style="background-color: #3e83b3 !important;
+			    <a href="/login" class="btn btn-primary" style="background-color: #3e83b3 !important;
     border-color: #3e83b3 !important; ">Gehen Sie zum Anmelden</a>
 			</div>
 		</div>

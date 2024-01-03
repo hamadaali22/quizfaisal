@@ -79,7 +79,7 @@
 											</thead>
 											<tbody>
 
-											@foreach ($data as $_item)
+											@foreach ($exams as $_item)
 												<tr>
 													<td class="text-center">
 														{{$_item->id}}

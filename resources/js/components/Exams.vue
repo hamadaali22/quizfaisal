@@ -1,7 +1,7 @@
 <template>
   <div>
     <section class="row home-main-section p-5 container-fluid">
-      <div class="col-lg m-auto pl-4">
+      <div class="col-lg pl-4">
       <p v-html="getLevelDesc.description"></p>
       <!-- <p>{{getLevelDesc.description}}</p> -->
       </div>
@@ -10,7 +10,7 @@
           <div v-for="item in getExams" :key="item.id" class="level w-100 text-center text-light mt-1 pt-2 pb-2">
             <!-- <router-link v-if="isLogged" :to="'/exam/'+item.id" class="a-link">{{ item.name }}</router-link>
             <router-link v-else :to="'/login'" class="a-link">{{ item.name }}</router-link> -->
-            <router-link  :to="'/exam/'+item.id" class="a-link">{{ item.name }}</router-link>
+            <router-link  :to="'/exam/'+item.id" class="a-link">{{ item.name }}ss</router-link>
           </div>
 
 

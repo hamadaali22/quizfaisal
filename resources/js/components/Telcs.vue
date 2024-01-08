@@ -2,9 +2,10 @@
    <div>
       <section class="row home-main-section p-4 container-fluid">
           <div v-for="item in getLevels" :key="item.id" class="col-md-6 m-auto pl-4">
+            <router-link :to="'/telc-tests/'+item.slug2" class="a-link">
               <div  class="level  w-100 text-center text-light mt-1 pt-2 pb-2">
-                  <router-link :to="'/telc-tests/'+item.slug2" class="a-link">{{ item.name2 }}</router-link>
-              </div>
+                  {{ item.name2 }}
+              </div></router-link>
         </div>
         
       </section>

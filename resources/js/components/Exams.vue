@@ -7,10 +7,12 @@
       </div>
       <!-- <h2 class="text-center ">A1</h2> -->
       <div class="col-lg m-auto">
-          <div v-for="item in getExams" :key="item.id" class="level w-100 text-center text-light mt-1 pt-2 pb-2">
+          <div v-for="item in getExams" :key="item.id" >
             <!-- <router-link v-if="isLogged" :to="'/exam/'+item.id" class="a-link">{{ item.name }}</router-link>
             <router-link v-else :to="'/login'" class="a-link">{{ item.name }}</router-link> -->
-            <router-link  :to="'/exam/'+item.id" class="a-link">{{ item.name }}ss</router-link>
+            <router-link  :to="'/exam/'+item.id" class="a-link">
+              <div  class="level w-100 text-center text-light mt-1 pt-2 pb-2">
+                {{ item.name }}</div></router-link>
           </div>
 
 

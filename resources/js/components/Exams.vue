@@ -21,7 +21,7 @@
             <div class="col-4">
             </div>
              <div class="col-5">
-                 <img :src="getLevelDesc.goethe1"  class="img-fluid w-100" alt="Goethe-Deutsch-Prüfungen">
+                 <img :src="getLevelDesc.goethe1"  class="img-fluid w-100" :alt="getLevelDesc.alt_goethe1">
              </div>
              
           </div>
@@ -29,16 +29,16 @@
             <div class="col-4">
             </div>
              <div class="col-5">
-                 <img  :src="getLevelDesc.goethe2" class="img-fluid w-100" alt="Goethe-Deutsch-Prüfungen">
+                 <img  :src="getLevelDesc.goethe2" class="img-fluid w-100" :alt="getLevelDesc.alt_goethe2">
              </div>
              
           </div>
           <div class="row">
             <div class="col-2">
-                 <img  :src="getLevelDesc.goethe5" class="img-fluid w-100" alt="Goethe-Deutsch-Prüfungen">
+                 <img  :src="getLevelDesc.goethe5" class="img-fluid w-100" :alt="getLevelDesc.alt_goethe5">
              </div>
             <div class="col-2">
-              <img  :src="getLevelDesc.goethe4" class="img-fluid w-100" alt="Goethe-Deutsch-Prüfungen">
+              <img  :src="getLevelDesc.goethe4" class="img-fluid w-100" :alt="getLevelDesc.alt_goethe4">
             </div>
            
              <div class="col-4">
@@ -46,7 +46,7 @@
              </div>
              
              <div class="col-3">
-                 <img  :src="getLevelDesc.goethe3" class="img-fluid w-100" alt="Goethe-Deutsch-Prüfungen">
+                 <img  :src="getLevelDesc.goethe3" class="img-fluid w-100" :alt="getLevelDesc.alt_goethe3">
              </div>
              
           </div>

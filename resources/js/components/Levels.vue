@@ -22,10 +22,10 @@
        <div class="col-lg ">
           <div class="row">
              <div class="col-4">
-                 <img  src="https://deutschtests.com/img/Goethe-C1-Prüfung.png" class="img-fluid w-100" alt="Goethe-C1-Prüfung">
+                 <img  src="https://deutschtests.com/img/Goethe-C1-Prüfung.png" class="img-fluid w-100" alt="Goethe C1 Prüfung">
              </div>
              <div class="col-4">
-                 <img  src="https://deutschtests.com/img/Goethe-Deutsch-Prüfungen.png" class="img-fluid w-100" alt="Goethe-Deutsch-Prüfungen">
+                 <img  src="https://deutschtests.com/img/Goethe-Deutsch-Prüfungen.png" class="img-fluid w-100" alt="Goethe Deutsch Prüfungen">
              </div>
              
           </div>
@@ -34,12 +34,12 @@
 
             </div>
             <div class="col-3" style="    margin-top: -50px;">
-                 <img  src="https://deutschtests.com/img/Goethe-A1-Prüfung.png" class="img-fluid w-100" alt="Goethe-A1-Prüfung">
-                 <img  src="https://deutschtests.com/img/goethe-B1-modelltest.png" class="img-fluid w-100" alt="goethe-B1-modelltest">
+                 <img  src="https://deutschtests.com/img/Goethe-A1-Prüfung.png" class="img-fluid w-100" alt="Goethe A1 Prüfung">
+                 <img  src="https://deutschtests.com/img/goethe-B1-modelltest.png" class="img-fluid w-100" alt="goethe B1 modelltest">
              </div>
              <div class="col-3" style="    margin-top: -28px;">
-                 <img  src="https://deutschtests.com/img/goethe-zertifikat-A2.png" class="img-fluid w-100" alt="goethe-zertifikat-A2">
-                 <img  src="https://deutschtests.com/img/Goethe-B2-modelltest.png" class="img-fluid w-100" alt="Goethe-B2-modelltest">
+                 <img  src="https://deutschtests.com/img/goethe-zertifikat-A2.png" class="img-fluid w-100" alt="goethe zertifikat A2">
+                 <img  src="https://deutschtests.com/img/Goethe-B2-modelltest.png" class="img-fluid w-100" alt="Goethe B2 modelltest">
              </div>
             
              
@@ -47,7 +47,7 @@
           </div>
           <div class="row mt-3 mb-5">
              <div class="col-3" style="    margin-top: -55px;">
-                 <img  src="https://deutschtests.com/img/deutsch-online-lernen.png" class="img-fluid w-100" alt="Deutsch Tests online frei">
+                 <img  src="https://deutschtests.com/img/deutsch-online-lernen.png" class="img-fluid w-100" alt="deutsch online lernen">
              </div>
             
           </div>

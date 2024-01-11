@@ -17,10 +17,10 @@
        <div class="col-lg ">
           <div class="row">
              <div class="col-4">
-                 <img  src="https://deutschtests.com/img/Telc-Tests.png" class="img-fluid w-100" alt="Telc-Tests">
+                 <img  src="https://deutschtests.com/img/Telc-Tests.png" class="img-fluid w-100" alt="Telc Tests">
              </div>
              <div class="col-4">
-                 <img  src="https://deutschtests.com/img/Telc-Deutsch-Prüfungen.png" class="img-fluid w-100" alt="Telc-Deutsch-Prüfungen">
+                 <img  src="https://deutschtests.com/img/Telc-Deutsch-Prüfungen.png" class="img-fluid w-100" alt="Telc Deutsch Prüfungen">
              </div>
              
           </div>
@@ -29,17 +29,17 @@
 
             </div>
             <div class="col-3" style="    margin-top: -50px;">
-                 <img  src="https://deutschtests.com/img/Telc-A1-Prüfung.png" class="img-fluid w-100" alt="Telc-A1-Prüfung">
-                 <img  src="https://deutschtests.com/img/prüfung-telc-b1.png" class="img-fluid w-100" alt="prüfung-telc-b1">
+                 <img  src="https://deutschtests.com/img/Telc-A1-Prüfung.png" class="img-fluid w-100" alt="Telc A1 Prüfung">
+                 <img  src="https://deutschtests.com/img/prüfung-telc-b1.png" class="img-fluid w-100" alt="prüfung telc b1">
              </div>
              <div class="col-3" style="    margin-top: -28px;">
-                 <img  src="https://deutschtests.com/img/telc-a2-modelltest.png" class="img-fluid w-100" alt="telc-a2-modelltest">
-                 <img  src="https://deutschtests.com/img/telc-b2-modelltest.png" class="img-fluid w-100" alt="telc-b2-modelltest">
+                 <img  src="https://deutschtests.com/img/telc-a2-modelltest.png" class="img-fluid w-100" alt="telc a2 modelltest">
+                 <img  src="https://deutschtests.com/img/telc-b2-modelltest.png" class="img-fluid w-100" alt="telc b2 modelltest">
              </div>
           </div>
           <div class="row mt-3 mb-5">
              <div class="col-3" style="    margin-top: -55px;">
-                 <img  src="https://deutschtests.com/img/Telc-C1-Prüfung.png" class="img-fluid w-100" alt="Telc-C1-Prüfung">
+                 <img  src="https://deutschtests.com/img/Telc-C1-Prüfung.png" class="img-fluid w-100" alt="Telc C1 Prüfung">
              </div>
           </div>
         </div>

@@ -26,7 +26,7 @@ class UserController extends Controller
 	
 	public function allexam()
     {
-        $exams=ExamAnswer::where("user_id" ,'!=', 1)->orderBy('id', 'DESC')->take('3')->get();
+        $exams=ExamAnswer::where("user_id" ,'!=', 1)->orderBy('id', 'DESC')->get();
 		foreach ($exams as $item) {            
          	$item->exam=Exam::where("id" , $item->exam_id)->first();
 			$user=User::where("id" , $item->user_id)->first();
@@ -34,7 +34,6 @@ class UserController extends Controller
 				$item->user_name=$user->name;
 			 
         }
-		// dd($exams);
 		return view('admin.users.allexam',compact('exams'));
 	}
 	public function examsGoethe($id)

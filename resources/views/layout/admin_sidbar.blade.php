@@ -16,7 +16,7 @@
             <a href="{{url('admin/telc-exams')}}"><i class="la la-envelope"></i><span class="menu-title" data-i18n="">telc exams</span></a>
         </li>
         <li class="nav-item {{ Request::is('admin/allexam') ? 'active' : '' }}">
-            <a href="{{url('admin/allexam')}}"><i class="la la-envelope"></i><span class="menu-title" data-i18n="">الاختبارات الجديده</span></a>
+            <a href="{{url('admin/allexam')}}"><i class="la la-envelope"></i><span class="menu-title" data-i18n="">Latest Exam</span></a>
         </li>
         <li class="nav-item {{ Request::is('admin/questions') ? 'active' : '' }}">
             <a href="{{url('admin/questions')}}"><i class="la la-envelope"></i><span class="menu-title" data-i18n="">Questions</span></a>

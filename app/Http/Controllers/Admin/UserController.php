@@ -22,15 +22,19 @@ class UserController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-    }
-	//    
+    }  
 	
 	public function allexam()
     {
-        $exams=ExamAnswer::orderBy('id', 'DESC')->get();
+        $exams=ExamAnswer::where("user_id" ,'!=', 1)->orderBy('id', 'DESC')->take('3')->get();
 		foreach ($exams as $item) {            
          	$item->exam=Exam::where("id" , $item->exam_id)->first();
+			$user=User::where("id" , $item->user_id)->first();
+			if($user)
+				$item->user_name=$user->name;
+			 
         }
+		// dd($exams);
 		return view('admin.users.allexam',compact('exams'));
 	}
 	public function examsGoethe($id)

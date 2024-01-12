@@ -72,23 +72,23 @@
 												<tr>
 													<th>#</th>
 													<th>exam Name</th>
-													<th>القراءة</th>
-													<th>السماعي</th>
+													<th>Lesen </th>
+													<th>Hören</th>
 													<!--<th class="text-center">Actions</th>-->
 												</tr>
 											</thead>
 											<tbody>
 
-											@foreach ($exams as $_item)
+											@foreach ($exams as $key =>$_item)
 												<tr>
 													<td class="text-center">
-														{{$_item->id}}
+														{{$key}}
 													</td>
 													<td class="text-center">
 														{{$_item->exam->name}}
 													</td>
 													<td class="text-center">
-														jguyg
+														{{$_item->user_name}}
 													</td>
 													<td class="text-center">
                                                         {{$_item->created_at->format('Y-m-d')}}

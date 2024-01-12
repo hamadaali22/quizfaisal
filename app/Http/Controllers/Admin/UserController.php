@@ -34,6 +34,7 @@ class UserController extends Controller
 				$item->user_name=$user->name;
 			 
         }
+		// dd($exams);
 		return view('admin.users.allexam',compact('exams'));
 	}
 	public function examsGoethe($id)

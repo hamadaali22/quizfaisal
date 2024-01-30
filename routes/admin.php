@@ -109,7 +109,10 @@ Route::get('admin-login', 'Auth\LoginController@LoginAdmin')->name('admin-login'
 	});
 	Route::group(['middleware' => 'auth', 'namespace' => 'Admin','prefix' => 'admin'], function () {
 
-
+		
+		
+		Route::resource('quizes','QuizeController');
+		Route::resource('sets','SetController');
 
 		    Route::resource('roles','RoleController');
 		    Route::resource('users','UserController');

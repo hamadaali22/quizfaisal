@@ -15,6 +15,7 @@ use App\ExamAnswer;
 use App\Exam;
 use App\Question;
 use App\SubQuestion;
+use App\ExpectedAnswer;
 class UserController extends Controller
 {
     use GeneralTrait;

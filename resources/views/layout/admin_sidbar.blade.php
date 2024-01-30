@@ -27,6 +27,12 @@
         <li class="nav-item {{ Request::is('admin/users') ? 'active' : '' }}">
             <a href="{{url('admin/users')}}"><i class="la la-envelope"></i><span class="menu-title" data-i18n="">users</span></a>
         </li>
+        <li class="nav-item {{ Request::is('admin/sets') ? 'active' : '' }}">
+            <a href="{{url('admin/sets')}}"><i class="la la-envelope"></i><span class="menu-title" data-i18n="">groups</span></a>
+        </li>
+        <li class="nav-item {{ Request::is('admin/quizes') ? 'active' : '' }}">
+            <a href="{{url('admin/quizes')}}"><i class="la la-envelope"></i><span class="menu-title" data-i18n="">quizes</span></a>
+        </li>
          @can('حسابي')
             <li class="nav-item {{ Request::is('admin/profile') ? 'active' : '' }}">
                 <a href="{{url('admin/profile')}}"><i class="la la-envelope"></i><span class="menu-title" data-i18n="">My Profile</span></a>

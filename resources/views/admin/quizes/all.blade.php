@@ -119,20 +119,8 @@
                               </td>
                               <td class="text-center col-sm-3">
                                   <div class="actions">
-                                      <a href="{{url('admin/allsubquestions',$_item->id)}}" class="edit-course" >
-                                            <!-- <button type="button" class="btn border-info "><i class="la la-eye" style="color: #1E9FF2;"></i></button> -->
-                                          <button type="button" class="btn btn-icon btn-danger">
-                                              <i class="la la-eye"></i>
-                                          </button>
-                                          <span class="editcourse"> subquestions</span>
-                                      </a>
-                                      <a href="{{url('admin/subquestions',$_item->id)}}" class="edit-course" >
-                                          <button type="button" class="btn  btn-icon btn-primary">
-                                              <i class="ft-plus-square"></i>
-                                          </button>
-                                          <span class="editcourse">Add subquestions</span>
-                                      </a>
-                                      <a href="{{route('questions.edit',$_item->id)}}" class="edit-course" >
+                                      
+                                      <a href="{{route('quizes.edit',$_item->id)}}" class="edit-course" >
                                           <button type="button" class="btn btn-outline-success ">
                                               <i class="la la-edit"></i>
                                           </button>
@@ -172,7 +160,7 @@
                                                                         <div class="col-sm-3">
                                                                         </div>
                                                                         <div class="col-sm-2">
-                                                                            <form method="post" action="{{route('questions.destroy','test')}}">
+                                                                            <form method="post" action="{{route('quizes.destroy','test')}}">
                                                                                  @csrf
                                                                                  @method('delete')
                                                                                  <input type="hidden" name="id" id="cat_id">

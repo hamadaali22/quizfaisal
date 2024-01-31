@@ -66,6 +66,12 @@
                 <input type="text" name="name2" class="form-control" id="name2" value="{{$level->name2}}">
               </div>
             </div>
+            <div class="col-12 col-sm-12">
+              <div class="form-group">
+                <label>Level quize Name </label>
+                <input type="text" name="name3" class="form-control" id="name2" value="{{$level->name3}}">
+              </div>
+            </div>
             <div class="form-group col-md-12 col-sm-6 paragraph-hidden">
               <label>description</label>
               <textarea name="description"  cols="20" rows="2"  class="form-control ckeditor" id='descriptionId'>{{$level->description}}</textarea>

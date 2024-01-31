@@ -91,17 +91,14 @@
 													</td>
 													<td class="text-center">
 														<div class="actions">
-															<!-- <a class="btn btn-sm bg-success-light" data-toggle="modal"
-																data-name="{{ $_item->name }}"
-																data-description="{{ $_item->description }}"
-																data-description_telc="{{ $_item->description_telc }}"
+															<a class="btn btn-sm bg-success-light" data-toggle="modal"
+																data-title="{{ $_item->title }}"
+																data-type="{{ $_item->type }}"
 																data-catid="{{ $_item->id }}"
 																data-target="#edit">
 																 <button type="button" class="btn btn-outline-success "><i class="la la-edit"></i></button>
-															</a> -->
-															<a href="{{route('levels.edit',$_item->id)}}" class="edit-course" >
-																		<button type="button" class="btn btn-outline-success "><i class="la la-edit"></i></button>
-																	</a>
+															</a>
+															
 															<a data-toggle="modal" data-catid="{{ $_item->id }}" data-target="#delete" class="delete-course">
 				                          <button type="button" class=" btn btn-outline-warning"><i class="la la-trash-o"></i></button>
 				                      </a>
@@ -184,34 +181,39 @@
 							</button>
 						</div>
 						<div class="modal-body">
-							<form  method="post" action="{{route('levels.update','test')}}" enctype="multipart/form-data">
+							<form  method="post" action="{{route('sets.update','test')}}" enctype="multipart/form-data">
                   @csrf
                   @method('put')
 								<div class="row form-row">
 									<input type="hidden" name="id" id="cat_id" >
-									<div class="col-12 col-sm-12">
+									<div class="col-12 col-md-12  col-sm-6">
 										<div class="form-group">
-											<label>Level Name </label>
-											<input type="text" name="name" class="form-control" id="name" >
+											<label>title</label>
+											<input type="text" name="title" class="form-control" id="titleId">
 										</div>
 									</div>
-									<div class="form-group col-md-12 col-sm-6 paragraph-hidden">
-	                  <label>description</label>
-	                  <textarea name="description"  cols="20" rows="1"  class="form-control ckeditor" id='descriptionId'></textarea>
-	                  @error('description')
-	                  <span class="text-danger">{{$message}}</span>
-	                  @enderror
-	                  <span id="short_detailError" style="color: red;"></span>
-	                </div>
-
-	                <div class="form-group col-md-12 col-sm-6 paragraph-hidden">
-	                  <label>description telc</label>
-	                  <textarea name="description_telc"  cols="20" rows="1"  class="form-control " ></textarea>
-	                  @error('description_telc')
-	                  <span class="text-danger">{{$message}}</span>
-	                  @enderror
-	                  <span id="short_detailError" style="color: red;"></span>
-	                </div>
+									<div class="col-12 col-md-12  col-sm-6">
+                                        <div class="form-group">
+                                            <label>Select type </label>
+                                            <select name="type" required class="form-control formselect" id="typeId">
+                                                <option disabled>Select</option>
+                                                
+                                                <option value="difficult"
+                                                    {{ old('level_id') == 'difficult' ? "selected" : "" }}>difficult
+                                                </option>
+                                                <option value="middle"
+                                                    {{ old('level_id') == 'middle' ? "selected" : "" }}>middle
+                                                </option>
+                                                <option value="easy"
+                                                    {{ old('level_id') == 'easy' ? "selected" : "" }}>easy
+                                                </option>
+                                            </select>
+                                            @error('level_id')
+                                            <span class="text-danger">{{$message}}</span>
+                                            @enderror
+                                            <span id="categoryError" style="color: red;"></span>
+                                        </div>
+                                    </div>
 
 								</div>
 								<button type="submit" class="btn btn-primary btn-block"> Save Changing</button>
@@ -234,7 +236,7 @@
 									<div class="col-sm-3">
 									</div>
 									<div class="col-sm-2">
-										<form method="post" action="{{route('levels.destroy','test')}}">
+										<form method="post" action="{{route('sets.destroy','test')}}">
 	                                   		 @csrf
 	                                         @method('delete')
 	                                         <input type="hidden" name="id" id="cat_id" >
@@ -259,16 +261,14 @@
 <script>
     $('#edit').on('show.bs.modal', function (event) {
       var button = $(event.relatedTarget)
-      var name = button.data('name')
-      var description = button.data('description')
-      var description_telc = button.data('description_telc')
+      var title = button.data('title')
+      var type = button.data('type')
 
       var cat_id = button.data('catid')
       var modal = $(this)
 
-      modal.find('.modal-body #name').val(name);
-      modal.find('.modal-body #descriptionId').val(description);
-      modal.find('.modal-body #description_telcId').val(description_telc);
+      modal.find('.modal-body #titleId').val(title);
+      modal.find('.modal-body #typeId').val(type);
 
       modal.find('.modal-body #cat_id').val(cat_id);
     })

@@ -43,6 +43,7 @@ class LevelController extends Controller
         $add = new Level;
         $add->name    = $request->name;
         $add->name2    = $request->name2;
+        $add->name3    = $request->name3;
         $add->description    = $request->description;
         $add->description_telc    = $request->description_telc;
         $add->save();
@@ -68,6 +69,11 @@ class LevelController extends Controller
             $edit->name2    = $request->name2;
         }else{
             $edit->name2    = $edit->name2;
+        }
+        if($request->name3 !=''){
+            $edit->name3    = $request->name3;
+        }else{
+            $edit->name3    = $edit->name3;
         }
 
         if($request->description !=''){

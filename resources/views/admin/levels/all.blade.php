@@ -72,8 +72,8 @@
 												<tr>
 													<th>#</th>
 													<th>level Name</th>
-													<th>description</th>
-													<th>description_telc</th>
+													<th>telc name</th>
+													<th>quize name</th>
 													<th class="text-center">Actions</th>
 												</tr>
 											</thead>
@@ -91,11 +91,14 @@
 														{{$_item->name2}}
 													</td>
 													<td class="text-center">
+														{{$_item->name3}}
+													</td>
+													<!-- <td class="text-center">
 														{{$_item->description}}
 													</td>
 													<td class="text-center">
 														{{$_item->description_telc}}
-													</td>
+													</td> -->
 													<td class="text-center">
 														<div class="actions">
 															<!-- <a class="btn btn-sm bg-success-light" data-toggle="modal"
@@ -152,6 +155,12 @@
 										<div class="form-group">
 											<label>Level telc Name</label>
 											<input type="text" name="name2" class="form-control" value="{{old('name2')}}">
+										</div>
+									</div>
+									<div class="col-12 col-md-12  col-sm-6">
+										<div class="form-group">
+											<label>Level quize Name</label>
+											<input type="text" name="name3" class="form-control" value="{{old('name3')}}">
 										</div>
 									</div>
 									<div class="form-group col-md-12 col-sm-6 ">

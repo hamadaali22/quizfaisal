@@ -60,102 +60,36 @@ class QuizeController extends Controller
 
 // use App\Curricul;
 
-    public function edit(Question $question)
+    public function edit(Quize $quize)
     {
-        $exams=Exam::all();
+        $levels=Level::all();
+        $sets=Set::all();
 
-        return view('admin.questions.edit',compact('question','exams'));
+        return view('admin.quizes.edit',compact('quize','levels','sets'));
     }
-
-    public function update(Request $request, Question $question){
-
-        $edit = Question::findOrFail($question->id);
-
-        if($request->type =='listening'){
-            if($files = $request->file('file')) {
-                $profileImage = date('YmdHis') . "." . $files->getClientOriginalExtension();
-                $destinationPath = 'img/questions-file';
-                $files->move($destinationPath, $profileImage);
-                $edit->file = $profileImage;
-            }else{
-                $edit->file = $edit->file;
-            }
-        }
-
-        if($request->type =='image'){
-            if ($image = $request->file('image')) {
-                $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
-                $destinationPath = 'img/questions-image';
-                $image->move($destinationPath, $profileImage);
-                $edit->image = $profileImage;
-            }else{
-                $edit->image = $edit->image;
-            }
-        }
-        if($request->type =='reading'){
-            if(isset($request->paragraph)){
-                $edit->paragraph = $request->paragraph;
-            }else{
-                $edit->paragraph = $edit->paragraph;
-            }
-        }
-        if($request->type =='listening and image'){
-            if($files = $request->file('file')) {
-                $profileImage = date('YmdHis') . "." . $files->getClientOriginalExtension();
-                $destinationPath = 'img/questions-file';
-                $files->move($destinationPath, $profileImage);
-                $edit->file = $profileImage;
-            }else{
-                $edit->file = $edit->file;
-            }
-            // dd($request->file('image'));
-            if ($image = $request->file('image')) {
-                $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
-                $destinationPath = 'img/questions-image';
-                $image->move($destinationPath, $profileImage);
-                $edit->image = $profileImage;
-            }else{
-                $edit->image = $edit->image;
-            }
-        }
-
-
-        // $add->level_id    = $request->le vel_id;
-        $edit->exam_id    = $request->exam_id;
+    public function update(Request $request, Quize $quize){
+        
+        $edit = Quize::findOrFail($quize->id);
+        $edit->level_id    = $request->level_id;
+        $edit->set_id    = $request->set_id;
         $edit->type    = $request->type;
-        $edit->bio    = $request->bio;
-
-
+        $edit->skill    = $request->skill;
+        $edit->title    = $request->title;
+        $edit->first_choice    = $request->first_choice;
+        $edit->second_choice    = $request->second_choice;
+        $edit->third_choice    = $request->third_choice;
+        $edit->expected_answer    = $request->expected_answer;
         $edit->save();
 
-        // if($request->name !=''){
-        //     $edit->name    = $request->name;
-        //  }else{
-        //     $edit->name    = $edit->name;
-        //  }
-
-        return redirect()->route('questions.index')->with("message", 'Updated successfully');
+        return redirect()->route('quizes.index')->with("message", 'Updated successfully');
     }
 
     public function destroy(Request $request )
     {
-            $delete = Question::findOrFail($request->id);
-            // dd('gggghytghgt');
-            if($delete){
-                $subquestions= SubQuestion::where('question_id',$delete->id)->get();
-                foreach ($subquestions as $subquestion) {
-                    $subquestion->delete();
-                    $answers= Answer::where('subquestion_id',$subquestion->id)->get();
-                    foreach ($answers as $answer) {
-                        // $delete_branch = Day::findOrFail($answer->id);
-                        $answer->delete();
-                    }
-                }
-
-            }
+            $delete = Quize::findOrFail($request->id);
             $delete->delete();
 
-            return redirect()->route('questions.index')->with("message",'The question has been deleted');
+            return redirect()->route('quizes.index')->with("message",'The question has been deleted');
     }
 
 

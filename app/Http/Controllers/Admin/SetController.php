@@ -48,146 +48,34 @@ class SetController extends Controller
     }
 
 
-    public function edit(Level $level)
-    {
-        return view('admin.levels.edit',compact('level'));
-    }
+    // public function edit(Set $level)
+    // {
+    //     return view('admin.levels.edit',compact('level'));
+    // }
 
     public function update(Request $request)
     {
-        $edit = Level::findOrFail($request->id);
+        $this->validate( $request,[
+                'title'=>'required',
+                'type'=>'required'
+            ],
+            [
+                'title.required'=>'يرجى ادخال نوع العقار',
+                'type.required'=>'يرجى اختيار النوع ',
 
-        if($request->name !=''){
-            $edit->name    = $request->name;
-        }else{
-            $edit->name    = $edit->name;
-        }
-        if($request->name2 !=''){
-            $edit->name2    = $request->name2;
-        }else{
-            $edit->name2    = $edit->name2;
-        }
+            ]
+        );
 
-        if($request->description !=''){
-            $edit->description    = $request->description;
-         }else{
-            $edit->description    = $edit->description;
-         }
-         if($request->description_telc !=''){
-             $edit->description_telc    = $request->description_telc;
-          }else{
-             $edit->description_telc    = $edit->description_telc;
-          }
-        
-        // goethe
-        if($file=$request->file('goethe1'))
-        {
-            $fileName = $file->getClientOriginalName();
-            $path = 'img/goethe';
-            $request-> file('goethe1') ->move($path,$fileName);
-            $edit->goethe1  =$fileName; 
-        }else{
-             $edit->goethe1  = $edit->goethe1;
-        }
-        if($file=$request->file('goethe2'))
-        {
-            $fileName = $file->getClientOriginalName();
-            $path = 'img/goethe';
-            $request-> file('goethe2') ->move($path,$fileName);
-            $edit->goethe2  =$fileName; 
-        }else{
-             $edit->goethe2  = $edit->goethe2;
-        }
-
-        if($file=$request->file('goethe3'))
-        {
-            $fileName = $file->getClientOriginalName();
-            $path = 'img/goethe';
-            $request-> file('goethe3') ->move($path,$fileName);
-            $edit->goethe3  =$fileName; 
-        }else{
-             $edit->goethe3  = $edit->goethe3;
-        }
-
-        if($file=$request->file('goethe4'))
-        {
-            $fileName = $file->getClientOriginalName();
-            $path = 'img/goethe';
-            $request-> file('goethe4') ->move($path,$fileName);
-            $edit->goethe4  =$fileName; 
-        }else{
-             $edit->goethe4  = $edit->goethe4;
-        }
-
-        if($file=$request->file('goethe5'))
-        {
-            $fileName = $file->getClientOriginalName();
-            $path = 'img/goethe';
-            $request-> file('goethe5') ->move($path,$fileName);
-            $edit->goethe5  =$fileName; 
-        }else{
-             $edit->goethe5  = $edit->goethe5;
-        }
-
-       
-        // telc
-        if($file=$request->file('telc1'))
-        {
-            $fileName = $file->getClientOriginalName();
-            $path = 'img/telc';
-            $request-> file('telc1') ->move($path,$fileName);
-            $edit->telc1  =$fileName; 
-        }else{
-             $edit->telc1  = $edit->telc1;
-        }
-
-        if($file=$request->file('telc2'))
-        {
-            $fileName = $file->getClientOriginalName();
-            $path = 'img/telc';
-            $request-> file('telc2') ->move($path,$fileName);
-            $edit->telc2  =$fileName; 
-        }else{
-             $edit->telc2  = $edit->telc2;
-        }
-
-        if($file=$request->file('telc3'))
-        {
-            $fileName = $file->getClientOriginalName();
-            $path = 'img/telc';
-            $request-> file('telc3') ->move($path,$fileName);
-            $edit->telc3  =$fileName; 
-        }else{
-             $edit->telc3  = $edit->telc3;
-        }
-
-        if($file=$request->file('telc4'))
-        {
-            $fileName = $file->getClientOriginalName();
-            $path = 'img/telc';
-            $request-> file('telc4') ->move($path,$fileName);
-            $edit->telc4  =$fileName; 
-        }else{
-             $edit->telc4  = $edit->telc4;
-        }
-
-        if($file=$request->file('telc5'))
-        {
-            $fileName = $file->getClientOriginalName();
-            $path = 'img/telc';
-            $request-> file('telc5') ->move($path,$fileName);
-            $edit->telc5  =$fileName; 
-        }else{
-             $edit->telc5  = $edit->telc5;
-        }
-
+        $edit = Set::findOrFail($request->id);
+        $edit->title    = $request->title;    
+        $edit->type    = $request->type;
         $edit->save();
-        return redirect()->route('levels.index')->with("message", 'Updated successfully');
+        return redirect()->route('sets.index')->with("message", 'Updated successfully');
     }
 
     public function destroy(Request $request )
     {
-        $level = Level::findOrFail($request->id);
+        $level = Set::findOrFail($request->id);
         // $subcategory=SubCategory::where('id',$category->categoryId)->get();
         // foreach ($subcategory as $item) {
             //     $category= SubCategory::where('id',$item->id)->first();
@@ -195,6 +83,6 @@ class SetController extends Controller
 
             // }
         $level->delete();
-        return redirect()->route('levels.index')->with("message",'The level has been deleted');
+        return redirect()->route('sets.index')->with("message",'The level has been deleted');
     }
 }

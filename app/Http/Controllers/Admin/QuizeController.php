@@ -50,6 +50,7 @@ class QuizeController extends Controller
         $add->first_choice    = $request->first_choice;
         $add->second_choice    = $request->second_choice;
         $add->third_choice    = $request->third_choice;
+        $add->fourth_choice    = $request->fourth_choice;
         $add->expected_answer    = $request->expected_answer;
         $add->save();
 
@@ -78,6 +79,7 @@ class QuizeController extends Controller
         $edit->first_choice    = $request->first_choice;
         $edit->second_choice    = $request->second_choice;
         $edit->third_choice    = $request->third_choice;
+        $edit->fourth_choice    = $request->fourth_choice;
         $edit->expected_answer    = $request->expected_answer;
         $edit->save();
 

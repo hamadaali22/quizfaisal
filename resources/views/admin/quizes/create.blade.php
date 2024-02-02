@@ -142,6 +142,13 @@
                                         <span id="titleError" style="color: red;"></span>
                                     </div>
                                 </div>
+                                <div class="col-md-4 col-sm-6 ">
+                                    <div class="form-group">
+                                        <label>fourth choice</label>
+                                        <input type="text" name="fourth_choice" class="form-control ">
+                                        <span id="titleError" style="color: red;"></span>
+                                    </div>
+                                </div>
 
                             </div>
                             <div class="col-md-12">

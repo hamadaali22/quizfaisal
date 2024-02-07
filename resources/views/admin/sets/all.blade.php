@@ -94,6 +94,7 @@
 															<a class="btn btn-sm bg-success-light" data-toggle="modal"
 																data-title="{{ $_item->title }}"
 																data-type="{{ $_item->type }}"
+																data-level="{{ $_item->level_id }}"
 																data-catid="{{ $_item->id }}"
 																data-target="#edit">
 																 <button type="button" class="btn btn-outline-success "><i class="la la-edit"></i></button>
@@ -136,6 +137,23 @@
 										<div class="form-group">
 											<label>title</label>
 											<input type="text" name="title" class="form-control" value="{{old('title')}}">
+										</div>
+									</div>
+									<div class="col-md-12">
+										<div class="form-group">
+											<label>Select Level </label>
+											<select name="level_id" required class="form-control formselect">
+												<option disabled>Select</option>
+												@foreach ($levels as $level)
+												<option value="{{$level->id}}"
+													{{ old('level_id') == $level->id ? "selected" : "" }}>{{$level->name3}}
+												</option>
+												@endforeach
+											</select>
+											@error('level_id')
+											<span class="text-danger">{{$message}}</span>
+											@enderror
+											<span id="categoryError" style="color: red;"></span>
 										</div>
 									</div>
 									<div class="col-12 col-md-12  col-sm-6">
@@ -190,6 +208,24 @@
 										<div class="form-group">
 											<label>title</label>
 											<input type="text" name="title" class="form-control" id="titleId">
+										</div>
+									</div>
+									<div class="col-md-12">
+										<div class="form-group">
+											<label>Select Level </label>
+											<select name="level_id" required class="form-control formselect" id="levelId">
+												<option disabled>Select</option>
+												@foreach ($levels as $level)
+												<option value="{{$level->id}}"
+												{{ old('level_id') == $level->id ? "selected" : "" }}>{{$level->name3}}
+                                                </option>
+
+												@endforeach
+											</select>
+											@error('level_id')
+											<span class="text-danger">{{$message}}</span>
+											@enderror
+											<span id="categoryError" style="color: red;"></span>
 										</div>
 									</div>
 									<div class="col-12 col-md-12  col-sm-6">
@@ -262,12 +298,15 @@
     $('#edit').on('show.bs.modal', function (event) {
       var button = $(event.relatedTarget)
       var title = button.data('title')
+      var level = button.data('level')
       var type = button.data('type')
 
       var cat_id = button.data('catid')
       var modal = $(this)
 
       modal.find('.modal-body #titleId').val(title);
+	  
+      modal.find('.modal-body #levelId').val(level);
       modal.find('.modal-body #typeId').val(type);
 
       modal.find('.modal-body #cat_id').val(cat_id);

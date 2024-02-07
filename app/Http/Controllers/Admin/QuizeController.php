@@ -38,7 +38,10 @@ class QuizeController extends Controller
         $sets=Set::all();
         return view('admin.quizes.create',compact('quizes','levels','sets'));
     }
-
+    public function getGroupName($id){
+        echo json_encode(Set::where('level_id', $id)->get());
+       // echo json_encode(DB::table('sub_categories')->where('categoryId', $id)->get());
+   }
     public function store(Request $request)
     {
         $add = new Quize;

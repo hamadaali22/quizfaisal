@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 
 use App\Set;
 use Illuminate\Http\Request;
+use App\Level;
 
 class SetController extends Controller
 {
@@ -21,7 +22,8 @@ class SetController extends Controller
     public function index()
     {
         $sets=Set::all();
-        return view('admin.sets.all',compact('sets'));
+        $levels=Level::all();
+        return view('admin.sets.all',compact('sets','levels'));
     }
 
     public function create()
@@ -42,6 +44,7 @@ class SetController extends Controller
         );
         $add = new Set;
         $add->title    = $request->title;
+        $add->level_id    = $request->level_id;
         $add->type    = $request->type;
         $add->save();
         return redirect()->back()->with("message", 'Added successfully');
@@ -67,7 +70,8 @@ class SetController extends Controller
         );
 
         $edit = Set::findOrFail($request->id);
-        $edit->title    = $request->title;    
+        $edit->title    = $request->title;   
+        $edit->level_id    = $request->level_id; 
         $edit->type    = $request->type;
         $edit->save();
         return redirect()->route('sets.index')->with("message", 'Updated successfully');

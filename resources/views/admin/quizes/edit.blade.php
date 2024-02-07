@@ -66,10 +66,10 @@
                         @method('put')
                             <div class="row form-row">
                                 <input type="hidden" name="level_id" class="form-control" value="">
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Select Level </label>
-                                        <select name="level_id" required class="form-control formselect">
+                                        <select name="level_id" required class="form-control formselect" id="level_name">
                                             <option disabled>Select</option>
                                             @foreach ($levels as $level)
                                             <option value="{{$level->id}}" {{ $quize->level_id == $level->id ? "selected" : "" }}>{{$level->name3}}
@@ -77,15 +77,15 @@
                                             @endforeach
                                         </select>
                                         @error('level_id')
-                                        <span class="text-danger">{{$message}}</span>
+                                        <span class="text-danger">{{$message}}</span> 
                                         @enderror
                                         <span id="categoryError" style="color: red;"></span>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label>select group</label>
-                                        <select name="set_id" required class="form-control formselect">
+                                        <select name="set_id" required class="form-control formselect" id="group_name">
                                             <option disabled>Select</option>
                                             @foreach ($sets as $set)
                                             <option value="{{$set->id}}" {{ $quize->level_id == $set->id ? "selected" : "" }}>{{$set->title}}
@@ -98,7 +98,7 @@
                                         <span id="categoryError" style="color: red;"></span>
                                     </div>
                                 </div>
-                                <div class="form-group col-md-3 col-sm-6">
+                                <!-- <div class="form-group col-md-3 col-sm-6">
                                     <label> Select Type </label>
                                     <select name="type" required class="form-control formselect">
                                         <option disabled>Select</option>
@@ -112,8 +112,8 @@
                                         </option>
                                     </select>
                                     <span id="typeError" style="color: red;"></span>
-                                </div>
-                                <div class="form-group col-md-3 col-sm-6">
+                                </div> -->
+                                <div class="form-group col-md-4 col-sm-6">
                                     <label> Select Type </label>
                                     <select name="skill" required class="form-control formselect">
                                         <option disabled>Select</option>
@@ -139,28 +139,28 @@
 									<span id="expectedAnswerError" style="color: red;"></span>
 									</div>
 								</div>
-                                <div class="col-md-4 col-sm-6 ">
+                                <div class="col-md-3 col-sm-6 ">
                                     <div class="form-group">
                                         <label>first choice</label>
                                         <input type="text" name="first_choice" class="form-control " value="{{$quize->first_choice}}">
                                         <span id="titleError" style="color: red;"></span>
                                     </div>
                                 </div>
-                                <div class="col-md-4 col-sm-6 ">
+                                <div class="col-md-3 col-sm-6 ">
                                     <div class="form-group">
                                         <label>second choice</label>
                                         <input type="text" name="second_choice" class="form-control " value="{{$quize->second_choice}}">
                                         <span id="titleError" style="color: red;"></span>
                                     </div>
                                 </div>
-                                <div class="col-md-4 col-sm-6 ">
+                                <div class="col-md-3 col-sm-6 ">
                                     <div class="form-group">
                                         <label>third choice</label>
                                         <input type="text" name="third_choice" class="form-control " value="{{$quize->third_choice}}">
                                         <span id="titleError" style="color: red;"></span>
                                     </div>
                                 </div>
-                                <div class="col-md-4 col-sm-6 ">
+                                <div class="col-md-3 col-sm-6 ">
                                     <div class="form-group">
                                         <label>fourth choice</label>
                                         <input type="text" name="fourth_choice" class="form-control "  value="{{$quize->fourth_choice}}">
@@ -182,5 +182,28 @@
   <script src="{{asset('admin/js/scripts/forms/select/form-select2.js')}}" type="text/javascript"></script>
 
 
+  <script> 
+        $(document).ready(function () {
+            $('#level_name').on('change', function () {
+                console.log("welcome sub"); 
+                let id = $(this).val();
+                $.ajax({
+                    type: 'GET',
+                    url: "{{url('admin/get_group_name')}}/"+id,
+                    success: function (response) {
+                        var response = JSON.parse(response)
+                        console.log(response);   
+                        $('#group_name').empty();
+                        $('#group_name').append(`<option value="0" disabled selected>أختر </option>`);
+                        response.forEach(element => {
+                            $('#group_name').append(`<option value="${element['id']}">
+                            ${element['title']}
+                            </option>`);
+                        });
+                    }
+                });
+            });
+        });
+    </script>
 @endsection
 

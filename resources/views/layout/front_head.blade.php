@@ -4,8 +4,37 @@
    <link rel="stylesheet" href="{{asset('front/bootstrap-4.0.0-dist/css/bootstrap.css')}}">
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
    <link rel="stylesheet" href="{{asset('front/quiz.css')}}">
-
   <link rel="shortcut icon" href="{{asset('img/settings/'.$contact->favicon) }}">
+
+
+
+
+
+  <!-- <link rel="shortcut icon" type="image/icon" href="assets/images/favicon.ico"/> -->
+    <!-- Font Awesome -->
+    <!-- <link href="assets/css/font-awesome.css" rel="stylesheet"> -->
+    <!-- Bootstrap -->
+	<!-- <link href="{{asset('front/Animation/bootstrap.css')}}" rel="stylesheet">  -->
+    <!-- Slick slider -->
+    <link rel="stylesheet" type="text/css" href="{{asset('front/Animation/slick.css')}}"/> 
+    <!-- Fancybox slider -->
+    <link rel="stylesheet" href="{{asset('front/Animation/jquery.fancybox.css')}}" type="text/css" media="screen" /> 
+    <!-- Animate css -->
+    <link rel="stylesheet" type="text/css" href="{{asset('front/Animation/animate.css')}}"/> 
+    <!-- Main Style -->
+    <link href="{{asset('front/Animation/style.css')}}" rel="stylesheet">
+    <!-- Fonts -->
+
+    <!-- Open Sans for body font -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+    <!-- Lato for Title -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+
+
+
+
+
+  
     @if(Request::is(['/']))
         <title> Deutsch Tests online |Deutsch-Prüfungen</title>
         <meta content=" Deutsch Tests online, Deutsch-Prüfungen, Goethe Deutsch, Telc Deutsch, Teste dein Deutsch" name="keywords">

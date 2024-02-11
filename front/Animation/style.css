@@ -1,0 +1,310 @@
+/** bar**/
+.width {
+	text-align: right;
+  padding-right: .5em;
+  background-color: #3aa6d0;
+  border-color: white;
+  border-right: .5em solid adjust-lightness(#3aa6d0, 20);
+
+  color: white;
+  height: 100%;
+  line-height: 1.2em;
+  -webkit-animation: width .5s ease-in;
+}
+
+.progress1 {
+  position: relative;
+  width: 100%;
+  height: 30px;
+  background: #d3d3d3;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+ .progress2 {
+  position: relative;
+  width: 100%;
+  height: 30px;
+  background: #d3d3d3;
+  border-radius: 5px;
+  overflow: hidden;
+}
+	
+	.progress3 {
+  position: relative;
+  width: 100%;
+  height: 30px;
+  background: #d3d3d3;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+ .progress4 {
+  position: relative;
+  width: 100%;
+  height: 30px;
+  background: #d3d3d3;
+  border-radius: 5px;
+  overflow: hidden;
+}
+	
+  .progress5{
+  position: relative;
+  width: 100%;
+  height: 30px;
+  background: #d3d3d3;
+  border-radius: 5px;
+  overflow: hidden;
+}
+ .progress6 {
+  position: relative;
+  width: 100%;
+  height: 30px;
+  background: #d3d3d3;
+  border-radius: 5px;
+  overflow: hidden;
+}
+	
+.progress__fill {
+  width: 0%;
+  height: 100%;
+  background: #3aa6d0;
+  transition: all 0.9s;
+}
+
+.progress__text {
+  position: absolute;
+  top: 50%;
+  right: 5px;
+  transform: translateY(-50%);
+  font: bold 14px "Quicksand", sans-serif;
+  color: navy;
+	
+}
+	
+	.progress__name{
+		position: absolute;
+
+  top: 25%;
+  right: 5px;
+  transform: translateY(-50%);
+	transform: translateX(-370%);	
+  font: bold 14px "Quicksand", sans-serif;
+  color: navy;
+	}
+        
+/**radial ***/
+
+
+.bigrow{
+	height: 70px;
+	background-image: linear-gradient(to right, purple , blue);
+}
+
+.centerImge {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+      /*  width: 25%;
+        height:25%;*/
+    }
+.book{
+	display: block;
+transform: translateY(-60%); 
+	padding-left: 5%;
+}
+.mywhite{
+	color:white;
+	text-align: center;
+	font-size: 24px;
+	padding: 3% 0% 0% 15%;
+}
+.text-center {
+  text-align: center;
+}
+
+.button {
+  background-color: #008CBA; 
+  border: none;
+  color: white;
+ padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  border-radius: 8px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+.button:hover{
+	box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+	background-color: #04AA6D; 
+	border: none;
+}
+.button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+  border: none;  
+}
+#face {
+/*	transform: translateY(30%); */
+	padding-top: 10%;
+}
+ .facesize img{
+/*  width: 50%;
+  height: 50%;*/
+  margin: auto;
+  display: block;	 
+} 
+
+#face2 {
+/*	transform: translateY(30%); */
+	padding-top: 10%;
+} 
+.facetext2 h5{
+	text-align: center;
+}
+
+
+#feature{
+	background-color: #fff;
+	display: inline;
+	float: left;
+	padding: 70px 0;
+	width: 100%;
+	
+}
+
+.title-about{
+	color: #3d83b3;
+	
+	font-variant-caps: all-petite-caps;
+	
+}
+.title-area .title-about {	
+	font-size: 45px;
+	font-weight: 700;
+	text-shadow: 2px 2px 2px grey;
+	color: #3d83b3;
+	
+}
+
+.title-area {
+  display: inline;
+  float: left;
+  margin-bottom: 5%;
+  text-align: center;
+  width: 100%;
+}
+
+
+.single-service {
+  display: inline;
+  float: left;
+  margin-bottom: 30px;
+  padding-left: 80px;
+  position: relative;
+  width: 100%;
+	
+}
+
+.single-service blockquote {
+	border-left-color: #3FC35F;	
+}
+.single-service blockquote p a{
+	color: #031D41;	
+}
+
+.single-service:hover .service-icon{
+	color: #031D41;
+}
+
+.single-service p {
+  font-size: 18px;
+  line-height: 25px;
+	font-family: "Times New Roman";
+	color: #031d41;
+}
+
+
+
+#about{
+	background-color: #fff;
+	display: inline;
+	float: left;
+	padding: 70px 0;
+	width: 100%;
+}
+
+.about-content {
+	display: inline;
+	float: left;
+	margin-top: 30px;
+	width: 100%;
+}
+
+.our-skill{
+	display: inline;
+	float: left;
+	width: 100%;
+	
+	
+}
+
+.our-skill h3{	
+	position: relative;
+}
+
+.our-skill h5{	
+	font-weight: bolder;
+	font-size: 14px;
+	float: left;
+}
+.our-skill h4{	
+	font-weight: bolder;
+	font-size: 16px;
+	
+}
+
+.our-skill h3::after {
+  content: "";
+  height: 2px;
+  left: 0;
+  position: absolute;
+  top: 40px;
+  width: 65px;
+}
+
+.our-skill-content{
+	display: inline;
+	float: left;
+	width: 100%;
+	margin-top: 10px;
+}
+
+.our-skill-content p{
+	margin-bottom: 10px;
+}
+
+.our-skill-content .progress5 {
+  background-color: #f5f5f5;
+  height: 30px; 
+  border-radius: 0;
+  margin-bottom: 10px;
+}
+
+.our-skill-content .progressbar-back-text,
+.our-skill-content .progressbar-front-text {
+  font-size: 14px;
+  height: 100%;
+  line-height: 30px;  
+}
+
+.progress-title {
+  font-size: 15px;
+  font-weight: bold;
+  left: 20px;
+  line-height: 29px;
+  position: absolute;
+  text-transform: uppercase;
+  top: 0;
+}

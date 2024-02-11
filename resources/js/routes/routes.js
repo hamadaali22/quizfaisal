@@ -24,6 +24,7 @@ import GoetheReport from '../components/GoetheReport.vue'
 import TelcReport from '../components/TelcReport.vue'
 import TelcUserExam from '../components/TelcUserExam.vue'
 import NoResult from '../components/NoResult.vue'
+import myAnswer from '../components/myAnswer.vue'
 const routes = [
     { path: '/home', component: Home, name: 'Home' },
     { path: '/', component: Home, name: 'Home' },
@@ -45,6 +46,9 @@ const routes = [
     { path: '/result', component: Result, name: 'Result' },
 
     { path: '/goethe-user-exam', component: GoetheUserExam, name: 'GoetheUserExam' },
+    { path: '/my-answer', component: myAnswer, name: 'myAnswer' },
+
+    
     { path: '/goethe-report/:id', component: GoetheReport, name: 'GoetheReport' },
 
     { path: '/telc-user-exam', component: TelcUserExam, name: 'TelcUserExam' },

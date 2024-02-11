@@ -23,6 +23,10 @@ use App\User;
   });
 
 
+  Route::get('/myanswer', function () {
+    // return view('front.front');
+    return view('front.myanswer');
+});
 
 // Route::any('/{any?}', 'AppController@show')->where('any', '^((?!admin|api).)*$');
 
@@ -32,7 +36,7 @@ use App\User;
 
 Route::get('{any}',function($any){
       return view('front.front');
-  })->where('any','^((?!admin|api|activation).)*$');
+  })->where('any','^((?!admin|api|activation|myanswer).)*$');
 
   // Route::get('{any}',function($any){
   //     return view('front.frontt');

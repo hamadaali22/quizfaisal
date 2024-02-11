@@ -50,7 +50,7 @@
                                     <div class="form-group">
                                         <label>Select Level </label>
                                         <select name="level_id" required class="form-control formselect" id="level_name">
-                                            <option disabled>Select</option>
+                                            <option  value=""  selected>Select</option>  
                                             @foreach ($levels as $level)
                                             <option value="{{$level->id}}"
                                                 {{ old('level_id') == $level->id ? "selected" : "" }}>{{$level->name3}}
@@ -67,13 +67,7 @@
                                     <div class="form-group">
                                         <label>select group</label>
                                         <select name="set_id" required class="form-control formselect" id="group_name">
-                                            <!-- <option disabled>Select</option>
-                                            @foreach ($sets as $set)
-                                            <option value="{{$set->id}}"
-                                                {{ old('set_id') == $set->id ? "selected" : "" }}>{{$set->title}}
-                                            </option>
-                                            @endforeach -->
-                                            <option  value="" selected>اختار </option>  
+                                            <option  value="" selected>Select </option>  
                                         </select>
                                         @error('exam_id')
                                         <span class="text-danger">{{$message}}</span>
@@ -212,8 +206,8 @@ $videos=session()->get('videos_sessions');
 				        console.log("welcome subxxx"); 
 				        var response = JSON.parse(response)
 				        console.log(response);   
-					    $('#group').empty();
-					    $('#group_name').append(`<option  value="" selected>اختار </option>`);
+					    $('#group_name').empty();
+					    $('#group_name').append(`<option  value="" selected>select </option>`);
 					    response.forEach(element => {
 					        console.log(element['title']);   
 					        $('#group_name').append(`<option value="${element['id']}">

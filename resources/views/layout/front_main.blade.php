@@ -38,32 +38,21 @@
 
 
     <script type="text/javascript">
-	myvalue1 = 50; /*** replace 1st test result percentage with the test result value (reading)*/
-	myvalue2 = 70; /*** replace 1st test result percentage with the test result value (listening)*/
-	myvalue3 = 80; /*** replace 2nd test result percentage with the test result value (reading)*/
-	myvalue4 = 30;  /*** replace 2nd test result percentage with the test result value (listening)*/
-	myvalue5 = 100; /*** replace 3rd test result percentage with the test result value (reading)*/
-	myvalue6 = 10;  /*** replace 3rd test result percentage with the test result value (listening)*/
+		progress1
+	myvalue1 = document.getElementById('progress1').value; /*** replace 1st test result percentage with the test result value (reading)*/
+	myvalue2 = document.getElementById('progress2').value; /*** replace 1st test result percentage with the test result value (listening)*/
+	
 	var value = value;
 function updateProgressBar1(progressBar, value) {
   value = Math.round(value);
   progressBar.querySelector(".progress__fill").style.width = `${value}%`;
   progressBar.querySelector(".progress__text").textContent = `${value}%`;
-
 }
 const myProgressBar = document.querySelector(".progress1");
 const myProgressBar2 = document.querySelector(".progress2");
-const myProgressBar3 = document.querySelector(".progress3");
-const myProgressBar4 = document.querySelector(".progress4");
-const myProgressBar5 = document.querySelector(".progress5");
-const myProgressBar6 = document.querySelector(".progress6");
 /* To update the bars value for testing */
 	updateProgressBar1(myProgressBar , myvalue1);
 	updateProgressBar1(myProgressBar2, myvalue2);
-	updateProgressBar1(myProgressBar3, myvalue3);
-	updateProgressBar1(myProgressBar4, myvalue4);
-	updateProgressBar1(myProgressBar5, myvalue5);
-	updateProgressBar1(myProgressBar6, myvalue6);
 	/*****/
 	
 	

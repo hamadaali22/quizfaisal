@@ -43,11 +43,12 @@
                         </div>
                         <div class="col-lg-1 col-md-12">
                             <div class="our-skill">
-                                <h5 id="date1"> </h5>
+                                <h5 id="date1">20/1/2024 </h5>
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-12">
                             <div class="progress1">
+                                <input type="hidden" value="99" id="progress1"/>
                                 <div class="progress__fill"></div>
                                 <span class="progress__text">0%</span>
                                 <span class="progress__name">Lesen</span>
@@ -57,9 +58,10 @@
                             <div class="our-skill">
                                 <h5 id="demo1"></h5>
                             </div>
-                        </div>
+                        </div> 
                         <div class="col-lg-3 col-md-12">
                             <div class="progress2">
+                                <input type="hidden" value="99" id="progress2"/>
                                 <div class="progress__fill"></div>
                                 <span class="progress__text">0%</span>
                                 <span class="progress__name">Hören</span>
@@ -72,83 +74,6 @@
                         </div>
                     </div>
 
-                    <!-- 2nd row -->
-
-                    <div class="col-lg-12 col-md-12">
-                        <div class="col-lg-2 col-md-12">
-                            <div class="our-skill">
-                                <h5> Goethe A1 Modelltest2</h5>
-                            </div>
-                        </div>
-                        <div class="col-lg-1 col-md-12">
-                            <div class="our-skill">
-                                <h5 id="date2"> </h5>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-12">
-                            <div class="progress3">
-                                <div class="progress__fill"></div>
-                                <span class="progress__text">0%</span>
-                                <span class="progress__name">Lesen</span>
-                            </div>
-                        </div>
-                        <div class="col-lg-1 col-md-12">
-                            <div class="our-skill">
-                                <h5 id="demo3"></h5>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-12">
-                            <div class="progress4">
-                                <div class="progress__fill"></div>
-                                <span class="progress__text">0%</span>
-                                <span class="progress__name">Hören</span>
-                            </div>
-                        </div>
-                        <div class="col-lg-2 col-md-12">
-                            <div class="our-skill">
-                                <h5 id="demo4"></h5>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!--- 3rd row -->
-
-                    <div class="col-lg-12 col-md-12">
-                        <div class="col-md-2">
-                            <div class="our-skill">
-                                <h5> Goethe A1 Modelltest3</h5>
-                            </div>
-                        </div>
-                        <div class="col-lg-1 col-md-12">
-                            <div class="our-skill">
-                                <h5> 02/02/2024</h5>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-12">
-                            <div class="progress5">
-                                <div class="progress__fill"></div>
-                                <span class="progress__text">0%</span>
-                                <span class="progress__name">Lesen</span>
-                            </div>
-                        </div>
-                        <div class="col-lg-1 col-md-12">
-                            <div class="our-skill">
-                                <h5 id="demo5"></h5>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-12">
-                            <div class="progress6">
-                                <div class="progress__fill"></div>
-                                <span class="progress__text">0%</span>
-                                <span class="progress__name">Hören</span>
-                            </div>
-                        </div>
-                        <div class="col-lg-2 col-md-12">
-                            <div class="our-skill">
-                                <h5 id="demo6"></h5>
-                            </div>
-                        </div>
-                    </div>
 
                 </div>
             </div>

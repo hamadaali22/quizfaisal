@@ -63,9 +63,9 @@ class QuestionController extends Controller
     }
 
 
-    public function goetheUserExams($id)
+    public function goetheUserExams(Request $request)
     {
-        $xam_answer=ExamAnswer::where("user_id" , $id)->get();
+        $xam_answer=ExamAnswer::where("user_id" , $request->user_id)->get();
         $values=[];
         $exams=[];
         

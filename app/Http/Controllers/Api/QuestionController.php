@@ -84,7 +84,7 @@ class QuestionController extends Controller
         	$count_listen=0;
         	$count_read_succes=0;
         	$count_read=0;
-            $one_exams=ExamAnswer::where("user_id" , $id)->where("exam_id" , $_item->id)->get();
+            $one_exams=ExamAnswer::where("user_id" , $request->user_id)->where("exam_id" , $_item->id)->get();
             foreach ($one_exams as $one_exam) {
                 $question=Question::where('id',$one_exam->question_id)->first();
 				$subquestion=SubQuestion::where('id',$one_exam->subquestion_id)->first();

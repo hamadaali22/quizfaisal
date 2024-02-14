@@ -34,6 +34,13 @@
 
 
 
+
+
+    <!-- <link rel="stylesheet" type="text/css" href="{{asset('front/Animation/bootstrap-progressbar-3.3.4.css')}}"/>  -->
+ 
+    
+
+
   
     @if(Request::is(['/']))
         <title> Deutsch Tests online |Deutsch-Prüfungen</title>

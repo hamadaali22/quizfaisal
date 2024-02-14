@@ -1,167 +1,164 @@
 <template>
     <div>
-        <section class="row home-main-section p-5 container-fluid">
-      <div class="col-lg m-auto">
-        <div v-for="item in goetheUserExams" :key="item.id" class="level w-100 text-center text-light mt-1 pt-2 pb-2">
-          <router-link v-if="isLogged" :to="'/goethe-report/' + item.id" class="a-link">{{ item.name }}</router-link>
-        </div>
-        <div v-for="_item in telcUserExams" :key="_item.id" class="level w-100 text-center text-light mt-1 pt-2 pb-2">
-          <router-link v-if="isLogged" :to="'/goethe-report/' + _item.id" class="a-link">{{ _item.name }}</router-link>
-        </div>
-      </div>
-    </section>
         <section id="about">
-            <div class="container">
+            <div class="container-fluid">                
                 <div class="row">
-                    <div class="col-md-12">
-                        <div class="title-area">
-                            <h2 class="title-about">Ihr Fortschritt</h2>
-                            <!-- <span class="line"></span> -->
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="single-service wow zoomIn" align="center">
-                            <img src="front/Animation/Deutschtests.jpg" alt="Deutschtest" />
-                        </div>
-                    </div>
-
-
-
-
-                    <div class="col-md-12">
-                        <div class="col-md-2"></div>
-                        <div class="col-md-1"></div>
-                        <div class="col-md-3">
-                            <div class="our-skill">
-                                <h4><strong>Lesen</strong></h4>
-                            </div>
-                        </div>
-                        <div class="col-md-1"></div>
-                        <div class="col-md-3">
-                            <div class="our-skill">
-                                <h4><strong>Hören</strong></h4>
-                            </div>
-                        </div>
-                        <div class="col-md-2"></div>
-                    </div>
-
-                    <div v-for="item in goetheUserExams" :key="item.id" class="col-lg-12 col-md-12">
-                        <div class=" col-lg-2 col-md-12">
-                            <div class="our-skill">
-                                <h5> {{ item.name }}</h5>
-                            </div>
-                        </div>
-                        <div class="col-lg-1 col-md-12">
-                            <div class="our-skill">
-                                <h5 id="date1">{{ item.date }} </h5>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-12">
-                            <div class="progress1">
-                                <input type="hidden" value="99" id="progress1"/>
-                                <div class="progress__fill"></div>
-                                <span class="progress__text">0%</span>
-                                <span class="progress__name">Lesen</span>
-                            </div>
-                        </div>
-                        <div class="col-lg-1 col-md-12">
-                            <div class="our-skill">
-                                <h5 id="demo1"></h5>
-                            </div>
-                        </div> 
-                        <div class="col-lg-3 col-md-12">
-                            <div class="progress2">
-                                <input type="hidden" value="99" id="progress2"/>
-                                <div class="progress__fill"></div>
-                                <span class="progress__text">0%</span>
-                                <span class="progress__name">Hören</span>
-                            </div>
-                        </div>
-                        <div class="col-lg-2 col-md-12">
-                            <div class="our-skill">
-                                <h5 id="demo2"></h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div v-for="_item in telcUserExams" :key="_item.id" class="col-lg-12 col-md-12">
-                        <div class=" col-lg-2 col-md-12">
-                            <div class="our-skill">
-                                <h5> {{ _item.name }}</h5>
-                            </div>
-                        </div>
-                        <div class="col-lg-1 col-md-12">
-                            <div class="our-skill">
-                                <h5 id="date1">{{ _item.date }} </h5>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-12">
-                            <div class="progress1">
-                                <input type="hidden" value="99" id="progress1"/>
-                                <div class="progress__fill"></div>
-                                <span class="progress__text">0%</span>
-                                <span class="progress__name">Lesen</span>
-                            </div>
-                        </div>
-                        <div class="col-lg-1 col-md-12">
-                            <div class="our-skill">
-                                <h5 id="demo1"></h5>
-                            </div>
-                        </div> 
-                        <div class="col-lg-3 col-md-12">
-                            <div class="progress2">
-                                <input type="hidden" value="99" id="progress2"/>
-                                <div class="progress__fill"></div>
-                                <span class="progress__text">0%</span>
-                                <span class="progress__name">Hören</span>
-                            </div>
-                        </div>
-                        <div class="col-lg-2 col-md-12">
-                            <div class="our-skill">
-                                <h5 id="demo2"></h5>
-                            </div>
-                        </div>
-                    </div>
-
-
+                    <p>&nbsp;</p>
                 </div>
+                <div class="row justify-content-center">
+                    <div class="col-lg-12 col-md-12 center-block">
+                        <div class="col-lg-5 col-md-10 center-block " style="border:solid">
+                            <div class="row bigrow" style="border-bottom:solid">
+                                <img class="book" src="front/Animation/book.png" alt="book">
+                                <div class="mywhite">
+                                    <p><strong>Lesen</strong></p>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-12 text-center">
+                                <div class="chart-wrapper">
+                                    <div class="chart" :style="{ width: size + 'px', height: size + 'px' }">
+                                        <svg class="circle" :width="size" :height="size" :viewBox="['0 0 ' + size + ' ' + size]">
+                                            <circle :cx="center" :cy="center" :r="radius" fill="none" :stroke="strokeColorBack"
+                                                :stroke-width="strokeWidth"></circle>
+                                            <circle :cx="center" :cy="center" :r="radius" fill="none" :stroke="strokeColorFront"
+                                                :stroke-width="strokeWidth" :stroke-dasharray="dashArray" :stroke-dashoffset="dashOffset"></circle>
+                                        </svg>
+                                        <p class="value">{{ value }} <span>of {{ maxvalue }}</span></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4 col-md-12 center-block ">
+                                jvjh
+                            </div>
+                            <div class="col-lg-3 col-md-12 center-block">
+                                <div class="row center-block ">
+                                    <div class="wow zoomIn facesize centerImge img-fluid" id="face">htvhgv</div>
+                                    <div class="row justify-content-center ">
+                                        fytfgty
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-1">
+                            <p>&nbsp;</p>
+                            <p>&nbsp;</p>
+                        </div>
+                        <div class="col-md-1 ">
+                            <p>&nbsp;</p>
+                            <p>&nbsp;</p>
+                        </div>
+                        <!-- <div class="col-lg-5 col-md-10 center-block " style="border:solid">
+                            <div class="row bigrow" style="border-bottom:solid">
+                                <img class="book" src="front/Animation/headphones.png" alt="book">
+                                <div class="mywhite">
+                                    <p><strong>Hören</strong></p>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-12 center-block ">
+                                yuuygu
+                            </div>
+                            <div class="col-lg-4 col-md-12 center-block">
+                                kbjh
+                            </div>
+                            <div class="col-lg-3 col-md-12 center-block " style="text-align: center">
+                                <div class="row center-block ">
+                                    <div class="wow zoomIn centerImge facesize img-fluid" id="face2">tfytfy</div>
+                                    <div class="row center-block justify-content-center">
+                                        ygfuyg
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="row ">
+                <p>&nbsp;</p>
+            </div>
+            <div class="row justify-content-center">
+                <button class="button " type="button">Ihr detailliertes Ergebnis</button>
+            </div>
+            <div class="row">
+                <p>&nbsp;</p>
+            </div>
+            <div class="row">
+                <p>&nbsp;</p>
             </div>
 
         </section>
 
-
     </div>
 </template>
+  
 <script>
 export default {
 
-  data() {
-    return {
-      userId: this.$store.state.userToken.id,
-
-    }
-  },
-  computed: {
-    goetheUserExams() {
-      return this.$store.state.goetheUserExam
+    data() {
+        return {
+            userId: this.$store.state.userToken.id,
+            strokeWidth: 10,
+            strokeColorBack: '#f2f2f2',
+            strokeColorFront: '#007bff',
+            radius: 50,
+            maxvalue: 150,
+            value: 10,
+        }
     },
-    telcUserExams() {
-      return this.$store.state.TelcUserExam
-    },
-
-    isLogged() {
-      return this.$store.getters.isLogged
-    }
-  },
-  // created() {
-  //     console.log(this.$store.state.userToken);
-  //     console.log('fffffjfjfjfjfjnnnn');
-  //
-  //
-  // },
-  mounted() {
-    this.$store.dispatch('getGoetheUserExams', { userId: this.userId });
-    this.$store.dispatch('getTelcUserExams', { userId: this.userId });
-  },
-
+    computed: {
+      center: function () {
+          let cal = this.strokeWidth / 2 + this.radius;
+          return cal;
+      },
+      size: function () {
+          let cal = this.strokeWidth + this.radius * 2;
+          return cal;
+      },
+      dashArray: function () {
+          let circumference = Math.PI * (this.radius * 2);
+          return circumference
+      },
+      dashOffset: function () {
+          let percent = parseFloat((this.value / this.maxvalue) * 100);
+          let process = this.dashArray * (1 - percent / 100);
+          return process
+      }
+  }
 }
 </script>
+<style>
+.chart-wrapper {
+  text-align: center;
+  font-family: 'Arial';
+
+  .chart {
+      position: relative;
+      width: 160px;
+      height: 160px;
+      margin: 20px auto;
+
+      .circle {
+          transform-origin: center;
+          transform: rotate(-90deg);
+      }
+
+      .value {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          font-size: 18px;
+          padding: 0px;
+          margin: 0px;
+
+          span {
+              font-size: 10px;
+              display: block;
+              color: gray;
+          }
+      }
+  }
+}
+</style>

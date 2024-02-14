@@ -343,7 +343,7 @@ class QuestionController extends Controller
 // 			dd($_item);
 // 			$_item->one_exams=$one_exams;
         }
-        return view('admin.users.exam',compact('exams'));
+        return $this->returnDataa('data', $exams,'');
     }
     // public function telcUserExamss(Request $request)
     // {

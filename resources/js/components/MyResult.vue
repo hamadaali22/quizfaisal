@@ -1,5 +1,10 @@
 <template>
     <div>
+        <p>{{myparam.user_id}}</p>
+        <p>{{myparam.exam_id}}</p>
+        <button type="submit" @click.prevent="makesd" style="background: #3e83b3;color: #fff;" >
+            result
+        </button>
         <section id="about">
             <div class="container-fluid">
                 <div class="row">
@@ -130,8 +135,8 @@
                 <p>&nbsp;</p>
             </div>
             <div class="row justify-content-center">
-                <router-link v-if="isLogged" :to="'/goethe-report/'+this.examId" class="a-link">Ihr detailliertes Ergebnis</router-link>
-                <button class="button " type="button">Ihr detailliertes Ergebnis</button>
+                
+                <button class="button " type="button"><router-link v-if="isLogged" :to="'/goethe-report/'+this.examId" class="a-link">Ihr detailliertes Ergebnis</router-link></button>
             </div>
             <div class="row">
                 <p>&nbsp;</p>
@@ -142,17 +147,32 @@
            
 
         </section>
-
     </div>
 </template>
-  
+<!-- <script>
+export default{
+    data() {
+      return {
+          userId: this.$route.params,
+          horen:30
+      }
+  },
+    methods: {
+        makesd(){
+            this.$root.$router.push({
+                path: '/resultt/' + 2, 
+                params: { test: 'testyy' }
+            })
+        }
+    },
+}
+</script> -->
 <script>
 export default {
-
+    // examId:this.$route.params.examId,
     data() {
         return {
-            userId: this.$store.state.userToken.id,
-            examId:this.$route.params.examId,
+            myparam: this.$route.params,
             strokeWidth1: 10,
             strokeColorBack1: '#f2f2f2',
             strokeColorFront1: '#007bff',
@@ -179,6 +199,9 @@ export default {
         // reading
         getResult() {
             return this.$store.state.Results;
+        },
+        isLogged(){
+            return this.$store.getters.isLogged
         },
         center: function () {
             let cal = this.strokeWidth1 / 2 + this.radius1;
@@ -222,7 +245,7 @@ export default {
     },
     methods: {
         getQuestionResult(){
-            axios.get('https://deutschtests.com/api/results?user_id='+this.userId+'&exam_id='+this.examId)
+            axios.get('https://deutschtests.com/api/results?user_id='+this.myparam.user_id+'&exam_id='+this.myparam.exam_id)
             .then(res => {
               console.log('Component mountvvvvmmmm.');
               console.log(this.userId);
@@ -233,11 +256,9 @@ export default {
 
               this.value2=res.data.data.count_listen_succes;
               this.maxvalue2=res.data.data.count_listen;
-              this.total2=65;
-              
+              this.total2=res.data.data.count_listen_percent;
             })
             .then(err => console.log(err))
-
         },
     },
 }

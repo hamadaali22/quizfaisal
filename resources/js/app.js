@@ -352,6 +352,14 @@ const store = new Vuex.Store({
                 store.commit('updateGoetheReportExam', res.data.data.data);
                 store.commit('updateCurrentPage', res.data.data.current_page);
               }else {
+                // this.$root.$router.push({
+                //   path: '/my-result/' + payload.userId+'/'+payload.examId, 
+                //   params: { test: 'testyy' }
+                // });
+                // router.push({
+                //   path: '/my-result/' + payload.userId+'/'+payload.examId, 
+                //   params: { test: 'testyy' }
+                // });
                  router.push({ name: 'Result', params: { user_id: payload.userId,examId:payload.examId } })
               }
             })
@@ -380,6 +388,10 @@ const store = new Vuex.Store({
                   store.commit('updateCurrentPage', res.data.data.current_page);
                 }else {
                   if(payload.user_id !=0){
+                    // this.$root.$router.push({
+                    //     path: '/my-result/' + payload.user_id+'/'+payload.examId, 
+                    //     params: { test: 'testyy' }
+                    // });
                     router.push({ name: 'Result', params: { user_id: payload.user_id,examId:payload.examId } })
                   }else{
                     router.push({ name: 'NoResult' })

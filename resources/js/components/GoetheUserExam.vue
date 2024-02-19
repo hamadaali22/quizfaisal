@@ -1,7 +1,7 @@
 <template>
   <div>
 
-      <section id="about">
+      <section id="">
           <div class="container">
               <div class="row">
                   <div class="col-md-12">
@@ -12,7 +12,7 @@
                   </div>
                   <div class="col-md-12">
                       <div class="single-service wow zoomIn" align="center">
-                          <img src="front/Animation/Deutschtests.jpg" alt="Deutschtest" />
+                          <img src="front/Animation/Deutschtests.jpg" alt="Deutschtest" width="200px" />
                       </div>
                   </div>
 
@@ -35,9 +35,9 @@
 
                   <div v-for="(_item, itemIndex) in goetheUserExams" class="col-lg-12 col-md-12">
                       <div class=" col-lg-2 col-md-12">
-                          <div class="our-skill">
-                              <h5> {{ _item.name }}</h5>
-                          </div>
+                            <div class="our-skill   w-100 text-center text-light mt-1 pt-2 pb-2" style="background-color: #3d83b3;border-radius: 5px;">
+                                <router-link v-if="isLogged" :to="'/goethe-report/' + _item.id"   class="a-link">{{ _item.name}}</router-link>
+                            </div>
                       </div>
                       <div class="col-lg-2 col-md-12">
                           <div class="our-skill">
@@ -73,9 +73,9 @@
                   </div>
                   <div v-for="(item, itemIndex) in telcUserExams" class="col-lg-12 col-md-12">
                       <div class=" col-lg-2 col-md-12">
-                          <div class="our-skill">
-                              <h5> {{ item.name }}</h5>
-                          </div>
+                            <div class="our-skill   w-100 text-center text-light mt-1 pt-2 pb-2" style="background-color: #3d83b3;border-radius: 5px;">
+                                <router-link v-if="isLogged" :to="'/goethe-report/' + item.id"   class="a-link">{{ item.name}}</router-link>
+                            </div>
                       </div>
                       <div class="col-lg-2 col-md-12">
                           <div class="our-skill">

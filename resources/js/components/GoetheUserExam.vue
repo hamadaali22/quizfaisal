@@ -35,7 +35,7 @@
 
                   <div v-for="(_item, itemIndex) in goetheUserExams" class="col-lg-12 col-md-12">
                       <div class=" col-lg-2 col-md-12">
-                            <div class="our-skill   w-100 text-center text-light mt-1 pt-2 pb-2" style="background-color: #3d83b3;border-radius: 5px;">
+                            <div class="our-skill   w-100 text-center text-light mt-1 pt-2 pb-2" style="background-color: #3d83b3;border-radius: 5px;margin-top: -9px !important;    margin-bottom: 16px !important;">
                                 <router-link v-if="isLogged" :to="'/goethe-report/' + _item.id"   class="a-link">{{ _item.name}}</router-link>
                             </div>
                       </div>
@@ -73,7 +73,7 @@
                   </div>
                   <div v-for="(item, itemIndex) in telcUserExams" class="col-lg-12 col-md-12">
                       <div class=" col-lg-2 col-md-12">
-                            <div class="our-skill   w-100 text-center text-light mt-1 pt-2 pb-2" style="background-color: #3d83b3;border-radius: 5px;">
+                            <div class="our-skill   w-100 text-center text-light mt-1 pt-2 pb-2" style="background-color: #3d83b3;border-radius: 5px;margin-top: -9px !important;    margin-bottom:16px !important;">
                                 <router-link v-if="isLogged" :to="'/goethe-report/' + item.id"   class="a-link">{{ item.name}}</router-link>
                             </div>
                       </div>

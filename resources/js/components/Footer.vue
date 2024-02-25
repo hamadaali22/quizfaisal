@@ -2,7 +2,9 @@
 <template>
     <div>
         <br><br><br>
-        <footer class="back navbar " v-bind:class="[this.$route.path == '/noresult' || this.$route.path =='/goethe-user-exam' ? 'fixed-bottom' : '']">
+        <!-- <footer class="back navbar " v-bind:class="[this.$route.path == '/noresult' || this.$route.path =='/goethe-user-exam' ? 'fixed-bottom' : '']"> -->
+
+        <footer class="back navbar " v-bind:class="[this.$route.path == '/noresult' ? 'fixed-bottom' : '']">
                 <!-- <div class=" "> -->
                     
                     <!-- <div class="row col-md-12" style="    padding-right: 0px;">

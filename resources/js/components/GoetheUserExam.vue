@@ -16,7 +16,7 @@
                       </div>
                   </div>
 
-                  <div class="col-md-12">
+                  <div class="col-md-12" >
                       <div class="col-md-2"></div>
                       <div class="col-md-2"></div>
                       <div class="col-md-3">
@@ -34,7 +34,7 @@
                   </div>
 
                   <div v-for="(_item, itemIndex) in goetheUserExams" class="col-lg-12 col-md-12">
-                      <div class=" col-lg-2 col-md-12">
+                      <div class=" col-lg-2 col-md-12" >
                             <div class="our-skill   w-100 text-center text-light mt-1 pt-2 pb-2" style="background-color: #3d83b3;border-radius: 5px;margin-top: -9px !important;    margin-bottom: 16px !important;">
                                 <router-link v-if="isLogged" :to="'/goethe-report/' + _item.id"   class="a-link">{{ _item.name}}</router-link>
                             </div>
@@ -44,30 +44,41 @@
                               <h5 id="date1">{{_item.date }} </h5>
                           </div>
                       </div>
-                      <div class="col-lg-3 col-md-12">
+                      <div class="col-lg-2 col-md-12">
                           <div class="progress1">
                               <input type="hidden" value="88" id="progress1" />
                               <div class="progress__fill" :style="{background:'#3aa6d0', width: _item.count_read_succes + '%' }"></div>
-                              <span class="progress__text">{{_item.count_read_succes }}%</span>
-                              <span class="progress__name">Lesen</span>
+                              <span class="progress__text">{{_item.count_read_percent }}%</span>
+                              <span class="progress__text" style="left: 25px;!important">Lesen</span>
                           </div>
                       </div>
-                      <div class="col-lg-1 col-md-12">
+                      <div class="col-lg-2 col-md-12" v-if="_item.count_read_percent >= 60">
                           <div class="our-skill">
-                              <h5 id="demo1"></h5>
+                            <h5 id="demo2" style="color: green;">bestanden</h5>
                           </div>
                       </div>
-                      <div class="col-lg-3 col-md-12">
-                          <div class="progress2">
-                              <input type="hidden" value="66" id="progress2" />
-                              <div class="progress__fill" :style="{background:'#3aa6d0', width: _item.count_listen_succes + '%' }"></div>
-                              <span class="progress__text">{{_item.count_listen_succes}}%</span>
-                              <span class="progress__name">Hören</span>
+                      <div class="col-lg-2 col-md-12" v-else>
+                          <div class="our-skill">
+                            <h5 id="demo1" style="color: red;">nicht bestanden</h5>
                           </div>
                       </div>
                       <div class="col-lg-2 col-md-12">
-                          <div class="our-skill">
-                              <h5 id="demo2"></h5>
+                          <div class="progress2">
+                              <input type="hidden" value="66" id="progress2" />
+                              <div class="progress__fill" :style="{background:'#3aa6d0', width: _item.count_listen_succes + '%' }"></div>
+                              <span class="progress__text">{{_item.count_listen_percent}}%</span>
+                              <!-- <span class="progress__name">Hören</span> -->
+                              <span class="progress__text" style="left: 25px;!important">Hören</span>
+                          </div>
+                      </div>
+                      <div class="col-lg-2 col-md-12"  v-if="_item.count_listen_percent >= 60">
+                          <div class="our-skill" style="margin-bottom: 20px;">
+                            <h5 id="demo2" style="color: green;">bestanden</h5>
+                          </div>
+                      </div>
+                      <div class="col-lg-2 col-md-12"  v-else>
+                          <div class="our-skill" style="margin-bottom: 20px;">
+                            <h5 id="demo1" style="color: red;">nicht bestanden</h5>
                           </div>
                       </div>
                   </div>
@@ -82,30 +93,40 @@
                               <h5 id="date1">{{item.date }}  </h5>
                           </div>
                       </div>
-                      <div class="col-lg-3 col-md-12">
+                      <div class="col-lg-2 col-md-12">
                           <div class="progress1">
                               <input type="hidden" value="88" id="progress1" />
                               <div class="progress__fill" :style="{background:'#3aa6d0', width: item.count_read_succes + '%' }"></div>
-                              <span class="progress__text">{{item.count_read_succes }}%</span>
-                              <span class="progress__name">Lesen</span>
+                              <span class="progress__text">{{item.count_read_percent }}%</span>
+                              <span class="progress__text" style="left: 25px;!important">Lesen</span>
                           </div>
                       </div>
-                      <div class="col-lg-1 col-md-12">
+                      <div class="col-lg-2 col-md-12" v-if="item.count_read_percent >=60">
                           <div class="our-skill">
-                              <h5 id="demo1"></h5>
+                            <h5 id="demo2" style="color: green;">bestanden</h5>
                           </div>
                       </div>
-                      <div class="col-lg-3 col-md-12">
-                          <div class="progress2">
-                              <input type="hidden" value="66" id="progress2" />
-                              <div class="progress__fill" :style="{background:'#3aa6d0', width: item.count_listen_succes + '%' }"></div>
-                              <span class="progress__text">{{item.count_listen_succes}}%</span>
-                              <span class="progress__name">Hören</span>
+                      <div class="col-lg-2 col-md-12" v-else>
+                          <div class="our-skill">
+                            <h5 id="demo1" style="color: red;">nicht bestanden</h5>
                           </div>
                       </div>
                       <div class="col-lg-2 col-md-12">
-                          <div class="our-skill">
-                              <h5 id="demo2"></h5>
+                          <div class="progress2">
+                              <input type="hidden" value="66" id="progress2" />
+                              <div class="progress__fill" :style="{background:'#3aa6d0', width: item.count_listen_succes + '%' }"></div>
+                              <span class="progress__text">{{item.count_listen_percent}}%</span>
+                              <span class="progress__text" style="left: 25px;!important">Hören</span>
+                          </div>
+                      </div>
+                      <div class="col-lg-2 col-md-12" v-if="item.count_read_percent >=60">
+                          <div class="our-skill" style="margin-bottom: 20px;">
+                            <h5 id="demo2" style="color: green;">bestanden</h5>
+                          </div>
+                      </div>
+                      <div class="col-lg-2 col-md-12"  v-else>
+                          <div class="our-skill" style="margin-bottom: 20px;">
+                            <h5 id="demo1" style="color: red;">nicht bestanden</h5>
                           </div>
                       </div>
                   </div>

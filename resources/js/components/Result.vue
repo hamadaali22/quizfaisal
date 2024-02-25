@@ -1,9 +1,20 @@
 <template>
     <div>
-        <section id="about">
+        <section id="">
             <div class="container-fluid">
                 <div class="row">
-                    <p>&nbsp;</p>
+                    <div class="col-md-12">
+                      <div class="title-area">
+                          <h2 class="title-about">Ihr Fortschritt</h2><br/>
+                          <div class="single-service wow zoomIn" align="center">
+                          <img src="front/Animation/Deutschtests.jpg" alt="Deutschtest" width="200px" />
+                      </div>
+                          <!-- <span class="line"></span> -->
+                      </div>
+                  </div>
+                  <div class="col-md-12">
+                      
+                  </div>
                 </div>
                 <div class="row justify-content-center">
                     <div class="col-lg-12 col-md-12 center-block">
@@ -225,6 +236,8 @@ export default {
     },
     methods: {
         getQuestionResult(){
+            // this.examId
+            console.log(this.userId+'cc');
             axios.get('https://deutschtests.com/api/results?user_id='+this.userId+'&exam_id='+this.examId)
             .then(res => {
               console.log('Component mountvvvvmmmm.');

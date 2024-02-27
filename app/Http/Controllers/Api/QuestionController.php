@@ -72,7 +72,7 @@ class QuestionController extends Controller
         // }else{
         //     return 'n';
         // }
-        $xam_answer=ExamAnswer::where("user_id" , $request->user_id)->get();
+        $xam_answer=ExamAnswer::where("user_id" , $request->user_id)->orderBy('id','DESC')->get();
         $values=[];
         $exams=[];
         $date='2020-01-20';
@@ -184,7 +184,7 @@ class QuestionController extends Controller
 // 			dd($_item);
 // 			$_item->one_exams=$one_exams;
         }
-        // return view('admin.users.exam',compact('exams'));
+        
         return $this->returnDataa('data', $exams,'');
     }
     // public function goetheUserExamss(Request $request)
@@ -254,7 +254,7 @@ class QuestionController extends Controller
         return $this->returnDataa('data', $data,'');
     }
     public function telcUserExams(Request $request){
-        $xam_answer=ExamAnswer::where("user_id" , $request->user_id)->get();
+        $xam_answer=ExamAnswer::where("user_id" , $request->user_id)->orderBy('id','DESC')->get();
         $values=[];
         $exams=[];
         

@@ -65,10 +65,17 @@ class QuestionController extends Controller
 
     public function goetheUserExams(Request $request)
     {
+        // $date = "2020-04-12";
+        // $from_date = "2020-04-10";
+        // if($date < $from_date ){
+        //     return 'g';
+        // }else{
+        //     return 'n';
+        // }
         $xam_answer=ExamAnswer::where("user_id" , $request->user_id)->get();
         $values=[];
         $exams=[];
-        
+        $date='2020-01-20';
         foreach ($xam_answer as $item) {
             $exam=Exam::where("id" , $item->exam_id)->where('section',null)->first();
             if($exam){
@@ -80,14 +87,20 @@ class QuestionController extends Controller
             }
         }
         foreach ($exams as $_item) {
-            $_item->date=$_item->created_at->format('Y-m-d');
+            // $_item->date=$_item->created_at->format('Y-m-d');
             $count_listen_succes=0;
         	$count_listen=0;
         	$count_read_succes=0;
         	$count_read=0;
             $one_exams=ExamAnswer::where("user_id" , $request->user_id)->where("exam_id" , $_item->id)->get();
             foreach ($one_exams as $one_exam) {
-                
+                $last_exam_date=$one_exam->created_at->format('Y-m-d');
+                if($date < $last_exam_date ){
+                    $date=$last_exam_date;
+                    $_item->date=$last_exam_date;
+                }else{
+                    $_item->date=$date;
+                }
                 $question=Question::where('id',$one_exam->question_id)->first();
 				$subquestion=SubQuestion::where('id',$one_exam->subquestion_id)->first();
 				if($question){

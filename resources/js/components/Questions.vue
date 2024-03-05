@@ -1,6 +1,15 @@
 <template>
   <div>
     <a href="hamada"></a>
+     
+    <div>
+        <ul v-if="questionAnswer.length">
+          <li v-for="(question, index) in questionAnswer" >
+              {{question.subQuestionId}}        
+          </li>
+        </ul>
+    </div>
+
     <div v-for="item in getQuestion" :key="item.id">
       <section class="row bg-white m-2 p-1 " >
         <div class="col-lg-11 col-md-10  border border-raduis mb-2">
@@ -179,7 +188,7 @@
           <br />
         </div>
 
-      </div>
+      </div>  
     </template>
     <script>
 
@@ -194,11 +203,11 @@
           qnum:-0,
           questionAnswer:[],
           names : [],
-          arr : [
-            { id: '01', name: 'John', email: 'john@email.com' },
-            { id: '02', name: 'Sara', email: 'sara@email.com' },
-            { id: '03', name: 'Michael', email: 'michael@email.com' },
-          ]
+          // arr : [
+          //   { id: '01', name: 'John', email: 'john@email.com' },
+          //   { id: '02', name: 'Sara', email: 'sara@email.com' },
+          //   { id: '03', name: 'Michael', email: 'michael@email.com' },
+          // ]
 
         }
       },
@@ -381,6 +390,7 @@
                 .catch(err => {
                     console.log(err)
                 })
+                this.names=[];
                 this.questionAnswer=[];
                 console.log(this.getCurrentPage+1+' page');
                 if(this.userId){
@@ -389,7 +399,6 @@
                   this.$toaster.error('Sie müssen sich registrieren, um Ihr Ergebnis zu erhalten und die Musterlösung zu sehen.');
                   this.$store.dispatch('getQuestions', {user_id:0, examId: this.examId,pageId:this.getCurrentPage+1 });
                 }
-                // this.$store.dispatch('getQuestions', {user_id: this.$store.state.userToken.id, examId: this.examId,pageId:this.getCurrentPage+1 });
                 window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
               }
         },

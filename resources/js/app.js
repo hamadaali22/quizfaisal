@@ -55,6 +55,7 @@ const store = new Vuex.Store({
         exams:[],
         LevelDesc:{},
         questions:[],
+        quizes:[],
         CurrentPage:null,
         Results:{},
         basName:"https://deutschtests.com/api/",
@@ -129,6 +130,10 @@ const store = new Vuex.Store({
         updateQuestions(state, questions){
           state.questions = questions;
         },
+        updateQuizes(state, quizes){
+          state.quizes = quizes;
+        },
+        
         updateCurrentPage(state, currentPage){
           state.CurrentPage = currentPage;
         },
@@ -149,6 +154,24 @@ const store = new Vuex.Store({
         },
     },
     actions: {
+      getQuizes({state,commit},payload){
+        console.log(payload);
+        // axios.get(state.basName+'exams?level_id='+payload)
+          axios.get(state.basName+'quizes')
+          .then(res => {
+            console.log(res.data.data+'mariam khaled');
+              if(res.data.data.length !=0){
+                store.commit('updateQuizes', res.data.data);
+              }else {
+                if(payload.user_id !=0){
+                  router.push({ name: 'Result', params: { user_id: payload.user_id,examId:payload.examId } })
+                }else{
+                  router.push({ name: 'NoResult' })
+                }
+              }
+          })
+          .then(err => console.log(err))
+      },
         RegisterUser({ commit }, payload) {
 
             axios.post('https://deutschtests.com/api/register', payload)

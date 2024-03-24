@@ -29924,6 +29924,96 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PlacementQuestions.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/PlacementQuestions.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var sweetalert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! sweetalert */ "./node_modules/sweetalert/dist/sweetalert.min.js");
+/* harmony import */ var sweetalert__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(sweetalert__WEBPACK_IMPORTED_MODULE_0__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      userId: this.$store.state.userToken,
+      pageId: '1',
+      qnum: -0,
+      questionAnswer: [],
+      names: []
+      // arr : [
+      //   { id: '01', name: 'John', email: 'john@email.com' },
+      //   { id: '02', name: 'Sara', email: 'sara@email.com' },
+      //   { id: '03', name: 'Michael', email: 'michael@email.com' },
+      // ]
+    };
+  },
+  computed: {
+    getquizes: function getquizes() {
+      return this.$store.state.quizes;
+    }
+  },
+  mounted: function mounted() {
+    this.$store.dispatch('getQuizes', {
+      pageId: this.pageId
+    });
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Questions.vue?vue&type=script&lang=js&":
 /*!********************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Questions.vue?vue&type=script&lang=js& ***!
@@ -75346,160 +75436,184 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [
+    _c(
+      "section",
+      { staticClass: "questions  m-4 " },
+      [
+        _vm._m(0),
+        _vm._v(" "),
+        _vm._l(_vm.getquizes, function(item, itemIndex) {
+          return _c("div", { key: item.id, staticClass: "mcq p-2" }, [
+            _c("div", { staticClass: "row" }, [
+              _c("h6", [
+                _vm._v(_vm._s(itemIndex + 1) + "- " + _vm._s(item.title))
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row  ml-3" }, [
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "col-md-4 multi-item q-1 border border-raduis     pt-2 pl-3 pr-3 mr-5 mb-3"
+                },
+                [
+                  _c("input", {
+                    staticClass: " multi-input d-none",
+                    attrs: {
+                      type: "radio",
+                      name: "q-1",
+                      value: "mars",
+                      id: "mars"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "label",
+                    {
+                      staticClass: "multi-label",
+                      attrs: { for: "mars", id: "mars" }
+                    },
+                    [_vm._v(_vm._s(item.first_choice))]
+                  )
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row ml-3" }, [
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "col-md-4 multi-item q-1 border border-raduis pt-2 pl-3 pr-3 mr-5 mb-3"
+                },
+                [
+                  _c("input", {
+                    staticClass: " multi-input d-none",
+                    attrs: {
+                      type: "radio",
+                      name: "q-1",
+                      value: "mars",
+                      id: "mars"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "label",
+                    {
+                      staticClass: "multi-label",
+                      attrs: { for: "mars", id: "mars" }
+                    },
+                    [_vm._v(_vm._s(item.second_choice))]
+                  )
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row ml-3" }, [
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "col-md-4 multi-item q-1 border border-raduis pt-2 pl-3 pr-3 mr-5 mb-3"
+                },
+                [
+                  _c("input", {
+                    staticClass: " multi-input d-none",
+                    attrs: {
+                      type: "radio",
+                      name: "q-1",
+                      value: "mars",
+                      id: "mars"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "label",
+                    {
+                      staticClass: "multi-label",
+                      attrs: { for: "mars", id: "mars" }
+                    },
+                    [_vm._v(_vm._s(item.third_choice))]
+                  )
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row ml-3" }, [
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "col-md-4 multi-item q-1 border border-raduis pt-2 pl-3 pr-3 mr-5 mb-3"
+                },
+                [
+                  _c("input", {
+                    staticClass: " multi-input d-none",
+                    attrs: {
+                      type: "radio",
+                      name: "q-1",
+                      value: "mars",
+                      id: "mars"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "label",
+                    {
+                      staticClass: "multi-label",
+                      attrs: { for: "mars", id: "mars" }
+                    },
+                    [_vm._v(_vm._s(item.fourth_choice))]
+                  )
+                ]
+              )
+            ])
+          ])
+        })
+      ],
+      2
+    ),
+    _vm._v(" "),
+    _vm._m(1)
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("section", { staticClass: "questions text-center row m-2 p-1" }, [
-        _c(
-          "div",
-          {
-            staticClass:
-              "col-lg  col-md-8 ml-md-auto mr-md-auto pr-2 pl-2 mt-3 text-left bg-white"
-          },
-          [
-            _c("div", { staticClass: "mcq p-3 " }, [
-              _c("div", { staticClass: "answers" }, [
-                _c("ul", { staticClass: "multi-choice list-unstyled" }, [
-                  _c("h6", [
-                    _vm._v(
-                      "question question question question question question question question ?"
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "li",
-                    {
-                      staticClass:
-                        "multi-item q-1 border border-raduis pt-2 pl-3 mb-1"
-                    },
-                    [
-                      _c("input", {
-                        staticClass: " multi-input d-none",
-                        attrs: {
-                          type: "radio",
-                          name: "q-1",
-                          value: "mars",
-                          id: "mars"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c(
-                        "label",
-                        {
-                          staticClass: "multi-label",
-                          attrs: { for: "mars", id: "mars" }
-                        },
-                        [_vm._v("A. Mars")]
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "li",
-                    {
-                      staticClass:
-                        "multi-item q-1 border border-raduis pt-2 pl-3 mb-1"
-                    },
-                    [
-                      _c("input", {
-                        staticClass: " multi-input d-none",
-                        attrs: {
-                          type: "radio",
-                          name: "q-1",
-                          value: "jupiter",
-                          id: "jupiter"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c(
-                        "label",
-                        {
-                          staticClass: "multi-label",
-                          attrs: { for: "jupiter", id: "jupiter" }
-                        },
-                        [_vm._v("B. Jupiter")]
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "li",
-                    {
-                      staticClass:
-                        "multi-item q-1 border border-raduis pt-2 pl-3 mb-1"
-                    },
-                    [
-                      _c("input", {
-                        staticClass: " multi-input d-none",
-                        attrs: {
-                          type: "radio",
-                          name: "q-1",
-                          value: "venus",
-                          id: "venus"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c(
-                        "label",
-                        {
-                          staticClass: "multi-label",
-                          attrs: { for: "venus", id: "venus" }
-                        },
-                        [_vm._v("C. Venus")]
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "li",
-                    {
-                      staticClass:
-                        "multi-item q-1 border border-raduis pt-2 pl-3 mb-1"
-                    },
-                    [
-                      _c("input", {
-                        staticClass: " multi-input d-none",
-                        attrs: {
-                          type: "radio",
-                          name: "q-1",
-                          value: "saturn",
-                          id: "saturn"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c(
-                        "label",
-                        {
-                          staticClass: "multi-label",
-                          attrs: { for: "saturn", id: "saturn" }
-                        },
-                        [_vm._v("D. Saturn")]
-                      )
-                    ]
-                  )
-                ])
-              ])
-            ])
-          ]
-        )
-      ]),
-      _vm._v(" "),
-      _c("section", [
-        _c("div", { staticClass: "next mt-5 mb-5" }, [
-          _c(
-            "h3",
-            {
-              staticClass:
-                "border-raduis back text-light m-auto text-center p-2"
-            },
-            [_vm._v("Next")]
-          )
+    return _c(
+      "div",
+      {
+        staticClass:
+          "row col-lg-12 col-md-12  border border-raduis mb-2 p-2  mb-4"
+      },
+      [
+        _c("div", { staticClass: "row col-lg-12 col-md-10 " }, [
+          _c("p", [
+            _vm._v(
+              "Viele Prüfungsteilnehmer sprechen oft von Goethe Deutsch oder Telc Deutsch. Sie meinen berechtigt damit, dass die Prüfungen beim Goethe-Institut oder bei Telc einer speziellen Vorbereitung bedürfen."
+            )
+          ])
         ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("section", [
+      _c("div", { staticClass: "next mt-5 mb-5" }, [
+        _c(
+          "h3",
+          {
+            staticClass: "border-raduis back text-light m-auto text-center p-2"
+          },
+          [_vm._v("Next")]
+        )
       ])
     ])
   }
@@ -98589,6 +98703,7 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_4__["default"].Store({
     exams: [],
     LevelDesc: {},
     questions: [],
+    quizes: [],
     CurrentPage: null,
     Results: {},
     basName: "https://deutschtests.com/api/",
@@ -98657,6 +98772,9 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_4__["default"].Store({
     updateQuestions: function updateQuestions(state, questions) {
       state.questions = questions;
     },
+    updateQuizes: function updateQuizes(state, quizes) {
+      state.quizes = quizes;
+    },
     updateCurrentPage: function updateCurrentPage(state, currentPage) {
       state.CurrentPage = currentPage;
     },
@@ -98673,8 +98791,36 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_4__["default"].Store({
     state.TelcUserExam = exams;
   }),
   actions: {
-    RegisterUser: function RegisterUser(_ref, payload) {
-      var commit = _ref.commit;
+    getQuizes: function getQuizes(_ref, payload) {
+      var state = _ref.state,
+        commit = _ref.commit;
+      console.log(payload);
+      // axios.get(state.basName+'exams?level_id='+payload)
+      axios.get(state.basName + 'quizes').then(function (res) {
+        console.log(res.data.data + 'mariam khaled');
+        if (res.data.data.length != 0) {
+          store.commit('updateQuizes', res.data.data);
+        } else {
+          if (payload.user_id != 0) {
+            _routes_routes__WEBPACK_IMPORTED_MODULE_2__["default"].push({
+              name: 'Result',
+              params: {
+                user_id: payload.user_id,
+                examId: payload.examId
+              }
+            });
+          } else {
+            _routes_routes__WEBPACK_IMPORTED_MODULE_2__["default"].push({
+              name: 'NoResult'
+            });
+          }
+        }
+      }).then(function (err) {
+        return console.log(err);
+      });
+    },
+    RegisterUser: function RegisterUser(_ref2, payload) {
+      var commit = _ref2.commit;
       axios.post('https://deutschtests.com/api/register', payload).then(function (res) {
         if (res.data.status == true) {
           var resTitle = 'Erfolgreich registriert';
@@ -98698,8 +98844,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_4__["default"].Store({
         console.log(err);
       });
     },
-    LoginUser: function LoginUser(_ref2, payload) {
-      var commit = _ref2.commit;
+    LoginUser: function LoginUser(_ref3, payload) {
+      var commit = _ref3.commit;
       axios.post('https://deutschtests.com/api/login', payload).then(function (res) {
         console.log(res.data);
         if (res.data.status == true) {
@@ -98735,8 +98881,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_4__["default"].Store({
         console.log(err);
       });
     },
-    ForgetPassword: function ForgetPassword(_ref3, payload) {
-      var commit = _ref3.commit;
+    ForgetPassword: function ForgetPassword(_ref4, payload) {
+      var commit = _ref4.commit;
       axios.post('https://deutschtests.com/api/forgetpassword', payload).then(function (res) {
         console.log(res.data);
         if (res.data.status == true) {
@@ -98762,9 +98908,9 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_4__["default"].Store({
         console.log(err);
       });
     },
-    userUpdate: function userUpdate(_ref4, payload) {
-      var commit = _ref4.commit,
-        state = _ref4.state;
+    userUpdate: function userUpdate(_ref5, payload) {
+      var commit = _ref5.commit,
+        state = _ref5.state;
       console.log('vreferfr');
       console.log(state.userToken.token);
       console.log('ferfrefrfre');
@@ -98795,8 +98941,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_4__["default"].Store({
         console.log(err);
       });
     },
-    CheckUserAuth: function CheckUserAuth(_ref5) {
-      var state = _ref5.state;
+    CheckUserAuth: function CheckUserAuth(_ref6) {
+      var state = _ref6.state;
       var headers = {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ' + state.userToken
@@ -98811,8 +98957,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_4__["default"].Store({
         return console.log(err);
       });
     },
-    getContactinfo: function getContactinfo(_ref6) {
-      var commit = _ref6.commit;
+    getContactinfo: function getContactinfo(_ref7) {
+      var commit = _ref7.commit;
       axios.get('https://deutschtests.com/api/contactinfo').then(function (res) {
         // console.log(res.data.data);
         store.commit('updateContactinfo', res.data.data);
@@ -98820,9 +98966,9 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_4__["default"].Store({
         console.log(err);
       });
     },
-    getLevels: function getLevels(_ref7) {
-      var state = _ref7.state,
-        commit = _ref7.commit;
+    getLevels: function getLevels(_ref8) {
+      var state = _ref8.state,
+        commit = _ref8.commit;
       axios.get(state.basName + 'levels').then(function (res) {
         console.log(res.data.data);
         store.commit('updateLevels', res.data.data);
@@ -98830,9 +98976,9 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_4__["default"].Store({
         return console.log(err);
       });
     },
-    getExams: function getExams(_ref8, payload) {
-      var state = _ref8.state,
-        commit = _ref8.commit;
+    getExams: function getExams(_ref9, payload) {
+      var state = _ref9.state,
+        commit = _ref9.commit;
       console.log(payload);
       axios.get(state.basName + 'exams?levelSlug=' + payload).then(function (res) {
         console.log(res.data.data);
@@ -98842,9 +98988,9 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_4__["default"].Store({
         return console.log(err);
       });
     },
-    getExamsTelc: function getExamsTelc(_ref9, payload) {
-      var state = _ref9.state,
-        commit = _ref9.commit;
+    getExamsTelc: function getExamsTelc(_ref10, payload) {
+      var state = _ref10.state,
+        commit = _ref10.commit;
       // console.log(payload);
       axios.get(state.basName + 'telc-exams?levelSlug=' + payload).then(function (res) {
         console.log(res.data.data);
@@ -98854,9 +99000,9 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_4__["default"].Store({
         return console.log(err);
       });
     },
-    getGoetheUserExams: function getGoetheUserExams(_ref10, payload) {
-      var state = _ref10.state,
-        commit = _ref10.commit;
+    getGoetheUserExams: function getGoetheUserExams(_ref11, payload) {
+      var state = _ref11.state,
+        commit = _ref11.commit;
       axios.get(state.basName + 'goethe-user-exams?user_id=' + payload.userId).then(function (res) {
         console.log('dddd');
         console.log(res.data.data);
@@ -98866,9 +99012,9 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_4__["default"].Store({
         return console.log(err);
       });
     },
-    getGoetheReportExams: function getGoetheReportExams(_ref11, payload) {
-      var state = _ref11.state,
-        commit = _ref11.commit;
+    getGoetheReportExams: function getGoetheReportExams(_ref12, payload) {
+      var state = _ref12.state,
+        commit = _ref12.commit;
       console.log(payload.pageId);
       console.log(payload.examId + 'ex');
       axios.get(state.basName + 'goethe-report-exams?user_id=' + payload.userId + '&exam_id=' + payload.examId + '&page=' + payload.pageId).then(function (res) {
@@ -98897,9 +99043,9 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_4__["default"].Store({
         return console.log(err);
       });
     },
-    getTelcUserExams: function getTelcUserExams(_ref12, payload) {
-      var state = _ref12.state,
-        commit = _ref12.commit;
+    getTelcUserExams: function getTelcUserExams(_ref13, payload) {
+      var state = _ref13.state,
+        commit = _ref13.commit;
       axios.get(state.basName + 'telc-user-exams?user_id=' + payload.userId).then(function (res) {
         console.log('dddd');
         console.log(res.data.data);
@@ -98909,9 +99055,9 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_4__["default"].Store({
         return console.log(err);
       });
     },
-    getQuestions: function getQuestions(_ref13, payload) {
-      var state = _ref13.state,
-        commit = _ref13.commit;
+    getQuestions: function getQuestions(_ref14, payload) {
+      var state = _ref14.state,
+        commit = _ref14.commit;
       console.log(payload);
       // axios.get(state.basName+'exams?level_id='+payload)
       axios.get(state.basName + 'questions?exam_id=' + payload.examId + '&page=' + payload.pageId).then(function (res) {
@@ -98943,9 +99089,9 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_4__["default"].Store({
         return console.log(err);
       });
     },
-    getQuestionResult: function getQuestionResult(_ref14, payload) {
-      var state = _ref14.state,
-        commit = _ref14.commit;
+    getQuestionResult: function getQuestionResult(_ref15, payload) {
+      var state = _ref15.state,
+        commit = _ref15.commit;
       console.log(payload);
       // axios.get(state.basName+'exams?level_id='+payload)
 
@@ -100101,15 +100247,17 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _PlacementQuestions_vue_vue_type_template_id_585d14da___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PlacementQuestions.vue?vue&type=template&id=585d14da& */ "./resources/js/components/PlacementQuestions.vue?vue&type=template&id=585d14da&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _PlacementQuestions_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PlacementQuestions.vue?vue&type=script&lang=js& */ "./resources/js/components/PlacementQuestions.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
-var script = {}
+
+
 
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
-  script,
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _PlacementQuestions_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
   _PlacementQuestions_vue_vue_type_template_id_585d14da___WEBPACK_IMPORTED_MODULE_0__["render"],
   _PlacementQuestions_vue_vue_type_template_id_585d14da___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
@@ -100123,6 +100271,20 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 if (false) { var api; }
 component.options.__file = "resources/js/components/PlacementQuestions.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/PlacementQuestions.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/components/PlacementQuestions.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PlacementQuestions_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./PlacementQuestions.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PlacementQuestions.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PlacementQuestions_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 

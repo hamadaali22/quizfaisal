@@ -21,8 +21,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 Route::group(['middleware' => ['api'], 'namespace' => 'Api'], function () {
 
-      Route::post('question-sortable','HomeController@questionSortable');
-      Route::post('sub-question-sortable','HomeController@subQuestionSortable');
+    Route::get('quizes', 'QuestionController@quizes');
+
+    Route::post('question-sortable','HomeController@questionSortable');
+    Route::post('sub-question-sortable','HomeController@subQuestionSortable');
 
 
     Route::get('questions', 'QuestionController@question');

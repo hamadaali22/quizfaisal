@@ -26,8 +26,15 @@ import TelcUserExam from '../components/TelcUserExam.vue'
 import NoResult from '../components/NoResult.vue'
 import myAnswer from '../components/myAnswer.vue'
 import MyResult from '../components/MyResult.vue'
+import PlacementTest from '../components/PlacementTest.vue'
+import PlacementQuestions from '../components/PlacementQuestions.vue'
 
 const routes = [
+    { path: '/placement-test', component: PlacementTest, name: 'PlacementTest' },
+    { path: '/placement-questions', component: PlacementQuestions, name: 'PlacementQuestions' },
+
+
+
     { path: '/home', component: Home, name: 'Home' },
     { path: '/', component: Home, name: 'Home' },
     { path: '/noresult', component: NoResult, name: 'NoResult' },

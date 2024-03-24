@@ -23,21 +23,13 @@ use App\Quize;
 class QuestionController extends Controller
 {
     use GeneralTrait;
-    // public function specialityName()
-    // {
-    //     return $this->belongsTo(Speciality::class, 'specialityId', 'id');
-    // }
-    // $doctor= Doctor::where('id',$item->doctorId)
-    //         ->with(array('specialityName'=>function($query){
-    //             $query->selection();
-    //         }))->first(); 
-    
+
     public function quizes(Request $request)
     {
         $data = Quize::inRandomOrder()->with('levels')->has('levels')->with('sets_difficult')->has('sets_difficult')->take(5)->get();
         return $this->returnDataa('data', $data,'');
     }
-
+    
     public function levels(Request $request)
     {
         $data=Level::all();

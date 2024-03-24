@@ -109,7 +109,7 @@ Route::get('admin-login', 'Auth\LoginController@LoginAdmin')->name('admin-login'
 	});
 	Route::group(['middleware' => 'auth', 'namespace' => 'Admin','prefix' => 'admin'], function () {
 
-		
+
 		
 		Route::resource('quizes','QuizeController');
 		Route::get('get_group_name/{id}','QuizeController@getGroupName');

@@ -37,7 +37,6 @@
                 </div>
             </div>
         </section>
-        
     <section>
         <div class="next mt-5 mb-5">
             <h3 class="border-raduis back text-light m-auto text-center p-2">Next</h3>

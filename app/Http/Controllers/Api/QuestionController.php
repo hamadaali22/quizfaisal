@@ -29,6 +29,42 @@ class QuestionController extends Controller
         $data = Quize::inRandomOrder()->with('levels')->has('levels')->with('sets_difficult')->has('sets_difficult')->take(5)->get();
         return $this->returnDataa('data', $data,'');
     }
+    public function SaveQuizeTest(Request $request)
+    {
+        // $check_examanswer=ExamAnswer::where("user_id", $request->data[0]['user_id'])->where("exam_id", $request->data[0]['examId'])->where("question_id" , $request->data[0]['questionId'])->get();
+        // if(count($check_examanswer) >0){
+        //     foreach ($check_examanswer as $item) {
+        //         $item->delete();
+        //     }
+        // }
+        return ($request->all());
+        $add = new QuizesTest;
+        $add->user_id    = $request->user_id;
+        $add->level_id    = $request->level_id;
+        $add->levelName    = $request->levelName;
+        $add->type    = $request->type;
+        $add->date    = 'f';
+        $add->time    = 'dd';
+        $add->save();
+
+        $length = count($request->data);
+        if($length > 0)
+        {
+            for($i=0; $i<$length; $i++)
+            {
+                $add = new ExamAnswer;
+                $add->user_id    = $request->data[$i]['user_id'];
+                $add->exam_id    = $request->data[$i]['examId'];
+                $add->question_id    = $request->data[$i]['questionId'];
+                $add->subquestion_id    = $request->data[$i]['subQuestionId'];
+                $add->expected_answer    = $request->data[$i]['expected_answer'];
+                $add->answer    = $request->data[$i]['answerid'];
+                $add->save();
+            }
+        }
+        // return 'ddd';
+        return $this -> returnDataa('data',$add,'تم الحفظ');
+    }
     
     public function levels(Request $request)
     {

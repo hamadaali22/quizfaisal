@@ -1,6 +1,6 @@
 
 <template>
-    <div v-bind:class="[this.$route.path == '/noresult' ? 'fixed-bottom' : '']">
+    <div v-bind:class="[this.$route.path == '/noresult' || this.$route.path=='/placement-test'? 'fixed-bottom' : '']">
         <br><br><br>
         <!-- <footer class="back navbar " v-bind:class="[this.$route.path == '/noresult' || this.$route.path =='/goethe-user-exam' ? 'fixed-bottom' : '']"> -->
 

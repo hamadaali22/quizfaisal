@@ -16,7 +16,7 @@
                 <!-- <li v-if="isLogged" class="nav-item p-1 active "><router-link to="levels" class="nav-link text-light">GOETHE</router-link></li> -->
                 <li class="nav-item p-1 active "><router-link to="/goethe-tests" class="nav-link text-light">Goethe</router-link></li>
                 <li class="nav-item p-1 active "><router-link to="/telc-tests" class="nav-link text-light">Telc</router-link></li>
-                <li  class="nav-item p-1 active "><router-link to="/placement-questions" class="nav-link text-light">Placement</router-link></li>
+                <li  class="nav-item p-1 active "><router-link to="/placement-test" class="nav-link text-light">Placement</router-link></li>
 
                 <li v-if="!isLogged" class="nav-item p-1 active "><router-link to="/login" class="nav-link text-light">Anmelden</router-link></li>
                 <li v-if="!isLogged" class="nav-item p-1 active "><router-link to="/register" class="nav-link text-light">Registrieren</router-link></li>

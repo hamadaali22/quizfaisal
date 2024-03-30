@@ -30018,7 +30018,7 @@ __webpack_require__.r(__webpack_exports__);
       var quize_ans;
       if (this.userId) {
         quize_ans = {
-          'user_id': 19,
+          'user_id': this.$store.state.userToken.id,
           'quize_id': quizeId,
           'level_id': levelId,
           'levelName': levelName,
@@ -30028,7 +30028,7 @@ __webpack_require__.r(__webpack_exports__);
         };
       } else {
         quize_ans = {
-          'user_id': 19,
+          'user_id': this.$store.state.userToken.id,
           'quize_id': quizeId,
           'level_id': levelId,
           'levelName': levelName,
@@ -30203,10 +30203,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    return {};
+    return {
+      itemId: null
+    };
+  },
+  getquizes: function getquizes() {
+    return this.$store.state.quizes;
+  },
+  mounted: function mounted() {
+    this.itemId = this.$route.params.id;
+    this.$store.dispatch('getQuizes', {
+      levelName: this.levelName,
+      type: this.type,
+      quizes: this.questionAnswer
+    });
   }
 });
 
@@ -75902,6 +75916,8 @@ var render = function() {
         _c("div", { staticClass: "col-lg m-auto pl-4 text-center" }, [
           _c("p", [_vm._v("هذا مستواك")]),
           _vm._v(" "),
+          _c("p", [_vm._v(_vm._s(this.itemId))]),
+          _vm._v(" "),
           _c(
             "p",
             [
@@ -99124,20 +99140,21 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_4__["default"].Store({
         if (res.data.data.length != 0) {
           store.commit('updateQuizes', res.data.data);
         } else {
-          _routes_routes__WEBPACK_IMPORTED_MODULE_2__["default"].push({
-            name: 'NoResult'
-          });
-          // this.$root.$router.push({
-          //     // path: '/placement-result/' + payload.user_id, 
-          //     path: '/placement-result/' + 19, 
-          //     params: { test: 'testyy' }
-          // });
-
-          // if(payload.user_id !=0){
-          //   router.push({ name: 'Result', params: { user_id: payload.user_id,examId:payload.examId } })
-          // }else{
-          //   router.push({ name: 'NoResult' })
-          // }
+          if (payload.user_id != 0) {
+            console.log(payload.user_id + 'i user');
+            _routes_routes__WEBPACK_IMPORTED_MODULE_2__["default"].push({
+              // path: '/placement-result/' + payload.user_id, 
+              path: '/placement-result/' + 19,
+              params: {
+                test: 'testyy'
+              }
+            });
+            // router.push({ name: 'Result', params: { user_id: payload.user_id,examId:payload.examId } })
+          } else {
+            _routes_routes__WEBPACK_IMPORTED_MODULE_2__["default"].push({
+              name: 'NoResult'
+            });
+          }
         }
       }).then(function (err) {
         return console.log(err);

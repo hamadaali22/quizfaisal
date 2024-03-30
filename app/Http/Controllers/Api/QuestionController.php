@@ -29,6 +29,11 @@ class QuestionController extends Controller
     use GeneralTrait;
     use QuizeTrait;
     
+    public function quizesResult(Request $request)
+    {
+        $data=QuizesTest::where('user_id',$request->user_id)->first();
+        return $this->returnDataa('data', $data,'');
+    }
     public function quizes(Request $request)
     {
         // inRandomOrder()->

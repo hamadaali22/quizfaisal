@@ -170,18 +170,17 @@ const store = new Vuex.Store({
               
               store.commit('updateQuizes', res.data.data);
             }else {
-              router.push({ name: 'NoResult' })
-              // this.$root.$router.push({
-              //     // path: '/placement-result/' + payload.user_id, 
-              //     path: '/placement-result/' + 19, 
-              //     params: { test: 'testyy' }
-              // });
-              
-                // if(payload.user_id !=0){
-                //   router.push({ name: 'Result', params: { user_id: payload.user_id,examId:payload.examId } })
-                // }else{
-                //   router.push({ name: 'NoResult' })
-                // }
+              if(payload.user_id !=0){
+                console.log(payload.user_id+'i user');
+                router.push({
+                    // path: '/placement-result/' + payload.user_id, 
+                    path: '/placement-result/' + 19, 
+                    params: { test: 'testyy' }
+                });
+                  // router.push({ name: 'Result', params: { user_id: payload.user_id,examId:payload.examId } })
+                }else{
+                  router.push({ name: 'NoResult' })
+                }
             }
           })
           .then(err => console.log(err))

@@ -80,9 +80,9 @@ import swal from "sweetalert";
             this.type=quizeType;
             let quize_ans;
             if(this.userId){
-                quize_ans={'user_id': 19,'quize_id': quizeId,'level_id':levelId ,'levelName':levelName ,'answer':myanswer,'expected_answer':expected_answer,'type':quizeType}
+                quize_ans={'user_id': this.$store.state.userToken.id,'quize_id': quizeId,'level_id':levelId ,'levelName':levelName ,'answer':myanswer,'expected_answer':expected_answer,'type':quizeType}
             }else{
-                quize_ans={'user_id': 19,'quize_id': quizeId,'level_id':levelId ,'levelName':levelName ,'answer':myanswer,'expected_answer':expected_answer,'type':quizeType}
+                quize_ans={'user_id': this.$store.state.userToken.id,'quize_id': quizeId,'level_id':levelId ,'levelName':levelName ,'answer':myanswer,'expected_answer':expected_answer,'type':quizeType}
             }
             
             if(this.names.includes(quizeId)){

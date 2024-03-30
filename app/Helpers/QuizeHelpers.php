@@ -5,11 +5,10 @@ use App\Quize;
 class QuizeHelpers
 {
    
-    public static function quizes($id)
+    public static function quizes($level_name,$type,$count)
     {
-        $data =Quize::where('level_name','A2')->with('levels')->whereHas('sets', function ($query){
-            $query->where('type', 'difficult');
-        })->with("sets")->take(5)->get();
-        return $data;
+        return $data =Quize::where('level_name',$level_name)->with('levels')->has('levels')->whereHas('sets', function ($query)use($type,$count){
+            $query->where('type', $type);
+        })->with("sets")->take($count)->get();   
     }
 }

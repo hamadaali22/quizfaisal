@@ -32,16 +32,8 @@ class QuestionController extends Controller
     public function quizes(Request $request)
     {
         // inRandomOrder()->
-        $data = QuizeHelpers::quizes('ddd');
-        return $this->returnDataa('data', $data,'');
-        dd('dddv');
-        $data = $this->get_quizes();
-        return $this->returnDataa('data', $data,'');
         if($request->levelName==null){
-            // $data = Quize::where('level_name','A2')->with('levels')->with("sets_difficult")->has('sets_difficult')->take(5)->get();
-            $data = Quize::where('level_name','A2')->with('levels')->whereHas('sets', function ($query){
-                $query->where('type', 'difficult');
-            })->with("sets")->take(5)->get();
+            $data = QuizeHelpers::quizes('A2','difficult',5);
             // return $request->levelName.'555 difficult';
             return $this->returnDataa('data', $data,'');
         }else{
@@ -64,86 +56,88 @@ class QuestionController extends Controller
                 // return $request->level_id.'0 difficult';
                 if($request->type=='difficult'){
                     if( $correct >=3){
-                        $data = Quize::where('level_name','B1')->with('levels')->with('sets_difficult')->has('sets_difficult')->take(5)->get();
-                        // return $request->levelName.'88 difficult';
+                        $data = QuizeHelpers::quizes('B1','difficult',5);
                         return $this->returnDataa('data', $data,'');
                     }else{
-                        $data_middle = Quize::where('level_name','A2')->with('levels')->with('sets_middle')->has('sets_middle')->take(3)->get();
-                        $data_easy = Quize::where('level_name','A2')->with('levels')->with('sets_easy')->has('sets_easy')->take(3)->get();
+                        $data_middle = QuizeHelpers::quizes('A2','middle',3);
+                        $data_easy = QuizeHelpers::quizes('A2','easy',3);
                         // return $request->levelName.'798 easy';
                         $mergedData = $data_middle->merge($data_easy);
                         return $this->returnDataa('data', $mergedData,'');
                     }
-                    return $request->levelName.'11 difficult';
+                    // return $request->levelName.'11 difficult';
                     
                 }else{
-                    return $this->returnDataa('data', 'A2 easy','');
+                    // return $this->returnDataa('data', 'A2 easy','');
                     if( $correct >=3){
-                        
                         // $userq=QuizesTest::where("user_id" , $request->quizes['0']['user_id'])->first();
                         $data = Quize::where('level_name','100000')->get();
                         return $this->returnDataa('data', $data,'');
                     }else{
-                        $data = Quize::where('level_name','A1')->with('levels')->with('sets_difficult')->has('sets_difficult')->take(5)->get();
+                        $data = QuizeHelpers::quizes('A1','difficult',5);
                         return $this->returnDataa('data', $data,'');
                     }
                 }
             }elseif($request->levelName=='B1'){
                 if($request->type=='difficult'){
-                    return $this->returnDataa('data', 'B1 difficult','');
+                    // return $this->returnDataa('data', 'B1 difficult','');
                     if( $correct >=3){
-                        $data[] = Quize::where('level_name','B2')->with('levels')->with('sets_difficult')->has('sets_difficult')->take(5)->get();
+                        $data = QuizeHelpers::quizes('B2','difficult',5);
+                        return $this->returnDataa('data', $data,'');
                     }else{
-                        $data[] = Quize::where('level_name','B1')->with('levels')->with('sets_middle')->has('sets_middle')->take(3)->get();
-                        $data[] = Quize::where('level_name','B1')->with('levels')->with('sets_easy')->has('sets_easy')->take(3)->get();
+                        $data_middle = QuizeHelpers::quizes('B1','middle',3);
+                        $data_easy = QuizeHelpers::quizes('B1','easy',3);
+                        $mergedData = $data_middle->merge($data_easy);
+                        return $this->returnDataa('data', $mergedData,'');
                     }
-                    return $this->returnDataa('data', $data,'');
                 }else{
-                    return $this->returnDataa('data', 'B1 easy','');
                     if( $correct >=3){
-                        // $data = Quize::inRandomOrder()->where('level_name','A2')->with('levels')->with('sets_difficult')->has('sets_difficult')->take(5)->get();
+                        $data = Quize::where('level_name','100000')->get();
+                        return $this->returnDataa('data', $data,'');
                     }else{
-                        // $data[] = Quize::inRandomOrder()->where('level_name','A1')->with('levels')->with('sets_difficult')->has('sets_difficult')->take(5)->get();
+                        $data = Quize::where('level_name','100000')->get();
+                        return $this->returnDataa('data', $data,'');
                     }
                     return $this->returnDataa('data', $data,'');
                 }
             }elseif($request->levelName=='B2'){
                 if($request->type=='difficult'){
-                    return $this->returnDataa('data', 'B2 difficult','');
                     if( $correct >=3){
-                        // $data[] = Quize::inRandomOrder()->where('level_name','B2')->with('levels')->with('sets_difficult')->has('sets_difficult')->take(5)->get();
+                        $data = Quize::where('level_name','100000')->get();
+                        return $this->returnDataa('data', $data,'');                        
                     }else{
-                        $data[] = Quize::where('level_name','B2')->with('levels')->with('sets_middle')->has('sets_middle')->take(3)->get();
-                        $data[] = Quize::where('level_name','B2')->with('levels')->with('sets_easy')->has('sets_easy')->take(3)->get();
+                        $data_middle = QuizeHelpers::quizes('B2','middle',3);
+                        $data_easy = QuizeHelpers::quizes('B2','easy',3);
+                        $mergedData = $data_middle->merge($data_easy);
+                        return $this->returnDataa('data', $mergedData,'');
                     }
-                    return $this->returnDataa('data', $data,'');
                 }else{
-                    return $this->returnDataa('data', 'B2 easy','');
                     if( $correct >=3){
-                        // $data = Quize::inRandomOrder()->where('level_name','A2')->with('levels')->with('sets_difficult')->has('sets_difficult')->take(5)->get();
+                        $data = Quize::where('level_name','100000')->get();
+                        return $this->returnDataa('data', $data,'');   
                     }else{
-                        // $data[] = Quize::inRandomOrder()->where('level_name','A1')->with('levels')->with('sets_difficult')->has('sets_difficult')->take(5)->get();
+                        $data = Quize::where('level_name','100000')->get();
+                        return $this->returnDataa('data', $data,'');   
                     }
                     return $this->returnDataa('data', $data,'');
                 }
             }elseif($request->levelName=='A1'){
                 if($request->type=='difficult'){
-                    return $this->returnDataa('data', 'A1 difficult','');
                     if( $correct >=3){
-                        // $data[] = Quize::inRandomOrder()->where('level_name','B2')->with('levels')->with('sets_difficult')->has('sets_difficult')->take(5)->get();
+                        $data = Quize::where('level_name','100000')->get();
+                        return $this->returnDataa('data', $data,'');   
                     }else{
-                        $data[] = Quize::where('level_name','A1')->with('levels')->with('sets_middle')->has('sets_middle')->take(3)->get();
-                        $data[] = Quize::where('level_name','A1')->with('levels')->with('sets_easy')->has('sets_easy')->take(3)->get();
+                        $data_middle = QuizeHelpers::quizes('A1','middle',3);
+                        $data_easy = QuizeHelpers::quizes('A1','easy',3);
+                        $mergedData = $data_middle->merge($data_easy);
+                        return $this->returnDataa('data', $mergedData,'');
                     }
-                    return $this->returnDataa('data', $data,'');
                 }else{
-                    return $this->returnDataa('data', 'A1 easy','');
-                    if( $correct >=3){
-                        // $data = Quize::inRandomOrder()->where('level_name','A2')->with('levels')->with('sets_difficult')->has('sets_difficult')->take(5)->get();
-                    }else{
-                        // $data[] = Quize::inRandomOrder()->where('level_name','A1')->with('levels')->with('sets_difficult')->has('sets_difficult')->take(5)->get();
-                    }
-                    return $this->returnDataa('data', $data,'');
+                    // if( $correct >=3){
+                    // }else{
+                    // }
+                    $data = Quize::where('level_name','100000')->get();
+                    return $this->returnDataa('data', $data,''); 
                 }
             }
         }

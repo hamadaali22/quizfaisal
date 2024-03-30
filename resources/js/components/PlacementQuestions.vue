@@ -12,25 +12,25 @@
                     <h6>{{ itemIndex +1 }}- {{item.id}} {{ item.title }}</h6>
                 </div>
                 <div class="row  ml-3">
-                    <div class="col-md-4 multi-item q-1 border border-raduis pt-2 pl-3 pr-3 mr-5 mb-3" :id="'quize'+itemIndex+'a'" v-on:click="addQuize(itemIndex,item.id,item.level_id,item.levels.name3,item.first_choice,item.expected_answer,item.sets_difficult.type,'a','quize'+itemIndex+'a')">
+                    <div class="col-md-4 multi-item q-1 border border-raduis pt-2 pl-3 pr-3 mr-5 mb-3" :id="'quize'+itemIndex+'a'" v-on:click="addQuize(itemIndex,item.id,item.level_id,item.levels.name3,item.first_choice,item.expected_answer,item.sets.type,'a','quize'+itemIndex+'a')">
                         <input class=" multi-input d-none" type="radio" name="q-1" value="mars" id="mars">
                         <label class="multi-label" for="mars" id="mars">{{item.first_choice}}</label>
                     </div>
                 </div>
                 <div class="row ml-3">
-                    <div class="col-md-4 multi-item q-1 border border-raduis pt-2 pl-3 pr-3 mr-5 mb-3" :id="'quize'+itemIndex+'b'" v-on:click="addQuize(itemIndex,item.id,item.level_id,item.levels.name3,item.second_choice,item.expected_answer,item.sets_difficult.type,'b','quize'+itemIndex+'b')">
+                    <div class="col-md-4 multi-item q-1 border border-raduis pt-2 pl-3 pr-3 mr-5 mb-3" :id="'quize'+itemIndex+'b'" v-on:click="addQuize(itemIndex,item.id,item.level_id,item.levels.name3,item.second_choice,item.expected_answer,item.sets.type,'b','quize'+itemIndex+'b')">
                         <input class=" multi-input d-none" type="radio" name="q-1" value="mars" id="mars">
                         <label class="multi-label" for="mars" id="mars">{{item.second_choice}}</label>
                     </div>
                 </div>
                 <div class="row ml-3">
-                    <div class="col-md-4 multi-item q-1 border border-raduis pt-2 pl-3 pr-3 mr-5 mb-3" :id="'quize'+itemIndex+'c'" v-on:click="addQuize(itemIndex,item.id,item.level_id,item.levels.name3,item.third_choice,item.expected_answer,item.sets_difficult.type,'c','quize'+itemIndex+'c')">
+                    <div class="col-md-4 multi-item q-1 border border-raduis pt-2 pl-3 pr-3 mr-5 mb-3" :id="'quize'+itemIndex+'c'" v-on:click="addQuize(itemIndex,item.id,item.level_id,item.levels.name3,item.third_choice,item.expected_answer,item.sets.type,'c','quize'+itemIndex+'c')">
                         <input class=" multi-input d-none" type="radio" name="q-1" value="mars" id="mars">
                         <label class="multi-label" for="mars" id="mars">{{item.third_choice}}</label>
                     </div>
                 </div>
                 <div class="row ml-3">
-                    <div class="col-md-4 multi-item q-1 border border-raduis pt-2 pl-3 pr-3 mr-5 mb-3" :id="'quize'+itemIndex+'d'" v-on:click="addQuize(itemIndex,item.id,item.level_id,item.levels.name3,item.fourth_choice,item.expected_answer,item.sets_difficult.type,'d','quize'+itemIndex+'d')">
+                    <div class="col-md-4 multi-item q-1 border border-raduis pt-2 pl-3 pr-3 mr-5 mb-3" :id="'quize'+itemIndex+'d'" v-on:click="addQuize(itemIndex,item.id,item.level_id,item.levels.name3,item.fourth_choice,item.expected_answer,item.sets.type,'d','quize'+itemIndex+'d')">
                         <input class=" multi-input d-none" type="radio" name="q-1" value="mars" id="mars">
                         <label class="multi-label" for="mars" id="mars">{{item.fourth_choice}}</label>
                     </div>
@@ -74,7 +74,6 @@ import swal from "sweetalert";
         this.$store.dispatch('getQuizes', { levelName: this.levelName,type:this.type ,quizes:this.questionAnswer});
     },
     methods:{
-        // addQuize(itemIndex,  item.id,   item.level_id,  item.levels.name3,  item.first_choice,  item.expected_answer,  item.sets_difficult.type,  'a', 'quize'+itemIndex+'a')"
         addQuize(index,quizeId,levelId,levelName,myanswer,expected_answer,quizeType,chooseItem,quizeClass) {
 
             this.levelName=levelName;

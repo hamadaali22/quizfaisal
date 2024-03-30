@@ -30012,7 +30012,6 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   methods: {
-    // addQuize(itemIndex,  item.id,   item.level_id,  item.levels.name3,  item.first_choice,  item.expected_answer,  item.sets_difficult.type,  'a', 'quize'+itemIndex+'a')"
     addQuize: function addQuize(index, quizeId, levelId, levelName, myanswer, expected_answer, quizeType, chooseItem, quizeClass) {
       this.levelName = levelName;
       this.type = quizeType;
@@ -75669,7 +75668,7 @@ var render = function() {
                       item.levels.name3,
                       item.first_choice,
                       item.expected_answer,
-                      item.sets_difficult.type,
+                      item.sets.type,
                       "a",
                       "quize" + itemIndex + "a"
                     )
@@ -75715,7 +75714,7 @@ var render = function() {
                       item.levels.name3,
                       item.second_choice,
                       item.expected_answer,
-                      item.sets_difficult.type,
+                      item.sets.type,
                       "b",
                       "quize" + itemIndex + "b"
                     )
@@ -75761,7 +75760,7 @@ var render = function() {
                       item.levels.name3,
                       item.third_choice,
                       item.expected_answer,
-                      item.sets_difficult.type,
+                      item.sets.type,
                       "c",
                       "quize" + itemIndex + "c"
                     )
@@ -75807,7 +75806,7 @@ var render = function() {
                       item.levels.name3,
                       item.fourth_choice,
                       item.expected_answer,
-                      item.sets_difficult.type,
+                      item.sets.type,
                       "d",
                       "quize" + itemIndex + "d"
                     )

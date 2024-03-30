@@ -155,20 +155,34 @@ const store = new Vuex.Store({
     },
     actions: {
       getQuizes({state,commit},payload){
-        console.log(payload);
+        console.log(payload.levelName+'vcxcc'+payload.type);
         // axios.get(state.basName+'exams?level_id='+payload)
-          axios.get(state.basName+'quizes')
+        axios.get('https://deutschtests.com/api/quizes',{
+          params: {
+              data: JSON.stringify(payload.quizes),
+              levelName:payload.levelName,
+              type:payload.type
+          }})
+          // axios.get(state.basName+'quizes?levelName='+payload.levelName+'&type='+payload.type,)
           .then(res => {
-            console.log(res.data.data+'mariam khaled');
-              if(res.data.data.length !=0){
-                store.commit('updateQuizes', res.data.data);
-              }else {
-                if(payload.user_id !=0){
-                  router.push({ name: 'Result', params: { user_id: payload.user_id,examId:payload.examId } })
-                }else{
-                  router.push({ name: 'NoResult' })
-                }
-              }
+            console.log(res.data+'mariam khalll');
+            if(res.data.data.length !=0){
+              
+              store.commit('updateQuizes', res.data.data);
+            }else {
+              router.push({ name: 'NoResult' })
+              // this.$root.$router.push({
+              //     // path: '/placement-result/' + payload.user_id, 
+              //     path: '/placement-result/' + 19, 
+              //     params: { test: 'testyy' }
+              // });
+              
+                // if(payload.user_id !=0){
+                //   router.push({ name: 'Result', params: { user_id: payload.user_id,examId:payload.examId } })
+                // }else{
+                //   router.push({ name: 'NoResult' })
+                // }
+            }
           })
           .then(err => console.log(err))
       },

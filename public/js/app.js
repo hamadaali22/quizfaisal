@@ -29991,7 +29991,8 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       userId: this.$store.state.userToken,
-      pageId: '1',
+      levelName: null,
+      type: null,
       qnum: -0,
       questionAnswer: [],
       names: []
@@ -30003,18 +30004,22 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mounted: function mounted() {
+    console.log(this.questionAnswer);
     this.$store.dispatch('getQuizes', {
-      pageId: this.pageId
+      levelName: this.levelName,
+      type: this.type,
+      quizes: this.questionAnswer
     });
   },
   methods: {
     // addQuize(itemIndex,  item.id,   item.level_id,  item.levels.name3,  item.first_choice,  item.expected_answer,  item.sets_difficult.type,  'a', 'quize'+itemIndex+'a')"
     addQuize: function addQuize(index, quizeId, levelId, levelName, myanswer, expected_answer, quizeType, chooseItem, quizeClass) {
-      console.log(quizeId);
+      this.levelName = levelName;
+      this.type = quizeType;
       var quize_ans;
       if (this.userId) {
         quize_ans = {
-          user_id: 19,
+          'user_id': 19,
           'quize_id': quizeId,
           'level_id': levelId,
           'levelName': levelName,
@@ -30024,7 +30029,7 @@ __webpack_require__.r(__webpack_exports__);
         };
       } else {
         quize_ans = {
-          user_id: 19,
+          'user_id': 19,
           'quize_id': quizeId,
           'level_id': levelId,
           'levelName': levelName,
@@ -30108,25 +30113,58 @@ __webpack_require__.r(__webpack_exports__);
     },
     SaveQuestion: function SaveQuestion() {
       if (this.questionAnswer.length == 0) {
+        // console.log(this.questionAnswer);
         this.$toaster.error('Sie müssen mindestens eine Frage beantworten.');
+
+        // let data={'quizes':this.questionAnswer, 'levelName': this.levelName};
+
+        // console.log(this.levelName+'----'+ this.type+'data'+data.levelName);
+
+        // axios.get('https://deutschtests.com/api/quizes',{
+        // params: {
+        //     data: JSON.stringify(this.questionAnswer),
+        //     levelName:this.levelName,
+        //     type:this.type
+        // }})
+        // .then(res => {
+        //     console.log(res.data+'mariam khalll');
+
+        // })
+        // .then(err => console.log(err))
       } else {
         var data = {
-          'quizes': this.questionAnswer
+          'quizes': this.questionAnswer,
+          'levelName': this.levelName
         };
         axios.post('https://deutschtests.com/api/save-quize-test', data).then(function (res) {
           console.log(res);
-          commit('setUserToken', res.data.token);
+          // commit('setUserToken', res.data.token)
         })["catch"](function (err) {
           console.log(err);
         });
+
+        // console.log(this.levelName+'----'+ this.type+'data'+data.levelName);
+
+        if (this.userId) {
+          this.$store.dispatch('getQuizes', {
+            user_id: this.$store.state.userToken.id,
+            levelName: this.levelName,
+            type: this.type,
+            quizes: this.questionAnswer
+          });
+        } else {
+          this.$toaster.error('Sie müssen sich registrieren, um Ihr Ergebnis zu erhalten und die Musterlösung zu sehen.');
+          this.$store.dispatch('getQuizes', {
+            user_id: 0,
+            levelName: this.levelName,
+            type: this.type,
+            quizes: this.questionAnswer
+          });
+        }
+        this.levelName = null;
+        this.type = null;
         this.names = [];
         this.questionAnswer = [];
-        // if(this.userId){
-        //     this.$store.dispatch('getQuestions', {user_id: this.$store.state.userToken.id, examId: this.examId});
-        // }else{
-        //     this.$toaster.error('Sie müssen sich registrieren, um Ihr Ergebnis zu erhalten und die Musterlösung zu sehen.');
-        //     this.$store.dispatch('getQuestions', {user_id:0, examId: this.examId });
-        // }
         window.scrollTo({
           top: 0,
           left: 0,
@@ -30134,6 +30172,42 @@ __webpack_require__.r(__webpack_exports__);
         });
       }
     }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PlacementResult.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/PlacementResult.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {};
   }
 });
 
@@ -75569,7 +75643,13 @@ var render = function() {
         return _c("div", { key: item.id, staticClass: "mcq p-2" }, [
           _c("div", { staticClass: "row" }, [
             _c("h6", [
-              _vm._v(_vm._s(itemIndex + 1) + "- " + _vm._s(item.title))
+              _vm._v(
+                _vm._s(itemIndex + 1) +
+                  "- " +
+                  _vm._s(item.id) +
+                  " " +
+                  _vm._s(item.title)
+              )
             ])
           ]),
           _vm._v(" "),
@@ -75633,7 +75713,7 @@ var render = function() {
                       item.id,
                       item.level_id,
                       item.levels.name3,
-                      item.first_choice,
+                      item.second_choice,
                       item.expected_answer,
                       item.sets_difficult.type,
                       "b",
@@ -75679,7 +75759,7 @@ var render = function() {
                       item.id,
                       item.level_id,
                       item.levels.name3,
-                      item.first_choice,
+                      item.third_choice,
                       item.expected_answer,
                       item.sets_difficult.type,
                       "c",
@@ -75725,7 +75805,7 @@ var render = function() {
                       item.id,
                       item.level_id,
                       item.levels.name3,
-                      item.first_choice,
+                      item.fourth_choice,
                       item.expected_answer,
                       item.sets_difficult.type,
                       "d",
@@ -75791,6 +75871,66 @@ var render = function() {
         )
       ])
     ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PlacementResult.vue?vue&type=template&id=36b3d2c7&":
+/*!******************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/PlacementResult.vue?vue&type=template&id=36b3d2c7& ***!
+  \******************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c(
+      "section",
+      { staticClass: "row home-main-section p-5 container-fluid" },
+      [
+        _c("div", { staticClass: "col-lg m-auto pl-4 text-center" }, [
+          _c("p", [_vm._v("هذا مستواك")]),
+          _vm._v(" "),
+          _c(
+            "p",
+            [
+              _vm._v(" Sie haben noch kein Konto? "),
+              _c(
+                "router-link",
+                {
+                  staticStyle: { color: "#6298bf" },
+                  attrs: { to: "register" }
+                },
+                [_vm._v(" Regestrieren ")]
+              ),
+              _vm._v("Sie haben schon ein Konto "),
+              _c(
+                "router-link",
+                { staticStyle: { color: "#6298bf" }, attrs: { to: "login" } },
+                [_vm._v(" ANMELDEN")]
+              )
+            ],
+            1
+          )
+        ]),
+        _vm._v(" "),
+        _c("br"),
+        _c("br"),
+        _c("br")
+      ]
+    )
   ])
 }
 var staticRenderFns = []
@@ -98970,26 +99110,35 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_4__["default"].Store({
     getQuizes: function getQuizes(_ref, payload) {
       var state = _ref.state,
         commit = _ref.commit;
-      console.log(payload);
+      console.log(payload.levelName + 'vcxcc' + payload.type);
       // axios.get(state.basName+'exams?level_id='+payload)
-      axios.get(state.basName + 'quizes').then(function (res) {
-        console.log(res.data.data + 'mariam khaled');
+      axios.get('https://deutschtests.com/api/quizes', {
+        params: {
+          data: JSON.stringify(payload.quizes),
+          levelName: payload.levelName,
+          type: payload.type
+        }
+      })
+      // axios.get(state.basName+'quizes?levelName='+payload.levelName+'&type='+payload.type,)
+      .then(function (res) {
+        console.log(res.data + 'mariam khalll');
         if (res.data.data.length != 0) {
           store.commit('updateQuizes', res.data.data);
         } else {
-          if (payload.user_id != 0) {
-            _routes_routes__WEBPACK_IMPORTED_MODULE_2__["default"].push({
-              name: 'Result',
-              params: {
-                user_id: payload.user_id,
-                examId: payload.examId
-              }
-            });
-          } else {
-            _routes_routes__WEBPACK_IMPORTED_MODULE_2__["default"].push({
-              name: 'NoResult'
-            });
-          }
+          _routes_routes__WEBPACK_IMPORTED_MODULE_2__["default"].push({
+            name: 'NoResult'
+          });
+          // this.$root.$router.push({
+          //     // path: '/placement-result/' + payload.user_id, 
+          //     path: '/placement-result/' + 19, 
+          //     params: { test: 'testyy' }
+          // });
+
+          // if(payload.user_id !=0){
+          //   router.push({ name: 'Result', params: { user_id: payload.user_id,examId:payload.examId } })
+          // }else{
+          //   router.push({ name: 'NoResult' })
+          // }
         }
       }).then(function (err) {
         return console.log(err);
@@ -100482,6 +100631,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/PlacementResult.vue":
+/*!*****************************************************!*\
+  !*** ./resources/js/components/PlacementResult.vue ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _PlacementResult_vue_vue_type_template_id_36b3d2c7___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PlacementResult.vue?vue&type=template&id=36b3d2c7& */ "./resources/js/components/PlacementResult.vue?vue&type=template&id=36b3d2c7&");
+/* harmony import */ var _PlacementResult_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PlacementResult.vue?vue&type=script&lang=js& */ "./resources/js/components/PlacementResult.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _PlacementResult_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _PlacementResult_vue_vue_type_template_id_36b3d2c7___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _PlacementResult_vue_vue_type_template_id_36b3d2c7___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/PlacementResult.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/PlacementResult.vue?vue&type=script&lang=js&":
+/*!******************************************************************************!*\
+  !*** ./resources/js/components/PlacementResult.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PlacementResult_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./PlacementResult.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PlacementResult.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PlacementResult_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/PlacementResult.vue?vue&type=template&id=36b3d2c7&":
+/*!************************************************************************************!*\
+  !*** ./resources/js/components/PlacementResult.vue?vue&type=template&id=36b3d2c7& ***!
+  \************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PlacementResult_vue_vue_type_template_id_36b3d2c7___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./PlacementResult.vue?vue&type=template&id=36b3d2c7& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PlacementResult.vue?vue&type=template&id=36b3d2c7&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PlacementResult_vue_vue_type_template_id_36b3d2c7___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PlacementResult_vue_vue_type_template_id_36b3d2c7___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/PlacementTest.vue":
 /*!***************************************************!*\
   !*** ./resources/js/components/PlacementTest.vue ***!
@@ -101487,9 +101705,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_MyResult_vue__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ../components/MyResult.vue */ "./resources/js/components/MyResult.vue");
 /* harmony import */ var _components_PlacementTest_vue__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ../components/PlacementTest.vue */ "./resources/js/components/PlacementTest.vue");
 /* harmony import */ var _components_PlacementQuestions_vue__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ../components/PlacementQuestions.vue */ "./resources/js/components/PlacementQuestions.vue");
+/* harmony import */ var _components_PlacementResult_vue__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ../components/PlacementResult.vue */ "./resources/js/components/PlacementResult.vue");
 
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
+
 
 
 
@@ -101521,6 +101741,10 @@ var routes = [{
   path: '/placement-questions',
   component: _components_PlacementQuestions_vue__WEBPACK_IMPORTED_MODULE_24__["default"],
   name: 'PlacementQuestions'
+}, {
+  path: '/placement-result/:id',
+  component: _components_PlacementResult_vue__WEBPACK_IMPORTED_MODULE_25__["default"],
+  name: 'PlacementResult'
 }, {
   path: '/home',
   component: _components_Home_vue__WEBPACK_IMPORTED_MODULE_7__["default"],

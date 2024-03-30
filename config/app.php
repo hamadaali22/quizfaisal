@@ -231,6 +231,7 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'Visitor' => Shetabit\Visitor\Facade\Visitor::class,
+        'QuizeHelpers' => App\Helpers\QuizeHelpers::class,
     ],
 
 ];

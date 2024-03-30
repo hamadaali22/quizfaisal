@@ -20,50 +20,209 @@ use App\Answer;
 use App\ExamAnswer;
 use App\ExpectedAnswer;
 use App\Quize;
+use App\QuizesTest;
+use App\QuizesAnswers;
+use App\Traits\QuizeTrait;
+use App\Helpers\QuizeHelpers;
 class QuestionController extends Controller
 {
     use GeneralTrait;
-
+    use QuizeTrait;
+    
     public function quizes(Request $request)
     {
-        $data = Quize::inRandomOrder()->with('levels')->has('levels')->with('sets_difficult')->has('sets_difficult')->take(5)->get();
+        // inRandomOrder()->
+        $data = QuizeHelpers::quizes('ddd');
         return $this->returnDataa('data', $data,'');
+        dd('dddv');
+        $data = $this->get_quizes();
+        return $this->returnDataa('data', $data,'');
+        if($request->levelName==null){
+            // $data = Quize::where('level_name','A2')->with('levels')->with("sets_difficult")->has('sets_difficult')->take(5)->get();
+            $data = Quize::where('level_name','A2')->with('levels')->whereHas('sets', function ($query){
+                $query->where('type', 'difficult');
+            })->with("sets")->take(5)->get();
+            // return $request->levelName.'555 difficult';
+            return $this->returnDataa('data', $data,'');
+        }else{
+            // return $request->levelName.'444 difficult';
+            $quiz_array = json_decode($request->data, true);
+            $length = count($quiz_array);
+            $correct=0;
+            if($length > 0)
+            {
+                for($i=0; $i<$length; $i++)
+                {
+                    if($quiz_array[$i]['answer']== $quiz_array[$i]['expected_answer']){
+                        $correct +=1; 
+                    };
+                }
+            }
+
+            $data=[];
+            if($request->levelName=='A2'){
+                // return $request->level_id.'0 difficult';
+                if($request->type=='difficult'){
+                    if( $correct >=3){
+                        $data = Quize::where('level_name','B1')->with('levels')->with('sets_difficult')->has('sets_difficult')->take(5)->get();
+                        // return $request->levelName.'88 difficult';
+                        return $this->returnDataa('data', $data,'');
+                    }else{
+                        $data_middle = Quize::where('level_name','A2')->with('levels')->with('sets_middle')->has('sets_middle')->take(3)->get();
+                        $data_easy = Quize::where('level_name','A2')->with('levels')->with('sets_easy')->has('sets_easy')->take(3)->get();
+                        // return $request->levelName.'798 easy';
+                        $mergedData = $data_middle->merge($data_easy);
+                        return $this->returnDataa('data', $mergedData,'');
+                    }
+                    return $request->levelName.'11 difficult';
+                    
+                }else{
+                    return $this->returnDataa('data', 'A2 easy','');
+                    if( $correct >=3){
+                        
+                        // $userq=QuizesTest::where("user_id" , $request->quizes['0']['user_id'])->first();
+                        $data = Quize::where('level_name','100000')->get();
+                        return $this->returnDataa('data', $data,'');
+                    }else{
+                        $data = Quize::where('level_name','A1')->with('levels')->with('sets_difficult')->has('sets_difficult')->take(5)->get();
+                        return $this->returnDataa('data', $data,'');
+                    }
+                }
+            }elseif($request->levelName=='B1'){
+                if($request->type=='difficult'){
+                    return $this->returnDataa('data', 'B1 difficult','');
+                    if( $correct >=3){
+                        $data[] = Quize::where('level_name','B2')->with('levels')->with('sets_difficult')->has('sets_difficult')->take(5)->get();
+                    }else{
+                        $data[] = Quize::where('level_name','B1')->with('levels')->with('sets_middle')->has('sets_middle')->take(3)->get();
+                        $data[] = Quize::where('level_name','B1')->with('levels')->with('sets_easy')->has('sets_easy')->take(3)->get();
+                    }
+                    return $this->returnDataa('data', $data,'');
+                }else{
+                    return $this->returnDataa('data', 'B1 easy','');
+                    if( $correct >=3){
+                        // $data = Quize::inRandomOrder()->where('level_name','A2')->with('levels')->with('sets_difficult')->has('sets_difficult')->take(5)->get();
+                    }else{
+                        // $data[] = Quize::inRandomOrder()->where('level_name','A1')->with('levels')->with('sets_difficult')->has('sets_difficult')->take(5)->get();
+                    }
+                    return $this->returnDataa('data', $data,'');
+                }
+            }elseif($request->levelName=='B2'){
+                if($request->type=='difficult'){
+                    return $this->returnDataa('data', 'B2 difficult','');
+                    if( $correct >=3){
+                        // $data[] = Quize::inRandomOrder()->where('level_name','B2')->with('levels')->with('sets_difficult')->has('sets_difficult')->take(5)->get();
+                    }else{
+                        $data[] = Quize::where('level_name','B2')->with('levels')->with('sets_middle')->has('sets_middle')->take(3)->get();
+                        $data[] = Quize::where('level_name','B2')->with('levels')->with('sets_easy')->has('sets_easy')->take(3)->get();
+                    }
+                    return $this->returnDataa('data', $data,'');
+                }else{
+                    return $this->returnDataa('data', 'B2 easy','');
+                    if( $correct >=3){
+                        // $data = Quize::inRandomOrder()->where('level_name','A2')->with('levels')->with('sets_difficult')->has('sets_difficult')->take(5)->get();
+                    }else{
+                        // $data[] = Quize::inRandomOrder()->where('level_name','A1')->with('levels')->with('sets_difficult')->has('sets_difficult')->take(5)->get();
+                    }
+                    return $this->returnDataa('data', $data,'');
+                }
+            }elseif($request->levelName=='A1'){
+                if($request->type=='difficult'){
+                    return $this->returnDataa('data', 'A1 difficult','');
+                    if( $correct >=3){
+                        // $data[] = Quize::inRandomOrder()->where('level_name','B2')->with('levels')->with('sets_difficult')->has('sets_difficult')->take(5)->get();
+                    }else{
+                        $data[] = Quize::where('level_name','A1')->with('levels')->with('sets_middle')->has('sets_middle')->take(3)->get();
+                        $data[] = Quize::where('level_name','A1')->with('levels')->with('sets_easy')->has('sets_easy')->take(3)->get();
+                    }
+                    return $this->returnDataa('data', $data,'');
+                }else{
+                    return $this->returnDataa('data', 'A1 easy','');
+                    if( $correct >=3){
+                        // $data = Quize::inRandomOrder()->where('level_name','A2')->with('levels')->with('sets_difficult')->has('sets_difficult')->take(5)->get();
+                    }else{
+                        // $data[] = Quize::inRandomOrder()->where('level_name','A1')->with('levels')->with('sets_difficult')->has('sets_difficult')->take(5)->get();
+                    }
+                    return $this->returnDataa('data', $data,'');
+                }
+            }
+        }
+       
     }
     public function SaveQuizeTest(Request $request)
     {
-        // $check_examanswer=ExamAnswer::where("user_id", $request->data[0]['user_id'])->where("exam_id", $request->data[0]['examId'])->where("question_id" , $request->data[0]['questionId'])->get();
-        // if(count($check_examanswer) >0){
-        //     foreach ($check_examanswer as $item) {
-        //         $item->delete();
-        //     }
-        // }
-        return ($request->all());
-        $add = new QuizesTest;
-        $add->user_id    = $request->user_id;
-        $add->level_id    = $request->level_id;
-        $add->levelName    = $request->levelName;
-        $add->type    = $request->type;
-        $add->date    = 'f';
-        $add->time    = 'dd';
-        $add->save();
-
-        $length = count($request->data);
+        
+        // dd($request->all());
+        $length = count($request->quizes);
+        
+        $correct=0;
         if($length > 0)
         {
             for($i=0; $i<$length; $i++)
             {
-                $add = new ExamAnswer;
-                $add->user_id    = $request->data[$i]['user_id'];
-                $add->exam_id    = $request->data[$i]['examId'];
-                $add->question_id    = $request->data[$i]['questionId'];
-                $add->subquestion_id    = $request->data[$i]['subQuestionId'];
-                $add->expected_answer    = $request->data[$i]['expected_answer'];
-                $add->answer    = $request->data[$i]['answerid'];
-                $add->save();
+               if($request->quizes[$i]['answer']==$request->quizes[$i]['expected_answer']){
+                    $correct +=1; 
+               }
             }
         }
-        // return 'ddd';
-        return $this -> returnDataa('data',$add,'تم الحفظ');
+
+        $userq=QuizesTest::where("user_id" , $request->quizes['0']['user_id'])->first();
+        if($userq){
+            $userq->user_id    = $request->quizes['0']['user_id'];
+            $userq->level_id    =$request->quizes['0']['level_id'];
+            $userq->levelName    = $request->quizes['0']['levelName'];
+            $userq->type    = $request->quizes['0']['type'];
+            $userq->correct    = $correct;
+            $userq->save();
+            
+            if($length > 0)
+            {
+                for($i=0; $i<$length; $i++)
+                {
+                    $quize_answers = new QuizesAnswers;
+                    
+                    $quize_answers->quizes_test_id    = $userq->id;
+                    $quize_answers->user_id    = $request->quizes[$i]['user_id'];
+                    $quize_answers->level_id    = $request->quizes[$i]['level_id'];
+                    $quize_answers->quize_id    = $request->quizes[$i]['quize_id'];
+                    $quize_answers->answer    = $request->quizes[$i]['answer'];
+                    $quize_answers->expected_answer    = $request->quizes[$i]['expected_answer'];
+                    // $quize_answers->answer    = $request->quizes[$i]['answer'];
+                    $quize_answers->save();
+                }
+            }
+        }else{
+            $add = new QuizesTest;
+            $add->user_id    = $request->quizes['0']['user_id'];
+            $add->level_id    =$request->quizes['0']['level_id'];
+            $add->levelName    = $request->quizes['0']['levelName'];
+            $add->type    = $request->quizes['0']['type'];
+            $add->correct    = $correct;
+            $add->save();
+            
+            if($length > 0)
+            {
+                for($i=0; $i<$length; $i++)
+                {
+                    $quize_answers = new QuizesAnswers;
+                    
+                    $quize_answers->quizes_test_id    = $add->id;
+                    $quize_answers->user_id    = $request->quizes[$i]['user_id'];
+                    $quize_answers->level_id    = $request->quizes[$i]['level_id'];
+                    $quize_answers->quize_id    = $request->quizes[$i]['quize_id'];
+                    $quize_answers->answer    = $request->quizes[$i]['answer'];
+                    $quize_answers->expected_answer    = $request->quizes[$i]['expected_answer'];
+                    // $quize_answers->answer    = $request->quizes[$i]['answer'];
+                    $quize_answers->save();
+                }
+            }
+        }
+        
+        
+       
+       
+        
+        return $this -> returnDataa('data','23456','تم الحفظ');
     }
     
     public function levels(Request $request)
@@ -658,6 +817,85 @@ class QuestionController extends Controller
     //     $data->user=User::where('id',$data->user_id)->first();
 
     //     return $this->returnDataa('data', $data,'');
+    // }
+
+
+
+
+
+
+
+
+
+    // $data=[];
+    // if($request->quizes[$i]['level_id']=='A2'){
+    //     if($request->quizes['0']['type']='sets_difficult'){
+    //         if( $correct >=3){
+    //             $data[] = Quize::inRandomOrder()->where('level_name','B1')->with('levels')->with('sets_difficult')->has('sets_difficult')->take(5)->get();
+    //         }else{
+    //             $data[] = Quize::inRandomOrder()->where('level_name','A2')->with('levels')->with('sets_middle')->has('sets_middle')->take(3)->get();
+    //             $data[] = Quize::inRandomOrder()->where('level_name','A2')->with('levels')->with('sets_easy')->has('sets_easy')->take(3)->get();
+    //         }
+    //         return $this->returnDataa('data', $data,'');
+    //     }else{
+    //         if( $correct >=3){
+    //             // $data = Quize::inRandomOrder()->where('level_name','A2')->with('levels')->with('sets_difficult')->has('sets_difficult')->take(5)->get();
+    //         }else{
+    //             $data[] = Quize::inRandomOrder()->where('level_name','A1')->with('levels')->with('sets_difficult')->has('sets_difficult')->take(5)->get();
+    //         }
+    //         return $this->returnDataa('data', $data,'');
+    //     }
+    // }elseif($request->quizes[$i]['level_id']=='B1'){
+    //     if($request->quizes['0']['type']='sets_difficult'){
+    //         if( $correct >=3){
+    //             $data[] = Quize::inRandomOrder()->where('level_name','B2')->with('levels')->with('sets_difficult')->has('sets_difficult')->take(5)->get();
+    //         }else{
+    //             $data[] = Quize::inRandomOrder()->where('level_name','B1')->with('levels')->with('sets_middle')->has('sets_middle')->take(3)->get();
+    //             $data[] = Quize::inRandomOrder()->where('level_name','B1')->with('levels')->with('sets_easy')->has('sets_easy')->take(3)->get();
+    //         }
+    //         return $this->returnDataa('data', $data,'');
+    //     }else{
+    //         if( $correct >=3){
+    //             // $data = Quize::inRandomOrder()->where('level_name','A2')->with('levels')->with('sets_difficult')->has('sets_difficult')->take(5)->get();
+    //         }else{
+    //             // $data[] = Quize::inRandomOrder()->where('level_name','A1')->with('levels')->with('sets_difficult')->has('sets_difficult')->take(5)->get();
+    //         }
+    //         return $this->returnDataa('data', $data,'');
+    //     }
+    // }elseif($request->quizes[$i]['level_id']=='B2'){
+    //     if($request->quizes['0']['type']='sets_difficult'){
+    //         if( $correct >=3){
+    //             // $data[] = Quize::inRandomOrder()->where('level_name','B2')->with('levels')->with('sets_difficult')->has('sets_difficult')->take(5)->get();
+    //         }else{
+    //             $data[] = Quize::inRandomOrder()->where('level_name','B2')->with('levels')->with('sets_middle')->has('sets_middle')->take(3)->get();
+    //             $data[] = Quize::inRandomOrder()->where('level_name','B2')->with('levels')->with('sets_easy')->has('sets_easy')->take(3)->get();
+    //         }
+    //         return $this->returnDataa('data', $data,'');
+    //     }else{
+    //         if( $correct >=3){
+    //             // $data = Quize::inRandomOrder()->where('level_name','A2')->with('levels')->with('sets_difficult')->has('sets_difficult')->take(5)->get();
+    //         }else{
+    //             // $data[] = Quize::inRandomOrder()->where('level_name','A1')->with('levels')->with('sets_difficult')->has('sets_difficult')->take(5)->get();
+    //         }
+    //         return $this->returnDataa('data', $data,'');
+    //     }
+    // }elseif($request->quizes[$i]['level_id']=='A1'){
+    //     if($request->quizes['0']['type']='sets_difficult'){
+    //         if( $correct >=3){
+    //             // $data[] = Quize::inRandomOrder()->where('level_name','B2')->with('levels')->with('sets_difficult')->has('sets_difficult')->take(5)->get();
+    //         }else{
+    //             $data[] = Quize::inRandomOrder()->where('level_name','A1')->with('levels')->with('sets_middle')->has('sets_middle')->take(3)->get();
+    //             $data[] = Quize::inRandomOrder()->where('level_name','A1')->with('levels')->with('sets_easy')->has('sets_easy')->take(3)->get();
+    //         }
+    //         return $this->returnDataa('data', $data,'');
+    //     }else{
+    //         if( $correct >=3){
+    //             // $data = Quize::inRandomOrder()->where('level_name','A2')->with('levels')->with('sets_difficult')->has('sets_difficult')->take(5)->get();
+    //         }else{
+    //             // $data[] = Quize::inRandomOrder()->where('level_name','A1')->with('levels')->with('sets_difficult')->has('sets_difficult')->take(5)->get();
+    //         }
+    //         return $this->returnDataa('data', $data,'');
+    //     }
     // }
 
 }

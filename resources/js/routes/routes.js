@@ -29,11 +29,15 @@ import MyResult from '../components/MyResult.vue'
 
 import PlacementTest from '../components/PlacementTest.vue'
 import PlacementQuestions from '../components/PlacementQuestions.vue'
+import PlacementResult from '../components/PlacementResult.vue'
+
 
 
 const routes = [
     { path: '/placement-test', component: PlacementTest, name: 'PlacementTest' },
     { path: '/placement-questions', component: PlacementQuestions, name: 'PlacementQuestions' },
+    { path: '/placement-result/:id', component: PlacementResult, name: 'PlacementResult' },
+
 
     { path: '/home', component: Home, name: 'Home' },
     { path: '/', component: Home, name: 'Home' },

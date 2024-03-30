@@ -16,9 +16,15 @@
                 <!-- <li v-if="isLogged" class="nav-item p-1 active "><router-link to="levels" class="nav-link text-light">GOETHE</router-link></li> -->
                 <li class="nav-item p-1 active "><router-link to="/goethe-tests" class="nav-link text-light">Goethe</router-link></li>
                 <li class="nav-item p-1 active "><router-link to="/telc-tests" class="nav-link text-light">Telc</router-link></li>
+                <li  class="nav-item p-1 active "><router-link to="/placement-questions" class="nav-link text-light">Placement</router-link></li>
+
                 <li v-if="!isLogged" class="nav-item p-1 active "><router-link to="/login" class="nav-link text-light">Anmelden</router-link></li>
                 <li v-if="!isLogged" class="nav-item p-1 active "><router-link to="/register" class="nav-link text-light">Registrieren</router-link></li>
                 <li v-if="isLogged" class="nav-item p-1 active "><router-link to="/goethe-user-exam" class="nav-link text-light">Meine Tests</router-link></li>
+                <li v-if="isLogged" class="nav-item p-1 active "><router-link to="/placement-result" class="nav-link text-light">Placement Result</router-link></li>
+
+                
+                
                 <!-- <li v-if="isLogged" class="nav-item p-1 active "><router-link to="/profile" class="nav-link text-light">Profile</router-link></li> -->
 
                 <!-- <li v-if="isLogged" class="nav-item p-1 active "><router-link to="/telc-user-exam" class="nav-link text-light">telc user exam</router-link></li> -->

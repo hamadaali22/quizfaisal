@@ -36,7 +36,9 @@ import PlacementResult from '../components/PlacementResult.vue'
 const routes = [
     { path: '/placement-test', component: PlacementTest, name: 'PlacementTest' },
     { path: '/placement-questions', component: PlacementQuestions, name: 'PlacementQuestions' },
-    { path: '/placement-result/:id', component: PlacementResult, name: 'PlacementResult' },
+    { path: '/placement-result', component: PlacementResult, name: 'PlacementResult' },
+    // { path: '/placement-result/:id', component: PlacementResult, name: 'PlacementResult' },
+
 
 
     { path: '/home', component: Home, name: 'Home' },

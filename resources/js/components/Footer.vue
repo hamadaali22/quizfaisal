@@ -1,10 +1,10 @@
 
 <template>
-    <div>
+    <div v-bind:class="[this.$route.path == '/noresult' ? 'fixed-bottom' : '']">
         <br><br><br>
         <!-- <footer class="back navbar " v-bind:class="[this.$route.path == '/noresult' || this.$route.path =='/goethe-user-exam' ? 'fixed-bottom' : '']"> -->
 
-        <footer class="back navbar " v-bind:class="[this.$route.path == '/noresult' ? 'fixed-bottom' : '']">
+        <footer class="back navbar " >
                 <!-- <div class=" "> -->
                     
                     <!-- <div class="row col-md-12" style="    padding-right: 0px;">
@@ -297,7 +297,7 @@
                 
         </footer>
         <!-- padding-top: 9px -->
-        <div  style="background-color: #fff; ;">
+        <div  style="background-color: #fff ;">
                         <div class="container" >
                             <div class=" row">
                                 <div class="row col-md-10 ">

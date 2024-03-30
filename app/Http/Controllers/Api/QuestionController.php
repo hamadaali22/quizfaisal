@@ -31,7 +31,10 @@ class QuestionController extends Controller
     
     public function quizesResult(Request $request)
     {
-        $data=QuizesTest::where('user_id',$request->user_id)->first();
+        $user = Auth::guard('user-api')->user();
+        if(!$user)
+            return $this->returnError('يجب تسجيل الدخول أولا');
+        $data=QuizesTest::where('user_id',$user->id)->first();
         return $this->returnDataa('data', $data,'');
     }
     public function quizes(Request $request)

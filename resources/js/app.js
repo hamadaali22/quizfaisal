@@ -172,7 +172,7 @@ const store = new Vuex.Store({
             }else {
               if(payload.user_id !=0){
                 console.log(payload.user_id+'i user');
-                router.push({ name: 'placement-result' })
+                router.push({ name: 'PlacementResult' })
                 // router.push({
                 //     // path: '/placement-result/' + payload.user_id, 
                 //     path: '/placement-result/' + 19, 

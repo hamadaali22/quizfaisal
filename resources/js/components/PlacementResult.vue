@@ -34,7 +34,6 @@
   mounted() {
     // this.itemId = this.$route.params.id;
   },
-   
   methods:{
   getUserdata(){
         const headers = {

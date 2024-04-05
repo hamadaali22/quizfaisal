@@ -183,6 +183,7 @@ class ProfileController extends Controller
         $edit->about = $request->about;
         $edit->level_desc  = $request->level_desc;
         $edit->telc_desc  = $request->telc_desc;
+        $edit->placement_desc  = $request->placement_desc;
         $edit->save();
         return back()->with("message", 'updated ');
     }

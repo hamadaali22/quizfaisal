@@ -28,6 +28,12 @@ class QuizeController extends Controller
         // }
         return view('admin.quizes.all',compact('quizes','levels','sets'));
     }
+     public function quizeBySet($id)
+    {
+        $quizes=Quize::where('set_id',$id)->get();
+       
+         return view('admin.quizes.all',compact('quizes'));
+    }
 
     
 

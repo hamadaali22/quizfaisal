@@ -16,7 +16,8 @@ use Illuminate\Support\Str;
 use App\User;
 use App\Question;
 use App\SubQuestion;
-  use Carbon\Carbon;
+use Carbon\Carbon;
+
 class HomeController extends Controller
 {
     use GeneralTrait;
@@ -95,6 +96,12 @@ class HomeController extends Controller
 
    public function register(Request $request)
    {
+        //  $user = Auth::guard('user-api')->user();
+        // if($user){
+        //    return $user;
+        // }else{
+        //     return $this->returnError('nnn');
+        // }
         $checkemail = User::where("email" , $request->email)->first();
         if($checkemail){
             return $this -> returnError('E-Mail existiert bereits');
@@ -117,12 +124,20 @@ class HomeController extends Controller
             Mail::send('emails.activation', $user, function($message) use ($user){
                 $message->to($user['email']);
                 $message->subject('Deutschprüfungen - Aktivierungscode');
-            });
-
-            return $this -> returnDataa('data',$user,'Sie haben eine Bestätigung per E-Mail erhalten. Klicken Sie den Bestätigungslink');
+            });            
+            $credentials = [
+                'email' => $request->email,
+                'password' => $request->password,
+            ];
+            $token =  Auth::guard('user-api') -> attempt($credentials);
+            $UserData = User::where("email" , $request->email)->first();
+            $UserData->token=$token;
+            $UserData->save();
+            return $this -> returnDataa('data',$UserData,'Sie haben eine Bestätigung per E-Mail erhalten. Klicken Sie den Bestätigungslink');
             // return $this -> returnSuccessMessage('successfully registered');
         }
     }
+    
     public function userActivation($token){
         // dd('vdvgdvgd');
         $check = DB::table('user_activations')->where('token',$token)->first();

@@ -46,16 +46,18 @@ class QuestionController extends Controller
             return $this->returnDataa('data', $data,'');
         }else{
             // return $request->levelName.'444 difficult';
-            $quiz_array = json_decode($request->data, true);
-            $length = count($quiz_array);
             $correct=0;
-            if($length > 0)
-            {
-                for($i=0; $i<$length; $i++)
+            if($request->data){
+                $quiz_array = json_decode($request->data, true);
+                $length = count($quiz_array);
+                if($length > 0)
                 {
-                    if($quiz_array[$i]['answer']== $quiz_array[$i]['expected_answer']){
-                        $correct +=1; 
-                    };
+                    for($i=0; $i<$length; $i++)
+                    {
+                        if($quiz_array[$i]['answer']== $quiz_array[$i]['expected_answer']){
+                            $correct +=1; 
+                        };
+                    }
                 }
             }
 

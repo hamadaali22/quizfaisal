@@ -18,7 +18,7 @@ class QuizeController extends Controller
 
     public function index()
     {
-        $quizes=Quize::all();
+        $quizes=Quize::with('levels')->with("sets")->get();
         $levels=Level::all();
         $sets=Set::all();
 

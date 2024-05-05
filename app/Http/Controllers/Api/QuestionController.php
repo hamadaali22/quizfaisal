@@ -72,7 +72,8 @@ class QuestionController extends Controller
                         $data_middle = QuizeHelpers::quizes('A2','middle',3);
                         $data_easy = QuizeHelpers::quizes('A2','easy',3);
                         // return $request->levelName.'798 easy';
-                        $mergedData = $data_middle->merge($data_easy);
+                        // $mergedData = $data_middle->merge($data_easy);
+                        $mergedData = collect($data_middle)->merge($data_easy)->toArray();
                         return $this->returnDataa('data', $mergedData,'');
                     }
                     // return $request->levelName.'11 difficult';
@@ -97,7 +98,8 @@ class QuestionController extends Controller
                     }else{
                         $data_middle = QuizeHelpers::quizes('B1','middle',3);
                         $data_easy = QuizeHelpers::quizes('B1','easy',3);
-                        $mergedData = $data_middle->merge($data_easy);
+                        // $mergedData = $data_middle->merge($data_easy);
+                        $mergedData = collect($data_middle)->merge($data_easy)->toArray();
                         return $this->returnDataa('data', $mergedData,'');
                     }
                 }else{
@@ -118,7 +120,8 @@ class QuestionController extends Controller
                     }else{
                         $data_middle = QuizeHelpers::quizes('B2','middle',3);
                         $data_easy = QuizeHelpers::quizes('B2','easy',3);
-                        $mergedData = $data_middle->merge($data_easy);
+                        // $mergedData = $data_middle->merge($data_easy);
+                        $mergedData = collect($data_middle)->merge($data_easy)->toArray();
                         return $this->returnDataa('data', $mergedData,'');
                     }
                 }else{
@@ -139,7 +142,8 @@ class QuestionController extends Controller
                     }else{
                         $data_middle = QuizeHelpers::quizes('A1','middle',3);
                         $data_easy = QuizeHelpers::quizes('A1','easy',3);
-                        $mergedData = $data_middle->merge($data_easy);
+                        // $mergedData = $data_middle->merge($data_easy);
+                        $mergedData = collect($data_middle)->merge($data_easy)->toArray();
                         return $this->returnDataa('data', $mergedData,'');
                     }
                 }else{

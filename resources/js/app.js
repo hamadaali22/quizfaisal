@@ -485,10 +485,10 @@ const store = new Vuex.Store({
   }
 
 })
-if (window.processedData) {
-  store.commit('setUserToken', window.processedData);
-  store.commit('setProcessedData', window.processedData);
-}
+// if (window.processedData) {
+//   store.commit('setUserToken', window.processedData);
+//   store.commit('setProcessedData', window.processedData);
+// }
 const app = new Vue({
   el: '#app',
   router,

@@ -3,7 +3,5 @@
 <global-home></global-home>
 
 
-<script>
-    window.processedData = @json($data);
-</script>
+
 @endsection

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Session;
 use App\Models\User;
+
 class FirebaseController extends Controller
 {
 
@@ -20,7 +21,6 @@ class FirebaseController extends Controller
 
   public function index()
   {
-    //
     $students = app('firebase.firestore')->database()->collection('User')->documents();
     return view('firebase/index',compact('students'));
     // return dd($students);

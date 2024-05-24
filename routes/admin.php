@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 Auth::routes();
 
 
+
 Route::get('admin-login', 'Auth\LoginController@LoginAdmin')->name('admin-login');
 
 	Route::get('/activation/users/{token}', 'Api\HomeController@userActivation');

@@ -40,7 +40,7 @@ const routes = [
     // { path: '/placement-result/:id', component: PlacementResult, name: 'PlacementResult' },
 
 
-
+    { path: '/google/callback', component: Login, name: 'Login' },
     { path: '/home', component: Home, name: 'Home' },
     { path: '/', component: Home, name: 'Home' },
     { path: '/noresult', component: NoResult, name: 'NoResult' },
@@ -62,12 +62,12 @@ const routes = [
     // { path: '/resultt', component: Result, name: 'Result' },
     { path: '/my-result/:user_id/:exam_id', component: MyResult, name: 'MyResult' },
 
-   
+
 
     { path: '/goethe-user-exam', component: GoetheUserExam, name: 'GoetheUserExam' },
     { path: '/my-answer', component: myAnswer, name: 'myAnswer' },
 
-    
+
     { path: '/goethe-report/:id', component: GoetheReport, name: 'GoetheReport' },
 
     { path: '/telc-user-exam', component: TelcUserExam, name: 'TelcUserExam' },
@@ -86,7 +86,7 @@ const router = new VueRouter({
     routes,
     hashbang: false,
     mode: 'history',
-    base:'/'
+    base: '/'
 })
 
 export default router;

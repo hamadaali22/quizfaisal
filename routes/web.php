@@ -17,10 +17,34 @@ use App\User;
 */
 
 
-  Route::get('/', function () {
-      // return view('front.front');
-      return view('front.front');
-  });
+Route::get('/', function () {
+    // return view('front.front');
+    // dd('xxm');
+    return view('front.front',['data' => '']);
+});
+
+
+Route::get('/insert', function() {
+    $students = app('firebase.firestore')->database()->collection('users')->documents();
+      // dd($students);
+    $stuRef = app('firebase.firestore')->database()->collection('users')->newDocument();
+    $stuRef->set([
+        'firstname' => 'Seven',
+        'lastname' => 'Stac',
+    ]);
+    echo "<h1>".'inserted'."</h1>";
+});
+
+
+
+Route::get('get-collection', 'FirebaseController@hamadaindex');
+Route::get('google-login', 'GoogleLoginController@redirectToGoogle')->name('google.redirect');
+Route::get('/google/callback', 'GoogleLoginController@handleGoogleCallback')->name('google.callback');
+// Route::get('/home/callback', 'GoogleLoginController@handleGoogleCallback')->name('google.callback');
+
+
+
+Route::get('/data-t', 'DataController@process');
 
 
   Route::get('/myanswer', function () {
@@ -35,7 +59,8 @@ use App\User;
 // })->where('any', '^((?!admin).)*$');
 
 Route::get('{any}',function($any){
-      return view('front.front');
+
+      return view('front.front',['data' => '']);
   })->where('any','^((?!admin|api|activation|myanswer).)*$');
 
   // Route::get('{any}',function($any){

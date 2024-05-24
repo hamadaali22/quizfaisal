@@ -13,6 +13,10 @@ import 'v-toaster/dist/v-toaster.css'
 Vue.use(Toaster, { timeout: 9000 })
 
 
+
+
+
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -26,6 +30,7 @@ Vue.use(Toaster, { timeout: 9000 })
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('global-home', require('./components/GlobalHome.vue').default);
+Vue.component('processed-data', require('./components/ProcessedData.vue').default);
 Vue.component('header-component', require('./components/Header.vue').default);
 Vue.component('footer-component', require('./components/Footer.vue').default);
 
@@ -38,6 +43,8 @@ import router from './routes/routes'
 import Axios from 'axios';
 
 import Vuex from 'vuex';
+
+
 Vue.use(Vuex)
 // https://stackoverflow.com/questions/71294692/how-to-fetch-data-from-api-in-vuex
 // https://medium.com/@esmaydogdu/vuex-fetch-b0e8472e7676
@@ -65,6 +72,7 @@ const store = new Vuex.Store({
     goetheUserExam: [],
     GoetheReportExam: [],
     TelcUserExam: [],
+    processedData: null
   },
   getters: { //center
     isLogged(state) {
@@ -88,6 +96,9 @@ const store = new Vuex.Store({
 
   },
   mutations: {
+    setProcessedData(state, payload) {
+      state.processedData = payload;
+    },
     setUserToken(state, userToken) {
       state.userToken = userToken;
       localStorage.setItem('userToken', JSON.stringify(userToken));
@@ -474,7 +485,10 @@ const store = new Vuex.Store({
   }
 
 })
-
+if (window.processedData) {
+  store.commit('setUserToken', window.processedData);
+  store.commit('setProcessedData', window.processedData);
+}
 const app = new Vue({
   el: '#app',
   router,

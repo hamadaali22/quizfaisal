@@ -70,7 +70,7 @@ export default {
         timer: 4000
       });
       this.$router.push({ name: 'Home' })
-      // this.$router.push('/another');
+
     }
   },
   methods: {

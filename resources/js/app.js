@@ -30,7 +30,7 @@ Vue.use(Toaster, { timeout: 9000 })
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('global-home', require('./components/GlobalHome.vue').default);
-// Vue.component('processed-data', require('./components/ProcessedData.vue').default);
+Vue.component('processed-data', require('./components/ProcessedData.vue').default);
 Vue.component('header-component', require('./components/Header.vue').default);
 Vue.component('footer-component', require('./components/Footer.vue').default);
 
@@ -486,6 +486,7 @@ const store = new Vuex.Store({
 
 })
 if (window.processedData) {
+  store.commit('setUserToken', window.processedData);
   store.commit('setProcessedData', window.processedData);
 }
 const app = new Vue({

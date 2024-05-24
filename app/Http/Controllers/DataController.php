@@ -7,9 +7,6 @@ class DataController extends Controller
 {
     public function process()
     {
-        $user = Auth::user();
-        // dd($user);
-        return view('front.front',['data' => $user]);
         $data = [
             'title' => 'Example Title',
             'content' => 'This is an example content.',

@@ -5,7 +5,6 @@
         <div class="row mt-5 p-3">
           <div class=" col-12 col-lg-6">
 
-            <img :src="contactInfo.image" class="img-fluid pt-3 mt-5 " alt="" style="max-width: 77%;">
           </div>
           <form class="col text-center" method="post">
             <h4 class="m-3  mt-5 p-3">ANMELDEN</h4>
@@ -56,12 +55,9 @@ export default {
 
   },
   computed: {
-    contactInfo() {
-      return this.$store.state.contactInfo
-    },
+
   },
   mounted() {
-    this.$store.dispatch('getContactinfo');
     if (this.request_path == '/google/callback') {
       swal({
         title: 'Erfolgreich registriert',

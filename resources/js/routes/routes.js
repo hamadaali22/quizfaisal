@@ -86,7 +86,7 @@ const router = new VueRouter({
     routes,
     hashbang: false,
     mode: 'history',
-    base: '/'
+    base: '/logintest/'
 })
 
 export default router;

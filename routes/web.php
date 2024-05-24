@@ -40,7 +40,6 @@ Route::get('/insert', function() {
 Route::get('get-collection', 'FirebaseController@hamadaindex');
 Route::get('google-login', 'GoogleLoginController@redirectToGoogle')->name('google.redirect');
 Route::get('/google/callback', 'GoogleLoginController@handleGoogleCallback')->name('google.callback');
-// Route::get('/home/callback', 'GoogleLoginController@handleGoogleCallback')->name('google.callback');
 
 
 

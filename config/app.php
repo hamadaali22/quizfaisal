@@ -168,7 +168,6 @@ return [
         Spatie\Permission\PermissionServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Yoeunes\Toastr\ToastrServiceProvider::class,
-        Laravel\Socialite\SocialiteServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -233,7 +232,6 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         'Visitor' => Shetabit\Visitor\Facade\Visitor::class,
         'QuizeHelpers' => App\Helpers\QuizeHelpers::class,
-        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
     ],
 
 ];

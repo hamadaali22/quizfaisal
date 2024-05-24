@@ -17,7 +17,6 @@
         "gumlet/php-image-resize": "^2.0",
         "guzzlehttp/guzzle": "^6.3",
         "laravel/framework": "^7.0",
-        "laravel/socialite": "^5.14",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.4",
         "laravelcollective/html": "^6.2",
@@ -29,9 +28,7 @@
         "spatie/laravel-translatable": "^4.6",
         "stichoza/google-translate-php": "^4.1",
         "tymon/jwt-auth": "^1.0",
-        "yoeunes/toastr": "^1.2",
-        "google/cloud-firestore": "^1.6",
-        "kreait/laravel-firebase": "^3.0"
+        "yoeunes/toastr": "^1.2"
     },
     "require-dev": {
         "facade/ignition": "^2.0",

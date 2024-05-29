@@ -4,7 +4,8 @@
       <div class="container">
         <div class="row mt-5 p-3">
           <div class="col-12 col-lg-6">
-            <img :src="contactInfo.image" class="img-fluid pt-3 mt-5 " alt="" style="max-width: 77%;">
+            <img :src="contactInfo.image" class="img-fluid pt-3 mt-5 " alt=""
+              style="max-width: 77%;    padding-left: 62px;">
           </div>
           <form class="col text-center mt-5 p-3" method="post">
             <h4 class="m-3 "> REGESTRIEN</h4>
@@ -44,7 +45,10 @@
                     <option  value="Spanisch ">Spanisch </option>
                     <option  value="andere ">andere </option>
                   </select> -->
-            <input type="submit" @click.prevent="submitRegister" id="btn" value="REGESTRIEN" class="mt-2">
+
+            <input type="submit" @click.prevent="submitRegister" id="btn" value="REGESTRIEN" class="mt-2 w-50">
+            <a href="google-login"> <img src="/img/google-login.png" class="img-fluid pt-1 mt-2 w-50"
+                alt="Example Image" style="width:298px; border-radius: 23px;"></a>
             <div class="d-flex justify-content-between">
               <!-- <a href="#">Register</a> -->
               <router-link to="login" style="color:#6298bf">ANMELDEN</router-link>

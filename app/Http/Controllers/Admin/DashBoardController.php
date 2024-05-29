@@ -4,7 +4,13 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-use App\Instructor;
+use App\User;
+use App\Level;
+use App\Exam;
+use App\Question;
+use App\Quize;
+use App\Set;
+
 use App\Transaction;
 class DashBoardController extends Controller
 {
@@ -36,8 +42,15 @@ class DashBoardController extends Controller
         // }
         
         // $balance=Transaction::orderBy('id', 'DESC')->first();
-       
-        return view('admin.index_admin');
+       $users_count=User::count();
+       $levels_count=Level::count();
+       $exams_count=Exam::count();
+       $question_count=Question::count();
+       $quize_count=Quize::count();
+       $groups_count=Set::count();
+
+
+        return view('admin.index_admin',compact('users_count','levels_count','exams_count','question_count','quize_count','groups_count'));
     }
 
     // public function create()

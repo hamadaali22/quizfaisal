@@ -22,9 +22,17 @@
             <input type="password" class="w-100 mb-2" placeholder="Password" v-model="password"
               style="margin-top: 32px;">
 
-            <input type="submit" @click.prevent="submitLogin" id="btn" value="Anmelden" class="mt-2 w-50"><br>
-            <a href="google-login"> <img src="/img/google-login.png" class="img-fluid pt-1 mt-2 w-50"
-                alt="Example Image" style="width:298px; border-radius: 23px;"></a>
+            <input type="submit" @click.prevent="submitLogin" id="btn" value="Anmelden" class="mt-2 w-50"
+              style="border-radius: 10px;">
+            <!-- <a href="google-login"> <img src="/img/google-login.png" class="img-fluid pt-1 mt-2 w-50"
+                alt="Example Image" style="width:298px; border-radius: 23px;"></a> -->
+            <a href="google-login">
+              <!-- <img src="/img/google-login.png" class="img-fluid pt-1 mt-2 w-50" alt="Example Image" style="width:298px; border-radius: 23px;">-->
+              <button class="google-login-button mt-2 ">
+                <img src="/img/googlelogin.png" alt="Google Logo" width="20" height="20">
+                Anmelden Mit Google
+              </button>
+            </a>
             <div class="d-flex justify-content-between">
               <!-- <a href="#" style="color:#6298bf">Register</a> -->
               <router-link to="register" style="color:#6298bf">Regestrieren</router-link>
@@ -90,3 +98,21 @@ export default {
   }
 }
 </script>
+<style>
+.google-login-button {
+  background-color: #fff;
+  color: #787878;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  font-size: 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+}
+
+.google-login-button img {
+  margin-right: 10px;
+}
+</style>

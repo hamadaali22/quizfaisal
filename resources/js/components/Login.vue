@@ -5,7 +5,8 @@
         <div class="row mt-5 p-3">
           <div class=" col-12 col-lg-6">
 
-            <img :src="contactInfo.image" class="img-fluid pt-3 mt-5 " alt="" style="max-width: 77%;">
+            <img :src="contactInfo.image" class="img-fluid pt-3 mt-5 " alt="" style="
+              max-width: 77%; padding-left: 62px;">
           </div>
           <form class="col text-center" method="post">
             <h4 class="m-3  mt-5 p-3">ANMELDEN</h4>
@@ -19,23 +20,32 @@
                     </router-link> -->
             <input type="email" class="w-100 mb-2" placeholder="Email" v-model="email" style="margin-top: 32px;">
 
-            <input type="password" class="w-100 mb-2" placeholder="Password" v-model="password"
+            <input type="password" class="w-100 mb-2" placeholder="Passwort" v-model="password"
               style="margin-top: 32px;">
 
-            <input type="submit" @click.prevent="submitLogin" id="btn" value="Anmelden" class="mt-2 w-50"
+            <!-- <input type="submit" @click.prevent="submitLogin" id="btn" value="Anmelden" class="mt-2 w-50"
               style="border-radius: 10px;">
-            <!-- <a href="google-login"> <img src="/img/google-login.png" class="img-fluid pt-1 mt-2 w-50"
-                alt="Example Image" style="width:298px; border-radius: 23px;"></a> -->
             <a href="google-login">
-              <!-- <img src="/img/google-login.png" class="img-fluid pt-1 mt-2 w-50" alt="Example Image" style="width:298px; border-radius: 23px;">-->
               <button class="google-login-button mt-2 ">
                 <img src="/img/googlelogin.png" alt="Google Logo" width="20" height="20">
                 Anmelden Mit Google
               </button>
-            </a>
+            </a> -->
+            <div class="row">
+              <div class="col-md-6 mb-3 d-grid">
+                <input type="submit" @click.prevent="submitLogin" id="btn" value="Anmelden"
+                  class="btn btn-primary w-100 mt-3" style="border-radius: 10px;">
+              </div>
+              <div class="col-md-6 mb-3 d-grid">
+                <button class="btn google-login-button w-100 mt-3">
+                  <img src="/img/googlelogin.png" alt="Google Logo" width="20" height="20">
+                  Anmelden Mit Google
+                </button>
+              </div>
+            </div>
             <div class="d-flex justify-content-between">
               <!-- <a href="#" style="color:#6298bf">Register</a> -->
-              <router-link to="register" style="color:#6298bf">Regestrieren</router-link>
+              <router-link to="register" style="color:#6298bf">Registrieren</router-link>
               <a href="google/redirect" style="color:#6298bf">{{ googleparam }}</a>
               <router-link to="forgetpassword" style="color:#6298bf">Passwort vergessen</router-link>
               <!-- <a href="#" style="color:#6298bf">Passwort vergessen</a> -->

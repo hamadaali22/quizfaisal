@@ -8,9 +8,9 @@
               style="max-width: 77%;    padding-left: 62px;">
           </div>
           <form class="col text-center mt-5 p-3" method="post">
-            <h4 class="m-3 "> REGESTRIEN</h4>
+            <h4 class="m-3 "> Registrieren</h4>
             <input type="email" class="w-100 mb-2" placeholder="Email" v-model="email">
-            <input type="password" class="w-100 mb-2" placeholder="Password" v-model="password">
+            <input type="password" class="w-100 mb-2" placeholder="Passwort" v-model="password">
 
             <input type="text" class="w-100 mb-2" placeholder="Name" v-model="name">
             <!-- <input type="text" class="w-100 mb-2" placeholder="Handynummer" v-model="mobile"> -->
@@ -46,15 +46,27 @@
                     <option  value="andere ">andere </option>
                   </select> -->
 
-            <input type="submit" @click.prevent="submitRegister" id="btn" value="REGESTRIEN" class="mt-2 w-50"
+            <!-- <input type="submit" @click.prevent="submitRegister" id="btn" value="Registrieren" class="mt-2 w-50"
               style="border-radius: 10px;">
             <a href="google-login">
-              <!-- <img src="/img/google-login.png" class="img-fluid pt-1 mt-2 w-50" alt="Example Image" style="width:298px; border-radius: 23px;">-->
               <button class="google-login-button mt-2">
                 <img src="/img/googlelogin.png" alt="Google Logo" width="20" height="20">
-                Anmelden Mit Google
+                Registrieren Mit Google
               </button>
-            </a>
+            </a> -->
+            <div class="row">
+              <div class="col-md-6 mb-3 d-grid">
+                <!-- <button class="btn btn-primary w-100" id="btn"> Registrieren</button> -->
+                <input type="submit" @click.prevent="submitRegister" id="btn" value="Registrieren"
+                  class="btn btn-primary w-100 mt-3" style="border-radius: 10px;">
+              </div>
+              <div class="col-md-6 mb-3 d-grid">
+                <button class="btn google-login-button w-100 mt-3">
+                  <img src="/img/googlelogin.png" alt="Google Logo" width="20" height="20">
+                  Registrieren Mit Google
+                </button>
+              </div>
+            </div>
 
             <div class="d-flex justify-content-between">
               <!-- <a href="#">Register</a> -->

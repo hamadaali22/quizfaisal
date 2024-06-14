@@ -19,12 +19,44 @@
           </div>
         </router-link>
       </div>
-
-
     </section>
-    <!-- <footer class="back navbar " v-bind:class="[this.$route.path == '/noresult' ? 'fixed-bottom' : '']">
-        <p>dfvdf</p>
-        </footer> -->
+
+    <section class="questions  m-4 ">
+      <div v-for="(item, itemIndex) in getQuizesTest" :key="item.id" class="mcq p-2">
+        <div class="row">
+          <h6>{{ itemIndex + 1 }}- {{ item.quizes.title }}</h6>
+        </div>
+        <div class="row  ml-3">
+          <div class="col-md-4 multi-item q-1 border border-raduis pt-2 pl-3 pr-3 mr-5 mb-3"
+            :id="'quize' + itemIndex + 'a'">
+            <input class=" multi-input d-none" type="radio" name="q-1">
+            <label class="multi-label">{{ item.quizes.first_choice }}</label>
+          </div>
+        </div>
+        <div class="row ml-3">
+          <div class="col-md-4 multi-item q-1 border border-raduis pt-2 pl-3 pr-3 mr-5 mb-3"
+            :id="'quize' + itemIndex + 'b'">
+            <input class=" multi-input d-none" type="radio" name="q-1">
+            <label class="multi-label">{{ item.quizes.second_choice }}</label>
+          </div>
+        </div>
+        <div class="row ml-3">
+          <div class="col-md-4 multi-item q-1 border border-raduis pt-2 pl-3 pr-3 mr-5 mb-3"
+            :id="'quize' + itemIndex + 'c'">
+            <input class=" multi-input d-none" type="radio" name="q-1">
+            <label class="multi-label">{{ item.quizes.third_choice }}</label>
+          </div>
+        </div>
+        <div class="row ml-3">
+          <div class="col-md-4 multi-item q-1 border border-raduis pt-2 pl-3 pr-3 mr-5 mb-3"
+            :id="'quize' + itemIndex + 'd'">
+            <input class=" multi-input d-none" type="radio" name="q-1">
+            <label class="multi-label">{{ item.quizes.fourth_choice }}</label>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </div>
 </template>
 
@@ -39,10 +71,16 @@ export default {
       correct: null
     };
   },
+  computed: {
+    getQuizesTest() {
+      return this.$store.state.QuizesTest
+    }
+  },
   created() {
     this.getUserdata();
   },
   mounted() {
+    this.$store.dispatch('userQuizesTest');
     // this.itemId = this.$route.params.id;
   },
   methods: {

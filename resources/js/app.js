@@ -63,6 +63,7 @@ const store = new Vuex.Store({
     LevelDesc: {},
     questions: [],
     quizes: [],
+    quizestest: [],
     CurrentPage: null,
     Results: {},
     basName: "https://deutschtests.com/api/",
@@ -144,6 +145,9 @@ const store = new Vuex.Store({
     updateQuizes(state, quizes) {
       state.quizes = quizes;
     },
+    updateQuizesTest(state, quizestest) {
+      state.quizestest = quizestest;
+    },
 
     updateCurrentPage(state, currentPage) {
       state.CurrentPage = currentPage;
@@ -195,6 +199,18 @@ const store = new Vuex.Store({
               router.push({ name: 'NoResult' })
             }
           }
+        })
+        .then(err => console.log(err))
+    },
+    userQuizesTest({ state, commit }) {
+      const headers = {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + state.userToken.token
+      };
+      axios.get('https://deutschtests.com/api/user-quizes-test', headers)
+        .then(res => {
+          store.commit('updateQuizesTest', res.data.data);
+          console.log(res + 'mariam khalmj');
         })
         .then(err => console.log(err))
     },

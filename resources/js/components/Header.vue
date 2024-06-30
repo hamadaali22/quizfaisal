@@ -17,8 +17,8 @@
               class="nav-link text-light">Goethe</router-link></li>
           <li class="nav-item p-1 active "><router-link to="/telc-tests" class="nav-link text-light">Telc</router-link>
           </li>
-          <li class="nav-item p-1 active "><router-link to="/placement-test"
-              class="nav-link text-light">Placement</router-link></li>
+          <!-- <li class="nav-item p-1 active "><router-link to="/placement-test"
+              class="nav-link text-light">Placement</router-link></li> -->
 
           <li v-if="!isLogged" class="nav-item p-1 active "><router-link to="/login"
               class="nav-link text-light">Anmelden</router-link></li>
@@ -26,8 +26,8 @@
               class="nav-link text-light">Registrieren</router-link></li>
           <li v-if="isLogged" class="nav-item p-1 active "><router-link to="/goethe-user-exam"
               class="nav-link text-light">Meine Tests</router-link></li>
-          <li v-if="isLogged" class="nav-item p-1 active "><router-link to="/placement-result"
-              class="nav-link text-light">Placement Result</router-link></li>
+          <!-- <li v-if="isLogged" class="nav-item p-1 active "><router-link to="/placement-result"
+              class="nav-link text-light">Placement Result</router-link></li> -->
 
 
 

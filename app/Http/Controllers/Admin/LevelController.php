@@ -45,7 +45,17 @@ class LevelController extends Controller
         $add->name2    = $request->name2;
         $add->name3    = $request->name3;
         $add->description    = $request->description;
+        $add->description_ar    = $request->description_ar;
+        $add->description_en    = $request->description_en;
+        $add->description_fr    = $request->description_fr;
+        $add->description_es    = $request->description_es;
+
         $add->description_telc    = $request->description_telc;
+        $add->description_telc_ar    = $request->description_telc_ar;
+        $add->description_telc_en    = $request->description_telc_en;
+        $add->description_telc_fr    = $request->description_telc_fr;
+        $add->description_telc_es    = $request->description_telc_es;
+
         $add->save();
         return redirect()->back()->with("message", 'Added successfully');
     }
@@ -81,10 +91,52 @@ class LevelController extends Controller
          }else{
             $edit->description    = $edit->description;
          }
+         if($request->description_ar !=''){
+            $edit->description_ar    = $request->description_ar;
+         }else{
+            $edit->description_ar    = $edit->description_ar;
+         }
+         if($request->description_en !=''){
+            $edit->description_en    = $request->description_en;
+         }else{
+            $edit->description_en    = $edit->description_en;
+         }
+         if($request->description_fr !=''){
+            $edit->description_fr    = $request->description_fr;
+         }else{
+            $edit->description_fr    = $edit->description_fr;
+         }
+         if($request->description_es !=''){
+            $edit->description_es    = $request->description_es;
+         }else{
+            $edit->description_es    = $edit->description_es;
+         }
+
+
          if($request->description_telc !=''){
              $edit->description_telc    = $request->description_telc;
           }else{
              $edit->description_telc    = $edit->description_telc;
+          }
+          if($request->description_telc_ar !=''){
+             $edit->description_telc_ar    = $request->description_telc_ar;
+          }else{
+             $edit->description_telc_ar    = $edit->description_telc_ar;
+          }
+          if($request->description_telc_en !=''){
+             $edit->description_telc_en    = $request->description_telc_en;
+          }else{
+             $edit->description_telc_en    = $edit->description_telc_en;
+          }
+          if($request->description_telc_fr !=''){
+             $edit->description_telc_fr    = $request->description_telc_fr;
+          }else{
+             $edit->description_telc_fr    = $edit->description_telc_fr;
+          }
+          if($request->description_telc_es !=''){
+             $edit->description_telc_es    = $request->description_telc_es;
+          }else{
+             $edit->description_telc_es    = $edit->description_telc_es;
           }
         
         // goethe

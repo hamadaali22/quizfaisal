@@ -1,5 +1,6 @@
 <template>
   <div>
+     <!-- <language-switcher></language-switcher> -->
     <router-view></router-view>
 
     <!-- <div v-if="processedData">

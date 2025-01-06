@@ -7,13 +7,29 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+import i18n from './i18n';
 
 import Toaster from 'v-toaster'
 import 'v-toaster/dist/v-toaster.css'
 Vue.use(Toaster, { timeout: 9000 })
 
+// router.beforeEach((to, from, next) => {
+//   // التحقق من وجود اللغة في المسار
+//   const langInURL = to.params.lang;
 
+//   if (langInURL && ['en', 'ar'].includes(langInURL)) {
+//     i18n.locale = langInURL; // ضبط اللغة بناءً على المسار
+//     localStorage.setItem('preferredLanguage', langInURL); // حفظ اللغة في localStorage
+//   } else {
+//     const savedLanguage = localStorage.getItem('preferredLanguage') || 'en';
+//     i18n.locale = savedLanguage; // ضبط اللغة بناءً على localStorage إذا لم يكن هناك لغة في URL
+//     next(`/${savedLanguage}`); // إعادة التوجيه إلى اللغة المخزنة
+//   }
 
+//   next();
+// });
+const savedLanguage = localStorage.getItem('preferredLanguage') || 'en';
+i18n.locale = savedLanguage;
 
 
 
@@ -29,16 +45,15 @@ Vue.use(Toaster, { timeout: 9000 })
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+
 Vue.component('global-home', require('./components/GlobalHome.vue').default);
+Vue.component('language-switcher', require('./components/LanguageSwitcher.vue').default);
+
 Vue.component('processed-data', require('./components/ProcessedData.vue').default);
 Vue.component('header-component', require('./components/Header.vue').default);
 Vue.component('footer-component', require('./components/Footer.vue').default);
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
+
 import router from './routes/routes'
 import Axios from 'axios';
 
@@ -506,11 +521,11 @@ if (window.processedData) {
   store.commit('setProcessedData', window.processedData);
 }
 const app = new Vue({
+  i18n,
   el: '#app',
   router,
   store: store,
 });
-
 
 
 

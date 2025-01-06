@@ -267,6 +267,26 @@ class QuestionController extends Controller
             }else{
                 $edit->paragraph = $edit->paragraph;
             }
+            if(isset($request->paragraph_ar)){
+                $edit->paragraph_ar = $request->paragraph_ar;
+            }else{
+                $edit->paragraph_ar = $edit->paragraph_ar;
+            }
+            if(isset($request->paragraph_en)){
+                $edit->paragraph_en = $request->paragraph_en;
+            }else{
+                $edit->paragraph_en = $edit->paragraph_en;
+            }
+            if(isset($request->paragraph_fr)){
+                $edit->paragraph_fr = $request->paragraph_fr;
+            }else{
+                $edit->paragraph_fr = $edit->paragraph_fr;
+            }
+            if(isset($request->paragraph_es)){
+                $edit->paragraph_es = $request->paragraph_es;
+            }else{
+                $edit->paragraph_es = $edit->paragraph_es;
+            }
         }
         if($request->type =='listening and image'){
             if($files = $request->file('file')) {
@@ -293,6 +313,10 @@ class QuestionController extends Controller
         $edit->exam_id    = $request->exam_id;
         $edit->type    = $request->type;
         $edit->bio    = $request->bio;
+        $edit->bio_ar    = $request->bio_ar;
+        $edit->bio_en    = $request->bio_en;
+        $edit->bio_fr    = $request->bio_fr;
+        $edit->bio_es    = $request->bio_es;
 
 
         $edit->save();

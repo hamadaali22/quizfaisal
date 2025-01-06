@@ -42,7 +42,10 @@ const routes = [
 
     { path: '/google/callback', component: Login, name: 'Login' },
     { path: '/home', component: Home, name: 'Home' },
+
     { path: '/', component: Home, name: 'Home' },
+    { path: '/:lang(en|ar)?', component: Home, name: 'Home' },
+
     { path: '/noresult', component: NoResult, name: 'NoResult' },
 
     { path: '/goethe-tests', component: Levels, name: 'Levels' },

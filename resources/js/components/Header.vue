@@ -11,7 +11,9 @@
       <div class="collapse navbar-collapse" id="x">
         <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
 
-          <li class="nav-item p-1 active "><router-link to="/" class="nav-link text-light">Home {{ $t('logIn') }}</router-link></li>
+          <li class="nav-item p-1 active "><router-link to="/" class="nav-link text-light">Home
+             <!-- {{ $t('logIn') }} {{ this.$i18n.locale }} -->
+            </router-link></li>
           <!-- <li v-if="isLogged" class="nav-item p-1 active "><router-link to="levels" class="nav-link text-light">GOETHE</router-link></li> -->
           <li class="nav-item p-1 active "><router-link to="/goethe-tests"
               class="nav-link text-light">Goethe</router-link></li>
@@ -56,6 +58,12 @@
 
 <script>
 export default {
+  data() {
+    return {
+      
+    }
+
+  },
   mounted() {
     this.$store.dispatch('getContactinfo');
   },

@@ -7,73 +7,89 @@
             <img :src="contactInfo.image" class="img-fluid pt-3 mt-5 " alt=""
               style="max-width: 77%;    padding-left: 62px;">
           </div>
-          <form class="col text-center mt-5 p-3" method="post">
-            <h4 class="m-3 "> Registrieren</h4>
-            <input type="email" class="w-100 mb-2" placeholder="Email" v-model="email">
-            <input type="password" class="w-100 mb-2" placeholder="Passwort" v-model="password">
+          <div class=" col-12 col-lg-6">
+            <div class=" col-12 col-lg-12">
+              <form class="col text-center mt-5 p-3" method="post">
+                <h4 class="m-3 "> Registrieren</h4>
+                <input type="email" class="w-100 mb-2" placeholder="Email" v-model="email">
+                <input type="password" class="w-100 mb-2" placeholder="Passwort" v-model="password">
 
-            <input type="text" class="w-100 mb-2" placeholder="Name" v-model="name">
-            <!-- <input type="text" class="w-100 mb-2" placeholder="Handynummer" v-model="mobile"> -->
-            <!-- <input type="text" class="w-100 mb-2" placeholder="Sprache" v-model="Language"> -->
-            <!-- <input type="text" class="w-100 mb-2" placeholder="Land" v-model="Country"> -->
+                <input type="text" class="w-100 mb-2" placeholder="Name" v-model="name">
+                <!-- <input type="text" class="w-100 mb-2" placeholder="Handynummer" v-model="mobile"> -->
+                <!-- <input type="text" class="w-100 mb-2" placeholder="Sprache" v-model="Language"> -->
+                <!-- <input type="text" class="w-100 mb-2" placeholder="Land" v-model="Country"> -->
 
 
-            <!-- <select class="w-100 mb-2 form-control formselect" v-model="country">
-                    <option selected value=""> Country </option>
-                    <option  value="Deutschland">Deutschland</option>
-                    <option  value="Österreich">Österreich</option>
-                      <option  value="Schweiz">Schweiz</option>
-                    <option  value="Niederlande">Niederlande</option>
-                    <option  value="Frankreich">Frankreich</option>
-                    <option  value="Polen">Polen</option>
-                    <option  value="Tschechische Republik">Tschechische Republik</option>
-                    <option  value="Ungarn">Ungarn</option>
-                    <option  value="Dänemark">Dänemark</option>
-                    <option  value="Großbritanien">Großbritanien</option>
-                    <option  value="USA">USA</option>
-                    <option  value="Brasilien">Brasilien</option>
-                    <option  value="China">China</option>
-                    <option  value="Indien">Indien</option>
-                    <option  value="andere">andere</option>
-                  </select>
-                  <select class="w-100 mb-2 form-control formselect" v-model="language">
-                    <option selected value=""> Language </option>
-                    <option  value="Arabisch">Arabisch</option>
-                    <option  value="Deutsch">Deutsch</option>
-                    <option  value="Englisch">Englisch</option>
-                    <option  value=" Französisch"> Französisch</option>
-                    <option  value="Spanisch ">Spanisch </option>
-                    <option  value="andere ">andere </option>
-                  </select> -->
+                <!-- <select class="w-100 mb-2 form-control formselect" v-model="country">
+                        <option selected value=""> Country </option>
+                        <option  value="Deutschland">Deutschland</option>
+                        <option  value="Österreich">Österreich</option>
+                          <option  value="Schweiz">Schweiz</option>
+                        <option  value="Niederlande">Niederlande</option>
+                        <option  value="Frankreich">Frankreich</option>
+                        <option  value="Polen">Polen</option>
+                        <option  value="Tschechische Republik">Tschechische Republik</option>
+                        <option  value="Ungarn">Ungarn</option>
+                        <option  value="Dänemark">Dänemark</option>
+                        <option  value="Großbritanien">Großbritanien</option>
+                        <option  value="USA">USA</option>
+                        <option  value="Brasilien">Brasilien</option>
+                        <option  value="China">China</option>
+                        <option  value="Indien">Indien</option>
+                        <option  value="andere">andere</option>
+                      </select>
+                      <select class="w-100 mb-2 form-control formselect" v-model="language">
+                        <option selected value=""> Language </option>
+                        <option  value="Arabisch">Arabisch</option>
+                        <option  value="Deutsch">Deutsch</option>
+                        <option  value="Englisch">Englisch</option>
+                        <option  value=" Französisch"> Französisch</option>
+                        <option  value="Spanisch ">Spanisch </option>
+                        <option  value="andere ">andere </option>
+                      </select> -->
 
-            <!-- <input type="submit" @click.prevent="submitRegister" id="btn" value="Registrieren" class="mt-2 w-50"
-              style="border-radius: 10px;">
-            <a href="google-login">
-              <button class="google-login-button mt-2">
-                <img src="/img/googlelogin.png" alt="Google Logo" width="20" height="20">
-                Registrieren Mit Google
-              </button>
-            </a> -->
-            <div class="row">
-              <div class="col-md-6 mb-3 d-grid">
-                <!-- <button class="btn btn-primary w-100" id="btn"> Registrieren</button> -->
-                <input type="submit" @click.prevent="submitRegister" id="btn" value="Registrieren"
-                  class="btn btn-primary w-100 mt-3" style="border-radius: 10px;">
-              </div>
-              <div class="col-md-6 mb-3 d-grid">
-                <button class="btn google-login-button w-100 mt-3">
-                  <img src="/img/googlelogin.png" alt="Google Logo" width="20" height="20">
-                  Registrieren Mit Google
-                </button>
-              </div>
+                <!-- <input type="submit" @click.prevent="submitRegister" id="btn" value="Registrieren" class="mt-2 w-50"
+                  style="border-radius: 10px;">
+                <a href="google-login">
+                  <button class="google-login-button mt-2">
+                    <img src="/img/googlelogin.png" alt="Google Logo" width="20" height="20">
+                    Registrieren Mit Google
+                  </button>
+                </a> -->
+                <div class="row">
+                  <div class="col-md-12 mb-3 d-grid">
+                    <!-- <button class="btn btn-primary w-100" id="btn"> Registrieren</button> -->
+                    <input type="submit" @click.prevent="submitRegister" id="btn" value="Registrieren"
+                      class="btn btn-primary w-100 mt-3" style="border-radius: 10px;">
+                  </div>
+                  <!-- <div class="col-md-6 mb-3 d-grid">
+                    <button class="btn google-login-button w-100 mt-3">
+                      <img src="/img/googlelogin.png" alt="Google Logo" width="20" height="20">
+                      Registrieren Mit Google
+                    </button>
+                  </div> -->
+                </div>
+
+                <div class="d-flex justify-content-between">
+                  <!-- <a href="#">Register</a> -->
+                  <router-link to="login" style="color:#6298bf">ANMELDEN</router-link>
+                  <!-- <a href="#" style="color:#6298bf">Forget password</a> -->
+                </div>
+              </form>
             </div>
-
-            <div class="d-flex justify-content-between">
-              <!-- <a href="#">Register</a> -->
-              <router-link to="login" style="color:#6298bf">ANMELDEN</router-link>
-              <!-- <a href="#" style="color:#6298bf">Forget password</a> -->
+            <!-- <div class=" col-12 col-lg-12" style="padding: 3px 27px 5px 32px;">
+                <router-link to="login" style="color:#6298bf">ANMELDEN</router-link>
+            </div> -->
+            <div class=" col-12 col-lg-12  mr-4 " style="padding: 3px 27px 5px 32px;">
+                <a href="google-login" style="text-decoration:none;">
+                  <button class="google-login-button w-100 mt-3">
+                    <img src="/img/googlelogin.png" alt="Google Logo" width="20" height="20">
+                    Registrieren Mit Google
+                  </button>
+                </a>
             </div>
-          </form>
+            
+          </div>
         </div>
       </div>
     </section>

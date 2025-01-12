@@ -407,7 +407,7 @@ const store = new Vuex.Store({
     },
     getExams({ state, commit }, payload) {
       console.log(payload);
-      axios.get(state.basName + 'exams?levelSlug=' + payload)
+      axios.get(state.basName + 'exams?levelSlug=' + payload + '&lang=' + this.$i18n.locale)
         .then(res => {
           console.log(res.data.data);
           store.commit('updateExams', res.data.data.exam);

@@ -259,7 +259,18 @@ class QuestionController extends Controller
     }
     public function exams(Request $request)
     {
-        $level=Level::where("slug" , $request->levelSlug)->first();
+        if($request->levelSlug=='ar'){
+            $level=Level::where("goethe_slug_ar" , $request->levelSlug)->first();
+        }elseif($request->levelSlug=='en'){
+            $level=Level::where("goethe_slug_en" , $request->levelSlug)->first();
+        }elseif($request->levelSlug=='fr'){
+            $level=Level::where("goethe_slug_fr" , $request->levelSlug)->first();
+        }elseif($request->levelSlug=='es'){
+            $level=Level::where("goethe_slug_es" , $request->levelSlug)->first();
+        }else{
+            $level=Level::where("goethe_slug_de" , $request->levelSlug)->first();
+        }
+        
         $level->goethe1="https://deutschtests.com/img/goethe/".$level->goethe1;
         $level->goethe2="https://deutschtests.com/img/goethe/".$level->goethe2;
         $level->goethe3="https://deutschtests.com/img/goethe/".$level->goethe3;

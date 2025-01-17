@@ -102579,7 +102579,15 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_5__["default"].Store({
       var state = _ref10.state,
         commit = _ref10.commit;
       console.log(payload);
-      axios.get(state.basName + 'exams?levelSlug=' + payload + '&lang=' + this.$i18n.locale).then(function (res) {
+      console.log('vvvvvvvvvvbbbnn');
+      if (this.$i18n) {
+        console.log(this.$i18n.locale);
+        var lang = this.$i18n.locale;
+      } else {
+        console.log('arrhhhhhhhr');
+        var lang = 'de';
+      }
+      axios.get(state.basName + 'exams?levelSlug=' + payload + '&lang=' + lang).then(function (res) {
         console.log(res.data.data);
         store.commit('updateExams', res.data.data.exam);
         store.commit('updateLevelDesc', res.data.data.level);

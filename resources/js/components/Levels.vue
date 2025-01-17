@@ -137,7 +137,7 @@ export default {
         ar: item.goethe_slug_ar,
         fr: item.goethe_slug_fr,
         es: item.goethe_slug_es,
-        de: item.goethe_slug_de,
+        de: item.slug,
       };
 
       return `/goethe-tests/${slugs[this.$i18n.locale] || item.goethe_slug_de}`;

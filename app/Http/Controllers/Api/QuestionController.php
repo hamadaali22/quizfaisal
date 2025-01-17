@@ -268,7 +268,7 @@ class QuestionController extends Controller
         }elseif($request->levelSlug=='es'){
             $level=Level::where("goethe_slug_es" , $request->levelSlug)->first();
         }else{
-            $level=Level::where("goethe_slug_de" , $request->levelSlug)->first();
+            $level=Level::where("slug" , $request->levelSlug)->first();
         }
         
         $level->goethe1="https://deutschtests.com/img/goethe/".$level->goethe1;

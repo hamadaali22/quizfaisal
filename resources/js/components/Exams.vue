@@ -1,7 +1,7 @@
 <template>
   <div>
     <section class="row home-main-section p-5 container-fluid">
-      <div class="col-lg pl-4">
+        <div class="col-lg pl-4">
       <p v-html="getLevelDesc.description"></p>
       <!-- <p>{{getLevelDesc.description}}</p> -->
       </div>
@@ -56,7 +56,7 @@
           
       </div>
       <br><br><br>
-  </section>
+    </section>
 
   </div>
 </template>

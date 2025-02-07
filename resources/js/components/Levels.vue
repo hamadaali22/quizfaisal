@@ -175,7 +175,7 @@ export default {
       console.log(this.$store.state.userToken);
   },
   mounted(){
-    this.$store.dispatch('getgoethes');
+    this.$store.dispatch('getGoethes');
     this.$store.dispatch('getContactinfo');
   },
 

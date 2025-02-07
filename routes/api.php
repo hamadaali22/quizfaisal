@@ -33,7 +33,8 @@ Route::group(['middleware' => ['api'], 'namespace' => 'Api'], function () {
 
 
     Route::get('questions', 'QuestionController@question');
-    Route::get('levels', 'QuestionController@levels');
+    Route::get('goethes', 'QuestionController@goethes');
+    Route::get('telcs', 'QuestionController@telcs');
     Route::get('exams', 'QuestionController@exams');
     Route::get('telc-exams', 'QuestionController@telcExams');
 

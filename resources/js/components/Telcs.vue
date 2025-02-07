@@ -4,7 +4,7 @@
           <div v-for="item in getLevels" :key="item.id" class="col-md-6 m-auto pl-4">
             <router-link :to="'/telc-tests/'+item.slug2" class="a-link">
               <div  class="level  w-100 text-center text-light mt-1 pt-2 pb-2">
-                  {{ item.name2 }}
+                  {{ item.name }}
               </div></router-link>
         </div>
         
@@ -66,13 +66,62 @@
 export default {
   data(){
     return {
-
+      currentLanguage: this.$i18n.locale,
+      altText1: {
+        en: "telc b1 exam preparation",
+        ar: "نماذج امتحان a2 telc",
+        fr: "test allemand a1 gratuit",
+        es: "examen telc aleman",
+        de: "Telc Tests",
+      },
+      altText2: {
+        en: "goethe exam b2",
+        ar: "اختبار تحديد مستوى المانى",
+        fr: "test gratuit allemand",
+        es: "telc examen",
+        de: "Telc Deutsch Prüfungen",
+      },
+      altText3: {
+        en: "telc a1 exam",
+        ar: "نماذج امتحان a1",
+        fr: "certificat a1 allemand",
+        es: "telc a1 modelltest",
+        de: "GTelc A1 Prüfung",
+      },
+      altText4: {
+        en: "telc a2 test",
+        ar: "نماذج امتحان a2",
+        fr: "test niveau a2 allemand",
+        es: "telc a2 modelltest",
+        de: "telc a2 modelltest",
+      },
+      altText5: {
+        en: "telc exam b1",
+        ar: "نماذج امتحان b1 telc",
+        fr: "examen telc b1",
+        es: "telc b1 zertifikat",
+        de: "prüfung telc b1",
+      },
+      altText5: {
+        en: "telc exam b2",
+        ar: "نماذج امتحان b2 telc pdf",
+        fr: "examen telc b2 allemand",
+        es: "examen telc b2 alemán",
+        de: "telc b2 modelltest",
+      },
+      altText5: {
+        en: "german level test free",
+        ar: "نموذج امتحان a1 معهد غوتة",
+        fr: "certificat allemand en ligne",
+        es: "examen c1 aleman",
+        de: "Telc C1 Prüfung",
+      },
     }
 
   },
   computed:{
     getLevels(){
-      return this.$store.state.levels
+      return this.$store.state.telcs
     },
     contactInfo(){
        return this.$store.state.contactInfo
@@ -82,7 +131,7 @@ export default {
       console.log(this.$store.state.userToken);
   },
   mounted(){
-    this.$store.dispatch('getLevels');
+    this.$store.dispatch('getTelcs');
     this.$store.dispatch('getContactinfo');
   },
 

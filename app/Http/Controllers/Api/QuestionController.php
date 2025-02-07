@@ -236,15 +236,29 @@ class QuestionController extends Controller
         return $this -> returnDataa('data','23456','تم الحفظ');
     }
     
-    public function levels(Request $request)
+    public function goethes(Request $request)
     {
-        $data=Level::all();
+        $data=Level::where('type','goethe')->get();
+        return $this->returnDataa('data', $data,'');
+    }
+    public function telcs(Request $request)
+    {
+        $data=Level::where('type','telc')->get();
         return $this->returnDataa('data', $data,'');
     }
     public function telcExams(Request $request)
     {
-        $level=Level::where("slug2" , $request->levelSlug)->first();
-      
+        if($request->lang=='ar'){
+            $level=Level::with('level_images')->where('type','telc')->where("slug_ar" , $request->levelSlug)->first();
+        }elseif($request->lang=='en'){
+            $level=Level::with('level_images')->where('type','telc')->where("slug_en" , $request->levelSlug)->first();    
+        }elseif($request->lang=='fr'){
+            $level=Level::with('level_images')->where('type','telc')->where("slug_fr" , $request->levelSlug)->first();
+        }elseif($request->lang=='es'){
+            $level=Level::with('level_images')->where('type','telc')->where("slug_es" , $request->levelSlug)->first();
+        }else{
+            $level=Level::with('level_images')->where('type','telc')->where("slug_de" , $request->levelSlug)->first();
+        }
         $level->telc1="https://deutschtests.com/img/telc/".$level->telc1;
         $level->telc2="https://deutschtests.com/img/telc/".$level->telc2;
         $level->telc3="https://deutschtests.com/img/telc/".$level->telc3;
@@ -259,16 +273,16 @@ class QuestionController extends Controller
     }
     public function exams(Request $request)
     {
-        if($request->levelSlug=='ar'){
-            $level=Level::where("goethe_slug_ar" , $request->levelSlug)->first();
-        }elseif($request->levelSlug=='en'){
-            $level=Level::where("goethe_slug_en" , $request->levelSlug)->first();
-        }elseif($request->levelSlug=='fr'){
-            $level=Level::where("goethe_slug_fr" , $request->levelSlug)->first();
-        }elseif($request->levelSlug=='es'){
-            $level=Level::where("goethe_slug_es" , $request->levelSlug)->first();
+        if($request->lang=='ar'){
+            $level=Level::with('level_images')->where('type','goethe')->where("slug_ar" , $request->levelSlug)->first();
+        }elseif($request->lang=='en'){
+            $level=Level::with('level_images')->where('type','goethe')->where("slug_en" , $request->levelSlug)->first();
+        }elseif($request->lang=='fr'){
+            $level=Level::with('level_images')->where('type','goethe')->where("slug_fr" , $request->levelSlug)->first();
+        }elseif($request->lang=='es'){
+            $level=Level::with('level_images')->where('type','goethe')->where("slug_es" , $request->levelSlug)->first();
         }else{
-            $level=Level::where("slug" , $request->levelSlug)->first();
+            $level=Level::with('level_images')->where('type','goethe')->where("slug_de" , $request->levelSlug)->first();
         }
         
         $level->goethe1="https://deutschtests.com/img/goethe/".$level->goethe1;

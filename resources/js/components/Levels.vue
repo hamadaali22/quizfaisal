@@ -110,13 +110,62 @@
 export default {
   data(){
     return {
-
+      currentLanguage: this.$i18n.locale,
+      altText1: {
+        en: "goethe exam b2",
+        ar: "نماذج غوته a1",
+        fr: "allemand test niveau",
+        es: "aprender aleman gratis",
+        de: "Goethe C1 Prüfung",
+      },
+      altText2: {
+        en: "goethe online test",
+        ar: "نماذج امتحان b2",
+        fr: "test niveau allemand",
+        es: "certificado goethe institut",
+        de: "Goethe Deutsch Prüfungen",
+      },
+      altText3: {
+        en: "a1 goethe exam",
+        ar: "نماذج امتحان a1",
+        fr: "teste goethe a1",
+        es: "certificado goethe a1",
+        de: "Goethe A1 Prüfung",
+      },
+      altText4: {
+        en: "german a2 exam",
+        ar: "امتحان b2 الماني",
+        fr: "goethe examen a2",
+        es: "examen a2 goethe",
+        de: "goethe zertifikat A2",
+      },
+      altText5: {
+        en: "goethe test b1",
+        ar: "نماذج امتحان b1",
+        fr: "goethe institut b1",
+        es: "examen aleman b1",
+        de: "goethe B1 modelltest",
+      },
+      altText5: {
+        en: "goethe b2 exam",
+        ar: "امتحانات جوته b2",
+        fr: "examen b2 goethe institut",
+        es: "goethe test b2",
+        de: "Goethe B2 modelltest",
+      },
+      altText5: {
+        en: "goethe institut online test",
+        ar: "نماذج امتحانات a1",
+        fr: "exercices allemand en ligne",
+        es: "examen c1 aleman",
+        de: "deutsch online lernen",
+      },
     }
 
   },
   computed:{
     getLevels(){
-      return this.$store.state.levels
+      return this.$store.state.goethes
     },
     contactInfo(){
        return this.$store.state.contactInfo
@@ -126,7 +175,7 @@ export default {
       console.log(this.$store.state.userToken);
   },
   mounted(){
-    this.$store.dispatch('getLevels');
+    this.$store.dispatch('getgoethes');
     this.$store.dispatch('getContactinfo');
   },
 

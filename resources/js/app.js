@@ -73,7 +73,8 @@ const store = new Vuex.Store({
     // OrderDetails: {},
     OrderDetails: '2',
     contactInfo: '',
-    levels: [],
+    goethes: [],
+    telcs: [],
     exams: [],
     LevelDesc: {},
     questions: [],
@@ -145,8 +146,11 @@ const store = new Vuex.Store({
     updateContactinfo(state, contactinfo) {
       state.contactInfo = contactinfo;
     },
-    updateLevels(state, levels) {
-      state.levels = levels;
+    updateGoethe(state, levels) {
+      state.goethes = levels;
+    },
+    updateTelc(state, levels) {
+      state.telcs = levels;
     },
     updateExams(state, exams) {
       state.exams = exams;
@@ -397,11 +401,19 @@ const store = new Vuex.Store({
           console.log(err)
         })
     },
-    getLevels({ state, commit }) {
-      axios.get(state.basName + 'levels')
+    getGoethes({ state, commit }) {
+      axios.get(state.basName + 'goethes')
         .then(res => {
           console.log(res.data.data);
-          store.commit('updateLevels', res.data.data);
+          store.commit('updateGoethe', res.data.data);
+        })
+        .then(err => console.log(err))
+    },
+    getTelcs({ state, commit }) {
+      axios.get(state.basName + 'telcs')
+        .then(res => {
+          console.log(res.data.data);
+          store.commit('updateTelc', res.data.data);
         })
         .then(err => console.log(err))
     },

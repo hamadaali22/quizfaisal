@@ -256,6 +256,7 @@ class QuestionController extends Controller
         }
 
         // $level_images = [];
+
         //     if ($level && $level->level_images) {
         //         foreach ($level->level_images as $image) {
         //             $level_images[] = 'https://deutschtests.com/img/goethe/' . $image->image; // تأكد أن اسم العمود صحيح

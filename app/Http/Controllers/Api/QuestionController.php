@@ -255,12 +255,7 @@ class QuestionController extends Controller
             $level=Level::with('level_images')->where('type','goethe')->where("slug_de" , $request->levelSlug)->first();
         }
 
-        $level = Level::with('level_images')
-                ->where('type', 'goethe')
-                ->where("slug_ar", $request->levelSlug)
-                ->first();
-
-            $level_images = [];
+        $level_images = [];
 
             if ($level && $level->level_images) {
                 foreach ($level->level_images as $image) {
@@ -268,13 +263,11 @@ class QuestionController extends Controller
                 }
             }
             $level->level_images=$level_images;
-            // طباعة المسارات
-            // return response()->json($imagePaths);
-        $level->goethe1="https://deutschtests.com/img/goethe/".$level->goethe1;
-        $level->goethe2="https://deutschtests.com/img/goethe/".$level->goethe2;
-        $level->goethe3="https://deutschtests.com/img/goethe/".$level->goethe3;
-        $level->goethe4="https://deutschtests.com/img/goethe/".$level->goethe4;
-        $level->goethe5="https://deutschtests.com/img/goethe/".$level->goethe5;
+        // $level->goethe1="https://deutschtests.com/img/goethe/".$level->goethe1;
+        // $level->goethe2="https://deutschtests.com/img/goethe/".$level->goethe2;
+        // $level->goethe3="https://deutschtests.com/img/goethe/".$level->goethe3;
+        // $level->goethe4="https://deutschtests.com/img/goethe/".$level->goethe4;
+        // $level->goethe5="https://deutschtests.com/img/goethe/".$level->goethe5;
         
         $exam=Exam::where("level_id" , $level->id)->where('section',null)->get();
         

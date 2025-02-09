@@ -241,6 +241,49 @@ class QuestionController extends Controller
         $data=Level::where('type','goethe')->get();
         return $this->returnDataa('data', $data,'');
     }
+    public function exams(Request $request)
+    {
+        if($request->lang=='ar'){
+            $level=Level::with('level_images')->where('type','goethe')->where("slug_ar" , $request->levelSlug)->first();
+        }elseif($request->lang=='en'){
+            $level=Level::with('level_images')->where('type','goethe')->where("slug_en" , $request->levelSlug)->first();
+        }elseif($request->lang=='fr'){
+            $level=Level::with('level_images')->where('type','goethe')->where("slug_fr" , $request->levelSlug)->first();
+        }elseif($request->lang=='es'){
+            $level=Level::with('level_images')->where('type','goethe')->where("slug_es" , $request->levelSlug)->first();
+        }else{
+            $level=Level::with('level_images')->where('type','goethe')->where("slug_de" , $request->levelSlug)->first();
+        }
+
+        $level = Level::with('level_images')
+                ->where('type', 'goethe')
+                ->where("slug_ar", $request->levelSlug)
+                ->first();
+
+            $level_images = [];
+
+            if ($level && $level->level_images) {
+                foreach ($level->level_images as $image) {
+                    $level_images[] = 'https://deutschtests.com/img/goethe/' . $image->image; // تأكد أن اسم العمود صحيح
+                }
+            }
+            $level->level_images=$level_images;
+            // طباعة المسارات
+            // return response()->json($imagePaths);
+        $level->goethe1="https://deutschtests.com/img/goethe/".$level->goethe1;
+        $level->goethe2="https://deutschtests.com/img/goethe/".$level->goethe2;
+        $level->goethe3="https://deutschtests.com/img/goethe/".$level->goethe3;
+        $level->goethe4="https://deutschtests.com/img/goethe/".$level->goethe4;
+        $level->goethe5="https://deutschtests.com/img/goethe/".$level->goethe5;
+        
+        $exam=Exam::where("level_id" , $level->id)->where('section',null)->get();
+        
+        $home  =[
+            'exam'=> $exam,
+            'level'=> $level,
+        ];
+       return $this->returnDataa('data', $home,'');
+    }
     public function telcs(Request $request)
     {
         $data=Level::where('type','telc')->get();
@@ -271,34 +314,7 @@ class QuestionController extends Controller
         ];
         return $this->returnDataa('data', $home,'');
     }
-    public function exams(Request $request)
-    {
-        if($request->lang=='ar'){
-            $level=Level::with('level_images')->where('type','goethe')->where("slug_ar" , $request->levelSlug)->first();
-        }elseif($request->lang=='en'){
-            $level=Level::with('level_images')->where('type','goethe')->where("slug_en" , $request->levelSlug)->first();
-        }elseif($request->lang=='fr'){
-            $level=Level::with('level_images')->where('type','goethe')->where("slug_fr" , $request->levelSlug)->first();
-        }elseif($request->lang=='es'){
-            $level=Level::with('level_images')->where('type','goethe')->where("slug_es" , $request->levelSlug)->first();
-        }else{
-            $level=Level::with('level_images')->where('type','goethe')->where("slug_de" , $request->levelSlug)->first();
-        }
-        
-        $level->goethe1="https://deutschtests.com/img/goethe/".$level->goethe1;
-        $level->goethe2="https://deutschtests.com/img/goethe/".$level->goethe2;
-        $level->goethe3="https://deutschtests.com/img/goethe/".$level->goethe3;
-        $level->goethe4="https://deutschtests.com/img/goethe/".$level->goethe4;
-        $level->goethe5="https://deutschtests.com/img/goethe/".$level->goethe5;
-        
-        $exam=Exam::where("level_id" , $level->id)->where('section',null)->get();
-        
-        $home  =[
-            'exam'=> $exam,
-            'level'=> $level,
-        ];
-       return $this->returnDataa('data', $home,'');
-    }
+    
 
 
     public function goetheUserExams(Request $request)

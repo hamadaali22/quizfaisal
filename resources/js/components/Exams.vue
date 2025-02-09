@@ -3,6 +3,7 @@
     <section class="row home-main-section p-5 container-fluid">
         <div class="col-lg pl-4">
       <p v-html="getLevelDesc.description"></p>
+      <p>{{ getLevelDesc.level_images[0].name }}</p>
       <!-- <p>{{getLevelDesc.description}}</p> -->
       </div>
       <!-- <h2 class="text-center ">A1</h2> -->
@@ -21,7 +22,7 @@
             <div class="col-4">
             </div>
              <div class="col-5">
-                 <img :src="getLevelDesc.goethe1"  class="img-fluid w-100" :alt="getLevelDesc.alt_goethe1">
+                 <img :src="'https://deutschtests.com/img/goethe/'+getLevelDesc.level_images[0].name"  class="img-fluid w-100" :alt="getLevelDesc.alt_goethe1">
              </div>
              
           </div>

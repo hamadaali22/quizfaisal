@@ -2,10 +2,17 @@
    <div>
       <section class="row home-main-section p-4 container-fluid">
           <div v-for="item in getLevels" :key="item.id" class="col-md-6 m-auto pl-4">
-            <router-link :to="'/telc-tests/'+item.slug2" class="a-link">
+            <!-- <router-link :to="'/telc-tests/'+item.slug2" class="a-link">
               <div  class="level  w-100 text-center text-light mt-1 pt-2 pb-2">
                   {{ item.name }}
-              </div></router-link>
+              </div></router-link> -->
+              
+              <router-link :to="getLocalizedSlug(item)"  class="a-link">
+                <div  class="level  w-100 text-center text-light mt-1 pt-2 pb-2">
+                  {{ item.name }}
+                </div>
+              </router-link>
+
         </div>
         
       </section>
@@ -136,7 +143,17 @@ export default {
   },
 
   methods: {
+    getLocalizedSlug(item) {
+      const slugs = {
+        en: item.slug_en,
+        ar: item.slug_ar,
+        fr: item.slug_fr,
+        es: item.slug_es,
+        de: item.slug_de,
+      };
 
+      return `/goethe-tests/${slugs[this.$i18n.locale] || item.slug_de}`;
+    }
   },
 
 

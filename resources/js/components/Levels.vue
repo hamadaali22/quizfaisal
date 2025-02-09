@@ -182,14 +182,14 @@ export default {
   methods: {
     getLocalizedSlug(item) {
       const slugs = {
-        en: item.goethe_slug_en,
-        ar: item.goethe_slug_ar,
-        fr: item.goethe_slug_fr,
-        es: item.goethe_slug_es,
-        de: item.slug,
+        en: item.slug_en,
+        ar: item.slug_ar,
+        fr: item.slug_fr,
+        es: item.slug_es,
+        de: item.slug_de,
       };
 
-      return `/goethe-tests/${slugs[this.$i18n.locale] || item.goethe_slug_de}`;
+      return `/goethe-tests/${slugs[this.$i18n.locale] || item.slug_de}`;
     }
   },
 

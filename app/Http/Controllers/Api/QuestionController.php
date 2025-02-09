@@ -255,14 +255,13 @@ class QuestionController extends Controller
             $level=Level::with('level_images')->where('type','goethe')->where("slug_de" , $request->levelSlug)->first();
         }
 
-        $level_images = [];
-
-            if ($level && $level->level_images) {
-                foreach ($level->level_images as $image) {
-                    $level_images[] = 'https://deutschtests.com/img/goethe/' . $image->image; // تأكد أن اسم العمود صحيح
-                }
-            }
-            $level->level_images=$level_images;
+        // $level_images = [];
+        //     if ($level && $level->level_images) {
+        //         foreach ($level->level_images as $image) {
+        //             $level_images[] = 'https://deutschtests.com/img/goethe/' . $image->image; // تأكد أن اسم العمود صحيح
+        //         }
+        //     }
+        //     $level->level_images=$level_images;
         // $level->goethe1="https://deutschtests.com/img/goethe/".$level->goethe1;
         // $level->goethe2="https://deutschtests.com/img/goethe/".$level->goethe2;
         // $level->goethe3="https://deutschtests.com/img/goethe/".$level->goethe3;

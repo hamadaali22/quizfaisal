@@ -2,8 +2,9 @@
   <div>
     <section class="row home-main-section p-5 container-fluid">
         <div class="col-lg pl-4">
-      <p v-html="getLevelDesc.description"></p>
-      <p>{{ getLevelDesc.level_images[0].name }}</p>
+          <!-- getLevelDesc.description  -->
+      <p v-html="getLocalizedDesc(getLevelDesc)"></p>
+      <!-- <p>{{ getLevelDesc.level_images[0].name }}</p> -->
       <!-- <p>{{getLevelDesc.description}}</p> -->
       </div>
       <!-- <h2 class="text-center ">A1</h2> -->
@@ -97,6 +98,19 @@ export default {
       this.$store.dispatch('getExams',levelslug);
       this.$store.dispatch('getContactinfo');
 
+    },
+    methods: {
+      getLocalizedDesc(item) {
+        const slugs = {
+          en: item.description_en,
+          ar: item.description_ar,
+          fr: item.description_fr,
+          es: item.description_se,
+          de: item.description_de,
+        };
+
+        return slugs[this.$i18n.locale] || item.description_de;
+      }
     },
 }
 </script>

@@ -22,7 +22,7 @@
             <div class="col-4">
             </div>
              <div class="col-5">
-                 <img :src="getLevelDesc.telc1"  class="img-fluid w-100" :alt="getLevelDesc.alt_telc1">
+                 <img :src="'https://deutschtests.com/img/telc/'+getLevelDesc.level_images[0].name" class="img-fluid w-100" :alt="getLevelDesc.alt_telc1">
              </div>
              
           </div>
@@ -30,16 +30,16 @@
             <div class="col-4">
             </div>
              <div class="col-5">
-                 <img  :src="getLevelDesc.telc2" class="img-fluid w-100" :alt="getLevelDesc.alt_telc2">
+                 <img  :src="'https://deutschtests.com/img/telc/'+getLevelDesc.level_images[1].name" class="img-fluid w-100" :alt="getLevelDesc.alt_telc2">
              </div>
              
           </div>
           <div class="row">
             <div class="col-2">
-                 <img  :src="getLevelDesc.telc5" class="img-fluid w-100" :alt="getLevelDesc.alt_telc5">
+                 <img  :src="'https://deutschtests.com/img/telc/'+getLevelDesc.level_images[4].name" class="img-fluid w-100" :alt="getLevelDesc.alt_telc5">
              </div>
             <div class="col-2">
-              <img  :src="getLevelDesc.telc4" class="img-fluid w-100" :alt="getLevelDesc.alt_telc4">
+              <img  :src="'https://deutschtests.com/img/telc/'+getLevelDesc.level_images[3].name" class="img-fluid w-100" :alt="getLevelDesc.alt_telc4">
             </div>
            
              <div class="col-4">
@@ -47,7 +47,7 @@
              </div>
              
              <div class="col-3">
-                 <img  :src="getLevelDesc.telc3" class="img-fluid w-100" :alt="getLevelDesc.alt_telc3">
+                 <img  :src="'https://deutschtests.com/img/telc/'+getLevelDesc.level_images[2].name" class="img-fluid w-100" :alt="getLevelDesc.alt_telc3">
              </div>
              
           </div>

@@ -144,6 +144,7 @@ export default {
 
   methods: {
     getLocalizedSlug(item) {
+      console.log(this.$i18n.locale);
       const slugs = {
         en: item.slug_en,
         ar: item.slug_ar,
@@ -152,7 +153,7 @@ export default {
         de: item.slug_de,
       };
 
-      return `/goethe-tests/${slugs[this.$i18n.locale] || item.slug_de}`;
+      return `/telc-tests/${slugs[this.$i18n.locale] || item.slug_de}`;
     }
   },
 

@@ -169,9 +169,9 @@
 							</div>
 							<div class="form-group col-md-12 col-sm-6 ">
 								<label>description DE</label>
-								<textarea name="description" cols="20" rows="1" class="form-control ckeditor"
-									id='descriptionid'>{{old('description')}}</textarea>
-								@error('description')
+								<textarea name="description_de" cols="20" rows="1" class="form-control ckeditor"
+									id='descriptionid'>{{old('description_de')}}</textarea>
+								@error('description_de')
 								<span class="text-danger">{{$message}}</span>
 								@enderror
 								<span id="descriptionError" style="color: red;"></span>
@@ -211,51 +211,6 @@
 								<span class="text-danger">{{$message}}</span>
 								@enderror
 								<span id="descriptionESError" style="color: red;"></span>
-							</div>
-							<div class="form-group col-md-12 col-sm-6 ">
-								<label>description telc DE</label>
-								<textarea name="description_telc" cols="20" rows="1" class="form-control ckeditor"
-									id='descriptionid'>{{old('description_telc')}}</textarea>
-								@error('description_telc')
-								<span class="text-danger">{{$message}}</span>
-								@enderror
-								<span id="descriptionError" style="color: red;"></span>
-							</div>
-							<div class="form-group col-md-12 col-sm-6 ">
-								<label>description telc AR</label>
-								<textarea name="description_telc_ar" cols="20" rows="1" class="form-control ckeditor"
-									id='descriptionid'>{{old('description_telc_ar')}}</textarea>
-								@error('description_telc_ar')
-								<span class="text-danger">{{$message}}</span>
-								@enderror
-								<span id="descriptionError" style="color: red;"></span>
-							</div>
-							<div class="form-group col-md-12 col-sm-6 ">
-								<label>description telc EN</label>
-								<textarea name="description_telc_en" cols="20" rows="1" class="form-control ckeditor"
-									id='descriptionid'>{{old('description_telc_en')}}</textarea>
-								@error('description_telc')
-								<span class="text-danger">{{$message}}</span>
-								@enderror
-								<span id="descriptionError" style="color: red;"></span>
-							</div>
-							<div class="form-group col-md-12 col-sm-6 ">
-								<label>description telc FR</label>
-								<textarea name="description_telc_fr" cols="20" rows="1" class="form-control ckeditor"
-									id='descriptionid'>{{old('description_telc_fr')}}</textarea>
-								@error('description_telc')
-								<span class="text-danger">{{$message}}</span>
-								@enderror
-								<span id="descriptionError" style="color: red;"></span>
-							</div>
-							<div class="form-group col-md-12 col-sm-6 ">
-								<label>description telc ES</label>
-								<textarea name="description_telc_es" cols="20" rows="1" class="form-control ckeditor"
-									id='descriptionid'>{{old('description_telc_es')}}</textarea>
-								@error('description_telc')
-								<span class="text-danger">{{$message}}</span>
-								@enderror
-								<span id="descriptionError" style="color: red;"></span>
 							</div>
 
 						</div>

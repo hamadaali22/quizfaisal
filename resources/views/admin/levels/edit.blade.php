@@ -74,8 +74,8 @@
                 </div>
                 <div class="form-group col-md-12 col-sm-6 paragraph-hidden">
                   <label>description de</label>
-                  <textarea name="description" cols="20" rows="2" class="form-control ckeditor"
-                    id='descriptionId'>{{$level->description}}</textarea>
+                  <textarea name="description_de" cols="20" rows="2" class="form-control ckeditor"
+                    id='descriptionId'>{{$level->description_de}}</textarea>
                 </div>
                 <div class="form-group col-md-12 col-sm-6 paragraph-hidden">
                   <label>description ar</label>
@@ -99,7 +99,7 @@
                 </div>
 
 
-
+                <!-- 
                 <div class="form-group col-md-12 col-sm-6 paragraph-hidden">
                   <label>description telc de</label>
                   <textarea name="description_telc" cols="20" rows="2" class="form-control ckeditor"
@@ -124,7 +124,7 @@
                   <label>description telc es</label>
                   <textarea name="description_telc_es" cols="20" rows="2" class="form-control ckeditor"
                     id='descriptionId'>{{$level->description_telc_es}}</textarea>
-                </div>
+                </div> -->
 
 
 

@@ -412,7 +412,7 @@ const store = new Vuex.Store({
     getTelcs({ state, commit }) {
       axios.get(state.basName + 'telcs')
         .then(res => {
-          console.log(res.data.data);
+          // console.log(res.data.data);
           store.commit('updateTelc', res.data.data);
         })
         .then(err => console.log(err))

@@ -13,23 +13,23 @@ import Toaster from 'v-toaster'
 import 'v-toaster/dist/v-toaster.css'
 Vue.use(Toaster, { timeout: 9000 })
 
-// router.beforeEach((to, from, next) => {
-//   // التحقق من وجود اللغة في المسار
-//   const langInURL = to.params.lang;
+router.beforeEach((to, from, next) => {
+  // التحقق من وجود اللغة في المسار
+  const langInURL = to.params.lang;
 
-//   if (langInURL && ['en', 'ar'].includes(langInURL)) {
-//     i18n.locale = langInURL; // ضبط اللغة بناءً على المسار
-//     localStorage.setItem('preferredLanguage', langInURL); // حفظ اللغة في localStorage
-//   } else {
-//     const savedLanguage = localStorage.getItem('preferredLanguage') || 'en';
-//     i18n.locale = savedLanguage; // ضبط اللغة بناءً على localStorage إذا لم يكن هناك لغة في URL
-//     next(`/${savedLanguage}`); // إعادة التوجيه إلى اللغة المخزنة
-//   }
+  if (langInURL && ['en', 'ar'].includes(langInURL)) {
+    i18n.locale = langInURL; // ضبط اللغة بناءً على المسار
+    localStorage.setItem('preferredLanguage', langInURL); // حفظ اللغة في localStorage
+  } else {
+    const savedLanguage = localStorage.getItem('preferredLanguage') || 'en';
+    i18n.locale = savedLanguage; // ضبط اللغة بناءً على localStorage إذا لم يكن هناك لغة في URL
+    next(`/${savedLanguage}`); // إعادة التوجيه إلى اللغة المخزنة
+  }
 
-//   next();
-// });
-const savedLanguage = localStorage.getItem('preferredLanguage') || 'en';
-i18n.locale = savedLanguage;
+  next();
+});
+// const savedLanguage = localStorage.getItem('preferredLanguage') || 'en';
+// i18n.locale = savedLanguage;
 
 
 

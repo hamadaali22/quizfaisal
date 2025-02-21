@@ -60,7 +60,7 @@
                     <input type="text" name="name" class="form-control" id="name" value="{{$level->name}}">
                   </div>
                 </div>
-                <div class="col-12 col-sm-12">
+                <!-- <div class="col-12 col-sm-12">
                   <div class="form-group">
                     <label>Level telc Name </label>
                     <input type="text" name="name2" class="form-control" id="name2" value="{{$level->name2}}">
@@ -71,7 +71,7 @@
                     <label>Level quize Name </label>
                     <input type="text" name="name3" class="form-control" id="name2" value="{{$level->name3}}">
                   </div>
-                </div>
+                </div> -->
                 <div class="form-group col-md-12 col-sm-6 paragraph-hidden">
                   <label>description de</label>
                   <textarea name="description_de" cols="20" rows="2" class="form-control ckeditor"

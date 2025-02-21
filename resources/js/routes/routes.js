@@ -44,7 +44,7 @@ const routes = [
     { path: '/home', component: Home, name: 'Home' },
 
     { path: '/', component: Home, name: 'Home' },
-    { path: '/:lang(en|ar)?', component: Home, name: 'Home' },
+    { path: '/:lang(en|ar|es|fr|de)?', component: Home, name: 'Home' },
 
     { path: '/noresult', component: NoResult, name: 'NoResult' },
 

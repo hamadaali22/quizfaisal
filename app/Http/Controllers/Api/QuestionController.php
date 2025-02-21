@@ -268,7 +268,8 @@ class QuestionController extends Controller
         // $level->goethe3="https://deutschtests.com/img/goethe/".$level->goethe3;
         // $level->goethe4="https://deutschtests.com/img/goethe/".$level->goethe4;
         // $level->goethe5="https://deutschtests.com/img/goethe/".$level->goethe5;
-        
+        https://deutschtests.com/api/exams?levelSlug=%D9%86%D9%85%D8%A7%D8%B0%D8%AC-%D8%A7%D9%85%D8%AA%D8%AD%D8%A7%D9%86%D8%A7%D8%AA-%D9%85%D8%B9%D9%87%D8%AF-%D8%AC%D9%88%D8%AA%D9%87-B1&lang=de
+
         $exam=Exam::where("level_id" , $level->id)->where('section',null)->get();
         
         $home  =[

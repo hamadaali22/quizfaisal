@@ -180,9 +180,29 @@ class ProfileController extends Controller
         }
         $edit->title = $request->title;
         $edit->title2 = $request->title2;
-        $edit->about = $request->about;
-        $edit->level_desc  = $request->level_desc;
-        $edit->telc_desc  = $request->telc_desc;
+        // $edit->about = $request->about;
+        // $edit->level_desc =  $request->level_desc;
+        // $edit->telc_desc  =  $request->telc_desc;
+        $edit->about_de  =  $request->about_de;
+        $edit->about_ar  =  $request->about_ar;
+        $edit->about_en  =  $request->about_en;
+        $edit->about_fr  =  $request->about_fr;
+        $edit->about_es  =  $request->about_es;
+
+
+        $edit->goethe_desc_de  =  $request->goethe_desc_de;
+        $edit->goethe_desc_ar  =  $request->goethe_desc_ar;
+        $edit->goethe_desc_en  =  $request->goethe_desc_en;
+        $edit->goethe_desc_fr  =  $request->goethe_desc_fr;
+        $edit->goethe_desc_es  =  $request->goethe_desc_es;
+
+        $edit->telc_desc_de  =  $request->telc_desc_de;
+        $edit->telc_desc_ar  =  $request->telc_desc_ar;
+        $edit->telc_desc_en  =  $request->telc_desc_en;
+        $edit->telc_desc_fr  =  $request->telc_desc_fr;
+        $edit->telc_desc_es  =  $request->telc_desc_es;
+
+
         $edit->placement_desc  = $request->placement_desc;
         $edit->save();
         return back()->with("message", 'updated ');

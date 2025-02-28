@@ -101,7 +101,7 @@ export default {
           en: item.description_en,
           ar: item.description_ar,
           fr: item.description_fr,
-          es: item.description_se,
+          es: item.description_es,
           de: item.description_de,
         };
 

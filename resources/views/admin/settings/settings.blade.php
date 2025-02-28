@@ -61,11 +61,85 @@
 										value="{{$contactInfo->title2}}">
 								</div>
 								<div class="form-group">
-									<label> about</label>
-									<textarea name="about" id="ckeditor" cols="30" rows="15"
-										class="form-control ckeditor">{{$contactInfo->about}}</textarea>
+									<label> about de</label>
+									<textarea name="about_de" id="ckeditor" cols="30" rows="15"
+										class="form-control ckeditor">{{$contactInfo->about_de}}</textarea>
 								</div>
 								<div class="form-group">
+									<label> about ar</label>
+									<textarea name="about_ar" id="ckeditor" cols="30" rows="15"
+										class="form-control ckeditor">{{$contactInfo->about_ar}}</textarea>
+								</div>
+								<div class="form-group">
+									<label> about en</label>
+									<textarea name="about_en" id="ckeditor" cols="30" rows="15"
+										class="form-control ckeditor">{{$contactInfo->about_en}}</textarea>
+								</div>
+								<div class="form-group">
+									<label> about fr</label>
+									<textarea name="about_fr" id="ckeditor" cols="30" rows="15"
+										class="form-control ckeditor">{{$contactInfo->about_fr}}</textarea>
+								</div>
+								<div class="form-group">
+									<label> about es</label>
+									<textarea name="about_es" id="ckeditor" cols="30" rows="15"
+										class="form-control ckeditor">{{$contactInfo->about_es}}</textarea>
+								</div>
+
+
+								<div class="form-group">
+									<label> goethe desc de</label>
+									<textarea name="goethe_desc_de" id="ckeditor" cols="30" rows="15"
+										class="form-control ckeditor">{{$contactInfo->goethe_desc_de}}</textarea>
+								</div>
+								<div class="form-group">
+									<label> goethe desc ar</label>
+									<textarea name="goethe_desc_ar" id="ckeditor" cols="30" rows="15"
+										class="form-control ckeditor">{{$contactInfo->goethe_desc_ar}}</textarea>
+								</div>
+								<div class="form-group">
+									<label> goethe desc en</label>
+									<textarea name="about_en" id="ckeditor" cols="30" rows="15"
+										class="form-control ckeditor">{{$contactInfo->goethe_desc_en}}</textarea>
+								</div>
+								<div class="form-group">
+									<label> goethe desc fr</label>
+									<textarea name="goethe_desc_fr" id="ckeditor" cols="30" rows="15"
+										class="form-control ckeditor">{{$contactInfo->goethe_desc_fr}}</textarea>
+								</div>
+								<div class="form-group">
+									<label> goethe desc es</label>
+									<textarea name="goethe_desc_es" id="ckeditor" cols="30" rows="15"
+										class="form-control ckeditor">{{$contactInfo->goethe_desc_es}}</textarea>
+								</div>
+
+								<div class="form-group">
+									<label> telc desc de</label>
+									<textarea name="telc_desc_de" id="ckeditor" cols="30" rows="15"
+										class="form-control ckeditor">{{$contactInfo->telc_desc_de}}</textarea>
+								</div>
+								<div class="form-group">
+									<label> telc desc ar</label>
+									<textarea name="telc_desc_ar" id="ckeditor" cols="30" rows="15"
+										class="form-control ckeditor">{{$contactInfo->telc_desc_ar}}</textarea>
+								</div>
+								<div class="form-group">
+									<label> telc desc en</label>
+									<textarea name="telc_desc_en" id="ckeditor" cols="30" rows="15"
+										class="form-control ckeditor">{{$contactInfo->telc_desc_en}}</textarea>
+								</div>
+								<div class="form-group">
+									<label> telc desc fr</label>
+									<textarea name="goethe_desc_fr" id="ckeditor" cols="30" rows="15"
+										class="form-control ckeditor">{{$contactInfo->telc_desc_fr}}</textarea>
+								</div>
+								<div class="form-group">
+									<label> telc desc es</label>
+									<textarea name="telc_desc_es" id="ckeditor" cols="30" rows="15"
+										class="form-control ckeditor">{{$contactInfo->telc_desc_es}}</textarea>
+								</div>
+
+								<!-- <div class="form-group">
 									<label>GOETHE description </label>
 									<textarea name="level_desc" id="ckeditor" cols="30" rows="15"
 										class="form-control ckeditor">{{$contactInfo->level_desc}}</textarea>
@@ -74,7 +148,7 @@
 									<label>telc description </label>
 									<textarea name="telc_desc" id="ckeditor" cols="30" rows="15"
 										class="form-control ckeditor">{{$contactInfo->telc_desc}}</textarea>
-								</div>
+								</div>-->
 
 								<div class="form-group">
 									<label>placement description </label>

@@ -4,7 +4,7 @@
       <div class="col-lg m-auto pl-4">
         <!-- <h1 v-html="contactInfo.title" style="font-size: 19px;"></h1> -->
         <!-- <h2 v-html="contactInfo.title2" style="font-size: 16px;"></h2> -->
-        <p v-html="contactInfo.about"></p>
+        <p v-html="getLocalizedDesc(contactInfo)"></p>
       </div>
       <!-- <div class="row col-lg m-auto"> -->
       <!-- <img  :src="contactInfo.image" class="img-fluid w-100" alt=""> -->
@@ -100,6 +100,19 @@ export default {
   },
   mounted() {
     this.$store.dispatch('getContactinfo');
+  },
+  methods: {
+      getLocalizedDesc(item) {
+        const slugs = {
+          en: item.about_en,
+          ar: item.about_ar,
+          fr: item.about_fr,
+          es: item.about_es,
+          de: item.about_de,
+        };
+
+        return slugs[this.$i18n.locale] || item.about_de;
+      }
   },
 }
 </script>

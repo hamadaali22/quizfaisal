@@ -19,7 +19,7 @@
     </section>
      <section class="row home-main-section p-4 container-fluid">
        <div class="col-lg pl-4">
-        <p v-html="contactInfo.level_desc"></p>
+        <p v-html="getLevelDesc(contactInfo)"></p>
        </div>
        <h2 class="text-center "></h2>
        <div class="col-lg ">
@@ -190,7 +190,19 @@ export default {
       };
 
       return `/goethe-tests/${slugs[this.$i18n.locale] || item.slug_de}`;
+    },
+    getLevelDesc(item) {
+        const slugs = {
+          en: item.goethe_desc_en,
+          ar: item.goethe_desc_ar,
+          fr: item.goethe_desc_fr,
+          es: item.goethe_desc_es,
+          de: item.goethe_desc_de,
+        };
+
+        return slugs[this.$i18n.locale] || item.goethe_desc_de;
     }
+    
   },
 
 

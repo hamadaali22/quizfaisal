@@ -18,7 +18,7 @@
       </section>
       <section class="row home-main-section p-4 container-fluid">
        <div class="col-lg pl-4">
-        <p v-html="contactInfo.telc_desc"></p>
+        <p v-html="getLevelDesc(contactInfo)"></p>
        </div>
        <h2 class="text-center "></h2>
        <div class="col-lg ">
@@ -154,6 +154,17 @@ export default {
       };
 
       return `/telc-tests/${slugs[this.$i18n.locale] || item.slug_de}`;
+    },
+    getLevelDesc(item) {
+        const slugs = {
+          en: item.telc_desc_en,
+          ar: item.telc_desc_ar,
+          fr: item.telc_desc_fr,
+          es: item.telc_desc_es,
+          de: item.telc_desc_de,
+        };
+
+        return slugs[this.$i18n.locale] || item.telc_desc_de;
     }
   },
 

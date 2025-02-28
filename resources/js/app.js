@@ -13,23 +13,23 @@ import Toaster from 'v-toaster'
 import 'v-toaster/dist/v-toaster.css'
 Vue.use(Toaster, { timeout: 9000 })
 
-router.beforeEach((to, from, next) => {
-  // التحقق من وجود اللغة في المسار
-  const langInURL = to.params.lang;
+// router.beforeEach((to, from, next) => {
+//   // التحقق من وجود اللغة في المسار
+//   const langInURL = to.params.lang;
 
-  if (langInURL && ['en', 'ar'].includes(langInURL)) {
-    i18n.locale = langInURL; // ضبط اللغة بناءً على المسار
-    localStorage.setItem('preferredLanguage', langInURL); // حفظ اللغة في localStorage
-  } else {
-    const savedLanguage = localStorage.getItem('preferredLanguage') || 'en';
-    i18n.locale = savedLanguage; // ضبط اللغة بناءً على localStorage إذا لم يكن هناك لغة في URL
-    next(`/${savedLanguage}`); // إعادة التوجيه إلى اللغة المخزنة
-  }
+//   if (langInURL && ['en', 'ar', 'es', 'fr', 'de'].includes(langInURL)) {
+//     i18n.locale = langInURL; // ضبط اللغة بناءً على المسار
+//     localStorage.setItem('preferredLanguage', langInURL); // حفظ اللغة في localStorage
+//   } else {
+//     const savedLanguage = localStorage.getItem('preferredLanguage') || 'de';
+//     i18n.locale = savedLanguage; // ضبط اللغة بناءً على localStorage إذا لم يكن هناك لغة في URL
+//     next(`/${savedLanguage}`); // إعادة التوجيه إلى اللغة المخزنة
+//   }
 
-  next();
-});
-// const savedLanguage = localStorage.getItem('preferredLanguage') || 'en';
-// i18n.locale = savedLanguage;
+//   next();
+// });
+const savedLanguage = localStorage.getItem('preferredLanguage') || 'de';
+i18n.locale = savedLanguage;
 
 
 
@@ -420,11 +420,14 @@ const store = new Vuex.Store({
     getExams({ state, commit }, payload) {
       console.log(payload);
       console.log('vvvvvvvvvvbbbnn');
-      if (this.$i18n) {
-        console.log(this.$i18n.locale);
-        var lang = this.$i18n.locale;
+      console.log(i18n.locale);
+      console.log(localStorage.getItem('preferredLanguage'));
+      if (i18n.locale) {
+        console.log('arrhhhhhhhr yes');
+        console.log(i18n.locale);
+        var lang = i18n.locale;
       } else {
-        console.log('arrhhhhhhhr');
+        console.log('arrhhhhhhhr noooo');
         var lang = 'de';
       }
 
@@ -439,7 +442,15 @@ const store = new Vuex.Store({
     },
     getExamsTelc({ state, commit }, payload) {
       // console.log(payload);
-      axios.get(state.basName + 'telc-exams?levelSlug=' + payload)
+      if (i18n.locale) {
+        console.log('arrhhhhhhhr yes');
+        console.log(i18n.locale);
+        var lang = i18n.locale;
+      } else {
+        console.log('arrhhhhhhhr noooo');
+        var lang = 'de';
+      }
+      axios.get(state.basName + 'telc-exams?levelSlug=' + payload + '&lang=' + lang)
         .then(res => {
           console.log(res.data.data);
           store.commit('updateExams', res.data.data.exam);

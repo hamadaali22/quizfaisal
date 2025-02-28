@@ -199,7 +199,7 @@ class ProfileController extends Controller
         $edit->telc_desc_de  =  $request->telc_desc_de;
         $edit->telc_desc_ar  =  $request->telc_desc_ar;
         $edit->telc_desc_en  =  $request->telc_desc_en;
-        $edit->telc_desc_fr  =  $request->telc_desc_frr;
+        $edit->telc_desc_fr  =  $request->telc_desc_frrr;
         $edit->telc_desc_es  =  $request->telc_desc_es;
 
 

@@ -130,7 +130,7 @@
 								</div>
 								<div class="form-group">
 									<label> telc desc fr</label>
-									<textarea name="goethe_desc_frr" id="ckeditor" cols="30" rows="15"
+									<textarea name="telc_desc_frrr" id="ckeditor" cols="30" rows="15"
 										class="form-control ckeditor">{{$contactInfo->telc_desc_fr}}</textarea>
 								</div>
 								<div class="form-group">

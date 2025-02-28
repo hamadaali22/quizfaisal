@@ -72,7 +72,7 @@
 								</div>
 								<div class="form-group">
 									<label> about en</label>
-									<textarea name="about_en" id="ckeditor" cols="30" rows="15"
+									<textarea name="about_enn" id="ckeditor" cols="30" rows="15"
 										class="form-control ckeditor">{{$contactInfo->about_en}}</textarea>
 								</div>
 								<div class="form-group">
@@ -99,7 +99,7 @@
 								</div>
 								<div class="form-group">
 									<label> goethe desc en</label>
-									<textarea name="about_en" id="ckeditor" cols="30" rows="15"
+									<textarea name="goethe_desc_en" id="ckeditor" cols="30" rows="15"
 										class="form-control ckeditor">{{$contactInfo->goethe_desc_en}}</textarea>
 								</div>
 								<div class="form-group">
@@ -130,7 +130,7 @@
 								</div>
 								<div class="form-group">
 									<label> telc desc fr</label>
-									<textarea name="goethe_desc_fr" id="ckeditor" cols="30" rows="15"
+									<textarea name="goethe_desc_frr" id="ckeditor" cols="30" rows="15"
 										class="form-control ckeditor">{{$contactInfo->telc_desc_fr}}</textarea>
 								</div>
 								<div class="form-group">

@@ -185,7 +185,7 @@ class ProfileController extends Controller
         // $edit->telc_desc  =  $request->telc_desc;
         $edit->about_de  =  $request->about_de;
         $edit->about_ar  =  $request->about_ar;
-        $edit->about_en  =  $request->about_en;
+        $edit->about_en  =  $request->about_enn;
         $edit->about_fr  =  $request->about_fr;
         $edit->about_es  =  $request->about_es;
 
@@ -199,7 +199,7 @@ class ProfileController extends Controller
         $edit->telc_desc_de  =  $request->telc_desc_de;
         $edit->telc_desc_ar  =  $request->telc_desc_ar;
         $edit->telc_desc_en  =  $request->telc_desc_en;
-        $edit->telc_desc_fr  =  $request->telc_desc_fr;
+        $edit->telc_desc_fr  =  $request->telc_desc_frr;
         $edit->telc_desc_es  =  $request->telc_desc_es;
 
 

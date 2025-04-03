@@ -15,7 +15,7 @@ class QuizeHelpers
         // })->with("sets")->take($count)->get();   
 
 
-        $level=Level::where("name3" , $level_name)->first();
+        $level=Level::where('type','quize')->where("name" , $level_name)->first();
         $sets = Set::inRandomOrder()->where('level_id',$level->id)->where('type', $type)->take($count)->get();
 
             $data = [];

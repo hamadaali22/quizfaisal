@@ -59,7 +59,7 @@
 	<script type="text/javascript" src="{{asset('front/Animation/js/bootstrap-progressbar.js')}}"></script>
 	<!-- Custom js -->
 	<script type="text/javascript" src="{{asset('front/Animation/js/custom.js')}}"></script>
-
+	<!--  -->
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap-vue@2/dist/bootstrap-vue.min.js"></script>
 

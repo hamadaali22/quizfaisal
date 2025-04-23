@@ -29,12 +29,23 @@ class QuestionController extends Controller
     use GeneralTrait;
     use QuizeTrait;
     
+    // public function userquizestest(Request $request)
+    // {
+    //     $user = Auth::guard('user-api')->user();
+    //     if(!$user)
+    //         return $this->returnError('يجب تسجيل الدخول أولا');
+    //     $data=QuizesAnswers::with('quizes')->has('quizes')->where('user_id',$user->id)->get();
+    //     return $this->returnDataa('data', $data,'');
+    // }
     public function userquizestest(Request $request)
     {
         $user = Auth::guard('user-api')->user();
         if(!$user)
             return $this->returnError('يجب تسجيل الدخول أولا');
-        $data=QuizesAnswers::with('quizes')->has('quizes')->where('user_id',$user->id)->where("status" , 1)->get();
+        $data=QuizesTest::with('quizes_answers')
+        ->where('user_id',$user->id)
+        >where("status" , 0)
+        ->orderBy('created_at', 'desc')->get();
         return $this->returnDataa('data', $data,'');
     }
     public function quizesResult(Request $request)

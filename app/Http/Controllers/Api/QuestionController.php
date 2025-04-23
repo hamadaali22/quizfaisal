@@ -183,6 +183,8 @@ class QuestionController extends Controller
         }
 
         $userq=QuizesTest::where("user_id" , $request->quizes['0']['user_id'])->first();
+        
+        // $delet_QuizesAnswers=
         if($userq){
             $userq->user_id    = $request->quizes['0']['user_id'];
             $userq->level_id    =$request->quizes['0']['level_id'];
@@ -235,7 +237,11 @@ class QuestionController extends Controller
         }
         return $this -> returnDataa('data','23456','تم الحفظ');
     }
-    
+    public function editQuizeTest(Request $request){
+        $QuizesTest=QuizesTest::where("user_id" , $request->user_id)->where("status" , 1)->first();
+        $QuizesTest->status    = 0;
+        $QuizesTest->save();
+    }
     public function goethes(Request $request)
     {
         $data=Level::where('type','goethe')->get();

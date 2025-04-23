@@ -47,6 +47,7 @@ Route::group(['middleware' => ['api'], 'namespace' => 'Api'], function () {
 
     Route::get('telc-user-exams', 'QuestionController@telcUserExams');
 
+    Route::post('edit-quize-test', 'QuestionController@editQuizeTest');
 
 
 //   Route::group(['middleware' => ['api','changeLanguage','checkDoctor:patient-api'], 'namespace' => 'Api'], function () {

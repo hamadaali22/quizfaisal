@@ -200,12 +200,26 @@ const store = new Vuex.Store({
       })
         // axios.get(state.basName+'quizes?levelName='+payload.levelName+'&type='+payload.type,)
         .then(res => {
-          console.log(res.data + 'mariam khalll');
+          // console.log(res.data + '');
           if (res.data.data.length != 0) {
 
             store.commit('updateQuizes', res.data.data);
           } else {
             if (payload.user_id != 0) {
+
+
+              let data = { 'user_id': payload.user_id };
+              axios.post('https://deutschtests.com/api/edit-quize-test', data)
+                .then(res => {
+                  // console.log(res)
+                  // commit('setUserToken', res.data.token)
+                })
+                .catch(err => {
+                  console.log(err)
+                })
+
+
+
               console.log(payload.user_id + 'i user');
               router.push({ name: 'PlacementResult' })
               // router.push({

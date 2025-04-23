@@ -34,7 +34,7 @@ class QuestionController extends Controller
         $user = Auth::guard('user-api')->user();
         if(!$user)
             return $this->returnError('يجب تسجيل الدخول أولا');
-        $data=QuizesAnswers::with('quizes')->has('quizes')->where('user_id',$user->id)->get();
+        $data=QuizesAnswers::with('quizes')->has('quizes')->where('user_id',$user->id)->where("status" , 1)->get();
         return $this->returnDataa('data', $data,'');
     }
     public function quizesResult(Request $request)

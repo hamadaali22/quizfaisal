@@ -53,7 +53,9 @@ class QuestionController extends Controller
         $user = Auth::guard('user-api')->user();
         if(!$user)
             return $this->returnError('يجب تسجيل الدخول أولا');
-        $data=QuizesTest::where('user_id',$user->id)->first();
+        $data=QuizesTest::where('user_id',$user->id)
+        ->where("status" , 0)
+        ->orderBy('created_at', 'desc')->first();
         return $this->returnDataa('data', $data,'');
     }
     public function quizes(Request $request)
@@ -199,6 +201,7 @@ class QuestionController extends Controller
         if($userq){
             $userq->user_id    = $request->quizes['0']['user_id'];
             $userq->level_id    =$request->quizes['0']['level_id'];
+            $userq->quize_id    = $request->quizes[0]['quize_id'];
             $userq->levelName    = $request->quizes['0']['levelName'];
             $userq->type    = $request->quizes['0']['type'];
             $userq->correct    = $correct;
@@ -224,6 +227,7 @@ class QuestionController extends Controller
             $add = new QuizesTest;
             $add->user_id    = $request->quizes['0']['user_id'];
             $add->level_id    =$request->quizes['0']['level_id'];
+            $userq->quize_id    = $request->quizes[0]['quize_id'];
             $add->levelName    = $request->quizes['0']['levelName'];
             $add->type    = $request->quizes['0']['type'];
             $add->correct    = $correct;

@@ -242,7 +242,7 @@ const store = new Vuex.Store({
       };
       axios.get('https://deutschtests.com/api/user-quizes-test', { headers })
         .then(res => {
-          store.commit('updateQuizesTest', res.data.data);
+          store.commit('updateQuizesTest', res.data.data.quizes_answers);
           console.log(res.data.data + 'mariam khalmjbbb data');
         })
         .then(err => console.log(err))

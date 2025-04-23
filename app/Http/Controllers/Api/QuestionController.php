@@ -182,7 +182,7 @@ class QuestionController extends Controller
             }
         }
 
-        $userq=QuizesTest::where("user_id" , $request->quizes['0']['user_id'])->first();
+        $userq=QuizesTest::where("user_id" , $request->quizes['0']['user_id'])->where("status" , 1)->first();
         
         // $delet_QuizesAnswers=
         if($userq){

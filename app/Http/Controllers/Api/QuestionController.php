@@ -43,6 +43,7 @@ class QuestionController extends Controller
         if(!$user)
             return $this->returnError('يجب تسجيل الدخول أولا');
         $data=QuizesTest::with('quizes_answers')
+        ->with('quizes')->has('quizes')
         ->where('user_id',$user->id)
         ->where("status" , 0)
         ->orderBy('created_at', 'desc')->get();

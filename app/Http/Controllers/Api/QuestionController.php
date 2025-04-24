@@ -42,11 +42,16 @@ class QuestionController extends Controller
         $user = Auth::guard('user-api')->user();
         if(!$user)
             return $this->returnError('يجب تسجيل الدخول أولا');
-        $data=QuizesTest::with('quizes_answers')
-        ->with('quizes')->has('quizes')
+        $data=QuizesTest::with([
+            'quizes_answers' => function ($query) {
+                $query->with('quizes'); // تحميل العلاقة داخل العلاقة
+                // ممكن تضيف شروط هنا لو حابب، مثلاً:
+                // ->where('is_correct', true);
+            }
+        ])
         ->where('user_id',$user->id)
         ->where("status" , 0)
-        ->orderBy('created_at', 'desc')->get();
+        ->orderBy('created_at', 'desc')->first();
         return $this->returnDataa('data', $data,'');
     }
     public function quizesResult(Request $request)

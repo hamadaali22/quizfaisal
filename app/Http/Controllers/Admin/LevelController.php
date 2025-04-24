@@ -42,9 +42,8 @@ class LevelController extends Controller
         );
         $add = new Level;
         $add->name    = $request->name;
-        $add->name2    = $request->name2;
-        $add->name3    = $request->name3;
-        $add->description    = $request->description;
+        $add->type    = $request->type;
+        $add->description_de    = $request->description_de;
         $add->description_ar    = $request->description_ar;
         $add->description_en    = $request->description_en;
         $add->description_fr    = $request->description_fr;

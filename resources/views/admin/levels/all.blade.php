@@ -155,7 +155,22 @@
 									<input type="text" name="name" class="form-control" value="{{old('name')}}">
 								</div>
 							</div>
-							<div class="col-12 col-md-12  col-sm-6">
+							<div class="col-12 col-sm-6">
+								<div class="form-group">
+									<label>Select Level </label>
+									<select name="type" required class="form-control formselect">
+										<option disabled>Select</option>
+										<option value="goethe">goethe</option>
+										<option value="telc">telc</option>
+										<option value="quize">quize</option>
+									</select>
+									<!-- @error('level_id')
+									<span class="text-danger">{{$message}}</span>
+									@enderror
+									<span id="categoryError" style="color: red;"></span> -->
+								</div>
+							</div>
+							<!-- <div class="col-12 col-md-12  col-sm-6">
 								<div class="form-group">
 									<label>Level telc Name</label>
 									<input type="text" name="name2" class="form-control" value="{{old('name2')}}">
@@ -166,7 +181,7 @@
 									<label>Level quize Name</label>
 									<input type="text" name="name3" class="form-control" value="{{old('name3')}}">
 								</div>
-							</div>
+							</div> -->
 							<div class="form-group col-md-12 col-sm-6 ">
 								<label>description DE</label>
 								<textarea name="description_de" cols="20" rows="1" class="form-control ckeditor"
@@ -244,6 +259,7 @@
 									<input type="text" name="name" class="form-control" id="name">
 								</div>
 							</div>
+
 							<div class="form-group col-md-12 col-sm-6 paragraph-hidden">
 								<label>description</label>
 								<textarea name="description" cols="20" rows="1" class="form-control ckeditor"

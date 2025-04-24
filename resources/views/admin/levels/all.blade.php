@@ -73,8 +73,8 @@
 										<tr>
 											<th>#</th>
 											<th>level Name</th>
-											<th>telc name</th>
-											<th>quize name</th>
+											<!-- <th>telc name</th>
+											<th>quize name</th> -->
 											<th class="text-center">Actions</th>
 										</tr>
 									</thead>
@@ -88,12 +88,12 @@
 											<td class="text-center">
 												{{$_item->name}}
 											</td>
-											<td class="text-center">
+											<!-- <td class="text-center">
 												{{$_item->name2}}
 											</td>
 											<td class="text-center">
 												{{$_item->name3}}
-											</td>
+											</td> -->
 											<!-- <td class="text-center">
 														{{$_item->description}}
 													</td>

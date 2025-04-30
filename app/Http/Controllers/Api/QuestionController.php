@@ -66,6 +66,7 @@ class QuestionController extends Controller
     }
     public function quizes(Request $request)
     {
+        $user = Auth::guard('user-api')->user();
         // inRandomOrder()->
         if($request->levelName==null){
             $data = QuizeHelpers::quizes('A2','difficult',5);
@@ -135,6 +136,17 @@ class QuestionController extends Controller
                         return $this->returnDataa('data', $data,'');
                     }else{
                         $data = Quize::where('level_name','100000')->get();
+
+                        
+                        $userq=QuizesTest::where("user_id" , $request->user_id)->where("status" , 1)->first();
+                        if($userq){
+                            $userq->levelName    = "A2";
+                            $userq->type    = "difficult";
+                            $userq->correct    = $correct;
+                            $userq->save();
+                        }
+
+
                         return $this->returnDataa('data', $data,'');
                     }
                     return $this->returnDataa('data', $data,'');
@@ -142,7 +154,7 @@ class QuestionController extends Controller
             }elseif($request->levelName=='B2'){
                 if($request->type=='difficult'){
                     if( $correct >=3){
-                        $data = Quize::where('level_name','100000')->get();
+                        $data = QuizeHelpers::quizes('C1','difficult',5);
                         return $this->returnDataa('data', $data,'');                        
                     }else{
                         $data_middle = QuizeHelpers::quizes('B2','middle',3);
@@ -157,6 +169,42 @@ class QuestionController extends Controller
                         return $this->returnDataa('data', $data,'');   
                     }else{
                         $data = Quize::where('level_name','100000')->get();
+                        $userq=QuizesTest::where("user_id" , $request->user_id)->where("status" , 1)->first();
+                        if($userq){
+                            $userq->levelName    = "B1";
+                            $userq->type    = "difficult";
+                            $userq->correct    = $correct;
+                            $userq->save();
+                        }
+                        return $this->returnDataa('data', $data,'');   
+                    }
+                    return $this->returnDataa('data', $data,'');
+                }
+            }elseif($request->levelName=='C1'){
+                if($request->type=='difficult'){
+                    if( $correct >=3){
+                        $data = Quize::where('level_name','100000')->get();
+                        return $this->returnDataa('data', $data,'');                        
+                    }else{
+                        $data_middle = QuizeHelpers::quizes('C1','middle',3);
+                        $data_easy = QuizeHelpers::quizes('C1','easy',3);
+                        // $mergedData = $data_middle->merge($data_easy);
+                        $mergedData = collect($data_middle)->merge($data_easy)->toArray();
+                        return $this->returnDataa('data', $mergedData,'');
+                    }
+                }else{
+                    if( $correct >=3){
+                        $data = Quize::where('level_name','100000')->get();
+                        return $this->returnDataa('data', $data,'');   
+                    }else{
+                        $data = Quize::where('level_name','100000')->get();
+                        $userq=QuizesTest::where("user_id" , $request->user_id)->where("status" , 1)->first();
+                        if($userq){
+                            $userq->levelName    = "B2";
+                            $userq->type    = "difficult";
+                            $userq->correct    = $correct;
+                            $userq->save();
+                        }
                         return $this->returnDataa('data', $data,'');   
                     }
                     return $this->returnDataa('data', $data,'');

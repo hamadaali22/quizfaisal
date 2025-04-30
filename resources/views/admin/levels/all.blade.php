@@ -157,7 +157,7 @@
 							</div>
 							<div class="col-12 col-md-12  col-sm-6">
 								<div class="form-group">
-									<label>Select Level </label>
+									<label>Select type </label>
 									<select name="type" required class="form-control formselect">
 										<option disabled>Select</option>
 										<option value="goethe">goethe</option>

@@ -5,5 +5,6 @@
 
 <script>
     window.processedData = @json($data);
+    // console.log(window.processedData);
 </script>
 @endsection

@@ -14,7 +14,7 @@
                 <div class="row  ml-3">
                     <div class="col-md-4 multi-item q-1 border border-raduis pt-2 pl-3 pr-3 mr-5 mb-3"
                         :id="'quize' + itemIndex + 'a'"
-                        v-on:click="addQuize(itemIndex, item.id, item.level_id, item.levels.name3, item.first_choice, item.expected_answer, item.sets.type, 'a', 'quize' + itemIndex + 'a')">
+                        v-on:click="addQuize(itemIndex, item.id, item.level_id, item.levels.name, item.first_choice, item.expected_answer, item.sets.type, 'a', 'quize' + itemIndex + 'a')">
                         <input class=" multi-input d-none" type="radio" name="q-1" >
                         <label class="multi-label"  >{{ item.first_choice }}</label>
                     </div>
@@ -22,7 +22,7 @@
                 <div class="row ml-3">
                     <div class="col-md-4 multi-item q-1 border border-raduis pt-2 pl-3 pr-3 mr-5 mb-3"
                         :id="'quize' + itemIndex + 'b'"
-                        v-on:click="addQuize(itemIndex, item.id, item.level_id, item.levels.name3, item.second_choice, item.expected_answer, item.sets.type, 'b', 'quize' + itemIndex + 'b')">
+                        v-on:click="addQuize(itemIndex, item.id, item.level_id, item.levels.name, item.second_choice, item.expected_answer, item.sets.type, 'b', 'quize' + itemIndex + 'b')">
                         <input class=" multi-input d-none" type="radio" name="q-1" >
                         <label class="multi-label"  >{{ item.second_choice }}</label>
                     </div>
@@ -30,7 +30,7 @@
                 <div class="row ml-3">
                     <div class="col-md-4 multi-item q-1 border border-raduis pt-2 pl-3 pr-3 mr-5 mb-3"
                         :id="'quize' + itemIndex + 'c'"
-                        v-on:click="addQuize(itemIndex, item.id, item.level_id, item.levels.name3, item.third_choice, item.expected_answer, item.sets.type, 'c', 'quize' + itemIndex + 'c')">
+                        v-on:click="addQuize(itemIndex, item.id, item.level_id, item.levels.name, item.third_choice, item.expected_answer, item.sets.type, 'c', 'quize' + itemIndex + 'c')">
                         <input class=" multi-input d-none" type="radio" name="q-1" >
                         <label class="multi-label"  >{{ item.third_choice }}</label>
                     </div>
@@ -38,7 +38,7 @@
                 <div class="row ml-3">
                     <div class="col-md-4 multi-item q-1 border border-raduis pt-2 pl-3 pr-3 mr-5 mb-3"
                         :id="'quize' + itemIndex + 'd'"
-                        v-on:click="addQuize(itemIndex, item.id, item.level_id, item.levels.name3, item.fourth_choice, item.expected_answer, item.sets.type, 'd', 'quize' + itemIndex + 'd')">
+                        v-on:click="addQuize(itemIndex, item.id, item.level_id, item.levels.name, item.fourth_choice, item.expected_answer, item.sets.type, 'd', 'quize' + itemIndex + 'd')">
                         <input class=" multi-input d-none" type="radio" name="q-1" >
                         <label class="multi-label"  >{{ item.fourth_choice }}</label>
                     </div>

@@ -195,7 +195,8 @@ const store = new Vuex.Store({
         params: {
           data: JSON.stringify(payload.quizes),
           levelName: payload.levelName,
-          type: payload.type
+          type: payload.type,
+          user_id: payload.user_id
         }
       })
         // axios.get(state.basName+'quizes?levelName='+payload.levelName+'&type='+payload.type,)
@@ -299,9 +300,10 @@ const store = new Vuex.Store({
             var resTitle = 'Da ist ein Fehler';
           }
           console.log(resTitle);
-          commit('setUserToken', res.data.data);
-          localStorage.setItem('userTokenn', JSON.stringify('hgcychchchcghchgchghcgchgchgchgchg'));
+
           if (res.data.status == true) {
+            commit('setUserToken', res.data.data.token);
+            // localStorage.setItem('userTokenn', JSON.stringify('hgcychchchcghchgchghcgchgchgchgchg'));
             router.push({ name: 'Levels' })
             swal({
               title: resTitle,
@@ -394,13 +396,26 @@ const store = new Vuex.Store({
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ' + state.userToken
       };
+      console.log(state.userToken + 'vvvvvbbbtttt');
       axios.get('https://deutschtests.com/api/check-user-auth', headers)
         .then(res => {
-          if (res.data == 'You must login first') {
+          // console.log(res.data.msg);
+          if (res.data.msg == 'You must login first') {
             state.userToken = null;
             localStorage.removeItem('userToken');
+            console.log(res.data.msg);
             // window.location.pathname = "/"
+          } else {
+            console.log('You are loged in');
           }
+          // if (res.data == 'You must login first') {
+          //   state.userToken = null;
+          //   localStorage.removeItem('userToken');
+          //   console.log('You must login first');
+          //   // window.location.pathname = "/"
+          // } else {
+          //   console.log('You must login first');
+          // }
         })
         .then(err => console.log(err))
     },
@@ -563,7 +578,9 @@ const store = new Vuex.Store({
 
 })
 if (window.processedData) {
-  store.commit('setUserToken', window.processedData);
+  // console.log(window.processedData);
+  // console.log(JSON.stringify(window.processedData) + "cdscdscdsdcdcdddddvv");
+  store.commit('setUserToken', window.processedData.token);
   store.commit('setProcessedData', window.processedData);
 }
 const app = new Vue({

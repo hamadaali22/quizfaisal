@@ -22,7 +22,7 @@ class SetController extends Controller
     public function index()
     {
         $sets=Set::all();
-        $levels=Level::all();
+        $levels=Level::where('type','quize')->get();
         return view('admin.sets.all',compact('sets','levels'));
     }
 

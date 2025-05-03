@@ -66,6 +66,7 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
   state: {
     userToken: null,
+    userIdNumber: null,
     productId: null,
     user: null,
     EditedPost: {},
@@ -120,6 +121,11 @@ const store = new Vuex.Store({
       state.userToken = userToken;
       localStorage.setItem('userToken', JSON.stringify(userToken));
       axios.defaults.headers.common.Authorization = `Bearer ${userToken}`
+    },
+    setUserIdNumber(state, userIdNumber) {
+      state.userIdNumber = userIdNumber;
+      localStorage.setItem('userIdNumber', userIdNumber);
+
     },
     removeUserToken(state) {
 
@@ -251,7 +257,9 @@ const store = new Vuex.Store({
     RegisterUser({ commit }, payload) {
       axios.post('https://deutschtests.com/api/register', payload)
         .then(res => {
-          commit('setUserToken', res.data.data);
+          // commit('setUserToken', res.data.data);
+          commit('setUserToken', res.data.data.token);
+          commit('setUserIdNumber', res.data.data.id);
           // if (res.data.status == true) {
           //   var resTitle = 'Erfolgreich registriert';
           // } else {
@@ -303,6 +311,8 @@ const store = new Vuex.Store({
 
           if (res.data.status == true) {
             commit('setUserToken', res.data.data.token);
+            commit('setUserIdNumber', res.data.data.id);
+            console.log(res.data.data.id + 'gggggggggggg');
             // localStorage.setItem('userTokenn', JSON.stringify('hgcychchchcghchgchghcgchgchgchgchg'));
             router.push({ name: 'Levels' })
             swal({
@@ -581,6 +591,7 @@ if (window.processedData) {
   // console.log(window.processedData);
   // console.log(JSON.stringify(window.processedData) + "cdscdscdsdcdcdddddvv");
   store.commit('setUserToken', window.processedData.token);
+  store.commit('setUserIdNumber', window.processedData.id);
   store.commit('setProcessedData', window.processedData);
 }
 const app = new Vue({

@@ -85,12 +85,12 @@ export default {
     },
     methods: {
         addQuize(index, quizeId, levelId, levelName, myanswer, expected_answer, quizeType, chooseItem, quizeClass) {
-
+            console.log(this.$store.state.userIdNumber+'fffffff');
             this.levelName = levelName;
             this.type = quizeType;
             let quize_ans;
             if (this.userId) {
-                quize_ans = { 'user_id': this.$store.state.userToken.id, 'quize_id': quizeId, 'level_id': levelId, 'levelName': levelName, 'answer': myanswer, 'expected_answer': expected_answer, 'type': quizeType }
+                quize_ans = { 'user_id': this.$store.state.userIdNumber, 'quize_id': quizeId, 'level_id': levelId, 'levelName': levelName, 'answer': myanswer, 'expected_answer': expected_answer, 'type': quizeType }
             } else {
                 quize_ans = { 'user_id': 0, 'quize_id': quizeId, 'level_id': levelId, 'levelName': levelName, 'answer': myanswer, 'expected_answer': expected_answer, 'type': quizeType }
             }

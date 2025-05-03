@@ -212,7 +212,7 @@ export default {
                 // console.log(this.levelName+'----'+ this.type+'data'+data.levelName);
 
                 if (this.userId) {
-                    this.$store.dispatch('getQuizes', { user_id: this.$store.state.userToken.id, levelName: this.levelName, type: this.type, quizes: this.questionAnswer });
+                    this.$store.dispatch('getQuizes', { user_id: this.$store.state.userIdNumber, levelName: this.levelName, type: this.type, quizes: this.questionAnswer });
                 } else {
                     this.$toaster.error('Sie müssen sich registrieren, um Ihr Ergebnis zu erhalten und die Musterlösung zu sehen.');
                     this.$store.dispatch('getQuizes', { user_id: 0, levelName: this.levelName, type: this.type, quizes: this.questionAnswer });

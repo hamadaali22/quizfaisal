@@ -19,7 +19,7 @@ class QuizeController extends Controller
     public function index()
     {
         $quizes=Quize::with('levels')->with("sets")->get();
-        $levels=Level::all();
+        $levels=Level::where('type','quize')->get();
         $sets=Set::all();
 
         // foreach ($questions as $_item) {
@@ -72,7 +72,7 @@ class QuizeController extends Controller
 
     public function edit(Quize $quize)
     {
-        $levels=Level::all();
+        $levels=Level::with('levels')->with("sets")->get();
         $sets=Set::all();
 
         return view('admin.quizes.edit',compact('quize','levels','sets'));

@@ -123,7 +123,7 @@ export default {
     getUserdata() {
       const headers = {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + this.$store.state.userToken.token
+        'Authorization': 'Bearer ' + this.$store.state.userToken
       };
       axios.get('https://deutschtests.com/api/quizes-result', { headers })
         .then(res => {

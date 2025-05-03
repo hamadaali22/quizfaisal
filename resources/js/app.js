@@ -245,7 +245,7 @@ const store = new Vuex.Store({
     userQuizesTest({ state, commit }) {
       const headers = {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + state.userToken.token
+        'Authorization': 'Bearer ' + state.userToken
       };
       axios.get('https://deutschtests.com/api/user-quizes-test', { headers })
         .then(res => {

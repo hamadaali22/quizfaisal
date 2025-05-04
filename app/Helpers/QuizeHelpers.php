@@ -4,7 +4,8 @@ namespace App\Helpers;
 use App\Quize;
 use App\Level;
 use App\Set;
-
+use Auth;
+use App\QuizesAnswers;
 class QuizeHelpers
 {
    
@@ -24,7 +25,9 @@ class QuizeHelpers
         $answeredQuizeIds = QuizesAnswers::where('user_id', $user->id )->pluck('quize_id')->toArray();
 
         foreach ($sets as $set) {
-            $quize = Quize::inRandomOrder()->where('set_id', $set->id)
+            // $quize = Quize::inRandomOrder()->where('set_id', $set->id)->with('levels')->with('sets')->first();
+            
+            $quize = Quize::inRandomOrder()->where('set_id', $set->id)->with('levels')->with('sets')
                     ->whereNotIn('id', $answeredQuizeIds)
                     ->first();
             if ($quize) {

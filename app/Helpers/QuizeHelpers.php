@@ -14,14 +14,19 @@ class QuizeHelpers
         //     $query->where('type', $type);
         // })->with("sets")->take($count)->get();   
 
+        $user = Auth::guard('user-api')->user();
 
         $level=Level::where('type','quize')->where("name" , $level_name)->first();
         $sets = Set::inRandomOrder()->where('level_id',$level->id)->where('type', $type)->take($count)->get();
 
             $data = [];
 
+        $answeredQuizeIds = QuizesAnswers::where('user_id', $user->id )->pluck('quize_id')->toArray();
+
         foreach ($sets as $set) {
-            $quize = Quize::inRandomOrder()->where('set_id', $set->id)->with('levels')->with('sets')->first();
+            $quize = Quize::inRandomOrder()->where('set_id', $set->id)
+                    ->whereNotIn('id', $answeredQuizeIds)
+                    ->first();
             if ($quize) {
                 $data[] = $quize;
             }

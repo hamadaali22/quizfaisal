@@ -86,7 +86,7 @@
 												{{$_item->id}}
 											</td>
 											<td class="text-center">
-												{{$_item->title}}
+												{{$_item->title}} - ({{$_item->quizes_count}})
 											</td>
 											<td class="text-center">
 												{{$_item->type}}

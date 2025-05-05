@@ -20,7 +20,7 @@ class QuizeHelpers
         $level=Level::where('type','quize')->where("name" , $level_name)->first();
         $sets = Set::inRandomOrder()->where('level_id',$level->id)->where('type', $type)->take($count)->get();
 
-            $data = [];
+        $data = [];
 
         $answeredQuizeIds = QuizesAnswers::where('user_id', $user->id )->pluck('quize_id')->toArray();
 

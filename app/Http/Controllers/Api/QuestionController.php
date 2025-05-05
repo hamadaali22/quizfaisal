@@ -184,6 +184,13 @@ class QuestionController extends Controller
                 if($request->type=='difficult'){
                     if( $correct >=3){
                         $data = Quize::where('level_name','100000')->get();
+                        $userq=QuizesTest::where("user_id" , $request->user_id)->where("status" , 1)->first();
+                        if($userq){
+                            $userq->levelName    = "c2";
+                            $userq->type    = "difficult";
+                            $userq->correct    = $correct;
+                            $userq->save();
+                        }
                         return $this->returnDataa('data', $data,'');                        
                     }else{
                         $data_middle = QuizeHelpers::quizes('C1','middle',3);

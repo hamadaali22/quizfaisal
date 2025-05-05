@@ -98,7 +98,7 @@
                   </td>
 
                   <td>
-                    {{ $_item->levels->name3 }}
+                    {{ $_item->levels->name }}
                   </td>
 
                   <td>

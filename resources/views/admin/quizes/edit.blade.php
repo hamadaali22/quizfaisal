@@ -75,7 +75,7 @@
                                             <option disabled>Select</option>
                                             @foreach ($levels as $level)
                                             <option value="{{$level->id}}" {{ $quize->level_id == $level->id ?
-                                                "selected" : "" }}>{{$level->name3}}
+                                                "selected" : "" }}>{{$level->name}}
                                             </option>
                                             @endforeach
                                         </select>

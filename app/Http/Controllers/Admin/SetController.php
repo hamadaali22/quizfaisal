@@ -21,7 +21,8 @@ class SetController extends Controller
 
     public function index()
     {
-        $sets=Set::all();
+        $sets=Set::withCount('quizes')->get();
+        // return $sets ;
         $levels=Level::where('type','quize')->get();
         return view('admin.sets.all',compact('sets','levels'));
     }

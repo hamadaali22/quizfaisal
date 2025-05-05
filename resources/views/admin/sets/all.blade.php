@@ -224,7 +224,7 @@
 										<option disabled>Select</option>
 										@foreach ($levels as $level)
 										<option value="{{$level->id}}" {{ old('level_id')==$level->id ? "selected" : ""
-											}}>{{$level->name3}}
+											}}>{{$level->name}}
 										</option>
 
 										@endforeach

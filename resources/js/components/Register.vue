@@ -59,8 +59,20 @@
                 <div class="row">
                   <div class="col-md-12 mb-3 d-grid">
                     <!-- <button class="btn btn-primary w-100" id="btn"> Registrieren</button> -->
-                    <input type="submit" @click.prevent="submitRegister" id="btn" value="Registrieren"
-                      class="btn btn-primary w-100 mt-3" style="border-radius: 10px;">
+                    <!-- <input type="submit" @click.prevent="submitRegister" id="btn" 
+                      :value="isLoading ? 'جاري التسجيل...' : 'Registrieren'"
+                      :disabled="isLoading"
+                      class="btn btn-primary w-100 mt-3" style="border-radius: 10px;"> -->
+
+                      <button @click.prevent="submitRegister" class="btn btn-primary w-100 mt-3" style="border-radius: 10px;":disabled="isLoading">
+                        <span v-if="isLoading">
+                          <i class="fas fa-spinner fa-spin"></i>&nbsp;&nbsp; Registrieren
+                        </span>
+                        <span v-else>
+                          <!-- <i class="fas fa-user-plus"></i> -->
+                           Registrieren
+                        </span>
+                      </button>
                   </div>
                   <!-- <div class="col-md-6 mb-3 d-grid">
                     <button class="btn google-login-button w-100 mt-3">
@@ -100,6 +112,7 @@
 export default {
   data() {
     return {
+      isLoading: false,
       password: '',
       email: '',
       name: '',
@@ -124,6 +137,7 @@ export default {
   },
   methods: {
     submitRegister() {
+      this.isLoading = true;
       //console.log('submitted');
       //client sid  localstorage sessionstorage indexed db   state managment system
       //vue vuex

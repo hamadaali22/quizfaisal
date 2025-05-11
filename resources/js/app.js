@@ -255,49 +255,74 @@ const store = new Vuex.Store({
         .then(err => console.log(err))
     },
     RegisterUser({ commit }, payload) {
-      axios.post('https://deutschtests.com/api/register', payload)
-        .then(res => {
-          // commit('setUserToken', res.data.data);
-          commit('setUserToken', res.data.data.token);
-          commit('setUserIdNumber', res.data.data.id);
-          // if (res.data.status == true) {
-          //   var resTitle = 'Erfolgreich registriert';
-          // } else {
-          //   var resTitle = 'Da ist ein Fehler';
-          // }
-          // if (res.data.status == true) {
-          //   router.push({ name: 'Login' })
-          // }
-          // swal({
-          //   title: resTitle,
-          //   text: res.data.msg,
-          //   icon: "success",
-          //   timer: 10500
-          // });
-          if (res.data.status == true) {
-
+      return new Promise((resolve, reject) => {
+        axios.post('https://deutschtests.com/api/register', payload)
+          .then(res => {
+            if (res.data.status == true) {
+              commit('setUserToken', res.data.data.token);
+              commit('setUserIdNumber', res.data.data.id);
+              swal({
+                title: 'Erfolgreich registriert',
+                text: res.data.msg,
+                icon: "success",
+                timer: 10500
+              });
+              router.push({ name: 'Levels' });
+            } else {
+              swal({
+                title: 'Da ist ein Fehler',
+                text: res.data.msg,
+                icon: "error",
+                timer: 10500
+              });
+              router.push({ name: 'Register' });
+            }
+            resolve(); // انتهى بنجاح (حتى لو كانت الحالة false)
+          })
+          .catch(err => {
+            console.log(err);
             swal({
-              title: 'Erfolgreich registriert',
-              text: res.data.msg,
-              icon: "success",
-              timer: 10500
-            });
-            router.push({ name: 'Levels' })
-          } else {
-            router.push({ name: 'Register' })
-            swal({
-              title: 'Da ist ein Fehler',
-              text: res.data.msg,
+              title: 'Serverfehler',
+              text: 'Etwas ist schief gelaufen. Bitte versuchen Sie es später erneut.',
               icon: "error",
               timer: 10500
             });
-          }
-
-          console.log(res.data)
-        }).catch(err => {
-          console.log(err)
-        })
+            reject(err); // خطأ في الاتصال
+          });
+      });
     },
+
+    // RegisterUser({ commit }, payload) {
+    //   axios.post('https://deutschtests.com/api/register', payload)
+    //     .then(res => {
+    //       if (res.data.status == true) {
+    //         commit('setUserToken', res.data.data.token);
+    //         commit('setUserIdNumber', res.data.data.id);
+    //         swal({
+    //           title: 'Erfolgreich registriert',
+    //           text: res.data.msg,
+    //           icon: "success",
+    //           timer: 10500
+    //         });
+    //         router.push({ name: 'Levels' })
+    //       } else {
+    //         router.push({ name: 'Register' })
+    //         swal({
+    //           title: 'Da ist ein Fehler',
+    //           text: res.data.msg,
+    //           icon: "error",
+    //           timer: 10500
+    //         });
+    //       }
+    //     }).catch(err => {
+    //       console.log(err)
+    //     })
+
+    //     .finally(() => {
+    //       // ✅ سواء نجح أو فشل، نوقف التحميل
+    //       commit('setLoading', false);
+    //     });
+    // },
     LoginUser({ commit }, payload) {
       axios.post('https://deutschtests.com/api/login', payload)
         .then(res => {

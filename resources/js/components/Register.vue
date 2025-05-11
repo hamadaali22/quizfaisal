@@ -9,12 +9,14 @@
           </div>
           <div class=" col-12 col-lg-6">
             <div class=" col-12 col-lg-12">
-              <form class="col text-center mt-5 p-3" method="post">
+              <form class="col  mt-5 p-3" method="post">
                 <h4 class="m-3 "> Registrieren</h4>
                 <input type="email" class="w-100 mb-2" placeholder="Email" v-model="email">
+                <span v-if="errors.email" class="text-danger " >{{ errors.email }}</span>
                 <input type="password" class="w-100 mb-2" placeholder="Passwort" v-model="password">
-
+                <span v-if="errors.password" class="text-danger " >{{ errors.password }}</span>
                 <input type="text" class="w-100 mb-2" placeholder="Name" v-model="name">
+                <span v-if="errors.name" class="text-danger " >{{ errors.name }}</span>
                 <!-- <input type="text" class="w-100 mb-2" placeholder="Handynummer" v-model="mobile"> -->
                 <!-- <input type="text" class="w-100 mb-2" placeholder="Sprache" v-model="Language"> -->
                 <!-- <input type="text" class="w-100 mb-2" placeholder="Land" v-model="Country"> -->
@@ -119,7 +121,7 @@ export default {
       mobile: '',
       language: '',
       country: '',
-
+      errors: {}
     }
   },
   computed: {
@@ -137,6 +139,38 @@ export default {
   },
   methods: {
     submitRegister() {
+      this.errors = {};
+      let isValid = true;
+
+      // Email validation
+      if (!this.email) {
+        this.errors.email = 'Email ist erforderlich.';
+        isValid = false;
+      } else if (!/\S+@\S+\.\S+/.test(this.email)) {
+        this.errors.email = 'Ungültige Email-Adresse.';
+        isValid = false;
+      }
+
+      // Password validation
+      if (!this.password) {
+        this.errors.password = 'Passwort ist erforderlich.';
+        isValid = false;
+      }
+      // } else if (this.password.length < 6) {
+      //   this.errors.password = 'Passwort muss mindestens 6 Zeichen lang sein.';
+      //   isValid = false;
+
+      // Name validation
+      if (!this.name) {
+        this.errors.name = 'Name ist erforderlich.';
+        isValid = false;
+      }
+
+      if (!isValid) return;
+
+
+
+
       this.isLoading = true;
       //console.log('submitted');
       //client sid  localstorage sessionstorage indexed db   state managment system
@@ -147,14 +181,20 @@ export default {
       //this.$store.commit('setUserToken',{userToken:'sdmfjsdkfjlsds'})
       // console.log(this.$store.getters.isLogged)
       // console.log(this.$store.state.userToken);
-      console.log(this.name);
-      console.log(this.email);
-      console.log(this.password);
-      console.log(this.mobile);
-      console.log(this.language);
-      console.log(this.country);
+      // console.log(this.name);
+      // console.log(this.email);
+      // console.log(this.password);
+      // console.log(this.mobile);
+      // console.log(this.language);
+      // console.log(this.country);
       let { name, email, password, mobile, language, country } = this;
+      // this.$store.dispatch('RegisterUser', { name, email, password, mobile, language, country })
+
       this.$store.dispatch('RegisterUser', { name, email, password, mobile, language, country })
+      .finally(() => {
+        this.isLoading = false; // ✅ نوقف التحميل مهما كانت النتيجة
+      });
+
 
     }
   }

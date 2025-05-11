@@ -384,7 +384,7 @@ const store = new Vuex.Store({
             });
           }
           console.log(resTitle);
-          commit('setUserToken', res.data.data);
+          commit('setUserToken', res.data.data.token);
 
 
 

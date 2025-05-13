@@ -426,7 +426,7 @@
 
       data(){
         return {
-          userId:this.$store.state.userToken.id,
+          userId:this.$store.state.userIdNumber,
           examId:this.$route.params.id,
           pageId:'1',
           qnum:-0,

@@ -537,7 +537,7 @@
 
       data(){
         return {
-          userId:this.$store.state.userToken.id,
+          userId:this.$store.state.userIdNumber,
           examId:this.$route.params.id,
           pageId:'1',
           // qnum:-0,
@@ -572,7 +572,7 @@
 
                 this.questionAnswer=[];
                 // console.log(this.getCurrentPage+1+' page');
-                this.$store.dispatch('getGoetheReportExams', {userId: this.$store.state.userToken.id, examId: this.examId,pageId:this.getCurrentPage+1 });
+                this.$store.dispatch('getGoetheReportExams', {userId: this.$store.state.userIdNumber, examId: this.examId,pageId:this.getCurrentPage+1 });
                 window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
               // }
         },

@@ -162,7 +162,7 @@ export default {
     // examId:this.$route.params.examId,
     data() {
         return {
-            userId: this.$store.state.userToken.id,
+            userId: this.$store.state.userIdNumber,
             examId:this.$route.params.examId,
             strokeWidth1: 10,
             strokeColorBack1: '#f2f2f2',

@@ -101,7 +101,7 @@ export default {
 
     data() {
         return {
-            userId: this.$store.state.userToken.id,
+            userId: this.$store.state.userIdNumber,
             strokeWidth1: 10,
             strokeColorBack1: '#f2f2f2',
             strokeColorFront1: '#007bff',

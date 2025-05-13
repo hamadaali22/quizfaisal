@@ -32,7 +32,7 @@
 export default {
   data(){
     return {
-        userId:this.$store.state.userToken.id,
+        userId:this.$store.state.userIdNumber,
         examId:this.$route.params.examId,
     }
   },

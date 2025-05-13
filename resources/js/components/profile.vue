@@ -84,7 +84,7 @@ export default {
         this.getUserdata();
 
        console.log('fffffffffvb');
-       console.log(this.$store.state.userToken.token);
+       console.log(this.$store.state.userToken);
 
 
      },
@@ -105,10 +105,10 @@ export default {
            data.append('photo', event.target.files[0]);
            const headers = {
                'Content-Type': 'application/json',
-               'Authorization': 'Bearer '+this.$store.state.userToken.token
+               'Authorization': 'Bearer '+this.$store.state.userToken
            };
           console.log('ddd');
-          console.log(this.$store.state.userToken.token);
+          console.log(this.$store.state.userToken);
           console.log('ddd');
              axios.post('https://deutschtests.com/api/profile-update', data,{headers})
                  .then(res => {
@@ -135,7 +135,7 @@ export default {
        getUserdata(){
             const headers = {
                'Content-Type': 'application/json',
-               'Authorization': 'Bearer '+this.$store.state.userToken.token
+               'Authorization': 'Bearer '+this.$store.state.userToken
              };
              axios.get('https://deutschtests.com/api/user-data',{headers})
              .then(res => {

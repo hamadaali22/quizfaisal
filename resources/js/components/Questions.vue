@@ -2,13 +2,7 @@
   <div>
     <a href="hamada"></a>
 
-    <div>
-      <ul v-if="questionAnswer.length">
-        <li v-for="(question, index) in questionAnswer">
-          {{ question.subQuestionId }}
-        </li>
-      </ul>
-    </div>
+    
 
     <div v-for="item in getQuestion" :key="item.id">
       <section class="row bg-white m-2 p-1 ">

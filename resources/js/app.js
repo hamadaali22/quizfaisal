@@ -219,7 +219,9 @@ const store = new Vuex.Store({
               axios.post('https://deutschtests.com/api/edit-quize-test', data)
                 .then(res => {
                   // console.log(res)
-                  // commit('setUserToken', res.data.token)
+                  router.push('/placement-result')
+                  // router.push({ name: 'PlacementResult' })
+
                 })
                 .catch(err => {
                   console.log(err)
@@ -228,13 +230,8 @@ const store = new Vuex.Store({
 
 
               console.log(payload.user_id + 'i user');
-              router.push({ name: 'PlacementResult' })
-              // router.push({
-              //     // path: '/placement-result/' + payload.user_id, 
-              //     path: '/placement-result/' + 19, 
-              //     params: { test: 'testyy' }
-              // });
-              // router.push({ name: 'Result', params: { user_id: payload.user_id,examId:payload.examId } })
+
+
             } else {
               router.push({ name: 'NoResult' })
             }
@@ -249,6 +246,7 @@ const store = new Vuex.Store({
       };
       axios.get('https://deutschtests.com/api/user-quizes-test', { headers })
         .then(res => {
+          console.log(res.data.data.id + "my-quizes-test");
           store.commit('updateQuizesTest', res.data.data.quizes_answers);
           console.log(res.data.data.quizes_answers + 'mariam khalmjbbb data');
         })

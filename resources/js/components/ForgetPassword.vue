@@ -7,7 +7,7 @@
                    <img  :src="contactInfo.image" class="img-fluid pt-3 mt-5 " alt="">
                </div>
                <form class="col text-center" method="post">
-                   <h4 class="m-3">Passwort vergessen</h4>
+                   <h4 class="m-3">  {{ $t('forgottenYourPassword') }}</h4>
 
                       <!-- <router-link  to="/levels" title="Wishlist">
                         <div class="icon">
@@ -15,8 +15,8 @@
                             <span class="wishlist-count badge">3</span>
                         </div>
                         <p>Wishlist</p>
-                    </router-link> -->
-                    <input type="email" class="w-100 mb-2" placeholder="Email"  v-model="email" style="margin-top: 32px;">
+                    </router-link> -->                    
+                    <input type="email" class="w-100 mb-2" :placeholder="$t('Email')"   v-model="email" style="margin-top: 32px;">
 
                    <!-- <input type="password" class="w-100 mb-2" placeholder="password_confirmation"  v-model="password_confirmation" style="margin-top: 32px;"> -->
 

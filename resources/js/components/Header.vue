@@ -11,26 +11,26 @@
       <div class="collapse navbar-collapse" id="x">
         <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
 
-          <li class="nav-item p-1 active "><router-link to="/" class="nav-link text-light">Home
-             <!-- {{ $t('logIn') }}  -->
+          <li class="nav-item p-1 active "><router-link to="/" class="nav-link text-light">
+             {{ $t('home') }} 
                <!-- {{ this.$i18n.locale }} -->
             </router-link></li>
           <!-- <li v-if="isLogged" class="nav-item p-1 active "><router-link to="levels" class="nav-link text-light">GOETHE</router-link></li> -->
           <li class="nav-item p-1 active "><router-link to="/goethe-tests"
-              class="nav-link text-light">Goethe</router-link></li>
-          <li class="nav-item p-1 active "><router-link to="/telc-tests" class="nav-link text-light">Telc</router-link>
+              class="nav-link text-light"> {{ $t('Goethe') }}</router-link></li>
+          <li class="nav-item p-1 active "><router-link to="/telc-tests" class="nav-link text-light">{{ $t('Telc') }}</router-link>
           </li>
-          <!-- <li class="nav-item p-1 active "><router-link to="/placement-test"
-              class="nav-link text-light">Placement</router-link></li> -->
+          <li class="nav-item p-1 active "><router-link to="/placement-test"
+              class="nav-link text-light"> {{ $t('PlacementTest') }}</router-link></li>
 
           <li v-if="!isLogged" class="nav-item p-1 active "><router-link to="/login"
-              class="nav-link text-light">Anmelden</router-link></li>
+              class="nav-link text-light">{{ $t('LogIn') }}</router-link></li>
           <li v-if="!isLogged" class="nav-item p-1 active "><router-link to="/register"
-              class="nav-link text-light">Registrieren</router-link></li>
+              class="nav-link text-light">{{ $t('Register') }}</router-link></li>
           <li v-if="isLogged" class="nav-item p-1 active "><router-link to="/goethe-user-exam"
-              class="nav-link text-light">Meine Tests</router-link></li>
-          <!-- <li v-if="isLogged" class="nav-item p-1 active "><router-link to="/placement-result"
-              class="nav-link text-light">Placement Result</router-link></li> -->
+              class="nav-link text-light">{{ $t('Mytests') }}</router-link></li>
+          <li v-if="isLogged" class="nav-item p-1 active "><router-link to="/placement-result"
+              class="nav-link text-light">{{ $t('PlacementResult') }}</router-link></li>
 
 
 
@@ -39,7 +39,7 @@
           <!-- <li v-if="isLogged" class="nav-item p-1 active "><router-link to="/telc-user-exam" class="nav-link text-light">telc user exam</router-link></li> -->
           
           <li v-if="isLogged" @click.stop="logout" class="nav-item p-1 active "><router-link to="register"
-              class="nav-link text-light">Abmelden</router-link></li>
+              class="nav-link text-light">{{ $t('LogOut') }}</router-link></li>
           <!-- <div class="btn-group dropup">
               <button type="button" class="btn header-btn dropdown-toggle" data-toggle="dropdown"
                   aria-haspopup="true" aria-expanded="false">
@@ -51,7 +51,7 @@
                   <p><a href="lang/en" class="text-dark">englis</a></p>
               </div>
           </div> -->
-          <b-dropdown id="dropdown-1" text="language" class="m-md-2" style="    color: #242424 !important;
+          <b-dropdown id="dropdown-1" :text="$t('language')" class="m-md-2" style="    color: #242424 !important;
     background-color: #efefef !important;">
         <b-dropdown-item @click="changeLanguage('de')">Deutsch</b-dropdown-item>
         <b-dropdown-item @click="changeLanguage('en')">English</b-dropdown-item>

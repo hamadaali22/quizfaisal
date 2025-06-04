@@ -260,15 +260,15 @@ const store = new Vuex.Store({
               commit('setUserToken', res.data.data.token);
               commit('setUserIdNumber', res.data.data.id);
               swal({
-                title: 'Erfolgreich registriert',
-                text: res.data.msg,
+                title: i18n.t('successfullyRegistered'),
+                text: i18n.t('received'),
                 icon: "success",
                 timer: 10500
               });
               router.push({ name: 'Levels' });
             } else {
               swal({
-                title: 'Da ist ein Fehler',
+                title: i18n.t('occurred'),
                 text: res.data.msg,
                 icon: "error",
                 timer: 10500
@@ -328,7 +328,7 @@ const store = new Vuex.Store({
           if (res.data.status == true) {
             var resTitle = 'Erfolgreich registriert';
           } else {
-            var resTitle = 'Da ist ein Fehler';
+            var resTitle = i18n.t('occurred');
           }
           console.log(resTitle);
 
@@ -340,7 +340,7 @@ const store = new Vuex.Store({
             router.push({ name: 'Levels' })
             swal({
               title: resTitle,
-              text: res.data.msg,
+              text: i18n.t('received'),
               icon: "success",
               timer: 10500
             });
@@ -348,7 +348,7 @@ const store = new Vuex.Store({
             router.push({ name: 'Login' })
             swal({
               title: resTitle,
-              text: res.data.msg,
+              text: i18n.t('wrongEmail'),
               icon: "error",
               timer: 10500
             });

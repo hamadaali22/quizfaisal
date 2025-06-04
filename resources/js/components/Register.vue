@@ -10,12 +10,12 @@
           <div class=" col-12 col-lg-6">
             <div class=" col-12 col-lg-12">
               <form class="col  mt-5 p-3" method="post">
-                <h4 class="m-3 "> Registrieren</h4>
-                <input type="email" class="w-100 mb-2" placeholder="Email" v-model="email">
+                <h4 class="m-3 "> {{ $t('Register') }}</h4>
+                <input type="email" class="w-100 mb-2" :placeholder="$t('Email')" v-model="email">
                 <span v-if="errors.email" class="text-danger " >{{ errors.email }}</span>
-                <input type="password" class="w-100 mb-2" placeholder="Passwort" v-model="password">
+                <input type="password" class="w-100 mb-2" :placeholder="$t('Passwort')" v-model="password">
                 <span v-if="errors.password" class="text-danger " >{{ errors.password }}</span>
-                <input type="text" class="w-100 mb-2" placeholder="Name" v-model="name">
+                <input type="text" class="w-100 mb-2" :placeholder="$t('name')" v-model="name">
                 <span v-if="errors.name" class="text-danger " >{{ errors.name }}</span>
                 <!-- <input type="text" class="w-100 mb-2" placeholder="Handynummer" v-model="mobile"> -->
                 <!-- <input type="text" class="w-100 mb-2" placeholder="Sprache" v-model="Language"> -->
@@ -68,11 +68,11 @@
 
                       <button @click.prevent="submitRegister" class="btn btn-primary w-100 mt-3" style="border-radius: 10px;":disabled="isLoading">
                         <span v-if="isLoading">
-                          <i class="fas fa-spinner fa-spin"></i>&nbsp;&nbsp; Registrieren
+                          <i class="fas fa-spinner fa-spin"></i>&nbsp;&nbsp; {{ $t('Register') }}
                         </span>
                         <span v-else>
                           <!-- <i class="fas fa-user-plus"></i> -->
-                           Registrieren
+                          {{ $t('Register') }}
                         </span>
                       </button>
                   </div>
@@ -86,7 +86,7 @@
 
                 <div class="d-flex justify-content-between">
                   <!-- <a href="#">Register</a> -->
-                  <router-link to="login" style="color:#6298bf">ANMELDEN</router-link>
+                  <router-link to="login" style="color:#6298bf">{{ $t('LogIn') }}</router-link>
                   <!-- <a href="#" style="color:#6298bf">Forget password</a> -->
                 </div>
               </form>

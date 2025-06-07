@@ -436,7 +436,10 @@ const store = new Vuex.Store({
           if (res.data.msg == 'You must login first') {
             state.userToken = null;
             localStorage.removeItem('userToken');
+            localStorage.removeItem('userIdNumber');
+            console.log('You are loged out');
             console.log(res.data.msg);
+            console.log('You are loged out');
             // window.location.pathname = "/"
           } else {
             console.log('You are loged in');

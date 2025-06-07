@@ -1,6 +1,6 @@
 <template>
     <div>
-        <section id="">
+        <section id="" v-if="userId">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
@@ -153,6 +153,16 @@
            
 
         </section>
+        <section class="row home-main-section p-5 container-fluid" v-else>
+            <div class="col-lg m-auto pl-4">
+                <p class="text-center ">    يجب تسجيل الدخول اولا ثم إعادة الفحص لمعرفة نتيجك</p>
+                <router-link :to="'/placement-questions'" class="a-link">
+                    <div class="level  w-50 text-center text-light mt-1 pt-2 pb-2 ">
+                        {{ $t('LogIn') }}
+                    </div>
+                </router-link>
+            </div>
+        </section>
 
     </div>
 </template>
@@ -188,9 +198,9 @@ export default {
     },
     computed: {
         // reading
-        getResult() {
-            return this.$store.state.Results;
-        },
+        // getResult() {
+        //     return this.$store.state.Results;
+        // },
         isLogged(){
             return this.$store.getters.isLogged
         },
@@ -237,7 +247,7 @@ export default {
     methods: {
         getQuestionResult(){
             // this.examId
-            console.log(this.userId+'cc');
+            console.log(this.userId+'ccnnnn'+this.examId+'ccnnnn');
             axios.get('https://deutschtests.com/api/results?user_id='+this.userId+'&exam_id='+this.examId)
             .then(res => {
               console.log('Component mountvvvvmmmm.');

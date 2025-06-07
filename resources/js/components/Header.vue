@@ -29,8 +29,8 @@
               class="nav-link text-light">{{ $t('Register') }}</router-link></li>
           <li v-if="isLogged" class="nav-item p-1 active "><router-link to="/goethe-user-exam"
               class="nav-link text-light">{{ $t('Mytests') }}</router-link></li>
-          <li v-if="isLogged" class="nav-item p-1 active "><router-link to="/placement-result"
-              class="nav-link text-light">{{ $t('PlacementResult') }}</router-link></li>
+          <!-- <li v-if="isLogged" class="nav-item p-1 active "><router-link to="/placement-result"
+              class="nav-link text-light">{{ $t('PlacementResult') }}</router-link></li> -->
 
 
 

@@ -13,7 +13,7 @@
                 <h4 class="m-3 "> {{ $t('Register') }}</h4>
                 <input type="email" class="w-100 mb-2" :placeholder="$t('Email')" v-model="email">
                 <span v-if="errors.email" class="text-danger " >{{ errors.email }}</span>
-                <input type="password" class="w-100 mb-2" :placeholder="$t('Passwort')" v-model="password">
+                <input type="password" class="w-100 mb-2" :placeholder="$t('Password')" v-model="password">
                 <span v-if="errors.password" class="text-danger " >{{ errors.password }}</span>
                 <input type="text" class="w-100 mb-2" :placeholder="$t('name')" v-model="name">
                 <span v-if="errors.name" class="text-danger " >{{ errors.name }}</span>
@@ -98,7 +98,7 @@
                 <a href="google-login" style="text-decoration:none;">
                   <button class="google-login-button w-100 mt-3">
                     <img src="/img/googlelogin.png" alt="Google Logo" width="20" height="20">
-                    Registrieren Mit Google
+                    {{ $t('RegisterWithGoogle') }}
                   </button>
                 </a>
             </div>
@@ -144,16 +144,16 @@ export default {
 
       // Email validation
       if (!this.email) {
-        this.errors.email = 'Email ist erforderlich.';
+        this.errors.email = i18n.t('EmailRequired');
         isValid = false;
       } else if (!/\S+@\S+\.\S+/.test(this.email)) {
-        this.errors.email = 'Ungültige Email-Adresse.';
+        this.errors.email = i18n.t('EmailInvalid');
         isValid = false;
       }
 
       // Password validation
       if (!this.password) {
-        this.errors.password = 'Passwort ist erforderlich.';
+        this.errors.password = i18n.t('PasswordRequired');
         isValid = false;
       }
       // } else if (this.password.length < 6) {
@@ -162,7 +162,7 @@ export default {
 
       // Name validation
       if (!this.name) {
-        this.errors.name = 'Name ist erforderlich.';
+        this.errors.name = i18n.t('NameRequired');
         isValid = false;
       }
 

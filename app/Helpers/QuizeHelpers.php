@@ -18,7 +18,7 @@ class QuizeHelpers
         $user = Auth::guard('user-api')->user();
 
         $level=Level::where('type','quize')->where("name" , $level_name)->first();
-        $sets = Set::inRandomOrder()->where('level_id',$level->id)->where('type', $type)->take($count)->get();
+        $sets = Set::inRandomOrder()->where('level_id',$level->id)->where('type', $type)->where('type2', 'placement')->take($count)->get();
 
         $data = [];
 

@@ -5,7 +5,7 @@
                 <p v-html="contactInfo.placement_desc"></p>
                 <router-link :to="'/placement-questions'" class="a-link">
                     <div class="level  w-50 text-center text-light mt-1 pt-2 pb-2">
-                        Start Test
+                         {{ $t('StartTest') }}
                     </div>
                 </router-link>
             </div>

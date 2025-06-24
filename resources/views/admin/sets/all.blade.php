@@ -105,6 +105,7 @@
 
 													<a class="btn btn-sm bg-success-light" data-toggle="modal"
 														data-title="{{ $_item->title }}" data-type="{{ $_item->type }}"
+														data-type2="{{ $_item->type2 }}"
 														data-level="{{ $_item->level_id }}"
 														data-catid="{{ $_item->id }}" data-target="#edit">
 														<button type="button" class="btn btn-outline-success "><i
@@ -282,7 +283,7 @@
 							<div class="col-12 col-md-12  col-sm-6">
 								<div class="form-group">
 									<label>Select placement or vocabulary</label>
-									<select name="type2" required class="form-control formselect" id="typeId" required>
+									<select name="type2" required class="form-control formselect" id="type2Id" required>
 										<option disabled>Select</option>
 
 										<option value="placement" {{ old('level_id')=='placement' ? "selected" : "" }}>
@@ -349,6 +350,7 @@
 		var title = button.data('title')
 		var level = button.data('level')
 		var type = button.data('type')
+		var type2 = button.data('type2')
 
 		var cat_id = button.data('catid')
 		var modal = $(this)
@@ -357,6 +359,7 @@
 
 		modal.find('.modal-body #levelId').val(level);
 		modal.find('.modal-body #typeId').val(type);
+		modal.find('.modal-body #type2Id').val(type2);
 
 		modal.find('.modal-body #cat_id').val(cat_id);
 	})

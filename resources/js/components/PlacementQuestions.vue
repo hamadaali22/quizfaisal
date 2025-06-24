@@ -179,7 +179,7 @@ export default {
         SaveQuestion() {
             if (this.questionAnswer.length == 0) {
                 // console.log(this.questionAnswer);
-                this.$toaster.error('Sie müssen mindestens eine Frage beantworten.');
+                this.$toaster.error(i18n.t('mustAnswerOne'));
 
                 // let data={'quizes':this.questionAnswer, 'levelName': this.levelName};
 

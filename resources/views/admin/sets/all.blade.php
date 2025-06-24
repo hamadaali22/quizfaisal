@@ -74,6 +74,7 @@
 											<th>#</th>
 											<th>group name</th>
 											<th> type</th>
+											<th> type2</th>
 											<th> quize</th>
 											<th class="text-center">Actions</th>
 										</tr>
@@ -90,6 +91,9 @@
 											</td>
 											<td class="text-center">
 												{{$_item->type}}
+											</td>
+											<td class="text-center">
+												{{$_item->type2}}
 											</td>
 											<td class="text-center">
 												<a href="{{('quize/'.$_item->id)}}" class="btn btn-sm bg-success-light">
@@ -185,6 +189,26 @@
 									<span id="categoryError" style="color: red;"></span>
 								</div>
 							</div>
+							<div class="col-12 col-md-12  col-sm-6">
+								<div class="form-group">
+									<label>Select placement or vocabulary</label>
+									<select name="type2" required class="form-control formselect">
+										<option disabled>Select</option>
+
+										<option value="placement" {{ old('level_id')=='placement' ? "selected" : "" }}>
+											placement
+										</option>
+										<option value="vocabulary" {{ old('level_id')=='vocabulary' ? "selected" : ""
+											}}>المفردات
+										</option>
+
+									</select>
+									@error('level_id')
+									<span class="text-danger">{{$message}}</span>
+									@enderror
+									<span id="categoryError" style="color: red;"></span>
+								</div>
+							</div>
 
 						</div>
 						<button type="submit" class="btn btn-primary btn-block">Add group </button>
@@ -248,6 +272,26 @@
 										</option>
 										<option value="easy" {{ old('level_id')=='easy' ? "selected" : "" }}>easy
 										</option>
+									</select>
+									@error('level_id')
+									<span class="text-danger">{{$message}}</span>
+									@enderror
+									<span id="categoryError" style="color: red;"></span>
+								</div>
+							</div>
+							<div class="col-12 col-md-12  col-sm-6">
+								<div class="form-group">
+									<label>Select placement or vocabulary</label>
+									<select name="type2" required class="form-control formselect" id="typeId" required>
+										<option disabled>Select</option>
+
+										<option value="placement" {{ old('level_id')=='placement' ? "selected" : "" }}>
+											placement
+										</option>
+										<option value="vocabulary" {{ old('level_id')=='vocabulary' ? "selected" : ""
+											}}>المفردات
+										</option>
+
 									</select>
 									@error('level_id')
 									<span class="text-danger">{{$message}}</span>

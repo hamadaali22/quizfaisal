@@ -47,6 +47,7 @@ class SetController extends Controller
         $add->title    = $request->title;
         $add->level_id    = $request->level_id;
         $add->type    = $request->type;
+        $add->type2    = $request->type2;
         $add->save();
         return redirect()->back()->with("message", 'Added successfully');
     }
@@ -74,6 +75,7 @@ class SetController extends Controller
         $edit->title    = $request->title;   
         $edit->level_id    = $request->level_id; 
         $edit->type    = $request->type;
+        $edit->type2    = $request->type2;
         $edit->save();
         return redirect()->route('sets.index')->with("message", 'Updated successfully');
     }

@@ -64,6 +64,19 @@
                                         <span id="categoryError" style="color: red;"></span>
                                     </div>
                                 </div>
+                                <div class="form-group col-md-4 col-sm-6">
+                                    <label> Select skill </label>
+                                    <select name="skill" required class="form-control formselect" id="skillId">
+                                        <option value="" selected>Select</option>
+                                        <option value="rules" {{ old('skill')=='rules' ? "selected" : "" }}>grammar
+                                        </option>
+                                        <option value="vocabulary" {{ old('skill')=='vocabulary' ? "selected" : "" }}>
+                                            vocabulary
+                                        </option>
+
+                                    </select>
+                                    <span id="typeError" style="color: red;"></span>
+                                </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>select group</label>
@@ -91,19 +104,7 @@
                                     </select>
                                     <span id="typeError" style="color: red;"></span>
                                 </div> -->
-                                <div class="form-group col-md-4 col-sm-6">
-                                    <label> Select skill </label>
-                                    <select name="skill" required class="form-control formselect">
-                                        <option disabled>Select</option>
-                                        <option value="rules" {{ old('skill')=='rules' ? "selected" : "" }}>rules
-                                        </option>
-                                        <option value="middle" {{ old('skill')=='vocabulary' ? "selected" : "" }}>
-                                            vocabulary
-                                        </option>
 
-                                    </select>
-                                    <span id="typeError" style="color: red;"></span>
-                                </div>
                                 <div class="col-12 col-md-6  col-sm-6">
                                     <div class="form-group">
                                         <label>title</label>
@@ -196,28 +197,57 @@ $videos=session()->get('videos_sessions');
 
 <script>
     $(document).ready(function () {
-        $('#level_name').on('change', function () {
-            console.log("welcome sub");
 
-            let id = $(this).val();
+
+        function fetchGroupData() {
+            let levelId = $('#level_name').val();
+            let skillId = $('#skillId').val();
+
+            if (!levelId || !skillId) return;
+
             $.ajax({
                 type: 'GET',
-                url: "{{url('admin/get_group_name')}}/" + id,
+                url: "{{ url('admin/get_group_name') }}/" + levelId + '/' + skillId,
                 success: function (response) {
-                    console.log("welcome subxxx");
-                    var response = JSON.parse(response)
-                    console.log(response);
+                    var response = JSON.parse(response);
                     $('#group_name').empty();
-                    $('#group_name').append(`<option  value="" selected>select </option>`);
+                    $('#group_name').append(`<option value="" selected>Select</option>`);
                     response.forEach(element => {
-                        console.log(element['title']);
-                        $('#group_name').append(`<option value="${element['id']}">
-					        ${element['title']} - ${element['id']} 
-					        </option>`);
+                        $('#group_name').append(`<option value="${element['id']}">${element['title']} - ${element['id']}</option>`);
                     });
+                },
+                error: function (xhr) {
+                    console.error('Error:', xhr.responseText);
                 }
             });
-        });
+        }
+
+        $('#level_name, #skillId').on('change', fetchGroupData);
+
+
+        // $('#level_name').on('change', function () {
+        //     console.log("welcome sub");
+
+        //     let id = $(this).val();
+        //     $.ajax({
+        //         type: 'GET',
+        //         url: "{{url('admin/get_group_name')}}/" + id + '/rules',
+        //         success: function (response) {
+        //             console.log("welcome subxxx");
+        //             var response = JSON.parse(response)
+        //             console.log(response);
+        //             $('#group_name').empty();
+        //             $('#group_name').append(`<option  value="" selected>select </option>`);
+        //             response.forEach(element => {
+        //                 console.log(element['title']);
+        //                 $('#group_name').append(`<option value="${element['id']}">
+        // 			        ${element['title']} - ${element['id']}
+        // 			        </option>`);
+        //             });
+        //         }
+        //     });
+        // });
+
     });
 
 </script>

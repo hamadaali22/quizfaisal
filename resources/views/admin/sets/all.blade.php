@@ -192,15 +192,15 @@
 							</div>
 							<div class="col-12 col-md-12  col-sm-6">
 								<div class="form-group">
-									<label>Select placement or vocabulary</label>
+									<label>Select grammar or vocabulary</label>
 									<select name="type2" required class="form-control formselect">
 										<option disabled>Select</option>
 
-										<option value="placement" {{ old('level_id')=='placement' ? "selected" : "" }}>
-											placement
+										<option value="grammar" {{ old('level_id')=='grammar' ? "selected" : "" }}>
+											grammar
 										</option>
 										<option value="vocabulary" {{ old('level_id')=='vocabulary' ? "selected" : ""
-											}}>المفردات
+											}}>vocabulary
 										</option>
 
 									</select>
@@ -282,15 +282,15 @@
 							</div>
 							<div class="col-12 col-md-12  col-sm-6">
 								<div class="form-group">
-									<label>Select placement or vocabulary</label>
+									<label>Select grammar or vocabulary</label>
 									<select name="type2" required class="form-control formselect" id="type2Id" required>
 										<option disabled>Select</option>
 
-										<option value="placement" {{ old('level_id')=='placement' ? "selected" : "" }}>
-											placement
+										<option value="grammar" {{ old('level_id')=='grammar' ? "selected" : "" }}>
+											grammar
 										</option>
 										<option value="vocabulary" {{ old('level_id')=='vocabulary' ? "selected" : ""
-											}}>المفردات
+											}}>vocabulary
 										</option>
 
 									</select>

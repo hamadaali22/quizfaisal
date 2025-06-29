@@ -102,10 +102,14 @@
                   </td>
 
                   <td>
+                    @if($_item->sets)
                     {{ $_item->sets->title }}
+                    @endif
                   </td>
                   <td class="col-sm-2">
+                    @if($_item->sets)
                     {{ $_item->sets->type }}
+                    @endif
                   </td>
                   <td class="text-center col-sm-3">
                     <div class="actions">

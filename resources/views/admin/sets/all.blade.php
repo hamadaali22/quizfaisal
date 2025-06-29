@@ -74,7 +74,7 @@
 											<th>#</th>
 											<th>group name</th>
 											<th> type</th>
-											<th> type2</th>
+											<th> skill</th>
 											<th> quize</th>
 											<th class="text-center">Actions</th>
 										</tr>

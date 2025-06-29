@@ -93,7 +93,7 @@
 												{{$_item->type}}
 											</td>
 											<td class="text-center">
-												{{$_item->type2}}
+												{{$_item->skill}}
 											</td>
 											<td class="text-center">
 												<a href="{{('quize/'.$_item->id)}}" class="btn btn-sm bg-success-light">
@@ -105,7 +105,7 @@
 
 													<a class="btn btn-sm bg-success-light" data-toggle="modal"
 														data-title="{{ $_item->title }}" data-type="{{ $_item->type }}"
-														data-type2="{{ $_item->type2 }}"
+														data-type2="{{ $_item->skill }}"
 														data-level="{{ $_item->level_id }}"
 														data-catid="{{ $_item->id }}" data-target="#edit">
 														<button type="button" class="btn btn-outline-success "><i

@@ -193,7 +193,7 @@
 							<div class="col-12 col-md-12  col-sm-6">
 								<div class="form-group">
 									<label>Select grammar or vocabulary</label>
-									<select name="type2" required class="form-control formselect">
+									<select name="skill" required class="form-control formselect">
 										<option disabled>Select</option>
 
 										<option value="grammar" {{ old('level_id')=='grammar' ? "selected" : "" }}>
@@ -283,7 +283,7 @@
 							<div class="col-12 col-md-12  col-sm-6">
 								<div class="form-group">
 									<label>Select grammar or vocabulary</label>
-									<select name="type2" required class="form-control formselect" id="type2Id" required>
+									<select name="skill" required class="form-control formselect" id="type2Id" required>
 										<option disabled>Select</option>
 
 										<option value="grammar" {{ old('level_id')=='grammar' ? "selected" : "" }}>

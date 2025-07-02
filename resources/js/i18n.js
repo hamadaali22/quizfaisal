@@ -74,7 +74,7 @@ const messages = {
         Mytests: 'meine Tests',
         LogIn: 'Anmelden',
         LogOut: 'Abmelden ',
-        Register: 'Regsitrieren',
+        Register: 'Registrieren',
         Email: 'E-Mail',
         name: 'Name',
         Password: 'Passwort',

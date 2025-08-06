@@ -237,7 +237,8 @@ $videos=session()->get('videos_sessions');
 
 
 <script>
-  var q_type =<? php echo json_encode($question -> type) ?>;
+
+  var q_type = @json($question -> type);
   console.log(q_type);
   if (q_type == 'listening') {
     $('.file-hidden').show();

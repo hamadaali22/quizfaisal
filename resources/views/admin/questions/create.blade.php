@@ -78,24 +78,8 @@
                 </div>
                 <div class="form-group col-md-4 col-sm-4">
                   <label> Select mark </label>
-                  <!-- <select name="type" class="form-control formselect" id="typeid">
-                    <option value="" selected>Select</option>
-                    <option value="listening" {{ old('type')=='listening' ? "selected" : "" }}>listening</option>
-                    <option value="listening and image" {{ old('type')=='listening and image' ? "selected" : "" }}>
-                      listening and image
-                    </option>
-                    <option value="reading" {{ old('type')=='reading' ? "selected" : "" }}>reading</option>
-                    <option value="image" {{ old('type')=='image' ? "selected" : "" }}>image</option>
-                    <option value="sub" {{ old('type')=='sub' ? "selected" : "" }}>sub</option>
-                  </select> -->
-                  <!-- <select name="score" id="score" class="form-control">
-                    <option value="">اختر الدرجة</option>
-                    <option value="0.5">0.5</option>
-                    @for ($i = 1; $i <= 10; $i++) <option value="{{ $i }}">{{ $i }}</option>
-                      @endfor
-                  </select> -->
-                  <input type="text" name="mark" class="form-control titleId" value="1">
-                  <span id="typeError" style="color: red;"></span>
+                  <input type="text" name="mark" class="form-control markId" value="1">
+                  <span id="markError" style="color: red;"></span>
                 </div>
                 <div class="form-group col-md-12 col-sm-6 file-hidden">
                   <label>Select an Audio File</label>

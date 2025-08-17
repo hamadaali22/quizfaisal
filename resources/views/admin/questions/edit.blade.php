@@ -42,7 +42,7 @@
               @csrf
               @method('put')
               <div class="row form-row">
-                <div class="col-md-6">
+                <div class="col-md-4">
                   <div class="form-group">
                     <label>select Exam</label>
                     <select name="exam_id" required class="form-control formselect">
@@ -60,7 +60,7 @@
                     <span id="categoryError" style="color: red;"></span>
                   </div>
                 </div>
-                <div class="form-group col-md-6 col-sm-6">
+                <div class="form-group col-md-4 col-sm-6">
                   <label> Select Question Type </label>
                   <select name="type" class="form-control formselect" id="typeid">
                     <option value="" selected>Select</option>
@@ -72,6 +72,11 @@
                     <option value="sub" {{ $question->type == 'sub' ? "selected" : "" }}>sub</option>
                   </select>
                   <span id="typeError" style="color: red;"></span>
+                </div>
+                <div class="form-group col-md-4 col-sm-4">
+                  <label> Select mark </label>
+                  <input type="text" name="mark" class="form-control markId" value="{{$question->mark}}">
+                  <span id="markError" style="color: red;"></span>
                 </div>
                 <div class="form-group col-md-12 col-sm-6 file-hidden">
                   <audio controls class="align-items-center w-50">

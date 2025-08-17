@@ -82,6 +82,7 @@ class QuestionController extends Controller
         $add->exam_id    = $request->exam_id;
         $add->bio    = $request->bio;
         $add->type    = $request->type;
+        $add->mark    = $request->mark;
         if(isset($request->paragraph)){
             $add->paragraph    = $request->paragraph;
         }
@@ -312,6 +313,7 @@ class QuestionController extends Controller
         // $add->level_id    = $request->le vel_id;
         $edit->exam_id    = $request->exam_id;
         $edit->type    = $request->type;
+        $edit->mark    = $request->mark;
         $edit->bio    = $request->bio;
         $edit->bio_ar    = $request->bio_ar;
         $edit->bio_en    = $request->bio_en;

@@ -69,6 +69,10 @@ audio::-webkit-media-controls-panel {
   height: 100px;
 }
 
+.multi-label-img:hover {
+  height: 145px;
+}
+
 select {
   border-radius: 10px;
   outline: none;
@@ -105,11 +109,7 @@ footer .links a i {
 }
 
 /* login page */
-/* .login .row{
-    background-color: #eee;
-    height: fit-content;
-  } */
-.login .container {
+.login .row {
   background-color: #eee;
   height: fit-content;
 }

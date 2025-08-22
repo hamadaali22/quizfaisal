@@ -19,7 +19,7 @@ class ExamController extends Controller
     public function telcExams()
     {
         $levels=Level::get();
-        $exams=Exam::orderBy('id', 'DESC')->where('section','telc')->get();
+        $exams=Exam::orderBy('id', 'DESC')->where('section','telc')->withCount('questions')->get();
         foreach ($exams as $item) {
             $item->level= Level::where('id',$item->level_id)->first();
         }
@@ -28,7 +28,7 @@ class ExamController extends Controller
     public function index()
     {
         $levels=Level::get();
-        $exams=Exam::orderBy('id', 'DESC')->where('section',null)->get();
+        $exams=Exam::orderBy('id', 'DESC')->where('section',null)->withCount('questions')->get();
         foreach ($exams as $item) {
             $item->level= Level::where('id',$item->level_id)->first();
         }

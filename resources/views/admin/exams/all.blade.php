@@ -71,6 +71,7 @@
                                 <tr>
                                     <th>Level</th>
                                     <th>Test Name</th>
+                                    <th>questions count</th>
                                     <th class="text-center">Actions</th>
                                 </tr>
                             </thead>
@@ -82,6 +83,9 @@
                                     </td>
                                     <td>
                                         {{ $_item->name }}
+                                    </td>
+                                    <td class="text-center">
+                                        {{ $_item->questions_count }}
                                     </td>
                                     <td class="text-center">
                                         <div class="actions">
@@ -141,8 +145,8 @@
                                     <select name="level_id" required class="form-control formselect">
                                         <option disabled>Select</option>
                                         @foreach ($levels as $_item)
-                                        <option value="{{$_item->id}}"
-                                            {{ old('level_id') == $_item->id ? "selected" : "" }}>{{$_item->name}}
+                                        <option value="{{$_item->id}}" {{ old('level_id')==$_item->id ? "selected" : ""
+                                            }}>{{$_item->name}}
                                         </option>
                                         @endforeach
                                     </select>
@@ -194,124 +198,124 @@
 
 
 <style>
-.add-video {
-    position: relative;
-    display: inline-block;
-}
+    .add-video {
+        position: relative;
+        display: inline-block;
+    }
 
-.add-video .addvideo {
-    visibility: hidden;
-    width: 76px;
-    font-size: 10px;
-    background-color: black;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px 0;
+    .add-video .addvideo {
+        visibility: hidden;
+        width: 76px;
+        font-size: 10px;
+        background-color: black;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px 0;
 
-    position: absolute;
-    z-index: 1;
-    bottom: 100%;
-    left: 50%;
-    margin-left: -35px;
-}
+        position: absolute;
+        z-index: 1;
+        bottom: 100%;
+        left: 50%;
+        margin-left: -35px;
+    }
 
-.add-video:hover .addvideo {
-    visibility: visible;
-}
+    .add-video:hover .addvideo {
+        visibility: visible;
+    }
 
-/*//////////////*/
+    /*//////////////*/
 
-.all-video {
-    position: relative;
-    display: inline-block;
-}
+    .all-video {
+        position: relative;
+        display: inline-block;
+    }
 
-.all-video .allvideo {
-    visibility: hidden;
-    width: 75px;
-    font-size: 10px;
-    background-color: black;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px 0;
+    .all-video .allvideo {
+        visibility: hidden;
+        width: 75px;
+        font-size: 10px;
+        background-color: black;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px 0;
 
-    position: absolute;
-    z-index: 1;
-    bottom: 100%;
-    left: 50%;
-    margin-left: -35px;
-}
+        position: absolute;
+        z-index: 1;
+        bottom: 100%;
+        left: 50%;
+        margin-left: -35px;
+    }
 
-.all-video:hover .allvideo {
-    visibility: visible;
-}
+    .all-video:hover .allvideo {
+        visibility: visible;
+    }
 
-/*//////////////*/
+    /*//////////////*/
 
-.edit-course {
-    position: relative;
-    display: inline-block;
-}
+    .edit-course {
+        position: relative;
+        display: inline-block;
+    }
 
-.edit-course .editcourse {
-    visibility: hidden;
-    width: 75px;
-    font-size: 10px;
-    background-color: black;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px 0;
+    .edit-course .editcourse {
+        visibility: hidden;
+        width: 75px;
+        font-size: 10px;
+        background-color: black;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px 0;
 
-    position: absolute;
-    z-index: 1;
-    bottom: 100%;
-    left: 50%;
-    margin-left: -35px;
-}
+        position: absolute;
+        z-index: 1;
+        bottom: 100%;
+        left: 50%;
+        margin-left: -35px;
+    }
 
-.edit-course:hover .editcourse {
-    visibility: visible;
-}
+    .edit-course:hover .editcourse {
+        visibility: visible;
+    }
 
-/*//////////////*/
+    /*//////////////*/
 
-.delete-course {
-    position: relative;
-    display: inline-block;
-}
+    .delete-course {
+        position: relative;
+        display: inline-block;
+    }
 
-.delete-course .deletecourse {
-    visibility: hidden;
-    width: 75px;
-    font-size: 10px;
-    background-color: black;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px 0;
+    .delete-course .deletecourse {
+        visibility: hidden;
+        width: 75px;
+        font-size: 10px;
+        background-color: black;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px 0;
 
-    position: absolute;
-    z-index: 1;
-    bottom: 100%;
-    left: 50%;
-    margin-left: -35px;
-}
+        position: absolute;
+        z-index: 1;
+        bottom: 100%;
+        left: 50%;
+        margin-left: -35px;
+    }
 
-.delete-course:hover .deletecourse {
-    visibility: visible;
-}
+    .delete-course:hover .deletecourse {
+        visibility: visible;
+    }
 </style>
 
 <script>
-$('#delete').on('show.bs.modal', function(event) {
-    var button = $(event.relatedTarget)
-    var cat_id = button.data('catid')
-    var modal = $(this)
-    modal.find('.modal-body #cat_id').val(cat_id);
-})
+    $('#delete').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget)
+        var cat_id = button.data('catid')
+        var modal = $(this)
+        modal.find('.modal-body #cat_id').val(cat_id);
+    })
 </script>
 @toastr_js
 @toastr_render

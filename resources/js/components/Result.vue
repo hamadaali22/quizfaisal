@@ -154,13 +154,17 @@
 
         </section>
         <section class="row home-main-section p-5 container-fluid" v-else>
-            <div class="col-lg m-auto pl-4">
+            <!-- <div class="col-lg m-auto pl-4">
                 <p class="text-center ">    يجب تسجيل الدخول اولا ثم إعادة الفحص لمعرفة نتيجك</p>
                 <router-link :to="'/placement-questions'" class="a-link">
                     <div class="level  w-50 text-center text-light mt-1 pt-2 pb-2 ">
                         {{ $t('LogIn') }}
                     </div>
                 </router-link>
+            </div> -->
+            <div class="col-lg m-auto pl-4 text-center">
+                <p>{{ $t('registerToReceive') }}</p>
+                <p> {{ $t('dontHaveAnAccountYet') }} <router-link to="register" style="color:#6298bf"> {{ $t('Register') }} </router-link>{{ $t('alreadyHaveAnAccount') }}<router-link to="login" style="color:#6298bf"> {{ $t('LogIn') }}</router-link></p>
             </div>
         </section>
 

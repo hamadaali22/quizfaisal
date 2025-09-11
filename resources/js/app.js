@@ -137,7 +137,9 @@ const store = new Vuex.Store({
     },
     logout(state) {
       state.userToken = null;
+      state.userIdNumber = null;
       localStorage.removeItem('userToken');
+      localStorage.removeItem('userIdNumber');
       window.location.pathname = "/"
     },
     EditPost(state, post) {
@@ -585,8 +587,10 @@ const store = new Vuex.Store({
               //     path: '/my-result/' + payload.user_id+'/'+payload.examId, 
               //     params: { test: 'testyy' }
               // });
+              console.log('hhhhhhhmmmm>>>>>>>>>>');
               router.push({ name: 'Result', params: { user_id: payload.user_id, examId: payload.examId } })
             } else {
+              console.log('hhhhhhhnnnnn>>>>>>>>>>');
               router.push({ name: 'NoResult' })
             }
 

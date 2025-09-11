@@ -34,6 +34,8 @@ const messages = {
         NameRequired: 'Name is required.',
         mustAnswerOne: 'You must answer at least one question.',
         StartTest: 'Start Test',
+        alreadyHaveAnAccount: 'If you already have an account',
+        dontHaveAnAccountYet: 'If you dont have an account yet',
     },
     ar: {
         signUp: 'إنشاء حساب',
@@ -65,6 +67,8 @@ const messages = {
         NameRequired: 'الاسم مطلوب.',
         mustAnswerOne: 'يجب عليك الإجابة على سؤال واحد على الأقل.',
         StartTest: 'ابدأ الاختبار',
+        alreadyHaveAnAccount: ' لديك حساب بالفعل',
+        dontHaveAnAccountYet: 'إذا لم يكن لديك حساب بعد',
     },
     de: {
         signUp: 'Sign up ',
@@ -96,6 +100,8 @@ const messages = {
         NameRequired: 'Name ist erforderlich.',
         mustAnswerOne: 'Sie müssen mindestens eine Frage beantworten',
         StartTest: 'Test starten',
+        alreadyHaveAnAccount: 'Haben Sie schon ein Konto',
+        dontHaveAnAccountYet: 'Haben Sie noch kein Konto',
     },
     fr: {
         signUp: 'Sign up ',
@@ -127,6 +133,8 @@ const messages = {
         NameRequired: 'Nom requis.',
         mustAnswerOne: 'Vous devez répondre à au moins une question.',
         StartTest: 'Démarrer le test',
+        alreadyHaveAnAccount: 'Si vous avez déjà un compte',
+        dontHaveAnAccountYet: 'Si vous navez pas encore de compte',
     },
     es: {
         signUp: 'Sign up ',
@@ -158,6 +166,8 @@ const messages = {
         NameRequired: 'Se requiere nombre.',
         mustAnswerOne: 'Debe responder al menos una pregunta.',
         StartTest: 'Iniciar prueba',
+        alreadyHaveAnAccount: 'Si ya tienes una cuenta',
+        dontHaveAnAccountYet: 'Si aún no tienes una cuenta',
     },
 };
 

@@ -28,8 +28,32 @@ Vue.use(Toaster, { timeout: 9000 })
 
 //   next();
 // });
-const savedLanguage = localStorage.getItem('preferredLanguage') || 'de';
-i18n.locale = savedLanguage;
+
+router.beforeEach((to, from, next) => {
+  const supportedLangs = ['en', 'ar', 'es', 'fr', 'de'];
+  const langInURL = to.params.lang;
+  const savedLanguage = localStorage.getItem('preferredLanguage') || 'de';
+
+  if (langInURL && supportedLangs.includes(langInURL)) {
+    // لو اللغة موجودة في URL وصحيحة
+    i18n.locale = langInURL;
+    localStorage.setItem('preferredLanguage', langInURL);
+    return next();
+  }
+
+  // لو مفيش لغة في الرابط → أضف اللغة المحفوظة
+  if (!langInURL) {
+    const newPath = `/${savedLanguage}${to.fullPath}`;
+    return next(newPath);
+  }
+
+  // أي حالة تانية
+  return next();
+});
+
+
+// const savedLanguage = localStorage.getItem('preferredLanguage') || 'de';
+// i18n.locale = savedLanguage;
 
 
 

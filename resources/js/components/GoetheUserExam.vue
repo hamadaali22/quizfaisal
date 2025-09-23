@@ -12,7 +12,7 @@
                     </div>
                     <div class="col-md-12">
                         <div class="single-service wow zoomIn" align="center">
-                            <img src="front/Animation/Deutschtests.jpg" alt="Deutschtest" width="200px" />
+                            <img src="/front/Animation/Deutschtests.jpg" alt="Deutschtest" width="200px" />
                         </div>
                     </div>
 

@@ -59,7 +59,20 @@ const routes = [
             { path: 'register', component: Register, name: 'Register' },
             { path: 'forgetpassword', component: ForgetPassword, name: 'ForgetPassword' },
             { path: 'profile', component: Profile, name: 'Profile' },
-            { path: 'result', component: Result, name: 'Result' },
+
+
+            // { path: 'result', component: Result, name: 'Result' },
+            // {
+            //     path: 'result/:user_id/:examId',
+            //     name: 'Result',
+            //     component: Result
+            // },
+            {
+                path: 'result/:examId',
+                name: 'Result',
+                component: Result
+            },
+
             { path: 'my-result/:user_id/:exam_id', component: MyResult, name: 'MyResult' },
 
             { path: 'goethe-user-exam', component: GoetheUserExam, name: 'GoetheUserExam' },

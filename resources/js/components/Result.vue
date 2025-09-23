@@ -7,7 +7,7 @@
                       <div class="title-area">
                           <h2 class="title-about">Ihr Fortschritt</h2><br/>
                           <div class="single-service wow zoomIn" align="center">
-                          <img src="front/Animation/Deutschtests.jpg" alt="Deutschtest" width="200px" />
+                          <img src="/front/Animation/Deutschtests.jpg" alt="Deutschtest" width="200px" />
                       </div>
                           <!-- <span class="line"></span> -->
                       </div>
@@ -20,7 +20,7 @@
                     <div class="col-lg-12 col-md-12 center-block">
                         <div class="col-lg-5 col-md-10 center-block " style="border:solid">
                             <div class="row bigrow" style="border-bottom:solid">
-                                <img class="book" src="front/Animation/book.png" alt="book">
+                                <img class="book" src="/front/Animation/book.png" alt="book">
                                 <div class="mywhite">
                                     <p><strong>Lesen</strong></p>
                                 </div>
@@ -82,7 +82,7 @@
                         </div>
                         <div class="col-lg-5 col-md-10 center-block " style="border:solid">
                             <div class="row bigrow" style="border-bottom:solid">
-                                <img class="book" src="front/Animation/headphones.png" alt="book">
+                                <img class="book" src="/front/Animation/headphones.png" alt="book">
                                 <div class="mywhite">
                                     <p><strong>Hören</strong></p>
                                 </div>

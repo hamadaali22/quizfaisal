@@ -611,7 +611,7 @@ const store = new Vuex.Store({
               //     path: '/my-result/' + payload.user_id+'/'+payload.examId, 
               //     params: { test: 'testyy' }
               // });
-              console.log('hhhhhhhmmmm>>>>>>>>>>');
+              console.log('hhhhhhhmmmmbbbbbb>>>>>>>>>>' + payload.examId);
               router.push({ name: 'Result', params: { user_id: payload.user_id, examId: payload.examId } })
             } else {
               console.log('hhhhhhhnnnnn>>>>>>>>>>');

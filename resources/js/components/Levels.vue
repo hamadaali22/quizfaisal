@@ -181,15 +181,22 @@ export default {
 
   methods: {
     getLocalizedSlug(item) {
+      
       const slugs = {
+        en: 'online-Goethe-exam',
+        ar: 'نماذج-امتحانات-معهد-جوته',
+        fr: 'goethe-institut-examens',
+        es: 'alemán-Goethe-tests',
+        de: 'goethe-tests',
+      };
+      const slugs2 = {
         en: item.slug_en,
         ar: item.slug_ar,
         fr: item.slug_fr,
         es: item.slug_es,
         de: item.slug_de,
       };
-
-      return `/goethe-tests/${slugs[this.$i18n.locale] || item.slug_de}`;
+      return `/goethe/${slugs[this.$i18n.locale]}/${slugs2[this.$i18n.locale] || item.slug_de}`;
     },
     getLevelDesc(item) {
         const slugs = {

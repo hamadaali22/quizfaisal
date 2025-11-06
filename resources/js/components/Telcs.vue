@@ -146,6 +146,13 @@ export default {
     getLocalizedSlug(item) {
       console.log(this.$i18n.locale);
       const slugs = {
+        en: 'telc-exam-online',
+        ar: 'نماذج-امتحان-Telc',
+        fr: 'allemand-examens-telc',
+        es: 'examen-telc-aleman',
+        de: 'telc-tests',
+      };
+      const slugs2 = {
         en: item.slug_en,
         ar: item.slug_ar,
         fr: item.slug_fr,
@@ -153,7 +160,7 @@ export default {
         de: item.slug_de,
       };
 
-      return `/telc-tests/${slugs[this.$i18n.locale] || item.slug_de}`;
+      return `/telc/${slugs[this.$i18n.locale]}/${slugs2[this.$i18n.locale] || item.slug_de}`;
     },
     getLevelDesc(item) {
         const slugs = {

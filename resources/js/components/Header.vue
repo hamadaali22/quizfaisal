@@ -8,7 +8,10 @@
       <a href="#x" data-toggle="collapse" class="navbar-toggler">
         <i class="fa-solid fa-bars navbar-toggler-icon text-light" id="nav-icon"></i>
       </a>
+
+      
       <div class="collapse navbar-collapse" id="x">
+        
         <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
 
           <li class="nav-item p-1 active "><router-link to="/" class="nav-link text-light">
@@ -16,9 +19,14 @@
                <!-- {{ this.$i18n.locale }} -->
             </router-link></li>
           <!-- <li v-if="isLogged" class="nav-item p-1 active "><router-link to="levels" class="nav-link text-light">GOETHE</router-link></li> -->
-          <li class="nav-item p-1 active "><router-link to="/goethe-tests"
-              class="nav-link text-light"> {{ $t('Goethe') }}</router-link></li>
-          <li class="nav-item p-1 active "><router-link to="/telc-tests" class="nav-link text-light">{{ $t('Telc') }}</router-link>
+          <!-- <li class="nav-item p-1 active "><router-link to="/goethe"
+              class="nav-link text-light"> {{ $t('Goethe') }}</router-link></li> -->
+          <li class="nav-item p-1 active"> <a href="javascript:void(0)" class="nav-link text-light" @click="goToGoethe">{{ $t('Goethe') }}</a> </li>
+          
+              <!-- <button class="btn btn-primary mt-3" @click="goToTelc">start</button> -->
+            
+          <!-- <li class="nav-item p-1 active "><router-link to="/telc-tests" class="nav-link text-light">{{ $t('Telc') }}</router-link> -->
+          <li class="nav-item p-1 active"> <a href="javascript:void(0)" class="nav-link text-light" @click="goToTelc">{{ $t('Telc') }}</a>
           </li>
           <li class="nav-item p-1 active "><router-link to="/placement-test"
               class="nav-link text-light"> {{ $t('PlacementTest') }}</router-link></li>
@@ -107,6 +115,52 @@ export default {
     }
   },
   methods: {
+    goToGoethe() {
+    // return `/telc/jhghg`;
+      // 🔹 نحصل على اللغة الحالية من i18n
+      let lang = this.$i18n.locale;
+
+      // 🔹 نتحقق أن اللغة مدعومة
+      // const supported = ['ar', 'en', 'de', 'fr', 'es'];
+      // if (!supported.includes(lang)) lang = 'de';
+
+      // 🔹 الخريطة الخاصة بكل لغة والمسار المناسب
+      const slugs = {
+        ar: 'نماذج-امتحانات-معهد-جوته',
+        en: 'online-Goethe-exam',
+        de: 'goethe-deutsch-test',
+        fr: 'goethe-institut-examens',
+        es: 'alemán-Goethe-tests'
+      };
+
+      // 🔹 نحدد الـ slug المناسب بناءً على اللغة
+      const slug = slugs[lang] || slugs['de'];
+
+      // 🔹 التوجيه إلى صفحة Goethe المناسبة
+      return this.$router.push({
+        name: 'Levels',
+        params: { slug }
+      });
+    },
+    goToTelc() {
+      let lang = this.$i18n.locale;
+      const slugs = {
+        ar: 'نماذج-امتحان-Telc',
+        en: 'telc-exam-online',
+        de: 'deutsch-test-online',
+        fr: 'allemand-examens-telc',
+        es: 'examen-telc-aleman'
+      };
+
+      // 🔹 نحدد الـ slug المناسب بناءً على اللغة
+      const slug = slugs[lang] || slugs['de'];
+
+      // 🔹 التوجيه إلى صفحة Goethe المناسبة
+      this.$router.push({
+        name: 'Telcs',
+        params: { slug }
+      });
+    },
     logout() {
       this.$store.commit('logout')
     },

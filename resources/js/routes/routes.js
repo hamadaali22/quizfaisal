@@ -49,11 +49,16 @@ const routes = [
 
             { path: 'noresult', component: NoResult, name: 'NoResult' },
 
-            { path: 'goethe-tests', component: Levels, name: 'Levels' },
-            { path: 'goethe-tests/:slug', component: Exams, name: 'Exams' },
+            // { path: 'goethe-tests', component: Levels, name: 'Levels' },
+            // { path: 'goethe-tests/:slug', component: Exams, name: 'Exams' },
 
-            { path: 'telc-tests', component: Telcs, name: 'Telcs' },
-            { path: 'telc-tests/:slug', component: ExamsTelc, name: 'ExamsTelc' },
+            { path: 'goethe/:slug', component: Levels, name: 'Levels' },
+            { path: 'goethe/:slug/:slug', component: Exams, name: 'Exams' },
+
+            // { path: 'telc-tests', component: Telcs, name: 'Telcs' },
+            // { path: 'telc-tests/:slug', component: ExamsTelc, name: 'ExamsTelc' },
+            { path: 'telc/:slug', component: Telcs, name: 'Telcs' },
+            { path: 'telc/:slug/:slug', component: ExamsTelc, name: 'ExamsTelc' },
 
             { path: 'login', component: Login, name: 'Login' },
             { path: 'register', component: Register, name: 'Register' },

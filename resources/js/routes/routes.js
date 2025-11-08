@@ -41,7 +41,8 @@ const routes = [
             { path: '', component: Home, name: 'Home' },
             { path: 'home', component: Home },
 
-            { path: 'placement-test', component: PlacementTest, name: 'PlacementTest' },
+            // { path: 'placement-test', component: PlacementTest, name: 'PlacementTest' },
+            { path: 'placement/:slug', component: PlacementTest, name: 'PlacementTest' },
             { path: 'placement-questions', component: PlacementQuestions, name: 'PlacementQuestions' },
             { path: 'placement-result', component: PlacementResult, name: 'PlacementResult' },
 

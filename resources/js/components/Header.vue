@@ -28,8 +28,10 @@
           <!-- <li class="nav-item p-1 active "><router-link to="/telc-tests" class="nav-link text-light">{{ $t('Telc') }}</router-link> -->
           <li class="nav-item p-1 active"> <a href="javascript:void(0)" class="nav-link text-light" @click="goToTelc">{{ $t('Telc') }}</a>
           </li>
-          <li class="nav-item p-1 active "><router-link to="/placement-test"
-              class="nav-link text-light"> {{ $t('PlacementTest') }}</router-link></li>
+           <li class="nav-item p-1 active"> <a href="javascript:void(0)" class="nav-link text-light" @click="goToPlacement">{{ $t('PlacementTest') }}</a>
+          </li>
+          <!-- <li class="nav-item p-1 active "><router-link to="/placement-test"
+              class="nav-link text-light"> {{ $t('PlacementTest') }}</router-link></li> -->
           <li v-if="isLogged" class="nav-item p-1 active "><router-link to="/goethe-user-exam"
               class="nav-link text-light">{{ $t('Mytests') }}</router-link></li>
           <li v-if="!isLogged" class="nav-item p-1 active "><router-link to="/login"
@@ -158,6 +160,25 @@ export default {
       // 🔹 التوجيه إلى صفحة Goethe المناسبة
       this.$router.push({
         name: 'Telcs',
+        params: { slug }
+      });
+    },
+    goToPlacement() {
+      let lang = this.$i18n.locale;
+      const slugs = {
+        ar: 'امتحان-تحديد-مستوى-المانى',
+        en: 'German-placement-test',
+        de: 'Deutsch-Einstufungstest',
+        fr: 'test-de-niveau-allemand',
+        es: 'Test-de-nivel-de-alemá'
+      };
+
+      // 🔹 نحدد الـ slug المناسب بناءً على اللغة
+      const slug = slugs[lang] || slugs['de'];
+
+      // 🔹 التوجيه إلى صفحة Goethe المناسبة
+      this.$router.push({
+        name: 'PlacementTest',
         params: { slug }
       });
     },

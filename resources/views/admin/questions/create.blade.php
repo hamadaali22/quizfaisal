@@ -73,6 +73,7 @@
                     <option value="reading" {{ old('type')=='reading' ? "selected" : "" }}>reading</option>
                     <option value="image" {{ old('type')=='image' ? "selected" : "" }}>image</option>
                     <option value="sub" {{ old('type')=='sub' ? "selected" : "" }}>sub</option>
+                    <option value="sub" {{ old('type')=='exercise' ? "selected" : "" }}>Exercise</option>
                   </select>
                   <span id="typeError" style="color: red;"></span>
                 </div>

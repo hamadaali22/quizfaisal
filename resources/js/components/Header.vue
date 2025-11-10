@@ -38,7 +38,7 @@
               class="nav-link text-light">{{ $t('LogIn') }}</router-link></li>
           <li v-if="!isLogged" class="nav-item p-1 active "><router-link to="/register"
               class="nav-link text-light">{{ $t('Register') }}</router-link></li>
-          
+          <li class="nav-item p-1 active"><a href="https://forum.deutschtests.com/" class="nav-link text-light">{{ $t('Forum') }}</a></li>
           <!-- <li v-if="isLogged" class="nav-item p-1 active "><router-link to="/placement-result"
               class="nav-link text-light">{{ $t('PlacementResult') }}</router-link></li> -->
 

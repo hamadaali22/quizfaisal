@@ -70,6 +70,8 @@
                     <option value="reading" {{ $question->type == 'reading' ? "selected" : "" }}>reading</option>
                     <option value="image" {{ $question->type == 'image' ? "selected" : "" }}>image</option>
                     <option value="sub" {{ $question->type == 'sub' ? "selected" : "" }}>sub</option>
+                    <option value="sub" {{ $question->type == 'exercise' ? "selected" : "" }}>Exercise</option>
+
                   </select>
                   <span id="typeError" style="color: red;"></span>
                 </div>

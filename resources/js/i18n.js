@@ -36,6 +36,7 @@ const messages = {
         StartTest: 'Start Test',
         alreadyHaveAnAccount: 'If you already have an account',
         dontHaveAnAccountYet: 'If you dont have an account yet',
+        Forum: 'forum',
     },
     ar: {
         signUp: 'إنشاء حساب',
@@ -69,12 +70,13 @@ const messages = {
         StartTest: 'ابدأ الاختبار',
         alreadyHaveAnAccount: ' لديك حساب بالفعل',
         dontHaveAnAccountYet: 'إذا لم يكن لديك حساب بعد',
+        Forum: 'المنتدى',
     },
     de: {
         signUp: 'Sign up ',
         Goethe: 'Goethe',
         Telc: 'Telc',
-        home: 'home',
+        home: 'Startseite',
         Mytests: 'meine Tests',
         LogIn: 'Anmelden',
         LogOut: 'Abmelden ',
@@ -102,6 +104,7 @@ const messages = {
         StartTest: 'Test starten',
         alreadyHaveAnAccount: 'Haben Sie schon ein Konto',
         dontHaveAnAccountYet: 'Haben Sie noch kein Konto',
+        Forum: 'Forum',
     },
     fr: {
         signUp: 'Sign up ',
@@ -135,6 +138,7 @@ const messages = {
         StartTest: 'Démarrer le test',
         alreadyHaveAnAccount: 'Si vous avez déjà un compte',
         dontHaveAnAccountYet: 'Si vous navez pas encore de compte',
+        Forum: 'forum',
     },
     es: {
         signUp: 'Sign up ',
@@ -168,6 +172,7 @@ const messages = {
         StartTest: 'Iniciar prueba',
         alreadyHaveAnAccount: 'Si ya tienes una cuenta',
         dontHaveAnAccountYet: 'Si aún no tienes una cuenta',
+        Forum: 'foro',
     },
 };
 

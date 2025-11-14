@@ -151,9 +151,29 @@
 								</div>-->
 
 								<div class="form-group">
-									<label>placement description </label>
-									<textarea name="placement_desc" id="ckeditor" cols="30" rows="15"
-										class="form-control ckeditor">{{$contactInfo->placement_desc}}</textarea>
+									<label>placement description de </label>
+									<textarea name="placement_desc_de" id="ckeditor" cols="30" rows="15"
+										class="form-control ckeditor">{{$contactInfo->placement_desc_de}}</textarea>
+								</div>
+								<div class="form-group">
+									<label>placement description ar </label>
+									<textarea name="placement_desc_ar" id="ckeditor" cols="30" rows="15"
+										class="form-control ckeditor">{{$contactInfo->placement_desc_ar}}</textarea>
+								</div>
+								<div class="form-group">
+									<label>placement description en </label>
+									<textarea name="placement_desc_en" id="ckeditor" cols="30" rows="15"
+										class="form-control ckeditor">{{$contactInfo->placement_desc_en}}</textarea>
+								</div>
+								<div class="form-group">
+									<label>placement description fr</label>
+									<textarea name="placement_desc_fr" id="ckeditor" cols="30" rows="15"
+										class="form-control ckeditor">{{$contactInfo->placement_desc_fr}}</textarea>
+								</div>
+								<div class="form-group">
+									<label>placement description es</label>
+									<textarea name="placement_desc_es" id="ckeditor" cols="30" rows="15"
+										class="form-control ckeditor">{{$contactInfo->placement_desc_es}}</textarea>
 								</div>
 
 								<div class="form-group row">

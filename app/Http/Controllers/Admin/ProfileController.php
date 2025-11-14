@@ -204,6 +204,12 @@ class ProfileController extends Controller
 
 
         $edit->placement_desc  = $request->placement_desc;
+        $edit->placement_desc_de  =  $request->placement_desc_de;
+        $edit->placement_desc_ar  =  $request->placement_desc_ar;
+        $edit->placement_desc_en  =  $request->placement_desc_en;
+        $edit->placement_desc_fr  =  $request->placement_desc_fr;
+        $edit->placement_desc_es  =  $request->placement_desc_es;
+        
         $edit->save();
         return back()->with("message", 'updated ');
     }

@@ -1,7 +1,7 @@
 <template>
     <div>
         
-        <section class="row home-main-section p-5 container-fluid"  :style="{ textAlign: currentLanguage == 'ar' ? 'right' : 'left' }">
+        <section class="row home-main-section p-5 container-fluid" >
             <div class="col-lg m-auto pl-4">
                 <p v-html="getPlacementDesc(contactInfo) "></p>
                 <router-link v-if="isLogged" :to="'/placement-questions'" class="a-link">
@@ -16,8 +16,8 @@
                 </router-link>
                
             </div>
-
-
+<!--  -->
+<!--  -->
         </section>
     </div>
 </template>

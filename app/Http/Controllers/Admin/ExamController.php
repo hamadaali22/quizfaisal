@@ -16,9 +16,27 @@ class ExamController extends Controller
     {
         $this->middleware('auth');
     }
+    public function quizeExams()
+    {
+        $levels=Level::where('type','quize')->get();
+        $exams=Exam::orderBy('id', 'DESC')->where('section','quize')->withCount('questions')->get();
+        foreach ($exams as $item) {
+            $item->level= Level::where('id',$item->level_id)->first();
+        }
+        return view('admin.exams.all-quize',compact('exams','levels'));
+    }
+    public function exerciseExams()
+    {
+        $levels=Level::where('type','exercise')->get();
+        $exams=Exam::orderBy('id', 'DESC')->where('section','exercise')->withCount('questions')->get();
+        foreach ($exams as $item) {
+            $item->level= Level::where('id',$item->level_id)->first();
+        }
+        return view('admin.exams.all-exercise',compact('exams','levels'));
+    }
     public function telcExams()
     {
-        $levels=Level::get();
+        $levels=Level::where('type','telc')->get();
         $exams=Exam::orderBy('id', 'DESC')->where('section','telc')->withCount('questions')->get();
         foreach ($exams as $item) {
             $item->level= Level::where('id',$item->level_id)->first();
@@ -27,7 +45,7 @@ class ExamController extends Controller
     }
     public function index()
     {
-        $levels=Level::get();
+        $levels=Level::where('type','goethe')->get();
         $exams=Exam::orderBy('id', 'DESC')->where('section',null)->withCount('questions')->get();
         foreach ($exams as $item) {
             $item->level= Level::where('id',$item->level_id)->first();

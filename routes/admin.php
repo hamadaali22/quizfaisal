@@ -123,6 +123,8 @@ Route::get('admin-login', 'Auth\LoginController@LoginAdmin')->name('admin-login'
 		    Route::resource('levels','LevelController');
 		    Route::resource('exams','ExamController');
 		    Route::get('telc-exams','ExamController@telcExams');
+			Route::get('exercise-exams','ExamController@exerciseExams');
+			Route::get('quize-exams','ExamController@quizeExams');
 		    Route::resource('questions','QuestionController');
 				Route::get('questionsTelc','QuestionController@questionsTelc');
 		    Route::resource('subquestions','SubQuestionController');

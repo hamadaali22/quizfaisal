@@ -163,6 +163,7 @@
 										<option value="goethe">goethe</option>
 										<option value="telc">telc</option>
 										<option value="quize">quize</option>
+										<option value="exercise">exercise</option>
 									</select>
 									<!-- @error('level_id')
 									<span class="text-danger">{{$message}}</span>

@@ -61,7 +61,7 @@
                   <th class="wd-10p border-bottom-0">#</th>
                   <th class="wd-15p border-bottom-0">اسم المستخدم</th>
                   <th class="wd-20p border-bottom-0">البريد الالكتروني</th>
-
+                  <th class="wd-10p border-bottom-0">تاريخ التسجيل</th>
                   <th class="wd-10p border-bottom-0">الامتحانات</th>
                   <th class="wd-10p border-bottom-0">العمليات</th>
                 </tr>
@@ -73,6 +73,7 @@
                   <td>{{$key}}</td>
                   <td>{{ $user->name }}</td>
                   <td>{{ $user->email }}</td>
+                  <td>{{ $user->created_at }}</td>
 
                   <td class="text-center col-md-2">
                     <div class="actions">

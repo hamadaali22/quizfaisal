@@ -126,7 +126,8 @@ Route::get('admin-login', 'Auth\LoginController@LoginAdmin')->name('admin-login'
 			Route::get('exercise-exams','ExamController@exerciseExams');
 			Route::get('quize-exams','ExamController@quizeExams');
 		    Route::resource('questions','QuestionController');
-				Route::get('questionsTelc','QuestionController@questionsTelc');
+			Route::get('questionsTelc','QuestionController@questionsTelc');
+			Route::get('exercise','QuestionController@exercise');
 		    Route::resource('subquestions','SubQuestionController');
 		    Route::get('allsubquestions/{id}','SubQuestionController@allSubquestions');
 			Route::get('exam/goethe/{id}','UserController@examsGoethe');

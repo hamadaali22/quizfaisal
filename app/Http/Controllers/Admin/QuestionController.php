@@ -15,7 +15,25 @@ class QuestionController extends Controller
     {
         $this->middleware('auth');
     }
-
+    
+    public function exercise()
+    {
+        $exams=Exam::all();
+        $levels=Level::all();
+        $allquestions=Question::orderBy('order','ASC')->get();
+        $questions=[];
+        foreach ($allquestions as $item) {
+            $exam=Exam::where('id',$item->exam_id)->first();
+            if($exam->section=='telc'){
+              $questions[]=$item;
+            }
+        }
+        foreach ($questions as $_item) {
+            $_item->exam=Exam::where('id',$_item->exam_id)->first();
+            $_item->level= Level::where('id',$_item->level_id)->first();
+        }
+        return view('admin.questions.all',compact('questions','levels','exams'));
+    }
     public function index()
     {
         $exams=Exam::all();

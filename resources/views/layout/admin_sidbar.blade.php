@@ -23,11 +23,11 @@
             <a href="{{url('admin/exercise-exams')}}"><i class="la la-envelope"></i><span class="menu-title"
                     data-i18n="">exercise exams</span></a>
         </li>
-        <li class="nav-item {{ Request::is('admin/quize-exams') ? 'active' : '' }}">
+        <!-- <li class="nav-item {{ Request::is('admin/quize-exams') ? 'active' : '' }}">
             <a href="{{url('admin/quize-exams')}}"><i class="la la-envelope"></i><span class="menu-title"
                     data-i18n="">quize
                     exams</span></a>
-        </li>
+        </li> -->
         <li class="nav-item {{ Request::is('admin/allexam') ? 'active' : '' }}">
             <a href="{{url('admin/allexam')}}"><i class="la la-envelope"></i><span class="menu-title"
                     data-i18n="">Latest Exam</span></a>

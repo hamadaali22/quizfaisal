@@ -32,7 +32,7 @@ class QuestionController extends Controller
             $_item->exam=Exam::where('id',$_item->exam_id)->first();
             $_item->level= Level::where('id',$_item->level_id)->first();
         }
-        return view('admin.questions.all',compact('questions','levels','exams'));
+        return view('admin.questions.all-exercise',compact('questions','levels','exams'));
     }
     public function index()
     {
@@ -79,6 +79,178 @@ class QuestionController extends Controller
         return view('admin.questions.create',compact('levels','exams'));
     }
 
+    public function createExercise()
+    {
+        $exams=Exam::all();
+        $levels=Level::where('type','exercise')->get();
+        return view('admin.questions.create-exercise',compact('levels','exams'));
+    }
+    
+    public function storeExercise(Request $request)
+    {
+        
+        $add = new Question;
+        if ($files = $request->file('file')) {
+            $profileImage = date('YmdHis') . "." . $files->getClientOriginalExtension();
+            $destinationPath = 'img/questions-file';
+            $files->move($destinationPath, $profileImage);
+            $add->file = $profileImage;
+        }
+
+        if ($image = $request->file('image')) {
+            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $destinationPath = 'img/questions-image';
+            $image->move($destinationPath, $profileImage);
+            $add->image = $profileImage;
+        }
+
+        $add->level_id    = $request->level_id;
+        // $add->exam_id    = $request->exam_id;
+        $add->bio    = $request->bio;
+        $add->type    = $request->type;
+        $add->mark    = $request->mark;
+        if(isset($request->paragraph)){
+            $add->paragraph    = $request->paragraph;
+        }
+        $add->save();
+
+        $length = count($request->title);
+        if($length > 0)
+        {
+            for($i=0; $i<$length; $i++)
+            {
+                // dd($request->first_choice[$i]);
+                //dd($request->second_choice[$i]);
+
+                //dd($request->third_choice[$i]);
+
+
+                $add_video = new SubQuestion;
+                if(isset($request->banner[$i])){
+                    $file1=$request->banner[$i];
+                    $file_extension1 = $file1 -> getClientOriginalExtension();
+                    $file_name1 = time().rand(1,100).'.'.$file_extension1;
+                    $file1->move('img/banner/', $file_name1);
+                    $add_video->bannar    = $file_name1;
+                }
+                if(isset($request->image_a[$i])){
+                    $file2=$request->image_a[$i];
+                    $file_extension2 = $file2 -> getClientOriginalExtension();
+                    $file_name2 = time().rand(1,100).'.'.$file_extension2;
+                    $file2->move('img/answer-image/', $file_name2);
+                    $add_video->image_a    = $file_name2;
+                }
+                if(isset($request->image_b[$i])){
+                    $file3 =$request->image_b[$i];
+                    $file_extension3 = $file3 -> getClientOriginalExtension();
+                    $file_name3 = time().rand(1,100).'.'.$file_extension3;
+                    $file3->move('img/answer-image/', $file_name3);
+                    $add_video->image_b    = $file_name3;
+                }
+
+                // if(isset($file1)){
+                //     $file_extension1 = $file1 -> getClientOriginalExtension();
+                //     $file_name1 = time().rand(1,100).'.'.$file_extension1;
+                //     $file1->move('img/banner/', $file_name1);
+                //     $add_video->bannar    = $file_name1;
+                // }
+                // if(isset($file2)){
+                //     $file_extension2 = $file2 -> getClientOriginalExtension();
+                //     $file_name2 = time().rand(1,100).'.'.$file_extension2;
+                //     $file2->move('img/answer-image/', $file_name2);
+                //     $add_video->image_a    = $file_name2;
+                // }
+                // if(isset($file3)){
+                //     $file_extension3 = $file3 -> getClientOriginalExtension();
+                //     $file_name3 = time().rand(1,100).'.'.$file_extension3;
+                //     $file3->move('img/answer-image/', $file_name3);
+                //     $add_video->image_b    = $file_name3;
+                // }
+
+                // $add_video->level_id    = $add->level_id;
+                $add_video->exam_id    = $request->exam_id;
+                $add_video->question_id    = $add->id;
+                if(isset($request->title[$i])){
+                    $add_video->title    = $request->title[$i];
+                }
+                if(isset($request->last_title[$i])){
+                    $add_video->last_title    = $request->last_title[$i];
+                }
+                if(isset($request->answer_location[$i])){
+                    $add_video->answer_location    = $request->answer_location[$i];
+                }
+
+                if(isset($request->answer_type[$i])){
+                    $add_video->answer_type    = $request->answer_type[$i];
+                }
+                if(isset($request->is_multy[$i])){
+                    $add_video->is_multy    = $request->is_multy[$i];
+                }
+                if(isset($request->is_complete[$i])){
+                    $add_video->is_complete    = $request->is_complete[$i];
+                }
+                $add_video->expected_answer    = $request->expected_answer[$i];
+                if(isset($request->first_choice[$i])){
+                    $add_video->first_choice    = $request->first_choice[$i];
+                }
+                if(isset($request->second_choice[$i])){
+                    $add_video->second_choice    = $request->second_choice[$i];
+                }
+                if(isset($request->third_choice[$i])){
+                    $add_video->third_choice    = $request->third_choice[$i];
+                }
+                $add_video->save();
+
+
+                if($request->answer_type[$i]=='complete'){
+                    if ($request->is_complete[$i] !='write') {
+                      $add_answer = new Answer;
+                      $add_answer->subquestion_id    = $add_video->id;
+                      $add_answer->one    = $request->one[$i];
+                      $add_answer->two    = $request->two[$i];
+                      $add_answer->three    = $request->three[$i];
+                      $add_answer->four    = $request->four[$i];
+                      $add_answer->five    = $request->five[$i];
+                      $add_answer->six    = $request->six[$i];
+                      $add_answer->seven    = $request->seven[$i];
+                      $add_answer->eight    = $request->eight[$i];
+                      $add_answer->nine    = $request->nine[$i];
+                      $add_answer->ten    = $request->ten[$i];
+                      $add_answer->eleven    = $request->eleven[$i];
+                      $add_answer->twelve    = $request->twelve[$i];
+                      $add_answer->thirteen    = $request->thirteen[$i];
+                      $add_answer->fourteen    = $request->fourteen[$i];
+                      $add_answer->fifteen    = $request->fifteen[$i];
+                      $add_answer->sixteen    = $request->sixteen[$i];
+                      $add_answer->save();
+                   }else {
+                     $add_expecte_answer = new ExpectedAnswer;
+                     $add_expecte_answer->subquestion_id    = $add_video->id;
+                     $add_expecte_answer->one    = $request->one[$i];
+                     $add_expecte_answer->two    = $request->two[$i];
+                     $add_expecte_answer->three    = $request->three[$i];
+                     $add_expecte_answer->four    = $request->four[$i];
+                     $add_expecte_answer->five    = $request->five[$i];
+                     $add_expecte_answer->six    = $request->six[$i];
+                     $add_expecte_answer->save();
+                   }
+
+
+
+                    // $length = count($request->title);
+                    // if($length > 0)
+                    // {
+                    //     for($i=0; $i<$length; $i++)
+                    //     {
+
+                    //     }
+                    // }
+                }
+            }
+
+        }
+        return redirect('admin/create-exercise')->with("message", 'Added successfully');
+    }
     public function store(Request $request)
     {
         $add = new Question;

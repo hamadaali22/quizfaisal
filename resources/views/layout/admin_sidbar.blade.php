@@ -19,15 +19,15 @@
             <a href="{{url('admin/telc-exams')}}"><i class="la la-envelope"></i><span class="menu-title"
                     data-i18n="">telc exams</span></a>
         </li>
-        <li class="nav-item {{ Request::is('admin/exercise-exams') ? 'active' : '' }}">
-            <a href="{{url('admin/exercise-exams')}}"><i class="la la-envelope"></i><span class="menu-title"
-                    data-i18n="">exercise exams</span></a>
+        <li class="nav-item {{ Request::is('admin/questions-exercise') ? 'active' : '' }}">
+            <a href="{{url('admin/questions-exercise')}}"><i class="la la-envelope"></i><span class="menu-title"
+                    data-i18n="">questions exercise</span></a>
         </li>
-        <!-- <li class="nav-item {{ Request::is('admin/quize-exams') ? 'active' : '' }}">
+        <li class="nav-item {{ Request::is('admin/quize-exams') ? 'active' : '' }}">
             <a href="{{url('admin/quize-exams')}}"><i class="la la-envelope"></i><span class="menu-title"
                     data-i18n="">quize
                     exams</span></a>
-        </li> -->
+        </li>
         <li class="nav-item {{ Request::is('admin/allexam') ? 'active' : '' }}">
             <a href="{{url('admin/allexam')}}"><i class="la la-envelope"></i><span class="menu-title"
                     data-i18n="">Latest Exam</span></a>

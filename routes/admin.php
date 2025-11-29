@@ -133,7 +133,7 @@ Route::get('admin-login', 'Auth\LoginController@LoginAdmin')->name('admin-login'
 			Route::get('exercise','QuestionController@exercise');
 
 			Route::get('create-exercise','QuestionController@createExercise')->name('create-exercise');
-			Route::get('store-exercise','QuestionController@storeExercise')->name('store-exercise');
+			Route::post('store-exercise','QuestionController@storeExercise')->name('store-exercise');
 
 		    Route::resource('subquestions','SubQuestionController');
 		    Route::get('allsubquestions/{id}','SubQuestionController@allSubquestions');

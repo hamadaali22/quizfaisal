@@ -216,12 +216,12 @@ $videos=session()->get('videos_sessions');
 <!-- <script src="http://code.jquery.com/jquery-3.4.1.js"></script> -->
 
 <script>
-  var first_choice =<? php echo json_encode($subexercise -> first_choice) ?>;
-  var second_choice =<? php echo json_encode($subexercise -> second_choice) ?>;
-  var third_choice =<? php echo json_encode($subexercise -> third_choice) ?>;
-  var image_a =<? php echo json_encode($subexercise -> image_a) ?>;
-  var image_b =<? php echo json_encode($subexercise -> image_b) ?>;
-  var image_b =<? php echo json_encode($subexercise -> image_b) ?>;
+  var first_choice = @json($subexercise -> first_choice);
+  var second_choice = @json($subexercise -> second_choice);
+  var third_choice = @json($subexercise -> third_choice);
+  var image_a = @json($subexercise -> image_a);
+  var image_b = @json($subexercise -> image_b);
+  var image_b = @json($subexercise -> image_b);
 
   let complete_n_one = document.getElementById('answer-one');
   let complete_n_two = document.getElementById('answer-two');
@@ -250,9 +250,9 @@ $videos=session()->get('videos_sessions');
   let complete_expected_six = document.getElementById('answer-expected-six');
 
 
-  var answer_type =<? php echo json_encode($subexercise -> answer_type) ?>;
-  var is_multy =<? php echo json_encode($subexercise -> is_multy) ?>;
-  var is_complete =<? php echo json_encode($subexercise -> is_complete) ?>;
+  var answer_type = @json($subexercise -> answer_type);
+  var is_multy = @json($subexercise -> is_multy);
+  var is_complete = @json($subexercise -> is_complete);
 
   $('.loader-container').hide();
   $('.is_multy-hidden1').hide();
@@ -275,14 +275,14 @@ $videos=session()->get('videos_sessions');
     if (is_multy == 'text') {
       $('.text-answer1').show();
 
-      $('#addanswer1').append(`@include('admin.subquestions.form-multiple-text-answer-edit',['first_choice' => '${first_choice}',
+      $('#addanswer1').append(`@include('admin.subexercises.form-multiple-text-answer-edit',['first_choice' => '${first_choice}',
                               'second_choice' => '${second_choice}','third_choice' => '${third_choice}'
                             ])`);
     }
     if (is_multy == 'image') {
 
       $('.text-answer1').show();
-      $('#addanswer1').append(`@include('admin.subquestions.form-multiple-image-answer-edit',['image_a' => '${image_a}','image_b' => '${image_b}'
+      $('#addanswer1').append(`@include('admin.subexercises.form-multiple-image-answer-edit',['image_a' => '${image_a}','image_b' => '${image_b}'
                             ])`);
     }
   }
@@ -292,7 +292,7 @@ $videos=session()->get('videos_sessions');
 
     if (is_complete == 'text') {
       $('.complete-text-answer1').show();
-      $('#addanswer1').append(`@include('admin.subquestions.form-complete-text-answer-edit',[
+      $('#addanswer1').append(`@include('admin.subexercises.form-complete-text-answer-edit',[
                         'complete_n_one' => '${complete_n_one.value}',
                         'complete_n_two' => '${complete_n_two.value}',
                         'complete_n_three' => '${complete_n_three.value}',
@@ -312,14 +312,14 @@ $videos=session()->get('videos_sessions');
     }
     if (is_complete == 'number') {
       $('.complete-number-answer1').show();
-      $('#addanswer1').append(`@include('admin.subquestions.form-complete-number-answer-edit',[
+      $('#addanswer1').append(`@include('admin.subexercises.form-complete-number-answer-edit',[
               'complete_n_one' => '${complete_n_one.value}','complete_n_two' => '${complete_n_two.value}'])`);
     }
     if (is_complete == 'write') {
       $('.title-hidden').show();
       $('.answer-location').show();
       $('.complete-write-answer1').show();
-      $('#addanswer1').append(`@include('admin.subquestions.form-complete-write-answer-edit',[
+      $('#addanswer1').append(`@include('admin.subexercises.form-complete-write-answer-edit',[
                         'complete_expected_one' => '${complete_expected_one.value}',
                         'complete_expected_two' => '${complete_expected_two.value}',
                         'complete_expected_three' => '${complete_expected_three.value}',
@@ -331,7 +331,7 @@ $videos=session()->get('videos_sessions');
   }
   if (answer_type == 'true_false') {
     $('.true-false1').show();
-    $('#addanswer1').append(`@include('admin.subquestions.form-true-false-answer-edit', ['first_choice' => '${first_choice}', 'second_choice' => '${second_choice}'])`);
+    $('#addanswer1').append(`@include('admin.subexercises.form-true-false-answer-edit', ['first_choice' => '${first_choice}', 'second_choice' => '${second_choice}'])`);
   }
   function answerType(answer_typeid, is_multy, is_complete, addanswer) {
     var answer_type = document.getElementById(answer_typeid);
@@ -347,7 +347,7 @@ $videos=session()->get('videos_sessions');
       $('.' + is_multy).hide();
       $('.' + is_complete).hide();
 
-      $('#' + addanswer).append(`@include('admin.subquestions.form-true-false-answer-edit', ['first_choice' => '${first_choice}', 'second_choice' => '${first_choice}'])`);
+      $('#' + addanswer).append(`@include('admin.subexercises.form-true-false-answer-edit', ['first_choice' => '${first_choice}', 'second_choice' => '${first_choice}'])`);
     }
     if (answer_type.value == "complete") {
       // $('#'+is_multy).empty();
@@ -363,12 +363,12 @@ $videos=session()->get('videos_sessions');
 
     $('#' + addanswer).empty();
     if (answer_val.value == "text") {
-      $('#' + addanswer).append(`@include('admin.subquestions.form-multiple-text-answer-edit',[
+      $('#' + addanswer).append(`@include('admin.subexercises.form-multiple-text-answer-edit',[
                   'first_choice' => '${first_choice}','second_choice' => '${second_choice}','third_choice' => '${third_choice}'
                             ])`);
     }
     if (answer_val.value == "image") {
-      $('#' + addanswer).append(`@include('admin.subquestions.form-multiple-image-answer-edit',['image_a' => '${image_a}',
+      $('#' + addanswer).append(`@include('admin.subexercises.form-multiple-image-answer-edit',['image_a' => '${image_a}',
                               'image_b' => '${image_b}'
                             ])`);
     }
@@ -380,11 +380,11 @@ $videos=session()->get('videos_sessions');
 
     $('#' + addanswer).empty();
     if (answer_val.value == "number") {
-      $('#addanswer1').append(`@include('admin.subquestions.form-complete-number-answer-edit',[
+      $('#addanswer1').append(`@include('admin.subexercises.form-complete-number-answer-edit',[
               'complete_n_one' => '${complete_n_one.value}','complete_n_two' => '${complete_n_two.value}'])`);
     }
     if (answer_val.value == "text") {
-      $('#' + addanswer).append(`@include('admin.subquestions.form-complete-text-answer-edit',[
+      $('#' + addanswer).append(`@include('admin.subexercises.form-complete-text-answer-edit',[
                         'complete_n_one' => '${complete_n_one.value}',
                         'complete_n_two' => '${complete_n_two.value}',
                         'complete_n_three' => '${complete_n_three.value}',
@@ -405,7 +405,7 @@ $videos=session()->get('videos_sessions');
     }
 
     if (answer_val.value == "write") {
-      $('#' + addanswer).append(`@include('admin.subquestions.form-complete-write-answer-edit',[
+      $('#' + addanswer).append(`@include('admin.subexercises.form-complete-write-answer-edit',[
            'complete_expected_one' => '${complete_expected_one.value}',
            'complete_expected_two' => '${complete_expected_two.value}',
            'complete_expected_three' => '${complete_expected_three.value}',
@@ -671,16 +671,3 @@ $videos=session()->get('videos_sessions');
 
 </script>
 @endsection
-
-
-
-
-
-<!-- 
-rwifheru fieruhfre frieuhfer reohfer
-feorhfe rufheriuv sfvks nvwfrwd
-vdsh ovsdhvfs
-oiivfvf
-vsfvf svsf
-vsfv srfrwf
-refe rfre -->

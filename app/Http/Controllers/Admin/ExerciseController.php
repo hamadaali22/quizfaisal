@@ -5,7 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Question;
 use App\Exam;
 use App\Level;
-use App\SubQuestion;
+use App\SubExercise;
 use App\Answer;
 use App\Exercise;
 use Illuminate\Http\Request;
@@ -71,7 +71,7 @@ class ExerciseController extends Controller
                 //dd($request->third_choice[$i]);
 
 
-                $add_video = new SubQuestion;
+                $add_video = new SubExercise;
                 if(isset($request->banner[$i])){
                     $file1=$request->banner[$i];
                     $file_extension1 = $file1 -> getClientOriginalExtension();
@@ -151,7 +151,7 @@ class ExerciseController extends Controller
                 if($request->answer_type[$i]=='complete'){
                     if ($request->is_complete[$i] !='write') {
                       $add_answer = new Answer;
-                      $add_answer->subquestion_id    = $add_video->id;
+                      $add_answer->subexercise_id   = $add_video->id;
                       $add_answer->one    = $request->one[$i];
                       $add_answer->two    = $request->two[$i];
                       $add_answer->three    = $request->three[$i];
@@ -171,7 +171,7 @@ class ExerciseController extends Controller
                       $add_answer->save();
                    }else {
                      $add_expecte_answer = new ExpectedAnswer;
-                     $add_expecte_answer->subquestion_id    = $add_video->id;
+                     $add_expecte_answer->subexercise_id    = $add_video->id;
                      $add_expecte_answer->one    = $request->one[$i];
                      $add_expecte_answer->two    = $request->two[$i];
                      $add_expecte_answer->three    = $request->three[$i];
@@ -307,10 +307,10 @@ class ExerciseController extends Controller
         $delete = Exercise::findOrFail($request->id);
         // dd('gggghytghgt');
         if($delete){
-            $subquestions= SubQuestion::where('question_id',$delete->id)->get();
+            $subquestions= SubExercise::where('subexercise_id',$delete->id)->get();
             foreach ($subquestions as $subquestion) {
                 $subquestion->delete();
-                $answers= Answer::where('subquestion_id',$subquestion->id)->get();
+                $answers= Answer::where('subexercise_id',$subquestion->id)->get();
                 foreach ($answers as $answer) {
                     // $delete_branch = Day::findOrFail($answer->id);
                     $answer->delete();

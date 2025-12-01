@@ -11,14 +11,14 @@
 </style>
 <div class="content-header row">
     <div class="content-header-left col-md-6 col-12 mb-2 breadcrumb-new">
-        <h3 class="content-header-title mb-0 d-inline-block">Questions </h3><br>
+        <h3 class="content-header-title mb-0 d-inline-block">exercises </h3><br>
         <div class="row breadcrumbs-top d-inline-block">
             <div class="breadcrumb-wrapper col-12">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.html">Home</a>
                     </li>
 
-                    <li class="breadcrumb-item active">Questions
+                    <li class="breadcrumb-item active">exercises
                     </li>
                 </ol>
             </div>
@@ -26,7 +26,7 @@
     </div>
     <div class="content-header-right col-md-6 col-12">
         <div class="dropdown float-md-right">
-            <a href="{{route('create-exercise')}}" class="btn btn-primary float-right mt-2"> Add Questions </a>
+            <a href="{{route('exercises.create')}}" class="btn btn-primary float-right mt-2"> Add exercises </a>
         </div>
     </div>
 
@@ -82,7 +82,7 @@
                                 </tr>
                             </thead>
                             <tbody id="tablecontents">
-                                @foreach ($questions as $_item)
+                                @foreach ($exercises as $_item)
                                 <tr class="row1" data-id="{{ $_item->id }}">
                                     <td class="text-center">
                                         <span class="up-video">
@@ -122,20 +122,20 @@
                                     </td>
                                     <td class="text-center col-sm-3">
                                         <div class="actions">
-                                            <a href="{{url('admin/allsubquestions',$_item->id)}}" class="edit-course">
+                                            <a href="{{url('admin/allsubexercises',$_item->id)}}" class="edit-course">
                                                 <!-- <button type="button" class="btn border-info "><i class="la la-eye" style="color: #1E9FF2;"></i></button> -->
                                                 <button type="button" class="btn btn-icon btn-danger">
                                                     <i class="la la-eye"></i>
                                                 </button>
-                                                <span class="editcourse"> subquestions</span>
+                                                <span class="editcourse"> Subexercises</span>
                                             </a>
-                                            <a href="{{url('admin/subquestions',$_item->id)}}" class="edit-course">
+                                            <a href="{{url('admin/subexercises',$_item->id)}}" class="edit-course">
                                                 <button type="button" class="btn  btn-icon btn-primary">
                                                     <i class="ft-plus-square"></i>
                                                 </button>
-                                                <span class="editcourse">Add subquestions</span>
+                                                <span class="editcourse">Add subexercises</span>
                                             </a>
-                                            <a href="{{route('exercise-edit',$_item->id)}}" class="edit-course">
+                                            <a href="{{route('exercises.edit',$_item->id)}}" class="edit-course">
                                                 <button type="button" class="btn btn-outline-success ">
                                                     <i class="la la-edit"></i>
                                                 </button>
@@ -176,7 +176,7 @@
                             <div class="col-sm-3">
                             </div>
                             <div class="col-sm-2">
-                                <form method="post" action="{{route('exercise-destroy')}}">
+                                <form method="post" action="{{route('exercises.destroy','test')}}">
                                     @csrf
                                     @method('delete')
                                     <input type="hidden" name="id" id="cat_id">

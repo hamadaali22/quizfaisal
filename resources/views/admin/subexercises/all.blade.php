@@ -18,7 +18,7 @@
           <li class="breadcrumb-item"><a href="index.html">Home</a>
           </li>
 
-          <li class="breadcrumb-item active">subquestions
+          <li class="breadcrumb-item active">subexercises
           </li>
         </ol>
       </div>
@@ -26,7 +26,7 @@
   </div>
   <div class="content-header-right col-md-6 col-12">
     <div class="dropdown float-md-right">
-      <a href="{{url('admin/subquestions',$id)}}" class="btn btn-primary float-right mt-2"> Add subquestions </a>
+      <a href="{{url('admin/subexercises',$id)}}" class="btn btn-primary float-right mt-2"> Add subexercises </a>
     </div>
   </div>
 
@@ -85,7 +85,7 @@
                 </tr>
               </thead>
               <tbody id="tablecontents">
-                @foreach ($subquestions as $_item)
+                @foreach ($subexercises as $_item)
                 <tr class="row1" data-id="{{ $_item->id }}">
                   <td class="text-center">
                     <span class="up-video">
@@ -97,8 +97,8 @@
                     {{ $_item->id }}
                   </td>
                   <td>
-                    @if($_item->exam)
-                    {{ $_item->exam->name }}
+                    @if($_item->level)
+                    {{ $_item->lelve->name }}
                     @endif
                   </td>
                   <td>
@@ -137,7 +137,7 @@
 
                   <td class="text-center col-sm-3">
                     <div class="actions">
-                      <a href="{{route('subquestions.edit',$_item->id)}}" class="edit-course">
+                      <a href="{{route('subexercises.edit',$_item->id)}}" class="edit-course">
                         <button type="button" class="btn btn-outline-success "><i class="la la-edit"></i></button>
                         <span class="editcourse"> edit</span>
                       </a>
@@ -173,7 +173,7 @@
               <div class="col-sm-3">
               </div>
               <div class="col-sm-2">
-                <form method="post" action="{{route('subquestions.destroy','test')}}">
+                <form method="post" action="{{route('subexercises.destroy','test')}}">
                   @csrf
                   @method('delete')
                   <input type="hidden" name="id" id="cat_id">

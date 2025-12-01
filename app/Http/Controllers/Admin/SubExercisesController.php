@@ -1,15 +1,15 @@
 <?php
   namespace App\Http\Controllers\Admin;
   use App\Http\Controllers\Controller;
-  use App\SubQuestion;
-  use App\Question;
+  use App\SubExercise;
+  use App\Exercise;
   use App\Exam;
   use App\Level;
   use Illuminate\Http\Request;
   use App\Answer;
   use App\ExpectedAnswer;
 
-class SubQuestionController extends Controller
+class SubExercisesController extends Controller
 {
     public function __construct()
     {
@@ -29,37 +29,38 @@ class SubQuestionController extends Controller
     //     }
     //     return view('admin.subquestions.all',compact('subquestions','questions','levels','exams'));
     // }
-    public function allSubquestions($id)
+    public function allSubexercises($id)
     {
-        $exams=Exam::all();
+        // $exams=Exam::all();
         $levels=Level::all();
-        $subquestions=SubQuestion::where('exercise_id',$id)->orderBy('order','ASC')->get();
+        $subexercises=SubExercise::where('exercise_id',$id)->orderBy('order','ASC')->get();
         // $subquestions=SubQuestion::get();
-        foreach ($subquestions as $item){
+        
+        foreach ($subexercises as $item){
             $item->level= Level::where('id',$item->level_id)->first();
-            $item->exam=Exam::where('id',$item->exam_id)->first();
+            // $item->exam=Exam::where('id',$item->exam_id)->first();
         }
-        return view('admin.subquestions.all',compact('subquestions','levels','exams','id'));
+        return view('admin.subexercises.all',compact('subexercises','levels','id'));
     }
     public function show($id)
     {
-        return view('admin.subquestions.create',compact('id'));
+        return view('admin.subexercises.create',compact('id'));
     }
 
     public function create()
     {
         $exams=Exam::all();
         $levels=Level::all();
-        $questions=Question::all();
-        return view('admin.subquestions.create',compact('levels','exams','questions'));
+        $exercises=Exercise::all();
+        return view('admin.subexercises.create',compact('levels','exams','exercises'));
     }
 
     public function store(Request $request)
     {
-        $questions=Question::where('id',$request->question_id)->first();
-        $add = new SubQuestion;
-        $add->exam_id    = $questions->exam_id;
-        $add->question_id    = $questions->id;
+        $exercises=Exercise::where('id',$request->exercise_id)->first();
+        $add = new SubExercise;
+        // $add->exam_id    = $questions->exam_id;
+        $add->exercise_id    = $exercises->id;
         if(isset($request->banner)){
             $file1=$request->banner;
             $file_extension1 = $file1 -> getClientOriginalExtension();
@@ -115,7 +116,7 @@ class SubQuestionController extends Controller
         if($request->answer_type=='complete'){
             if ($request->is_complete !='write') {
               $add_answer = new Answer;
-              $add_answer->subquestion_id    = $add->id;
+              $add_answer->subexercise_id    = $add->id;
               $add_answer->one    = $request->one;
               $add_answer->two    = $request->two;
               $add_answer->three    = $request->three;
@@ -135,7 +136,7 @@ class SubQuestionController extends Controller
               $add_answer->save();
             }else {
               $expecte_answer = new ExpectedAnswer;
-              $expecte_answer->subquestion_id    = $add->id;
+              $expecte_answer->subexercise_id    = $add->id;
               $expecte_answer->one    = $request->one;
               $expecte_answer->two    = $request->two;
               $expecte_answer->three    = $request->three;
@@ -153,17 +154,17 @@ class SubQuestionController extends Controller
 
 // use App\Curricul;
 
-    public function edit(SubQuestion $subquestion)
+    public function edit(SubExercise $subexercise)
     {
-        $subquestion->answer=Answer::where('subquestion_id',$subquestion->id)->first();
-        $subquestion->expected_write_answer=ExpectedAnswer::where('subquestion_id',$subquestion->id)->first();
+        $subexercise->answer=Answer::where('subexercise_id',$subexercise->id)->first();
+        $subexercise->expected_write_answer=ExpectedAnswer::where('subexercise_id',$subexercise->id)->first();
         // dd($subquestion);
-        return view('admin.subquestions.edit',compact('subquestion'));
+        return view('admin.subexercises.edit',compact('subexercise'));
     }
 
-    public function update(Request $request, SubQuestion $subquestion){
+    public function update(Request $request, SubExercise $subexercise){
 
-        $edit = SubQuestion::findOrFail($subquestion->id);
+        $edit = SubExercise::findOrFail($subexercise->id);
         if(isset($request->banner)){
             $file1=$request->banner;
             $file_extension1 = $file1 -> getClientOriginalExtension();
@@ -222,11 +223,11 @@ class SubQuestionController extends Controller
         $edit->save();
         if($request->answer_type=='complete'){
             if ($request->is_complete !='write') {
-              $delete_answer = Answer::where('subquestion_id',$subquestion->id)->first();
+              $delete_answer = Answer::where('subexercise_id',$subexercise->id)->first();
               $delete_answer->delete();
 
               $add_answer = new Answer;
-              $add_answer->subquestion_id    = $edit->id;
+              $add_answer->subexercise_id    = $edit->id;
               $add_answer->one    = $request->one;
               $add_answer->two    = $request->two;
               $add_answer->three    = $request->three;
@@ -245,11 +246,11 @@ class SubQuestionController extends Controller
               $add_answer->sixteen    = $request->sixteen;
               $add_answer->save();
             }else {
-              $delete_answer_expected = ExpectedAnswer::where('subquestion_id',$subquestion->id)->first();
+              $delete_answer_expected = ExpectedAnswer::where('subexercise_id',$subexercise->id)->first();
               $delete_answer_expected->delete();
 
               $expecte_answer = new ExpectedAnswer;
-              $expecte_answer->subquestion_id    = $edit->id;
+              $expecte_answer->subexercise_id    = $edit->id;
               $expecte_answer->one    = $request->one;
               $expecte_answer->two    = $request->two;
               $expecte_answer->three    = $request->three;
@@ -266,19 +267,19 @@ class SubQuestionController extends Controller
 
     public function destroy(Request $request )
     {
-            $delete = SubQuestion::findOrFail($request->id);
-            if($delete){
-                $answers= Answer::where('subquestion_id',$delete->id)->get();
-                foreach ($answers as $answer) {
-                    // $answer = Tutorial_Branche::findOrFail($branch->id);
-                    $answer->delete();
-                }
+        $delete = SubExercise::findOrFail($request->id);
+        if($delete){
+            $answers= Answer::where('subexercise_id',$delete->id)->get();
+            foreach ($answers as $answer) {
+                // $answer = Tutorial_Branche::findOrFail($branch->id);
+                $answer->delete();
             }
-            $delete->delete();
-            // File::delete(public_path("assets_admin/img/curriculums/". $delete->image));
-            // File::delete("/home/u9ak0fjx/public_html/assets_admin/img/tutorials/" . $delete->image);
+        }
+        $delete->delete();
+        // File::delete(public_path("assets_admin/img/curriculums/". $delete->image));
+        // File::delete("/home/u9ak0fjx/public_html/assets_admin/img/tutorials/" . $delete->image);
 
-            return back()->with("message",'The question has been deleted');
+        return back()->with("message",'The question has been deleted');
     }
 
 }

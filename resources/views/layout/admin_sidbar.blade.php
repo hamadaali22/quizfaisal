@@ -19,9 +19,9 @@
             <a href="{{url('admin/telc-exams')}}"><i class="la la-envelope"></i><span class="menu-title"
                     data-i18n="">telc exams</span></a>
         </li>
-        <li class="nav-item {{ Request::is('admin/exercise') ? 'active' : '' }}">
-            <a href="{{url('admin/exercise')}}"><i class="la la-envelope"></i><span class="menu-title"
-                    data-i18n="">questions exercise</span></a>
+        <li class="nav-item {{ Request::is('admin/exercises') ? 'active' : '' }}">
+            <a href="{{url('admin/exercises')}}"><i class="la la-envelope"></i><span class="menu-title"
+                    data-i18n="">exercises</span></a>
         </li>
         <li class="nav-item {{ Request::is('admin/quize-exams') ? 'active' : '' }}">
             <a href="{{url('admin/quize-exams')}}"><i class="la la-envelope"></i><span class="menu-title"

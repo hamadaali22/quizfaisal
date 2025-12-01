@@ -130,11 +130,18 @@ Route::get('admin-login', 'Auth\LoginController@LoginAdmin')->name('admin-login'
 			
 
 			Route::get('questionsTelc','QuestionController@questionsTelc');
-			Route::get('exercise','QuestionController@exercise');
 
-			Route::get('create-exercise','QuestionController@createExercise')->name('create-exercise');
-			Route::post('store-exercise','QuestionController@storeExercise')->name('store-exercise');
+			Route::resource('exercises','ExerciseController');
+			Route::resource('subexercises','SubExercisesController');
+		    Route::get('allsubexercises/{id}','SubExercisesController@allSubexercises');
 
+			// Route::get('exercise','QuestionController@exercise');
+
+			// Route::get('create-exercise','QuestionController@createExercise')->name('create-exercise');
+			// Route::post('store-exercise','QuestionController@storeExercise')->name('store-exercise');
+			// Route::post('delete-exercise','QuestionController@deleteExercise')->name('delete-exercise');
+			// Route::post('exercise-edit','QuestionController@deleteExercise')->name('exercise-edit');
+			
 		    Route::resource('subquestions','SubQuestionController');
 		    Route::get('allsubquestions/{id}','SubQuestionController@allSubquestions');
 			Route::get('exam/goethe/{id}','UserController@examsGoethe');

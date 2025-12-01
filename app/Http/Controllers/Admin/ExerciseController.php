@@ -10,64 +10,32 @@ use App\Answer;
 use App\Exercise;
 use Illuminate\Http\Request;
 use App\ExpectedAnswer;
-class QuestionController extends Controller
+class ExerciseController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth');
     }
     
-   
-
     public function index()
     {
-        $exams=Exam::all();
-        $levels=Level::all();
-        $allquestions=Question::orderBy('order','ASC')->get();
-        $questions=[];
-        foreach ($allquestions as $item) {
-            $exam=Exam::where('id',$item->exam_id)->first();
-            if($exam->section !='telc'){
-              $questions[]=$item;
-            }
-        }
-        foreach ($questions as $_item) {
-            $_item->exam=Exam::where('id',$_item->exam_id)->first();
-            $_item->level= Level::where('id',$_item->level_id)->first();
-        }
-        return view('admin.questions.all',compact('questions','levels','exams'));
+        $levels=Level::where('type','exercise')->get();
+        $exercises=Exercise::with('levels')->orderBy('order','ASC')->get();
+       
+        return view('admin.exercises.all',compact('exercises','levels'));
     }
-
-    public function questionsTelc()
-    {
-        $exams=Exam::all();
-        $levels=Level::all();
-        $allquestions=Question::orderBy('order','ASC')->get();
-        $questions=[];
-        foreach ($allquestions as $item) {
-            $exam=Exam::where('id',$item->exam_id)->first();
-            if($exam->section=='telc'){
-              $questions[]=$item;
-            }
-        }
-        foreach ($questions as $_item) {
-            $_item->exam=Exam::where('id',$_item->exam_id)->first();
-            $_item->level= Level::where('id',$_item->level_id)->first();
-        }
-        return view('admin.questions.all',compact('questions','levels','exams'));
-    }
-
+    
     public function create()
     {
-        $exams=Exam::all();
-        $levels=Level::all();
-        return view('admin.questions.create',compact('levels','exams'));
+        
+        $levels=Level::where('type','exercise')->get();
+        return view('admin.exercises.create',compact('levels'));
     }
-
     
     public function store(Request $request)
     {
-        $add = new Question;
+        
+        $add = new Exercise;
         if ($files = $request->file('file')) {
             $profileImage = date('YmdHis') . "." . $files->getClientOriginalExtension();
             $destinationPath = 'img/questions-file';
@@ -82,8 +50,8 @@ class QuestionController extends Controller
             $add->image = $profileImage;
         }
 
-        // $add->level_id    = $request->le vel_id;
-        $add->exam_id    = $request->exam_id;
+        $add->level_id    = $request->level_id;
+        // $add->exam_id    = $request->exam_id;
         $add->bio    = $request->bio;
         $add->type    = $request->type;
         $add->mark    = $request->mark;
@@ -145,8 +113,8 @@ class QuestionController extends Controller
                 //     $add_video->image_b    = $file_name3;
                 // }
 
-                // $add_video->level_id    = $add->level_id;
-                $add_video->exam_id    = $request->exam_id;
+                $add_video->level_id    = $add->level_id;
+                // $add_video->exam_id    = $request->exam_id;
                 $add_video->question_id    = $add->id;
                 if(isset($request->title[$i])){
                     $add_video->title    = $request->title[$i];
@@ -227,23 +195,21 @@ class QuestionController extends Controller
             }
 
         }
-        return redirect('admin/questions')->with("message", 'Added successfully');
+        return redirect('admin/exercises')->with("message", 'Added successfully');
     }
-
-
+   
 
 // use App\Curricul;
 
-    public function edit(Question $question)
+    public function edit(Exercise $exercise)
     {
-        $exams=Exam::all();
+        $levels=Level::where('type','exercise')->get();
 
-        return view('admin.questions.edit',compact('question','exams'));
+        return view('admin.exercises.edit',compact('exercise','levels'));
     }
 
-    public function update(Request $request, Question $question){
-
-        $edit = Question::findOrFail($question->id);
+    public function update(Request $request, Exercise $exercise){
+        $edit = Exercise::findOrFail($exercise->id);
 
         if($request->type =='listening'){
             if($files = $request->file('file')) {
@@ -314,8 +280,8 @@ class QuestionController extends Controller
         }
 
 
-        // $add->level_id    = $request->le vel_id;
-        $edit->exam_id    = $request->exam_id;
+        $edit->level_id    = $request->level_id;
+        // $edit->exam_id    = $request->exam_id;
         $edit->type    = $request->type;
         $edit->mark    = $request->mark;
         $edit->bio    = $request->bio;
@@ -333,28 +299,28 @@ class QuestionController extends Controller
         //     $edit->name    = $edit->name;
         //  }
 
-        return redirect()->route('questions.index')->with("message", 'Updated successfully');
+        return redirect()->route('exercises.index')->with("message", 'Updated successfully');
     }
 
-    public function destroy(Request $request )
+    public function destroy(Request $request)
     {
-            $delete = Question::findOrFail($request->id);
-            // dd('gggghytghgt');
-            if($delete){
-                $subquestions= SubQuestion::where('question_id',$delete->id)->get();
-                foreach ($subquestions as $subquestion) {
-                    $subquestion->delete();
-                    $answers= Answer::where('subquestion_id',$subquestion->id)->get();
-                    foreach ($answers as $answer) {
-                        // $delete_branch = Day::findOrFail($answer->id);
-                        $answer->delete();
-                    }
+        $delete = Exercise::findOrFail($request->id);
+        // dd('gggghytghgt');
+        if($delete){
+            $subquestions= SubQuestion::where('question_id',$delete->id)->get();
+            foreach ($subquestions as $subquestion) {
+                $subquestion->delete();
+                $answers= Answer::where('subquestion_id',$subquestion->id)->get();
+                foreach ($answers as $answer) {
+                    // $delete_branch = Day::findOrFail($answer->id);
+                    $answer->delete();
                 }
-
             }
-            $delete->delete();
 
-            return redirect()->route('questions.index')->with("message",'The question has been deleted');
+        }
+        $delete->delete();
+
+        return redirect()->route('exercises.index')->with("message",'The question has been deleted');
     }
 
 

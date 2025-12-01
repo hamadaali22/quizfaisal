@@ -98,7 +98,7 @@
                   </td>
                   <td>
                     @if($_item->level)
-                    {{ $_item->lelve->name }}
+                    {{ $_item->lelvel->name }}
                     @endif
                   </td>
                   <td>

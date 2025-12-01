@@ -115,7 +115,7 @@ class ExerciseController extends Controller
 
                 $add_video->level_id    = $add->level_id;
                 // $add_video->exam_id    = $request->exam_id;
-                $add_video->question_id    = $add->id;
+                $add_video->exercise_id    = $add->id;
                 if(isset($request->title[$i])){
                     $add_video->title    = $request->title[$i];
                 }

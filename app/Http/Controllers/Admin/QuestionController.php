@@ -27,8 +27,10 @@ class QuestionController extends Controller
         $questions=[];
         foreach ($allquestions as $item) {
             $exam=Exam::where('id',$item->exam_id)->first();
-            if($exam->section !='telc'){
-              $questions[]=$item;
+            if($exam){
+                if($exam->section !='telc'){
+                $questions[]=$item;
+                }
             }
         }
         foreach ($questions as $_item) {
@@ -46,8 +48,10 @@ class QuestionController extends Controller
         $questions=[];
         foreach ($allquestions as $item) {
             $exam=Exam::where('id',$item->exam_id)->first();
-            if($exam->section=='telc'){
-              $questions[]=$item;
+            if($exam){
+                if($exam->section=='telc'){
+                $questions[]=$item;
+                }
             }
         }
         foreach ($questions as $_item) {

@@ -1,16 +1,419 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset
-      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
-
-
+﻿<?xml version="1.0" encoding="UTF-8"?>
+		<!--	created with www.mysitemapgenerator.com	-->
+		<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-  <loc>https://deutschtests.com/</loc>
-  <lastmod>2023-09-26T10:47:01+00:00</lastmod>
+	<loc>https://deutschtests.com/</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://deutschtests.com/de/</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://deutschtests.com/register</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://deutschtests.com/de/register</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://deutschtests.com/forgetpassword</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://deutschtests.com/de/forgetpassword</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://deutschtests.com/login</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://deutschtests.com/de/login</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://deutschtests.com/de/placement/Deutsch-Einstufungstest</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://deutschtests.com/placement-result</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://deutschtests.com/de/placement-questions</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://deutschtests.com/noresult</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://deutschtests.com/de/profile</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://deutschtests.com/profile</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://deutschtests.com/goethe-user-exam</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://deutschtests.com/de/goethe-user-exam</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>1.0</priority>
 </url>
 
+<url>
+	<loc>https://deutschtests.com/de/telc-user-exam</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://deutschtests.com/de/goethe/goethe-tests</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://deutschtests.com/de/goethe/goethe-tests/goethe-a1-zertifikat</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://deutschtests.com/de/goethe/goethe-tests/goethe-zertifikat-a2</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://deutschtests.com/de/goethe/goethe-tests/goethe-b1-modelltest</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://deutschtests.com/de/goethe/goethe-tests/goethe-b2-modelltest</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
 
+<url>
+	<loc>https://deutschtests.com/de/telc/deutsch-test-online</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://deutschtests.com/de/telc/telc-tests/telc-a1-modelltest</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://deutschtests.com/de/telc/telc-tests/telc-a2-modelltest</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://deutschtests.com/de/telc/telc-tests/telc-b1-modelltest</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://deutschtests.com/de/telc/telc-tests/telc-b2-modelltest</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://deutschtests.com/en/</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://deutschtests.com/en/placement/German-placement-test</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://deutschtests.com/en/login</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://deutschtests.com/en/register</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://deutschtests.com/en/goethe/online-Goethe-exam</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://deutschtests.com/en/goethe/online-Goethe-exam/Goethe-Exam-A1</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://deutschtests.com/en/goethe/online-Goethe-exam/Goethe-exam-A2</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://deutschtests.com/en/goethe/online-Goethe-exam/Goethe-test-B1</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://deutschtests.com/en/goethe/online-Goethe-exam/Goethe-exam-B2</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://deutschtests.com/en/telc/telc-exam-online</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://deutschtests.com/en/telc/telc-exam-online/Telc-A1-Exam</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://deutschtests.com/en/telc/telc-exam-online/Telc-A2-Test</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://deutschtests.com/en/telc/telc-exam-online/Telc-test-b1</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://deutschtests.com/en/telc/telc-exam-online/Telc-exam-B2</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://deutschtests.com/ar/</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://deutschtests.com/ar/placement/امتحان-تحديد-مستوى-المانى</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://deutschtests.com/ar/login</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://deutschtests.com/ar/register</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://deutschtests.com/ar/goethe/نماذج-امتحانات-معهد-جوته</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://deutschtests.com/ar/goethe/نماذج-امتحانات-معهد-جوته/a1-اختبار-الماني</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://deutschtests.com/ar/goethe/نماذج-امتحانات-معهد-جوته/a2-امتحانات-جوته</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://deutschtests.com/ar/goethe/نماذج-امتحانات-معهد-جوته/نماذج-امتحانات-معهد-جوته-B1</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://deutschtests.com/ar/goethe/نماذج-امتحانات-معهد-جوته/b2-امتحانات-جوته</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://deutschtests.com/ar/telc/نماذج-امتحان-Telc</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://deutschtests.com/ar/telc/نماذج-امتحان-Telc/اختبار-a1-الماني</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://deutschtests.com/ar/telc/نماذج-امتحان-Telc/نماذج-امتحان-A2-Telc</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://deutschtests.com/ar/telc/نماذج-امتحان-Telc/نماذج-امتحان-Telc-B1</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://deutschtests.com/ar/telc/نماذج-امتحان-Telc/امتحان-B2-Telc</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://deutschtests.com/fr/</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://deutschtests.com/fr/placement/test-de-niveau-allemand</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://deutschtests.com/fr/login</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://deutschtests.com/fr/register</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://deutschtests.com/fr/goethe/goethe-institut-examens</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://deutschtests.com/fr/goethe/goethe-institut-examens/examen-goethe-a1</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://deutschtests.com/fr/goethe/goethe-institut-examens/Goethe-Institut-A2-Test</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>0.8</priority>
+</url><url>
+	<loc>https://deutschtests.com/fr/goethe/goethe-institut-examens/Goethe-Institut-Test-B1</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>0.8</priority>
+</url><url>
+	<loc>https://deutschtests.com/fr/goethe/goethe-institut-examens/Goethe-Institut-Examen-B2</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>0.8</priority>
+</url><url>
+	<loc>https://deutschtests.com/fr/telc/allemand-examens-telc</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>1.0</priority>
+</url><url>
+	<loc>https://deutschtests.com/fr/telc/allemand-examens-telc/Examen-a1-allemand</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://deutschtests.com/fr/telc/allemand-examens-telc/test-allemand-a2</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://deutschtests.com/fr/telc/allemand-examens-telc/telc-examen-b1</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://deutschtests.com/fr/telc/allemand-examens-telc/telc-examen-b2</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://deutschtests.com/es/</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://deutschtests.com/es/placement/Test-de-nivel-de-alemá</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://deutschtests.com/es/login</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>1.0</priority>
+</url><url>
+	<loc>https://deutschtests.com/es/register</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>1.0</priority>
+</url><url>
+	<loc>https://deutschtests.com/es/goethe/alemán-Goethe-tests</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>0.8</priority>
+</url><url>
+	<loc>https://deutschtests.com/es/goethe/alemán-Goethe-tests/a1-goethe-test</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://deutschtests.com/es/goethe/alemán-Goethe-tests/aleman-a2-examen</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://deutschtests.com/es/goethe/alemán-Goethe-tests/examen-b1-goethe</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://deutschtests.com/es/goethe/alemán-Goethe-tests/Goethe-Test-B2</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://deutschtests.com/es/telc/examen-telc-aleman</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://deutschtests.com/es/telc/examen-telc-aleman/telc-a1-modelltest</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://deutschtests.com/es/telc/examen-telc-aleman/telc-a2-modelltest</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://deutschtests.com/es/telc/examen-telc-aleman/Telc-Zertifikat-B1</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://deutschtests.com/es/telc/examen-telc-aleman/Telc-B2-Zertifikat</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://deutschtests.com/placement-questions</loc>
+	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
 </urlset>

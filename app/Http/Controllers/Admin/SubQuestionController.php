@@ -33,7 +33,7 @@ class SubQuestionController extends Controller
     {
         $exams=Exam::all();
         $levels=Level::all();
-        $subquestions=SubQuestion::where('exercise_id',$id)->orderBy('order','ASC')->get();
+        $subquestions=SubQuestion::where('question_id',$id)->orderBy('order','ASC')->get();
         // $subquestions=SubQuestion::get();
         foreach ($subquestions as $item){
             $item->level= Level::where('id',$item->level_id)->first();

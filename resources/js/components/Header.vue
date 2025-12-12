@@ -170,7 +170,7 @@ export default {
         en: 'German-placement-test',
         de: 'Deutsch-Einstufungstest',
         fr: 'test-de-niveau-allemand',
-        es: 'Test-de-nivel-de-alemá'
+        es: 'Test-de-nivel-de-alemán'
       };
 
       // 🔹 نحدد الـ slug المناسب بناءً على اللغة

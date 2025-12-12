@@ -28,11 +28,11 @@
         </div>
         <div class="row mt-3 mb-5">
           <div class="col-4">
-            <img :src="contactInfo.b2" class="img-fluid w-100" alt="Teste dein Deusch">
-            <img :src="contactInfo.c1" class="img-fluid w-100" alt="Deutsch Tests online frei">
+            <img :src="contactInfo.b2" class="img-fluid w-100" :alt="altTextB2[currentLanguage]">
+            <img :src="contactInfo.c1" class="img-fluid w-100" :alt="altTextC1[currentLanguage]">
           </div>
           <div class="col-8">
-            <img :src="contactInfo.m1" class="img-fluid w-100" alt="Deutsch Tests online">
+            <img :src="contactInfo.m1" class="img-fluid w-100" :alt="altTextMain[currentLanguage]">
           </div>
         </div>
       </div>

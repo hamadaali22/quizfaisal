@@ -36,11 +36,11 @@
             <div class="col-3">
 
             </div>
-            <div class="col-3" style="    margin-top: -50px;">
+            <div class="col-3" style="margin-top: -50px;">
                  <img  src="https://deutschtests.com/img/Goethe-A1-Prüfung.png" class="img-fluid w-100" alt="Goethe A1 Prüfung">
                  <img  src="https://deutschtests.com/img/goethe-B1-modelltest.png" class="img-fluid w-100" alt="goethe B1 modelltest">
              </div>
-             <div class="col-3" style="    margin-top: -28px;">
+             <div class="col-3" style="margin-top: -28px;">
                  <img  src="https://deutschtests.com/img/goethe-zertifikat-A2.png" class="img-fluid w-100" alt="goethe zertifikat A2">
                  <img  src="https://deutschtests.com/img/Goethe-B2-modelltest.png" class="img-fluid w-100" alt="Goethe B2 modelltest">
              </div>

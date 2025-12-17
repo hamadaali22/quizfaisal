@@ -147,7 +147,7 @@ export default {
     goToTelc() {
       let lang = this.$i18n.locale;
       const slugs = {
-        ar: 'نماذج-امتحان-Telc',
+        ar: 'Telc-نماذج-امتحان',
         en: 'telc-exam-online',
         de: 'deutsch-test-online',
         fr: 'allemand-examens-telc',

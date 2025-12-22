@@ -42,7 +42,6 @@
 
 
 
-
 <!--Goethe DE -->
 @if(Request::is(['/']))
 <title> Deutsch Tests online |Deutsch-Prüfungen</title>
@@ -143,7 +142,9 @@
 @endif
 @if(request()->path()=='de/placement/Deutsch-Einstufungstest')
 <title>Deutsch Einstufungstest A1-C2 │kostenlos </title>
-<meta content="Deutsch Einstufungstest, Deutsch Niveau Test" name="keywords">
+<meta
+    content="Deutsch Einstufungstest, Deutsch Niveau Test, deutsch einstufungstest kostenlos, deutsch test online kostenlos, deutsch einstufungstest online"
+    name="keywords">
 <meta content="Erfahren Sie Ihr Niveau sofort mit dem Deutsch Niveautets!" name="description">
 <link rel="canonical" href="https://deutschtests.com/de/placement/Deutsch-Einstufungstest" />
 @endif
@@ -158,17 +159,19 @@
 <meta
     content="Several free model tests for Goethe German exams and Telc German exams. The result appears at the end of the exam. Check out our German tests online and test your German!"
     name="description">
-<link rel="canonical" href="https://deutschtests.com/en/" />
+<link rel="canonical" href="https://deutschtests.com/en" />
 @endif
-@if(request()->path()=='en/telc/telc-exam-online/Telc-exam-B2')
+@if(request()->path()=='en/placement/German-placement-test')
 <title>German placement test A1-C2│free</title>
-<meta content="German placement test, Deutsch level test, german language placement test" name="keywords">
+<meta
+    content="German placement test, Deutsch level test, german language placement test, german language placement test, german placement exam"
+    name="keywords">
 <meta content="Start now your Deutsch Level test!" name="description">
-<link rel="canonical" href="https://deutschtests.com/en/telc/telc-exam-online/Telc-exam-B2" />
+<link rel="canonical" href="https://deutschtests.com/en/placement/German-placement-test" />
 @endif
 @if(request()->path()=='en/goethe/online-Goethe-exam')
 <title>free Goethe online exam | Goethe A1 exam to Goethe B2 exam</title>
-<meta content="Online Goethe exams, Goethe A1 exam, Goethe B2 exam, goethe online exam, goethe a2 exam, goethe b1 exam"
+<meta content="Online Goethe exams, Goethe A1 exam, Goethe B2 exam, goethe online exam, Goethe exam preparation"
     name="keywords">
 <meta
     content="several free model tests for Goethe German exams from Goethe A1 exam to Goethe B2 exam. Test your German and find out your result immediately!"
@@ -177,7 +180,7 @@
 @endif
 @if(request()->path()=='en/goethe/online-Goethe-exam/Goethe-Exam-A1')
 <title>Goethe Exam A1 | Goethe A1 Zertifikat </title>
-<meta content="Goethe Exam A1, A1 Goethe Exam, Goethe A1 model test, a1 german practice test, goethe model test a1"
+<meta content="Goethe Exam A1, A1 Goethe Exam, Goethe A1 model test, a1 german practice test, practice a1 german test"
     name="keywords">
 <meta
     content="Several free model tests for Goethe Exam A1. You can practice for A1 Goethe Exam here for free. Prepare for the Goethe A1 certificate with free Goethe A1 model test! You will find out your result immediately."
@@ -213,7 +216,7 @@
 <!-- Telc EN -->
 @if(request()->path()=='en/telc/telc-exam-online')
 <title>Telc exam online | Telc A1 exam to Telc B2 exam</title>
-<meta content="Telc A1 exam, Telc B2 exam, Telc exam online, telc b1 exam, telc b2 exam" name="keywords">
+<meta content="Telc A1 exam, Telc a2 exam, Telc exam online, telc b1 exam, Telc german test" name="keywords">
 <meta
     content="several free model tests for Telc German exams from Goethe A1 exam to Goethe B2 exam. Test your German and find out your result immediately!"
     name="description">
@@ -229,7 +232,7 @@
 @endif
 @if(request()->path()=='en/telc/telc-exam-online/Telc-A2-Test')
 <title>Telc A2 Test | Telc A2 Exam | Telc A2 certificate</title>
-<meta content="Telc A2 exam, Telc A2 test, model test A2 Telc, a2 telc exam, model test a2 telc" name="keywords">
+<meta content="Telc A2 exam, Telc A2 test, model test A2 Telc, a2 telc exam, telc german a2 exam" name="keywords">
 <meta
     content="Several free model tests A2 Telc . You can practice for the Telc A2 Test here. Prepare with free Telc A2 test samples for the Goethe A2 certificate! You will find out your result immediately."
     name="description">
@@ -256,118 +259,119 @@
 <!---Goethe AR --->
 @if(request()->path()=='ar')
 <title>نماذج امتحانات مجانية Goethe & Telc | نماذج امتحانات جوته و تلك</title>
-<meta
-    content="نماذج امتحانات جوته, اختبار تحديد مستوى المانى, A2 نماذج امتحان, B1 نماذج امتحان, a1 نماذج امتحان, b2 نماذج امتحان b2"
+<meta content="نماذج امتحان b1, نماذج امتحان a2, نماذج امتحان a1, نماذج امتحانات جوته , اختبار تحديد مستوى المانى"
     name="keywords">
 <meta
-    content="نماذج امتحانات جوته وتلك مجانية: نماذج امتحان A1 / نماذج امتحان A2 / نماذج امتحان B1 / نماذج امتحان B2. ابداء التحضير الان واحصل على نتيجتك مباشرة."
+    content=" نماذج  امتحان  :  ابداء التحضير الان واحصل على نتيجتك مباشرة b1 / نماذج امتحان a2/ نماذج امتحان a1  نماذج امتحانات جوته وتلك مجانية "
     name="description">
 <link rel="canonical" href="https://deutschtests.com/ar" />
 @endif
 @if(request()->path()=='ar/placement/امتحان-تحديد-مستوى-المانى')
-<title>امتحان تحديد مستوى المانى A1-C2 │مجاني</title>
-<meta content="امتحان تحديد مستوى الماني, " name="keywords">
+<title> مجاني | A1-C2 امتحان تحديد مستوى المانى </title>
+<meta
+    content=" امتحان تحديد مستوى المانى، اختبار مستوى اللغة الالمانية، اختبار تحديد مستوى اللغه الالمانيه، امتحان تحديد مستوى اللغه الالمانيه ، اختبار مستوى اللغة الالمانية "
+    name="keywords">
 <meta content="تعرف على مستواك اللغوي الحقيقي بفحص مستوى الماني" name="description">
 <link rel="canonical" href="https://deutschtests.com/ar/placement/امتحان-تحديد-مستوى-المانى" />
 @endif
 @if(request()->path()=='ar/goethe/نماذج-امتحانات-معهد-جوته')
-<title>نماذج امتحانات معهد قوته A2-A1 | نماذج امتحانات معهد قوته B2-B1</title>
+<title>B2-B1 نماذج امتحانات معهد قوته | A2-A1 نماذج امتحانات معهد قوته </title>
 <meta
-    content="b1 نماذج امتحانات معهد قوته, a1 نماذج امتحانات معهد قوته, a1 نماذج امتحانات, a2 امتحان جوته, be goethe نموذج امتحان"
+    content=" امتحان جوته a2 , نماذج امتحانات معهد جوته b1 , نموذج امتحان b2 goethe , نماذج امتحانات a1 ,   نماذج امتحانات معهد جوته"
     name="keywords">
 <meta
-    content="ابداء التحضير على امتحانات معهد جوته الرسمية بنماذج مجانية: نماذج امتحانات معهد قوته A1  / نماذج امتحانات معهد قوته A2 / نماذج امتحانات معهد قوته B1 /نماذج امتحانات معهد قوته B2. تحصل على النتيجة بشكل مباشر."
+    content="امتحان جوته تحصل على النتيجة بشكل مباشر a2  /نماذج امتحانات معهد جوته b1/نموذج امتحان b2 goethe/نماذج امتحانات a1/ابداء التحضير على امتحانات معهد جوته الرسمية بنماذج مجانية:  نماذج امتحانات معهد قوته "
     name="description">
 <link rel="canonical" href="https://deutschtests.com/ar/goethe/نماذج-امتحانات-معهد-جوته" />
 @endif
-@if(request()->path()=='ar/goethe/نماذج-امتحانات-معهد-جوته/a1-اختبار-الماني')
-<title>A1 معهد جوته |نماذج امتحان A1 مجانية </title>
+@if(request()->path()=='ar/goethe/نماذج-امتحانات-معهد-جوته/a1-نماذج-امتحان')
+<title> نماذج امتحان a1 | نماذج امتحان a1 معهد غوتة</title>
+<meta content="نماذج امتحان a1 ،  نماذج امتحان a1 معهد غوتة " name="keywords">
 <meta
-    content="معهد جوتة A1 نماذج امتحان    ,  معهد جوته A1 نماذج امتحان    , A1 نماذج امتحان, a1 نماذج امتحانات جوته, a1 نماذج امتحان غوته "
-    name="keywords">
-<meta
-    content="ابداء التحضير على امتحانات معهد جوته الرسمية بنماذج مجانية: نماذج امتحان A1 / نماذج امتحان A1 معهد جوته. احصل على النتيجة بشكل مباشر."
+    content="نماذج امتحان واحصل على النتيجة بشكل مباشر a1 / نماذج امتحان a1 ابداء التحضير على امتحانات معهد جوته الرسمية بنماذج مجانية: معهد غوتة"
     name="description">
-<link rel="canonical" href="https://deutschtests.com/ar/goethe/نماذج-امتحانات-معهد-جوته/a1-اختبار-الماني" />
+<link rel="canonical" href="https://deutschtests.com/ar/goethe/نماذج-امتحانات-معهد-جوته/a1-نماذج-امتحان" />
 @endif
 @if(request()->path()=='ar/goethe/نماذج-امتحانات-معهد-جوته/a2-امتحانات-جوته')
-<title>نماذج امتحانات معهد جوته | نموذج امتحان A2 مجاني</title>
+<title>نماذج امتحانات معهد جوته A2 | نموذج امتحان مجانى A2</title>
 <meta
-    content="ألماني a2 نموذج امتحان  , A2 نماذج امتحانات معهد جوته, A2 نموذج امتحان, A2 نموذج امتحان, a2 pdf نماذج امتحانات معهد جوته "
+    content="  امتحانات جوته a2  ,  نماذج امتحانات معهد جوته  a2 pdf  , نماذج امتحانات معهد جوته a2 , نموذج امتحان a2  , نموذج امتحان a2 ألماني"
     name="keywords">
 <meta
-    content="ابداء التحضير على امتحانات جوته  A2 الرسمية بنماذج مجانية: نماذج امتحانات معهد جوته A2 / نموذج اختبار A2 مجاني. احصل على النتيجة بشكل مباشر."
+    content=" امتحانات جوته واحصل على النتيجة بشكل مباشر a2 / نموذج امتحان a2 ابداء التحضير على امتحانات جوته الرسمية بنماذج مجانية: ألماني "
     name="description">
 <link rel="canonical" href="https://deutschtests.com/ar/goethe/نماذج-امتحانات-معهد-جوته/a2-امتحانات-جوته" />
 @endif
-@if(request()->path()=='ar/goethe/نماذج-امتحانات-معهد-جوته/نماذج-امتحانات-معهد-جوته-B1 ')
-<title>نماذج امتحانات معهد جوته B1 مجانيه | امتحان B1 الماني </title>
+@if(request()->path()=='ar/goethe/نماذج-امتحانات-معهد-جوته/b1-نماذج-امتحانات-معهد-جوته')
+<title> نماذج امتحانات معهد جوته B1 | امتحان B1 الماني</title>
 <meta
-    content=" مع الحلول b1 نماذج امتحان, b1 نماذج امتحانات معهد جوته, b1 نماذج امتحانات معهد جوته, telc b1 نموذج امتحان, "
+    content="نماذج امتحان غوته b1, نماذج امتحانات معهد جوته b1, نماذج امتحان b1 نماذج امتحان  , امع الحلول b1 امتحان  , الماني b1 الماني"
     name="keywords">
 <meta
-    content="ابداء التحضير على امتحانات جوته B1الرسمية بنماذج مجانية: نماذج امتحانات معهد جوته  B1 امتحان B1 الماني مجاني. احصل على النتيجة بشكل مباشر."
+    content="نماذج امتحانات معهد جوته واحصل على النتيجة بشكل مباشر b1 / امتحان b1 ابداء التحضير على امتحانات جوته الرسمية بنماذج مجانية: ألماني"
     name="description">
-<link rel="canonical" href="https://deutschtests.com/ar/goethe/نماذج-امتحانات-معهد-جوته/نماذج-امتحانات-معهد-جوته-B1" />
+<link rel="canonical" href="https://deutschtests.com/ar/goethe/نماذج-امتحانات-معهد-جوته/b1-نماذج-امتحانات-معهد-جوته" />
 @endif
-@if(request()->path()=='ar/goethe/نماذج-امتحانات-معهد-جوته/b2-امتحانت-جوته ')
-<title> امتحانات جوته| B2 نموذج امتحان B2 مجاني</title>
-<meta content=" مع الحل b2 نماذج امتحان, B2 نموذج امتحان, B2 امتحانات جوته, B2 Goethe امتحان, b2 pdf نماذج امتحان"
+@if(request()->path()=='ar/goethe/نماذج-امتحانات-معهد-جوته/b2-امتحانات-جوته')
+<title>نموذج امتحان b2 | امتحانات جوته مجانية b2</title>
+<meta content=" امتحانات جوته b2, نموذج امتحان b2, امتحان be goethe , نماذج امتحان b2 pdf , نماذج امتحان b2 مع الحل "
     name="keywords">
 <meta
-    content="ابداء التحضير على امتحانات جوته B2الرسمية بنماذج مجانية:اكثر من نموذج امتحان B2 مجاني. ابدا الان و احصل على النتيجة مباشره."
+    content="نموذج امتحان معهد جوته واحصل على النتيجة بشكل مباشر b2 / امتحانات جوته b2: ابداء التحضير على امتحانات جوته الرسمية بنماذج مجانية "
     name="description">
 <link rel="canonical" href="https://deutschtests.com/ar/goethe/نماذج-امتحانات-معهد-جوته/b2-امتحانات-جوته" />
 @endif
 
 <!-- Telc ar -->
 
-@if(request()->path()=='ar/telc/نماذج-امتحان-Telc')
-<title>Telc A1 | Telc A2 | Telc B2| Telc B1 نماذج امتحان</title>
+@if(request()->path()=='ar/telc/telc-نماذج-امتحان')
+<title> A1 Telc | A2 Telc | B1 Telc |نماذج امتحان B2 Telc </title>
 <meta
-    content="امتحان تحديد مستوى المانى , A2 Telc نماذج امتحان, B1 Telc نماذج امتحان, b2 telc نماذج امتحان, a1 telc نماذج امتحان"
+    content="نماذج امتحان telc ,نماذج امتحان b1 telc , نماذج امتحان b2 telc, نماذج امتحان a1 telc, نماذج امتحان a2 telc"
     name="keywords">
 <meta
-    content="ابداء التحضير على امتحانات Telc الرسمية بنماذج مجانية: نماذج امتحانTelc   A1/ نماذج امتحانTelc   A2/ نماذج امتحانTelc   B1/ نماذج امتحانTelc   B2. تحصل على النتيجة بشكل مباشر."
+    content=". نماذج امتحان وتحصل على النتيجة بشكل مباشر B2 Telc / نماذج امتحان B1 Telc / نماذج امتحان A2 Telc / نماذج امتحان A1 Telc :الرسمية بنماذج مجانية Telc ابداء التحضير على امتحانات "
     name="description">
-<link rel="canonical" href="https://deutschtests.com/ar/telc/نماذج-امتحان-Telc" />
+<link rel="canonical" href="https://deutschtests.com/ar/telc/telc-نماذج-امتحان" />
 @endif
-@if(request()->path()=='ar/telc/نماذج-امتحان-Telc/اختبار-a1-الماني')
-<title>نماذج اختبار A1 الماني |نماذج امتحان A1 Telc مجانية</title>
+@if(request()->path()=='ar/telc/telc-الماني/نماذج-امتحان-a1-اختبار')
+<title> مجانيه Telc A1 اختبار | نماذج امتحان A1 نماذج الماني </title>
 <meta
-    content="الماني a1 نموذج امتحان,  a1 اختبار, a1 اختبار الماني, a1 اختبار تحديد مستوى الماني, a1 نموذج امتحان الماني"
+    content="اختبار تحديد مستوى الماني a1, اختبار الماني a1, نموذج امتحان الماني a1, نموذج امتحان a1 اختبار , الماني a1 الماني"
     name="keywords">
 <meta
-    content="ابداء التحضير على امتحانات Telc الرسمية بنماذج مجانية: نماذج اختبار A1 الماني / نماذج امتحان A1 Telc مجانية. احصل على النتيجة بشكل مباشر."
+    content="نموذج امتحان الماني معهد جوته واحصل على النتيجة بشكل مباشر a1 / اختبار b1 ابداء التحضير على امتحانات جوته الرسمية بنماذج مجانية: ألماني"
     name="description">
-<link rel="canonical" href="https://deutschtests.com/ar/telc/نماذج-امتحان-Telc/اختبار-a1-الماني" />
+<link rel="canonical" href="https://deutschtests.com/ar/telc/telc-الماني/نماذج-امتحان-a1-اختبار" />
 @endif
-@if(request()->path()=='ar/telc/نماذج-امتحان-Telc/نماذج-امتحان-A2-Telc')
-<title>نماذج امتحانات معهد جوته | نموذج امتحان A2 مجاني</title>
-<meta content=" ألماني a2 نموذج امتحان, a2 telc نموذج امتحان, a2 telc pad نموذج امتحان, b1 telc نماذج فحص"
+@if(request()->path()=='ar/telc/telc-نماذج-امتحان/a2-telc-نماذج-امتحان')
+<title>نموذج امتحان A2 Telc | نماذج امتحانات معهد جوته A2 مجاني</title>
+<meta content="  , نماذج امتحان a2 telc , نموذج امتحان a2 telc , نموذج امتحان a2 نموذج امتحان , مع الحل a2 ألماني"
     name="keywords">
 <meta
     content="ابداء التحضير على امتحانات جوته  A2 الرسمية بنماذج مجانية: نماذج امتحانات معهد جوته A2 / نموذج اختبار A2 مجاني. احصل على النتيجة بشكل مباشر."
     name="description">
-<link rel="canonical" href="https://deutschtests.com/ar/telc/نماذج-امتحان-Telc/نماذج-امتحان-A2-Telc" />
+<link rel="canonical" href="https://deutschtests.com/ar/telc/telc-نماذج-امتحان/a2-telc-نماذج-امتحان" />
 @endif
-@if(request()->path()=='ar/telc/نماذج-امتحان-Telc/نماذج-امتحان-Telc-B1')
-<title>نموذج امتحان Telc B1مجاني |نموذج امتحان B1 مع الحل </title>
-<meta content="مع الحل B1 نموذج امتحان, telc b1 نموذج امتحان, telc b1 نماذج امتحان, b1 telc نماذج فحص,  "
+@if(request()->path()=='ar/telc/telc-نماذج-امتحان/telc-b1-نماذج-امتحان')
+<title>نموذج امتحان Telc B1 | نموذج امتحان مجاني B1 مع الحل </title>
+<meta
+    content="مع الحل b1 نموذج امتحان telc , نماذج امتحان b1 الماني telc , نماذج فحص b1 telc , نموذج امتحان telc b1 ,  نموذج امتحان b1 مع الحل  "
     name="keywords">
 <meta
     content="ابداء التحضير على امتحانات  Telc B1الرسمية بنماذج مجانية: اكثر من نموذج امتحان Telc B1 مجاني. احصل على النتيجة بشكل مباشر."
     name="description">
-<link rel="canonical" href="https://deutschtests.com/ar/telc/نماذج-امتحان-Telc/نماذج-امتحان-Telc-B1" />
+<link rel="canonical" href="https://deutschtests.com/ar/telc/telc-نماذج-امتحان/telc-b1-نماذج-امتحان" />
 @endif
-@if(request()->path()=='ar/telc/نماذج-امتحان-Telc/امتحان-B2-Telc')
-<title>نماذج امتحان B2 Telc مجانيه| امتحان Telc B2</title>
-<meta content="B2 telc نماذج امتحان, telc b2 امتحان, B2 امتحان تلك, b2 telc التحضير لامتحان, telc b2 نماذج امتحانات"
+@if(request()->path()=='ar/telc/telc-نماذج-امتحان/telc-b2-امتحان')
+<title>نماذج امتحان مجانيه B2 Telc | امتحان Telc B2 </title>
+<meta
+    content="  التحضير لامتحان b2 telc , نماذج امتحان b2 telc pdf , امتحان telc b2  , امتحان تلك b2  , نموذج امتحان telc b2   "
     name="keywords">
 <meta
     content="ابداء التحضير على امتحان Telc B2 الرسمية بنماذج مجانية: نماذج امتحان B2 Telc مجانيه. ابداء الان واحصل على نتيجتك مباشره. "
     name="description">
-<link rel="canonical" href="https://deutschtests.com/ar/telc/نماذج-امتحان-Telc/امتحان-B2-Telc" />
+<link rel="canonical" href="https://deutschtests.com/ar/telc/telc-نماذج-امتحان/telc-b2-امتحان	" />
 @endif
 
 
@@ -384,7 +388,9 @@
 @endif
 @if(request()->path()=='fr/placement/test-de-niveau-allemand')
 <title>Test de niveau d'allemand A1-C2 │Gratuit</title>
-<meta content="est de niveau allemand, test niveau allemand, " name="keywords">
+<meta
+    content="test de niveau allemand, test niveau allemand, test de langue allemand, test gratuit allemand, test allemand gratuit"
+    name="keywords">
 <meta content="Découvrez instantanément votre niveau grâce au test de niveau allemand !" name="description">
 <link rel="canonical" href="https://deutschtests.com/fr/placement/test-de-niveau-allemand" />
 @endif
@@ -398,7 +404,7 @@
 <link rel="canonical" href="https://deutschtests.com/fr/goethe/goethe-institut-examens" />
 @endif
 @if(request()->path()=='fr/goethe/goethe-institut-examens/examen-goethe-a1')
-<title>Examen Goethe A1| Certificat Goethe A1 </title>
+<title>Examen Goethe A1 | Certificat Goethe A1 </title>
 <meta
     content="Examen Goethe A1, Goethe Institut A1, examen A1 allemand exemple, niveau a1 allemand test, teste goethe a1"
     name="keywords">
@@ -441,8 +447,7 @@ immédiatement votre résultat." name="description">
 
 @if(request()->path()=='fr/telc/allemand-examens-telc')
 <title>Examens d'allemand Telc| Examens gratuits du test allemand a1 à test allemand b2</title>
-<meta
-    content="test allemand a1, Goethe institut examens, test allemand b2, allemand test niveau, allemand test de niveau"
+<meta content="test allemand a1, test allemand b2, allemand test niveau, allemand test de niveau, examen allemand a1"
     name="keywords">
 <meta
     content="Examens d'allemand Telc gratuits en ligne. Pratiquez et testez vos compétences en allemand. Le résultat apparaît immédiatement."
@@ -478,7 +483,8 @@ immédiatement votre résultat." name="description">
 @endif
 @if(request()->path()=='fr/telc/allemand-examens-telc/telc-examen-b2')
 <title>Telc Examen B2 gratuit | B2 allemand examen gratuit</title>
-<meta content="Telc Examen B2, B2 allemand examen, examen Telc B2,  " name="keywords">
+<meta content="Telc Examen B2, B2 allemand examen, examen Telc B2, telc b2 allemand, examen telc b2 allemand"
+    name="keywords">
 <meta
     content="Plusieurs modèles de tests gratuits pour le Telc Examen B2. Vous pouvez vous entraîner pour le B2 allemand examen ici. Préparez-vous gratuitement avec un test du modèle examen Telc B2! Vous connaîtrez immédiatement votre résultat."
     name="description">
@@ -495,18 +501,20 @@ immédiatement votre résultat." name="description">
     name="description">
 <link rel="canonical" href="https://deutschtests.com/es" />
 @endif
-@if(request()->path()=='es/placement/Test-de-nivel-de-alemá')
+@if(request()->path()=='es/placement/Test-de-nivel-de-alemán')
 <title>Test de nivel de alemán A1-C2 │Gratis</title>
-<meta content="Test de nivel de alemán, prueba de nivel de alemán" name="keywords">
+<meta content="prueba de nivel de alemán, test nivel alemán, examen de aleman, test de aleman, test de aleman online"
+    name="keywords">
 <meta content="¡Descubre tu nivel al instante con el Test de nivel de alemán!" name="description">
-<link rel="canonical" href="https://deutschtests.com/es/placement/Test-de-nivel-de-alemá" />
+<link rel="canonical" href="https://deutschtests.com/es/placement/Test-de-nivel-de-alemán" />
 @endif
 @if(request()->path()=='es/goethe/alemán-Goethe-tests')
-<title>Exámenes alemán Goethe gratis desde Goethe examen a1 hasta Goethe examen b2</title>
-<meta content="Goethe examen B2, Goethe examen A1, certificado Goethe institut, examen a2 aleman, ejercicios a2 aleman"
+<title>Exámenes alemán Goethe gratis desde certificado goethe a1 hasta certificado Goethe B2 </title>
+<meta
+    content="certificado goethe a1, certificado goethe b1, goethe institut b2 test, examen a2 aleman, certificado Goethe institut"
     name="keywords">
 <meta
-    content="Exámenes Goethe de alemán gratis con comprensión lectora y comprensión auditiva desde el examen Goethe A1 hasta el examen Goethe B2. Consulte nuestros exámenes de alemán en línea y pruebe su alemán"
+    content="Exámenes Goethe de alemán gratis con comprensión lectora y comprensión auditiva desde el examen Goethe A1 hasta el Goethe institut B2 test. Consulte nuestros exámenes de alemán en línea y pruebe su alemán"
     name="description">
 <link rel="canonical" href="https://deutschtests.com/es/goethe/alemán-Goethe-tests" />
 @endif
@@ -551,7 +559,7 @@ immédiatement votre résultat." name="description">
 
 @if(request()->path()=='es/telc/examen-telc-aleman')
 <title>exámenes Telc alemán| examen Telc Alemán A1 hasta examen Telc B2 Alemán</title>
-<meta content="Exámenes Telc alemán, examen Telc B2, examen Telc Alemán A1, examen telc b1 alemán, examen telc"
+<meta content="examen de alemán a1, examen telc b2, examen aleman Goethe, examen telc aleman, examen Telc B2 Alemán"
     name="keywords">
 <meta
     content="Exámenes Telc de alemán gratis con comprensión lectora y comprensión auditiva desde el examen Telc Alemán A1  hasta el examen Telc B2 Alemán. Consulte nuestros exámenes de alemán en línea y pruebe su alemán."
@@ -561,7 +569,7 @@ immédiatement votre résultat." name="description">
 @if(request()->path()=='es/telc/examen-telc-aleman/telc-a1-modelltest')
 <title>Telc A1 Modelltest | examen de alemán A1</title>
 <meta
-    content="aleman A1 ejercicios, examen Telc A1 aleman, examen a1 aleman ejemplo, Telc A1 Modelltest, certificacion aleman a1, certificado de aleman a1"
+    content="aleman A1 ejercicios, examen Telc A1 aleman, examen a1 aleman ejemplo, Telc A1 Modelltest, examen de alemán A1"
     name="keywords">
 <meta
     content="Aleman a1 ejercicios gratuitos y exámenes modelo para el examen de alemán A1. Puedes practicar para el Examen Telc A1 aleman aquí. ¡Prepárate gratis con una prueba del modelo Telc A1! Descubrirás tu resultado inmediatamente."
@@ -580,7 +588,7 @@ immédiatement votre résultat." name="description">
 @if(request()->path()=='es/telc/examen-telc-aleman/Telc-Zertifikat-B1')
 <title>Telc Zertifikat B1| certificacion Aleman B1 Telc</title>
 <meta
-    content="Examen B1 Telc, examen Telc B1 alemán, certificacion aleman B1, certificado b1 aleman, examen telc b1 aleman"
+    content="Examen B1 Telc, examen Telc B1 alemán, certificacion aleman B1, telc zertifikat b1, examen telc b1 aleman"
     name="keywords">
 <meta
     content="Varios modelos de pruebas gratuitos para el examen B1 Telc. Puedes practicar para el certificacion Aleman B1 aquí. Prepárate con una prueba del modelo examen B1 Telc y conoce tu resultado de inmediato."

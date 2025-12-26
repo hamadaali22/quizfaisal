@@ -17,7 +17,7 @@ use App\User;
 use App\Question;
 use App\SubQuestion;
 use Carbon\Carbon;
-
+use App\Mail\ContactMail;
 class HomeController extends Controller
 {
     use GeneralTrait;
@@ -342,4 +342,29 @@ class HomeController extends Controller
             return $this->returnError('You must login first');
          // return $this -> returnDataa('data',$user,'');
      }
+    
+    public function ContactUs(Request $request)
+    {
+        // dd('fff');
+        // $request->validate([
+        //     'name'    => 'required|string',
+        //     'email'   => 'required|email',
+        //     'subject' => 'required|string',
+        //     'message' => 'required|string',
+        // ]);
+
+        Mail::to('hamadaali221133@gmail.com')->send(
+            new ContactMail(
+                $request->name,
+                $request->email,
+                $request->message,
+                $request->subject
+            )
+        );
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Your message has been sent'
+        ]);
+    }
 }

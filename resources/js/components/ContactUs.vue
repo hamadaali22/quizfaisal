@@ -1,97 +1,144 @@
 <template>
-    <!--Section: Contact v.2-->
-    <div class="container">
-        <section class="mb-4">
+  <div class="container">
+    <section class="mb-4">
 
-            <!--Section heading-->
-            <h2 class="h1-responsive font-weight-bold text-center my-4">Contact us</h2>
-            <!--Section description-->
-            <p class="text-center w-responsive mx-auto mb-5">Do you have any questions? Please do not hesitate to contact us directly. Our team will come back to you within
-                a matter of hours to help you.</p>
+      <h2 class="h1-responsive font-weight-bold text-center my-4">
+        Contact us
+      </h2>
+
+      <p class="text-center w-responsive mx-auto mb-5">
+        Do you have any questions? Please do not hesitate to contact us directly.
+      </p>
+
+      <div class="row">
+        <!-- Form -->
+        <div class="col-md-9 mb-md-0 mb-5">
+
+          <!-- 👇 Vue submit -->
+          <form @submit.prevent="sendMessage">
 
             <div class="row">
-                <!--Grid column-->
-                <div class="col-md-9 mb-md-0 mb-5">
-                    <form id="contact-form" name="contact-form" action="mail.php" method="POST">
-
-                        <!--Grid row-->
-                        <div class="row">
-
-                            <!--Grid column-->
-                            <div class="col-md-6">
-                                <div class="md-form mb-0">
-                                    <input type="text" id="name" name="name" class="form-control">
-                                    <label for="name" class="">Your name</label>
-                                </div>
-                            </div>
-                            <!--Grid column-->
-
-                            <!--Grid column-->
-                            <div class="col-md-6">
-                                <div class="md-form mb-0">
-                                    <input type="text" id="email" name="email" class="form-control">
-                                    <label for="email" class="">Your email</label>
-                                </div>
-                            </div>
-                            <!--Grid column-->
-
-                        </div>
-                        <!--Grid row-->
-
-                        <!--Grid row-->
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="md-form mb-0">
-                                    <input type="text" id="subject" name="subject" class="form-control">
-                                    <label for="subject" class="">Subject</label>
-                                </div>
-                            </div>
-                        </div>
-                        <!--Grid row-->
-
-                        <!--Grid row-->
-                        <div class="row">
-
-                            <!--Grid column-->
-                            <div class="col-md-12">
-
-                                <div class="md-form">
-                                    <textarea type="text" id="message" name="message" rows="2" class="form-control md-textarea"></textarea>
-                                    <label for="message">Your message</label>
-                                </div>
-
-                            </div>
-                        </div>
-                        <!--Grid row-->
-                        <div class="text-center text-md-left">
-                            <a data-mdb-ripple-init class="btn btn-primary" onclick="document.getElementById('contact-form').submit();">Send</a>
-                        </div>
-                    </form>
-                    
-                    <div class="status"></div>
+              <div class="col-md-6">
+                <div class="md-form mb-0">
+                  <input type="text" class="form-control" v-model="form.name" />
+                  <label>Your name</label>
                 </div>
-                <!--Grid column-->
-                <!--Grid column-->
-                <div class="col-md-3 text-center">
-                    <ul class="list-unstyled mb-0">
-                        <li><i class="fas fa-map-marker-alt fa-2x"></i>
-                            <p>Kurhausstr. 10 52062 Aachen</p>
-                        </li>
+              </div>
 
-                        <li><i class="fas fa-phone mt-4 fa-2x"></i>
-                            <p>+4917667716469</p>
-                        </li>
-
-                        <li><i class="fas fa-envelope mt-4 fa-2x"></i>
-                            <p>info@deutschtests.com</p>
-                        </li>
-                    </ul>
+              <div class="col-md-6">
+                <div class="md-form mb-0">
+                  <input type="email" class="form-control" v-model="form.email" />
+                  <label>Your email</label>
                 </div>
-                <!--Grid column-->
-
+              </div>
             </div>
 
-        </section>
-    </div>
-<!--Section: Contact v.2-->
+            <div class="row mt-3">
+              <div class="col-md-12">
+                <div class="md-form mb-0">
+                  <input type="text" class="form-control" v-model="form.subject" />
+                  <label>Subject</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="row mt-3">
+              <div class="col-md-12">
+                <div class="md-form">
+                  <textarea rows="3" class="form-control md-textarea" v-model="form.message"></textarea>
+                  <label>Your message</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="text-center text-md-left mt-3">
+              <button class="btn btn-primary" type="submit" :disabled="loading">
+                {{ loading ? 'Sending...' : 'Send' }}
+              </button>
+            </div>
+
+          </form>
+
+          <!-- Messages -->
+          <p v-if="success" class="text-success mt-3">{{ success }}</p>
+          <p v-if="error" class="text-danger mt-3">{{ error }}</p>
+
+        </div>
+
+        <!-- Info -->
+        <div class="col-md-3 text-center">
+          <ul class="list-unstyled mb-0">
+            <li>
+              <i class="fas fa-map-marker-alt fa-2x"></i>
+              <p>Kurhausstr. 10 52062 Aachen</p>
+            </li>
+
+            <li>
+              <i class="fas fa-phone mt-4 fa-2x"></i>
+              <p>+4917667716469</p>
+            </li>
+
+            <li>
+              <i class="fas fa-envelope mt-4 fa-2x"></i>
+              <p>info@deutschtests.com</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </section>
+  </div>
 </template>
+<script>
+import axios from "axios";
+
+export default {
+  name: "ContactUs",
+
+  data() {
+    return {
+      loading: false,
+      success: "",
+      error: "",
+      form: {
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
+      },
+    };
+  },
+
+  methods: {
+    async sendMessage() {
+      this.loading = true;
+      this.success = "";
+      this.error = "";
+
+      try {
+        const res = await axios.post(
+          "https://deutschtests.com/api/contact-us",
+          this.form
+        );
+
+        if (res.data.status) {
+          this.success = res.data.message;
+
+          // reset form
+          this.form = {
+            name: "",
+            email: "",
+            subject: "",
+            message: "",
+          };
+        }
+      } catch (err) {
+        this.error =
+          err.response?.data?.message || "Something went wrong";
+      } finally {
+        this.loading = false;
+      }
+    },
+  },
+};
+</script>

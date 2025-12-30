@@ -1,13 +1,13 @@
 <template>
-  <div class="container">
+  <div class="container" Style="direction: rtl;text-align: right;">
     <section class="mb-4">
 
       <h2 class="h1-responsive font-weight-bold text-center my-4">
-        Contact us
+        {{ $t('contactUs') }} 
       </h2>
 
       <p class="text-center w-responsive mx-auto mb-5">
-        Do you have any questions? Please do not hesitate to contact us directly.
+        {{ $t('DoYouHaveSuggestion') }}
       </p>
 
       <div class="row">
@@ -21,14 +21,14 @@
               <div class="col-md-6">
                 <div class="md-form mb-0">
                   <input type="text" class="form-control" v-model="form.name" />
-                  <label>Your name</label>
+                  <label>{{ $t('name') }} </label>
                 </div>
               </div>
 
               <div class="col-md-6">
                 <div class="md-form mb-0">
                   <input type="email" class="form-control" v-model="form.email" />
-                  <label>Your email</label>
+                  <label>{{ $t('Email') }}</label>
                 </div>
               </div>
             </div>
@@ -37,7 +37,7 @@
               <div class="col-md-12">
                 <div class="md-form mb-0">
                   <input type="text" class="form-control" v-model="form.subject" />
-                  <label>Subject</label>
+                  <label>{{ $t('subject') }}</label>
                 </div>
               </div>
             </div>
@@ -46,14 +46,15 @@
               <div class="col-md-12">
                 <div class="md-form">
                   <textarea rows="3" class="form-control md-textarea" v-model="form.message"></textarea>
-                  <label>Your message</label>
+                  <label>{{ $t('yourMessage') }}</label>
                 </div>
               </div>
             </div>
 
             <div class="text-center text-md-left mt-3">
               <button class="btn btn-primary" type="submit" :disabled="loading">
-                {{ loading ? 'Sending...' : 'Send' }}
+               
+                {{ loading ? 'Sending...' : $t('send') }}
               </button>
             </div>
 

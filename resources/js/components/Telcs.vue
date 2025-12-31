@@ -150,7 +150,7 @@ export default {
         ar: 'نماذج-امتحان-Telc',
         fr: 'allemand-examens-telc',
         es: 'examen-telc-aleman',
-        de: 'telc-tests',
+        de: 'telc-tests-online',
       };
       const slugs2 = {
         en: item.slug_en,

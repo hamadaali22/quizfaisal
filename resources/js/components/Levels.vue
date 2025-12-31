@@ -187,7 +187,7 @@ export default {
         ar: 'نماذج-امتحانات-معهد-جوته',
         fr: 'goethe-institut-examens',
         es: 'alemán-Goethe-tests',
-        de: 'goethe-tests',
+        de: 'goethe-deutsch-test',
       };
       const slugs2 = {
         en: item.slug_en,

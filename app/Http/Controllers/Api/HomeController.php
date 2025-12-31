@@ -353,7 +353,7 @@ class HomeController extends Controller
         //     'message' => 'required|string',
         // ]);
 
-        Mail::to('hamadaali221133@gmail.com')->send(
+        Mail::to('Jordandeutschlehrer@gmail.com')->send(
             new ContactMail(
                 $request->name,
                 $request->email,

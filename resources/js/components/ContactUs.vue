@@ -1,5 +1,5 @@
 <template>
-  <div class="container" Style="direction: rtl;text-align: right;">
+  <div class="container" :style="$i18n.locale==='ar' ? 'direction: rtl; text-align: right;' : ''">
     <section class="mb-4">
 
       <h2 class="h1-responsive font-weight-bold text-center my-4">
@@ -71,7 +71,8 @@
           <ul class="list-unstyled mb-0">
             <li>
               <i class="fas fa-map-marker-alt fa-2x"></i>
-              <p>Kurhausstr. 10 52062 Aachen</p>
+              <p>Kurhausstr. 10 <br>
+                52062 Aachen</p>
             </li>
 
             <li>

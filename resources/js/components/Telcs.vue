@@ -159,7 +159,6 @@ export default {
         es: item.slug_es,
         de: item.slug_de,
       };
-
       return `/telc/${slugs[this.$i18n.locale]}/${slugs2[this.$i18n.locale] || item.slug_de}`;
     },
     getLevelDesc(item) {

@@ -147,7 +147,7 @@ export default {
       console.log(this.$i18n.locale);
       const slugs = {
         en: 'telc-exam-online',
-        ar: 'نماذج-امتحان-Telc',
+        ar: 'Telc-نماذج-امتحان',
         fr: 'allemand-examens-telc',
         es: 'examen-telc-aleman',
         de: 'deutsch-test-online',

@@ -25,10 +25,10 @@
        <div class="col-lg ">
           <div class="row">
              <div class="col-4">
-                 <img  src="https://deutschtests.com/img/Goethe-C1-Prüfung.png" class="img-fluid w-100" alt="Goethe C1 Prüfung">
+                 <img  src="https://deutschtests.com/img/Goethe-C1-Prüfung.png" class="img-fluid w-100" :alt="altText1[currentLanguage]">
              </div>
              <div class="col-4">
-                 <img  src="https://deutschtests.com/img/Goethe-Deutsch-Prüfungen.png" class="img-fluid w-100" alt="Goethe Deutsch Prüfungen">
+                 <img  src="https://deutschtests.com/img/Goethe-Deutsch-Prüfungen.png" class="img-fluid w-100" :alt="altText2[currentLanguage]">
              </div>
              
           </div>
@@ -37,12 +37,12 @@
 
             </div>
             <div class="col-3" style="margin-top: -50px;">
-                 <img  src="https://deutschtests.com/img/Goethe-A1-Prüfung.png" class="img-fluid w-100" alt="Goethe A1 Prüfung">
-                 <img  src="https://deutschtests.com/img/goethe-B1-modelltest.png" class="img-fluid w-100" alt="goethe B1 modelltest">
+                 <img  src="https://deutschtests.com/img/Goethe-A1-Prüfung.png" class="img-fluid w-100" :alt="altText3[currentLanguage]">
+                 <img  src="https://deutschtests.com/img/goethe-B1-modelltest.png" class="img-fluid w-100" :alt="altText4[currentLanguage]">
              </div>
              <div class="col-3" style="margin-top: -28px;">
-                 <img  src="https://deutschtests.com/img/goethe-zertifikat-A2.png" class="img-fluid w-100" alt="goethe zertifikat A2">
-                 <img  src="https://deutschtests.com/img/Goethe-B2-modelltest.png" class="img-fluid w-100" alt="Goethe B2 modelltest">
+                 <img  src="https://deutschtests.com/img/goethe-zertifikat-A2.png" class="img-fluid w-100" :alt="altText5[currentLanguage]">
+                 <img  src="https://deutschtests.com/img/Goethe-B2-modelltest.png" class="img-fluid w-100" :alt="altText6[currentLanguage]">
              </div>
             
              
@@ -50,7 +50,7 @@
           </div>
           <div class="row mt-3 mb-5">
              <div class="col-3" style="    margin-top: -55px;">
-                 <img  src="https://deutschtests.com/img/deutsch-online-lernen.png" class="img-fluid w-100" alt="deutsch online lernen">
+                 <img  src="https://deutschtests.com/img/deutsch-online-lernen.png" class="img-fluid w-100" :alt="altText7[currentLanguage]">
              </div>
             
           </div>
@@ -112,53 +112,53 @@ export default {
     return {
       currentLanguage: this.$i18n.locale,
       altText1: {
-        en: "goethe exam b2",
-        ar: "نماذج غوته a1",
-        fr: "allemand test niveau",
-        es: "aprender aleman gratis",
-        de: "Goethe C1 Prüfung",
+        en: "Goethe exam preparation",
+        ar: "نماذج امتحانات معهد جوته a1-c1",
+        fr: "test de niveau allemand",
+        es: "certificado Goethe institut a1-c1",
+        de: "Goethe Deutsch-Prüfungen",
       },
       altText2: {
-        en: "goethe online test",
-        ar: "نماذج امتحان b2",
-        fr: "test niveau allemand",
-        es: "certificado goethe institut",
-        de: "Goethe Deutsch Prüfungen",
+        en: "goethe online exam",
+        ar: "نماذج امتحانات معهد جوته",
+        fr: "Goethe institut examens",
+        es: "certificado Goethe institut",
+        de: "Goethe C1 Prüfung - b1 - a1",
       },
       altText3: {
-        en: "a1 goethe exam",
-        ar: "نماذج امتحان a1",
-        fr: "teste goethe a1",
+        en: "Goethe A1 exam",
+        ar: "نماذج امتحانات a1",
+        fr: "test allemand a1",
         es: "certificado goethe a1",
-        de: "Goethe A1 Prüfung",
+        de: "Goethe A1 Prüfung",
       },
       altText4: {
-        en: "german a2 exam",
-        ar: "امتحان b2 الماني",
-        fr: "goethe examen a2",
-        es: "examen a2 goethe",
-        de: "goethe zertifikat A2",
+        en: "Goethe A1 exam - b1",
+        ar: "نماذج امتحانات معهد جوته b1",
+        fr: "test allemand a1 - b1",
+        es: "examen a2 aleman",
+        de: "deutsch online lernen a2",
       },
       altText5: {
-        en: "goethe test b1",
-        ar: "نماذج امتحان b1",
-        fr: "goethe institut b1",
-        es: "examen aleman b1",
-        de: "goethe B1 modelltest",
+        en: "Goethe B2 exam - b1",
+        ar: "نموذج امتحان b2 goethe",
+        fr: "test allemand b2 -b1",
+        es: "examen a2 aleman",
+        de: "deutsch online lernen b1",
       },
-      altText5: {
-        en: "goethe b2 exam",
+      altText6: {
+        en: "Goethe B2 exam",
         ar: "امتحانات جوته b2",
-        fr: "examen b2 goethe institut",
+        fr: "test allemand b2",
         es: "goethe test b2",
-        de: "Goethe B2 modelltest",
+        de: "deutsch online lernen b2",
       },
-      altText5: {
-        en: "goethe institut online test",
-        ar: "نماذج امتحانات a1",
-        fr: "exercices allemand en ligne",
-        es: "examen c1 aleman",
-        de: "deutsch online lernen",
+      altText7: {
+        en: "goethe online exam",
+        ar: "نماذج امتحانات معهد جوته",
+        fr: "institut de Goethe",
+        es: "certificado Goethe institut",
+        de: "Lesenverstehen üben",
       },
     }
 

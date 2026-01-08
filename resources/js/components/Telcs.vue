@@ -24,10 +24,10 @@
        <div class="col-lg ">
           <div class="row">
              <div class="col-4">
-                 <img  src="https://deutschtests.com/img/Telc-Tests.png" class="img-fluid w-100" alt="Telc Tests">
+                 <img  src="https://deutschtests.com/img/Telc-Tests.png" class="img-fluid w-100" :alt="altText1[currentLanguage]">
              </div>
              <div class="col-4">
-                 <img  src="https://deutschtests.com/img/Telc-Deutsch-Prüfungen.png" class="img-fluid w-100" alt="Telc Deutsch Prüfungen">
+                 <img  src="https://deutschtests.com/img/Telc-Deutsch-Prüfungen.png" class="img-fluid w-100" :alt="altText2[currentLanguage]">
              </div>
              
           </div>
@@ -36,17 +36,17 @@
 
             </div>
             <div class="col-3" style="    margin-top: -50px;">
-                 <img  src="https://deutschtests.com/img/Telc-A1-Prüfung.png" class="img-fluid w-100" alt="Telc A1 Prüfung">
-                 <img  src="https://deutschtests.com/img/prüfung-telc-b1.png" class="img-fluid w-100" alt="prüfung telc b1">
+                 <img  src="https://deutschtests.com/img/Telc-A1-Prüfung.png" class="img-fluid w-100" :alt="altText3[currentLanguage]">
+                 <img  src="https://deutschtests.com/img/prüfung-telc-b1.png" class="img-fluid w-100" :alt="altText4[currentLanguage]">
              </div>
              <div class="col-3" style="    margin-top: -28px;">
-                 <img  src="https://deutschtests.com/img/telc-a2-modelltest.png" class="img-fluid w-100" alt="telc a2 modelltest">
-                 <img  src="https://deutschtests.com/img/telc-b2-modelltest.png" class="img-fluid w-100" alt="telc b2 modelltest">
+                 <img  src="https://deutschtests.com/img/telc-a2-modelltest.png" class="img-fluid w-100" :alt="altText5[currentLanguage]">
+                 <img  src="https://deutschtests.com/img/telc-b2-modelltest.png" class="img-fluid w-100" :alt="altText6[currentLanguage]">
              </div>
           </div>
           <div class="row mt-3 mb-5">
              <div class="col-3" style="    margin-top: -55px;">
-                 <img  src="https://deutschtests.com/img/Telc-C1-Prüfung.png" class="img-fluid w-100" alt="Telc C1 Prüfung">
+                 <img  src="https://deutschtests.com/img/Telc-C1-Prüfung.png" class="img-fluid w-100" :alt="altText7[currentLanguage]">
              </div>
           </div>
         </div>
@@ -75,53 +75,53 @@ export default {
     return {
       currentLanguage: this.$i18n.locale,
       altText1: {
-        en: "telc b1 exam preparation",
-        ar: "نماذج امتحان a2 telc",
-        fr: "test allemand a1 gratuit",
-        es: "examen telc aleman",
+        en: "Telc german exam",
+        ar: "نموذج امتحان telc",
+        fr: "allemand test niveau",
+        es: "examen telc",
         de: "Telc Tests",
       },
       altText2: {
-        en: "goethe exam b2",
-        ar: "اختبار تحديد مستوى المانى",
-        fr: "test gratuit allemand",
-        es: "telc examen",
-        de: "Telc Deutsch Prüfungen",
+        en: "Telc german test",
+        ar: "نماذج امتحان telc",
+        fr: "allemand test de niveau",
+        es: "examen telc aleman",
+        de: "Telc Deutsch-Prüfungen",
       },
       altText3: {
-        en: "telc a1 exam",
-        ar: "نماذج امتحان a1",
-        fr: "certificat a1 allemand",
-        es: "telc a1 modelltest",
-        de: "GTelc A1 Prüfung",
+        en: "Telc A1 exam",
+        ar: "نماذج امتحان a1 telc",
+        fr: "examen allemand a1",
+        es: "examen de alemán a1",
+        de: "Telc A1 Prüfung",
       },
       altText4: {
-        en: "telc a2 test",
-        ar: "نماذج امتحان a2",
-        fr: "test niveau a2 allemand",
-        es: "telc a2 modelltest",
-        de: "telc a2 modelltest",
-      },
-      altText5: {
-        en: "telc exam b1",
+        en: "telc b1 exam",
         ar: "نماذج امتحان b1 telc",
-        fr: "examen telc b1",
-        es: "telc b1 zertifikat",
-        de: "prüfung telc b1",
+        fr: "allemand test niveau",
+        es: "examen telc b1 alemán",
+        de: "prüfung telc b1",
       },
       altText5: {
+        en: "Telc a2 exam",
+        ar: "نماذج امتحان a2 telc",
+        fr: "test allemand a2",
+        es: "examen a2 aleman online",
+        de: "prüfung telc a2",
+      },
+      altText6: {
         en: "telc exam b2",
-        ar: "نماذج امتحان b2 telc pdf",
-        fr: "examen telc b2 allemand",
-        es: "examen telc b2 alemán",
-        de: "telc b2 modelltest",
+        ar: "نماذج امتحان b2 telc",
+        fr: " test allemand b2",
+        es: "examen telc b2",
+        de: "Telc C1 hoschole b2",
       },
-      altText5: {
-        en: "german level test free",
-        ar: "نموذج امتحان a1 معهد غوتة",
-        fr: "certificat allemand en ligne",
-        es: "examen c1 aleman",
-        de: "Telc C1 Prüfung",
+      altText7: {
+        en: "Telc exam online c1",
+        ar: "نماذج امتحان c1 telc",
+        fr: "test allemand c1",
+        es: "examen telc C1",
+        de: "Telc C1 Prüfung",
       },
     }
 

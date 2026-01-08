@@ -23,7 +23,7 @@
             <div class="col-4">
             </div>
              <div class="col-5">
-                 <img :src="'https://deutschtests.com/img/goethe/'+getLevelDesc.level_images[0].name"  class="img-fluid w-100" :alt="getLevelDesc.alt_goethe1">
+                 <img :src="'https://deutschtests.com/img/goethe/'+getLevelDesc.level_images[0].name"  class="img-fluid w-100" :alt="getLevelDesc.level_images[0]['alt_' + $i18n.locale]">
              </div>
              
           </div>
@@ -31,16 +31,16 @@
             <div class="col-4">
             </div>
              <div class="col-5">
-                 <img  :src="'https://deutschtests.com/img/goethe/'+getLevelDesc.level_images[1].name" class="img-fluid w-100" :alt="getLevelDesc.alt_goethe2">
+                 <img  :src="'https://deutschtests.com/img/goethe/'+getLevelDesc.level_images[1].name" class="img-fluid w-100" :alt="getLevelDesc.level_images[1]['alt_' + $i18n.locale]">
              </div>
              
           </div>
           <div class="row">
             <div class="col-2">
-                 <img  :src="'https://deutschtests.com/img/goethe/'+getLevelDesc.level_images[4].name" class="img-fluid w-100" :alt="getLevelDesc.alt_goethe5">
+                 <img  :src="'https://deutschtests.com/img/goethe/'+getLevelDesc.level_images[4].name" class="img-fluid w-100" :alt="getLevelDesc.level_images[4]['alt_' + $i18n.locale]">
              </div>
             <div class="col-2">
-              <img  :src="'https://deutschtests.com/img/goethe/'+getLevelDesc.level_images[3].name" class="img-fluid w-100" :alt="getLevelDesc.alt_goethe4">
+              <img  :src="'https://deutschtests.com/img/goethe/'+getLevelDesc.level_images[3].name" class="img-fluid w-100" :alt="getLevelDesc.level_images[3]['alt_' + $i18n.locale]">
             </div>
            
              <div class="col-4">
@@ -48,7 +48,7 @@
              </div>
              
              <div class="col-3">
-                 <img  :src="'https://deutschtests.com/img/goethe/'+getLevelDesc.level_images[2].name" class="img-fluid w-100" :alt="getLevelDesc.alt_goethe3">
+                 <img  :src="'https://deutschtests.com/img/goethe/'+getLevelDesc.level_images[2].name" class="img-fluid w-100" :alt="getLevelDesc.level_images[2]['alt_' + $i18n.locale]+'lllll'">
              </div>
              
           </div>
@@ -70,6 +70,7 @@ export default {
         return {
             // levelId:this.$route.params.id,
             levelslug:this.$route.params.slug,
+            
         }
     },
     computed:{

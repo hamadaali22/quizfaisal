@@ -30,6 +30,7 @@ import MyResult from '../components/MyResult.vue'
 import PlacementTest from '../components/PlacementTest.vue'
 import PlacementQuestions from '../components/PlacementQuestions.vue'
 import PlacementResult from '../components/PlacementResult.vue'
+import Terms from '../components/Terms.vue'
 
 
 
@@ -66,7 +67,7 @@ const routes = [
             { path: 'forgetpassword', component: ForgetPassword, name: 'ForgetPassword' },
             { path: 'profile', component: Profile, name: 'Profile' },
             { path: 'contact-us', component: ContactUs, name: 'ContactUs' },
-
+            { path: 'terms', component: Terms, name: 'Terms' },
 
             // { path: 'result', component: Result, name: 'Result' },
             // {

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <section class="login">
+    <section class="login" :class="{ rtl: $i18n.locale === 'ar' }" >
       <div class="container">
         <div class="row mt-5 p-3">
           <div class="col-12 col-lg-6">
@@ -11,16 +11,22 @@
             <div class=" col-12 col-lg-12">
               <form class="col  mt-5 p-3" method="post">
                 <h4 class="m-3 "> {{ $t('Register') }}</h4>
-                <input type="email" class="w-100 mb-2" :placeholder="$t('Email')" v-model="email">
+                <input type="email" class="w-100 mb-2" :placeholder="$t('Email')" v-model="email" :class="{ rtl: $i18n.locale === 'ar' }">
                 <span v-if="errors.email" class="text-danger " >{{ errors.email }}</span>
-                <input type="password" class="w-100 mb-2" :placeholder="$t('Password')" v-model="password">
+                <input type="password" class="w-100 mb-2" :placeholder="$t('Password')" v-model="password" :class="{ rtl: $i18n.locale === 'ar' }">
                 <span v-if="errors.password" class="text-danger " >{{ errors.password }}</span>
-                <input type="text" class="w-100 mb-2" :placeholder="$t('name')" v-model="name">
+                <input type="text" class="w-100 mb-2" :placeholder="$t('name')" v-model="name" :class="{ rtl: $i18n.locale === 'ar' }">
                 <span v-if="errors.name" class="text-danger " >{{ errors.name }}</span>
                 <!-- <input type="text" class="w-100 mb-2" placeholder="Handynummer" v-model="mobile"> -->
                 <!-- <input type="text" class="w-100 mb-2" placeholder="Sprache" v-model="Language"> -->
                 <!-- <input type="text" class="w-100 mb-2" placeholder="Land" v-model="Country"> -->
-
+                <div class="form-check" :class="{ rtl: $i18n.locale === 'ar' }">
+                  <input  v-model="acceptTerms" class="form-check-input" type="checkbox" id="terms" required />
+                  <label class="form-check-label" for="terms" style="margin-right: 26px;">
+                   {{ $t('agreeOn') }} <a href="terms" target="_blank" style="color:#007bff;"> {{ $t('terms') }} </a>
+                  </label>
+                </div>
+                <span v-if="errors.Terms" class="text-danger " >{{ errors.Terms }}</span>
 
                 <!-- <select class="w-100 mb-2 form-control formselect" v-model="country">
                         <option selected value=""> Country </option>
@@ -67,7 +73,7 @@
                       class="btn btn-primary w-100 mt-3" style="border-radius: 10px;"> -->
 
                       <button @click.prevent="submitRegister" class="btn btn-primary w-100 mt-3" style="border-radius: 10px;":disabled="isLoading">
-                        <span v-if="isLoading">
+                        <span v-if="isLoading ">
                           <i class="fas fa-spinner fa-spin"></i>&nbsp;&nbsp; {{ $t('Register') }}
                         </span>
                         <span v-else>
@@ -115,6 +121,7 @@ export default {
   data() {
     return {
       isLoading: false,
+      acceptTerms: false,
       password: '',
       email: '',
       name: '',
@@ -141,19 +148,22 @@ export default {
     submitRegister() {
       this.errors = {};
       let isValid = true;
-
+      if(!this.acceptTerms){
+        this.errors.Terms = this.$t('acceptTerms');
+        isValid = false;
+      }
       // Email validation
       if (!this.email) {
-        this.errors.email = i18n.t('EmailRequired');
+        this.errors.email = this.$t('EmailRequired');
         isValid = false;
       } else if (!/\S+@\S+\.\S+/.test(this.email)) {
-        this.errors.email = i18n.t('EmailInvalid');
+        this.errors.email = this.t('EmailInvalid');
         isValid = false;
       }
 
       // Password validation
       if (!this.password) {
-        this.errors.password = i18n.t('PasswordRequired');
+        this.errors.password = this.$t('PasswordRequired');
         isValid = false;
       }
       // } else if (this.password.length < 6) {
@@ -162,7 +172,7 @@ export default {
 
       // Name validation
       if (!this.name) {
-        this.errors.name = i18n.t('NameRequired');
+        this.errors.name = this.$t('NameRequired');
         isValid = false;
       }
 
@@ -216,5 +226,9 @@ export default {
 
 .google-login-button img {
   margin-right: 10px;
+}
+.rtl {
+  direction: rtl;
+  text-align: right;
 }
 </style>

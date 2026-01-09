@@ -185,16 +185,23 @@ class ProfileController extends Controller
         // $edit->telc_desc  =  $request->telc_desc;
         $edit->about_de  =  $request->about_de;
         $edit->about_ar  =  $request->about_ar;
-        $edit->about_en  =  $request->about_enn;
+        $edit->about_en  =  $request->about_en;
         $edit->about_fr  =  $request->about_fr;
         $edit->about_es  =  $request->about_es;
 
+        $edit->terms_de  =  $request->terms_de;
+        $edit->terms_ar  =  $request->terms_ar;
+        $edit->terms_en  =  $request->terms_en;
+        $edit->terms_fr  =  $request->terms_fr;
+        $edit->terms_es  =  $request->terms_es;
 
         $edit->goethe_desc_de  =  $request->goethe_desc_de;
         $edit->goethe_desc_ar  =  $request->goethe_desc_ar;
         $edit->goethe_desc_en  =  $request->goethe_desc_en;
         $edit->goethe_desc_fr  =  $request->goethe_desc_fr;
         $edit->goethe_desc_es  =  $request->goethe_desc_es;
+
+        
 
         $edit->telc_desc_de  =  $request->telc_desc_de;
         $edit->telc_desc_ar  =  $request->telc_desc_ar;

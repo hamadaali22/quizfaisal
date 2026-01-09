@@ -181,6 +181,31 @@
 										class="form-control ckeditor">{{$contactInfo->placement_desc_es}}</textarea>
 								</div>
 
+								<div class="form-group">
+									<label>terms de</label>
+									<textarea name="terms_de" id="ckeditor" cols="30" rows="15"
+										class="form-control ckeditor">{{$contactInfo->terms_de}}</textarea>
+								</div>
+								<div class="form-group">
+									<label> terms ar</label>
+									<textarea name="terms_ar" id="ckeditor" cols="30" rows="15"
+										class="form-control ckeditor">{{$contactInfo->terms_ar}}</textarea>
+								</div>
+								<div class="form-group">
+									<label> terms en</label>
+									<textarea name="terms_en" id="ckeditor" cols="30" rows="15"
+										class="form-control ckeditor">{{$contactInfo->terms_en}}</textarea>
+								</div>
+								<div class="form-group">
+									<label>terms fr</label>
+									<textarea name="terms_fr" id="ckeditor" cols="30" rows="15"
+										class="form-control ckeditor">{{$contactInfo->terms_fr}}</textarea>
+								</div>
+								<div class="form-group">
+									<label> terms es</label>
+									<textarea name="terms_es" id="ckeditor" cols="30" rows="15"
+										class="form-control ckeditor">{{$contactInfo->terms_es}}</textarea>
+								</div>
 								<div class="form-group row">
 									<div class="col-md-2">
 										<img class="avatar-img" src="{{asset('img/settings/'.$contactInfo->image) }}"

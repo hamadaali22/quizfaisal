@@ -44,6 +44,9 @@ const messages = {
         yourMessage: 'your message',
         DoYouHaveSuggestion: 'Do you have any question or suggestion? Please do not hesitate to contact us directly.',
         send: 'Send',
+        agreeOn: 'I agree to',
+        terms: 'the Terms of Use',
+        acceptTerms: 'You must agree to the Terms of Use',
     },
     ar: {
         signUp: 'إنشاء حساب',
@@ -85,6 +88,9 @@ const messages = {
         yourMessage: 'رسالتك',
         DoYouHaveSuggestion: 'هل لديك أي سؤال أو اقتراح؟ لا تتردد في الاتصال بنا مباشرة.',
         send: 'إرسال',
+        agreeOn: 'أوافق على',
+        terms: 'شروط الاستخدام',
+        acceptTerms: 'يجب الموافقة على شروط الاستخدام',
     },
     de: {
         signUp: 'Sign up ',
@@ -126,6 +132,9 @@ const messages = {
         yourMessage: 'Ihre Nachricht',
         DoYouHaveSuggestion: 'Haben Sie Fragen oder Anregungen? Zögern Sie bitte nicht, uns direkt zu kontaktieren.',
         send: 'Senden',
+        agreeOn: 'Ich stimme den',
+        terms: 'Nutzungsbedingungen zu',
+        acceptTerms: 'Sie müssen den Nutzungsbedingungen zustimmen',
     },
     fr: {
         signUp: 'Sign up ',
@@ -167,6 +176,9 @@ const messages = {
         yourMessage: 'Votre message',
         DoYouHaveSuggestion: 'Avez-vous des questions ou des suggestions ? N’hésitez pas à nous contacter directement.',
         send: 'Envoyer',
+        agreeOn: 'J’accepte les ',
+        terms: 'conditions d’utilisation',
+        acceptTerms: 'Vous devez accepter les conditions d’utilisation',
     },
     es: {
         signUp: 'Sign up ',
@@ -208,6 +220,9 @@ const messages = {
         yourMessage: 'Su mensaje',
         DoYouHaveSuggestion: '¿Tiene alguna pregunta o sugerencia? No dude en contactarnos directamente.',
         send: 'Enviar',
+        agreeOn: 'Acepto los ',
+        terms: 'términos de uso',
+        acceptTerms: 'Debe aceptar los Términos de uso',
     },
 };
 

@@ -16,6 +16,11 @@
                 </router-link>
                
             </div>
+            <div class="col-lg m-auto pl-4">
+                <p v-html="getPlacementDesc(contactInfo) "></p>
+                
+               
+            </div>
 <!--  -->
 <!--  -->
         </section>

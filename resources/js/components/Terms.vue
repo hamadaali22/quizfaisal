@@ -1,7 +1,7 @@
 <template>
     <div>
         
-        <section class="row home-main-section p-5 container-fluid" >
+        <section class="row home-main-section p-5 container-fluid" :class="{ rtl: $i18n.locale === 'ar' }">
             <div class="col-lg m-auto pl-4">
                 <p v-html="getPlacementDesc(contactInfo) "></p>
                 
@@ -49,3 +49,9 @@ export default {
 
 }
 </script>
+<style>
+    .rtl {
+  direction: rtl;
+  text-align: right;
+}
+</style>

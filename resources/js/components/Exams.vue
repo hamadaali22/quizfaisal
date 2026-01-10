@@ -48,7 +48,7 @@
              </div>
              
              <div class="col-3">
-                 <img  :src="'https://deutschtests.com/img/goethe/'+getLevelDesc.level_images[2].name" class="img-fluid w-100" :alt="getLevelDesc.level_images[2]['alt_' + $i18n.locale]+'lllll'">
+                 <img  :src="'https://deutschtests.com/img/goethe/'+getLevelDesc.level_images[2].name" class="img-fluid w-100" :alt="getLevelDesc.level_images[2]['alt_' + $i18n.locale]">
              </div>
              
           </div>

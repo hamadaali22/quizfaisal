@@ -356,7 +356,7 @@ const store = new Vuex.Store({
           } else {
             var resTitle = i18n.t('occurred');
           }
-          // console.log(resTitle);
+          console.log(resTitle);
           // SuccessfullyRegistered
           if (res.data.status == true) {
             commit('setUserToken', res.data.data.token);

@@ -393,7 +393,8 @@ export default {
 
     SaveQuestion() {
       if (this.questionAnswer.length == 0) {
-        this.$toaster.error($t('youMustAnswer'));
+        this.$toaster.error(this.$t('youMustAnswer'));
+
         // swal({
         //     text: "User signup successful, please login",
         //     icon: "error",
@@ -416,7 +417,7 @@ export default {
         if (this.userId) {
           this.$store.dispatch('getQuestions', { user_id: this.$store.state.userIdNumber, examId: this.examId, pageId: this.getCurrentPage + 1 });
         } else {
-          this.$toaster.error($t('YouMustRegister'));
+          this.$toaster.error(this.$t('YouMustRegister'));
           this.$store.dispatch('getQuestions', { user_id: 0, examId: this.examId, pageId: this.getCurrentPage + 1 });
         }
         window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });

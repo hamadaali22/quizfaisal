@@ -53,6 +53,7 @@ const messages = {
         nameIsRequired: 'Name is required!',
         dontHaveAnAccount: "If you don't have an account yet, click Register!",
         alreadyHaveAnAccount: 'If you already have an account, click Sign in!',
+        SuccessfullyRegistered: 'Successfully registered',
     },
     ar: {
         signUp: 'إنشاء حساب',
@@ -104,6 +105,7 @@ const messages = {
         nameIsRequired: 'الاسم ضروري!',
         dontHaveAnAccount: "إذا لم يكن لديك حساب بعد، فانقر على التسجيل!",
         alreadyHaveAnAccount: 'إذا كان لديك حساب بالفعل، فانقر على تسجيل الدخول!',
+        SuccessfullyRegistered: 'تم التسجيل بنجاح',
     },
     de: {
         signUp: 'Sign up ',
@@ -155,6 +157,7 @@ const messages = {
         nameIsRequired: 'Name is required!',
         dontHaveAnAccount: "If you don't have an account yet, click Register!",
         alreadyHaveAnAccount: 'If you already have an account, click Sign in!',
+        SuccessfullyRegistered: 'Erfolgreich registriert',
     },
     fr: {
         signUp: 'Sign up ',
@@ -206,6 +209,7 @@ const messages = {
         nameIsRequired: 'Le nom est obligatoire!',
         dontHaveAnAccount: "Si vous n'avez pas encore de compte, cliquez sur  S'inscrire !",
         alreadyHaveAnAccount: 'Si vous avez déjà un compte, cliquez sur Se connecter !',
+        SuccessfullyRegistered: 'Inscription réussie',
     },
     es: {
         signUp: 'Sign up ',
@@ -257,6 +261,7 @@ const messages = {
         nameIsRequired: 'El nombre es obligatorio!',
         dontHaveAnAccount: "Si aún no tienes una cuenta, haz clic en Registrarse.",
         alreadyHaveAnAccount: 'Si ya tienes una cuenta, haz clic en Iniciar sesión.',
+        SuccessfullyRegistered: 'Registrado exitosamente',
     },
 };
 

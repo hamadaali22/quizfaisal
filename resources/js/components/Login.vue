@@ -91,8 +91,8 @@ export default {
     this.$store.dispatch('getContactinfo');
     if (this.request_path == '/google/callback') {
       swal({
-        title: 'Erfolgreich registriert',
-        text: 'Sie haben sich erfolgreich angemeldet',
+        title: i18n.t('SuccessfullyRegistered'),
+        text: i18n.t('SuccessfullyRegistered'),
         icon: "success",
         timer: 4000
       });

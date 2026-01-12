@@ -352,7 +352,7 @@ const store = new Vuex.Store({
         .then(res => {
           console.log(res.data);
           if (res.data.status == true) {
-            var resTitle = 'Erfolgreich registriert';
+            var resTitle = i18n.t('SuccessfullyRegistered');
           } else {
             var resTitle = i18n.t('occurred');
           }

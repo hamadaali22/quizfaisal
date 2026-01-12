@@ -29,24 +29,24 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <img src="https://deutschtests.com/img/PlacementTest/a1.jpeg" class="img-fluid w-100" :alt="altTextA1[currentLanguage]">
+                        <img src="https://deutschtests.com/img/PlacementTest/a1.jpeg" class="img-fluid w-100" :alt="altTextA1[currentLanguage]" style="margin-top: 55px;">
                     </div>
                     <div class="col-4">
-                        <img src="https://deutschtests.com/img/PlacementTest/a2.jpeg" class="img-fluid w-100"  :alt="altTextA2[currentLanguage]" style="margin-top: 55px;">
+                        <img src="https://deutschtests.com/img/PlacementTest/a2.jpeg" class="img-fluid w-100"  :alt="altTextA2[currentLanguage]" >
                     </div>
                     <div class="col-4">
-                        <img src="https://deutschtests.com/img/PlacementTest/c1.jpeg" class="img-fluid w-100"  :alt="altTextC1[currentLanguage]">
+                        <img src="https://deutschtests.com/img/PlacementTest/c1.jpeg" class="img-fluid w-100"  :alt="altTextC1[currentLanguage]" style="margin-top: 55px;">
                     </div>
                 </div>
                 <div class="row mt-3 mb-5">
                     <div class="col-4">
-                        <img src="https://deutschtests.com/img/PlacementTest/b1.jpeg" class="img-fluid w-100" :alt="altTextB1[currentLanguage]">
+                        <img src="https://deutschtests.com/img/PlacementTest/b1.jpeg" class="img-fluid w-100" :alt="altTextB1[currentLanguage]" style="margin-top: 55px;">
                     </div>
                     <div class="col-4">
-                        <img src="https://deutschtests.com/img/PlacementTest/b2.jpeg" class="img-fluid w-100"  :alt="altTextB2[currentLanguage]" style="margin-top: 55px;">
+                        <img src="https://deutschtests.com/img/PlacementTest/b2.jpeg" class="img-fluid w-100"  :alt="altTextB2[currentLanguage]" >
                     </div>
                     <div class="col-4">
-                        <img src="https://deutschtests.com/img/PlacementTest/c2.jpeg" class="img-fluid w-100"  :alt="altTextC2[currentLanguage]">
+                        <img src="https://deutschtests.com/img/PlacementTest/c2.jpeg" class="img-fluid w-100"  :alt="altTextC2[currentLanguage]" style="margin-top: 55px;">
                     </div>
                 </div>
                

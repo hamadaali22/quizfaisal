@@ -60,6 +60,7 @@
 									<input type="text" name="title2" class="form-control"
 										value="{{$contactInfo->title2}}">
 								</div>
+								<!--  -->
 								<div class="form-group">
 									<label> about de</label>
 									<textarea name="about_de" id="ckeditor" cols="30" rows="15"

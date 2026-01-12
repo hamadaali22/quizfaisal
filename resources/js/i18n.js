@@ -47,6 +47,12 @@ const messages = {
         agreeOn: 'I agree to',
         terms: 'the Terms of Use',
         acceptTerms: 'You must agree to the Terms of Use',
+        YouMustRegister: 'You must register to receive your result and see the key solution.',
+        invalidEmail: 'invalid email',
+        youMustAnswer: 'You must answer at least one question.',
+        nameIsRequired: 'Name is required!',
+        dontHaveAnAccount: "If you don't have an account yet, click Register!",
+        alreadyHaveAnAccount: 'If you already have an account, click Sign in!',
     },
     ar: {
         signUp: 'إنشاء حساب',
@@ -91,6 +97,13 @@ const messages = {
         agreeOn: 'أوافق على',
         terms: 'شروط الاستخدام',
         acceptTerms: 'يجب الموافقة على شروط الاستخدام',
+
+        YouMustRegister: 'يجب ان تسجل لتتمكن من الحصول على علامتك و رؤية الإجابات النموذجية.',
+        invalidEmail: 'البريد الالكتروني غير صحيح ',
+        youMustAnswer: 'يجب عليك الإجابة على سؤال واحد على الأقل.',
+        nameIsRequired: 'الاسم ضروري!',
+        dontHaveAnAccount: "إذا لم يكن لديك حساب بعد، فانقر على التسجيل!",
+        alreadyHaveAnAccount: 'إذا كان لديك حساب بالفعل، فانقر على تسجيل الدخول!',
     },
     de: {
         signUp: 'Sign up ',
@@ -135,6 +148,13 @@ const messages = {
         agreeOn: 'Ich stimme den',
         terms: 'Nutzungsbedingungen',
         acceptTerms: 'Sie müssen den Nutzungsbedingungen zustimmen',
+
+        YouMustRegister: 'You must register to receive your result and see the key solution.',
+        invalidEmail: 'invalid email',
+        youMustAnswer: 'You must answer at least one question.',
+        nameIsRequired: 'Name is required!',
+        dontHaveAnAccount: "If you don't have an account yet, click Register!",
+        alreadyHaveAnAccount: 'If you already have an account, click Sign in!',
     },
     fr: {
         signUp: 'Sign up ',
@@ -179,6 +199,13 @@ const messages = {
         agreeOn: 'J’accepte les ',
         terms: 'conditions d’utilisation',
         acceptTerms: 'Vous devez accepter les conditions d’utilisation',
+
+        YouMustRegister: 'Vous devez vous inscrire pour recevoir votre résultat et consulter la solution.',
+        invalidEmail: 'e-mail invalide !',
+        youMustAnswer: 'Vous devez répondre à au moins une question.',
+        nameIsRequired: 'Le nom est obligatoire!',
+        dontHaveAnAccount: "Si vous n'avez pas encore de compte, cliquez sur  S'inscrire !",
+        alreadyHaveAnAccount: 'Si vous avez déjà un compte, cliquez sur Se connecter !',
     },
     es: {
         signUp: 'Sign up ',
@@ -223,6 +250,13 @@ const messages = {
         agreeOn: 'Acepto los ',
         terms: 'términos de uso',
         acceptTerms: 'Debe aceptar los Términos de uso',
+
+        YouMustRegister: 'You must register to receive your result and see the key solution.',
+        invalidEmail: 'correo electrónico no válido !',
+        youMustAnswer: 'Debes responder al menos una pregunta.',
+        nameIsRequired: 'El nombre es obligatorio!',
+        dontHaveAnAccount: "Si aún no tienes una cuenta, haz clic en Registrarse.",
+        alreadyHaveAnAccount: 'Si ya tienes una cuenta, haz clic en Iniciar sesión.',
     },
 };
 

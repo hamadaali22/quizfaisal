@@ -352,12 +352,12 @@ const store = new Vuex.Store({
         .then(res => {
           console.log(res.data);
           if (res.data.status == true) {
-            var resTitle = i18n.t('SuccessfullyRegistered');
+            var resTitle = 'Erfolgreich registriert';
           } else {
             var resTitle = i18n.t('occurred');
           }
-          console.log(resTitle);
-
+          // console.log(resTitle);
+          // SuccessfullyRegistered
           if (res.data.status == true) {
             commit('setUserToken', res.data.data.token);
             commit('setUserIdNumber', res.data.data.id);

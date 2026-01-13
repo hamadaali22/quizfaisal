@@ -280,6 +280,8 @@ const store = new Vuex.Store({
     },
     RegisterUser({ commit }, payload) {
       return new Promise((resolve, reject) => {
+        let msgerror = '';
+
         axios.post('https://deutschtests.com/api/register', payload)
           .then(res => {
             if (res.data.status == true) {
@@ -293,9 +295,15 @@ const store = new Vuex.Store({
               });
               router.push({ name: 'Levels' });
             } else {
+
+              if (res.data.msg == 'emailAlreadyExists') {
+                let msgerror = i18n.t('emailAlreadyExists');
+              } else {
+                msgerror = '';
+              }
               swal({
                 title: i18n.t('occurred'),
-                text: res.data.msg,
+                text: msgerror,
                 icon: "error",
                 timer: 10500
               });
@@ -306,8 +314,8 @@ const store = new Vuex.Store({
           .catch(err => {
             console.log(err);
             swal({
-              title: 'Serverfehler',
-              text: 'Etwas ist schief gelaufen. Bitte versuchen Sie es später erneut.',
+              title: i18n.t('ServerError'),
+              text: i18n.t('somethingWentWrong'),
               icon: "error",
               timer: 10500
             });

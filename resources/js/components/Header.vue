@@ -120,15 +120,8 @@ export default {
   },
   methods: {
     goToGoethe() {
-    // return `/telc/jhghg`;
-      // 🔹 نحصل على اللغة الحالية من i18n
+   
       let lang = this.$i18n.locale;
-
-      // 🔹 نتحقق أن اللغة مدعومة
-      // const supported = ['ar', 'en', 'de', 'fr', 'es'];
-      // if (!supported.includes(lang)) lang = 'de';
-
-      // 🔹 الخريطة الخاصة بكل لغة والمسار المناسب
       const slugs = {
         ar: 'نماذج-امتحانات-معهد-جوته',
         en: 'online-Goethe-exam',
@@ -136,11 +129,7 @@ export default {
         fr: 'goethe-institut-examens',
         es: 'alemán-Goethe-tests'
       };
-
-      // 🔹 نحدد الـ slug المناسب بناءً على اللغة
       const slug = slugs[lang] || slugs['de'];
-
-      // 🔹 التوجيه إلى صفحة Goethe المناسبة
       return this.$router.push({
         name: 'Levels',
         params: { slug }

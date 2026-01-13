@@ -88,27 +88,27 @@
 	<priority>1.0</priority>
 </url>
 <url>
-	<loc>https://deutschtests.com/de/goethe/goethe-tests</loc>
+	<loc>https://deutschtests.com/de/goethe/goethe-deutsch-test</loc>
 	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
 	<priority>1.0</priority>
 </url>
 <url>
-	<loc>https://deutschtests.com/de/goethe/goethe-tests/goethe-a1-zertifikat</loc>
+	<loc>https://deutschtests.com/de/goethe/goethe-deutsch-test/goethe-a1-zertifikat</loc>
 	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
 	<priority>0.8</priority>
 </url>
 <url>
-	<loc>https://deutschtests.com/de/goethe/goethe-tests/goethe-zertifikat-a2</loc>
+	<loc>https://deutschtests.com/de/goethe/goethe-deutsch-test/goethe-zertifikat-a2</loc>
 	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
 	<priority>0.8</priority>
 </url>
 <url>
-	<loc>https://deutschtests.com/de/goethe/goethe-tests/goethe-b1-modelltest</loc>
+	<loc>https://deutschtests.com/de/goethe/goethe-deutsch-test/goethe-b1-modelltest</loc>
 	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
 	<priority>0.8</priority>
 </url>
 <url>
-	<loc>https://deutschtests.com/de/goethe/goethe-tests/goethe-b2-modelltest</loc>
+	<loc>https://deutschtests.com/de/goethe/goethe-deutsch-test/goethe-b2-modelltest</loc>
 	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
 	<priority>0.8</priority>
 </url>
@@ -119,22 +119,22 @@
 	<priority>0.8</priority>
 </url>
 <url>
-	<loc>https://deutschtests.com/de/telc/telc-tests/telc-a1-modelltest</loc>
+	<loc>https://deutschtests.com/de/telc/deutsch-test-online/telc-a1-modelltest</loc>
 	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
 	<priority>0.8</priority>
 </url>
 <url>
-	<loc>https://deutschtests.com/de/telc/telc-tests/telc-a2-modelltest</loc>
+	<loc>https://deutschtests.com/de/telc/deutsch-test-online/telc-a2-modelltest</loc>
 	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
 	<priority>0.8</priority>
 </url>
 <url>
-	<loc>https://deutschtests.com/de/telc/telc-tests/telc-b1-modelltest</loc>
+	<loc>https://deutschtests.com/de/telc/deutsch-test-online/telc-b1-modelltest</loc>
 	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
 	<priority>0.8</priority>
 </url>
 <url>
-	<loc>https://deutschtests.com/de/telc/telc-tests/telc-b2-modelltest</loc>
+	<loc>https://deutschtests.com/de/telc/deutsch-test-online/telc-b2-modelltest</loc>
 	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
 	<priority>0.8</priority>
 </url>
@@ -244,7 +244,7 @@
 	<priority>0.8</priority>
 </url>
 <url>
-	<loc>https://deutschtests.com/ar/goethe/نماذج-امتحانات-معهد-جوته/نماذج-امتحانات-معهد-جوته-B1</loc>
+	<loc>https://deutschtests.com/ar/goethe/نماذج-امتحانات-معهد-جوته/b1-نماذج-امتحانات-معهد-جوته</loc>
 	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
 	<priority>0.8</priority>
 </url>
@@ -254,27 +254,27 @@
 	<priority>0.8</priority>
 </url>
 <url>
-	<loc>https://deutschtests.com/ar/telc/نماذج-امتحان-Telc</loc>
+	<loc>https://deutschtests.com/ar/telc/Telc-نماذج-امتحان</loc>
 	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
 	<priority>1.0</priority>
 </url>
 <url>
-	<loc>https://deutschtests.com/ar/telc/نماذج-امتحان-Telc/اختبار-a1-الماني</loc>
+	<loc>https://deutschtests.com/ar/telc/Telc-نماذج-امتحان/telc-الماني-a1-اختبار</loc>
 	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
 	<priority>0.8</priority>
 </url>
 <url>
-	<loc>https://deutschtests.com/ar/telc/نماذج-امتحان-Telc/نماذج-امتحان-A2-Telc</loc>
+	<loc>https://deutschtests.com/ar/telc/Telc-نماذج-امتحان/a2-telc-نماذج-امتحان</loc>
 	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
 	<priority>0.8</priority>
 </url>
 <url>
-	<loc>https://deutschtests.com/ar/telc/نماذج-امتحان-Telc/نماذج-امتحان-Telc-B1</loc>
+	<loc>https://deutschtests.com/ar/telc/Telc-نماذج-امتحان/telc-b1-نماذج-امتحان</loc>
 	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
 	<priority>0.8</priority>
 </url>
 <url>
-	<loc>https://deutschtests.com/ar/telc/نماذج-امتحان-Telc/امتحان-B2-Telc</loc>
+	<loc>https://deutschtests.com/ar/telc/Telc-نماذج-امتحان/telc-b2-امتحان</loc>
 	<lastmod>2025-11-17T13:21:17+01:00</lastmod>
 	<priority>0.8</priority>
 </url>

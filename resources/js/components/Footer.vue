@@ -96,11 +96,64 @@
                     </div>
                 </div>
                 <div class="row col-md-9 col-xs-12 col-sm-6">
-                    <div class="d-flex flex-column flex-md-row">
+                    <div class="col-md-2 d-flex flex-column flex-md-row">
                         <div class="d-flex flex-row ">
                             <div class="p-2">
-                                <h6 class="widget-title"><a href="/goethe-tests">Goethe Tests</a></h6>
+                                <h6 class="widget-title"><a  href="javascript:void(0)"  @click="goToGoethe">Goethe Tests</a></h6>
                             </div>
+                        </div>
+                    </div>
+                    <div class="col-md-9 d-flex flex-column flex-md-row w-100">
+
+                       
+
+                        <div v-for="item in getLevels"
+                            :key="item.id"
+                            class="d-flex flex-row flex-fill w-100">
+
+                            <div class="p-2 w-100" style="font-size:14px;">
+                                <a :href="getLocalizedSlug(item)">
+                                    {{ item.name }}
+                                </a>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="col-md-2 d-flex flex-column flex-md-row">
+                        <div class="d-flex flex-row ">
+                            <div class="p-2">
+                                <h6 class="widget-title"><a  href="javascript:void(0)"  @click="goToGoethe"> Telc Tests</a></h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-9 d-flex flex-column flex-md-row w-100">
+
+                       
+
+                        <div v-for="item in getLevelsTelc"
+                            :key="item.id"
+                            class="d-flex flex-row flex-fill w-100">
+
+                            <div class="p-2 w-100" style="font-size:14px;">
+                                <a :href="getLocalizedSlug(item)">
+                                    {{ item.name }}
+                                </a>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <!-- <div class="d-flex flex-column flex-md-row">
+                        <div class="d-flex flex-row ">
+                            <div class="p-2">
+                                <h6 class="widget-title"><a  href="javascript:void(0)"  @click="goToGoethe">Goethe Tests</a></h6>
+                            </div>
+                        </div>
+                        <div v-for="item in getLevels" :key="item.id"  class=" flex-row">
+                            <div class="p-2" style="font-size: 14px;"><a
+                                    href="getLocalizedSlug(item)">{{ item.name }}</a></div>
+                            <div class="p-1"></div>
                         </div>
                         <div class="d-flex flex-row">
                             <div class="p-2" style="font-size: 14px;"><a
@@ -121,8 +174,8 @@
                             <div class="p-2" style="font-size: 14px;"><a
                                     href="/goethe-tests/goethe-b2-modelltest">Goethe B2 Modelltest</a></div>
                         </div>
-                    </div>
-                    <div class="d-flex flex-column flex-md-row">
+                    </div> -->
+                    <!-- <div class="d-flex flex-column flex-md-row">
 
                         <div class="d-flex flex-row ">
                             <div class="p-2"></div>
@@ -158,7 +211,7 @@
                             <div class="p-2" style="font-size: 14px;"><a href="/telc-tests/telc-b2-modelltest"> Telc B2
                                     Modelltest </a></div>
                         </div>
-                    </div>
+                    </div> -->
                     <!-- <div class="d-flex flex-column flex-md-row">
                                 <div class="d-flex flex-row ">
                                     <div class="p-2"><h6 class="widget-title" ><a href="/goethe-tests">Goethe Tests</a></h6></div>
@@ -403,9 +456,54 @@ export default {
         },
         contactInfo() {
             return this.$store.state.contactInfo
-        }
+        },
+        getLevels(){
+            return this.$store.state.goethes
+        },
+        getLevelsTelc(){
+            return this.$store.state.telcs
+        },
+    },
+    
+    mounted(){
+        this.$store.dispatch('getGoethes');
+         this.$store.dispatch('getTelcs');
+        this.$store.dispatch('getContactinfo');
     },
     methods: {
+        getLocalizedSlug(item) {
+            const slugs = {
+                en: 'online-Goethe-exam',
+                ar: 'نماذج-امتحانات-معهد-جوته',
+                fr: 'goethe-institut-examens',
+                es: 'alemán-Goethe-tests',
+                de: 'goethe-deutsch-test',
+            };
+            const slugs2 = {
+                en: item.slug_en,
+                ar: item.slug_ar,
+                fr: item.slug_fr,
+                es: item.slug_es,
+                de: item.slug_de,
+            };
+            return `/goethe/${slugs[this.$i18n.locale]}/${slugs2[this.$i18n.locale] || item.slug_de}`;
+        },
+        goToGoethe() {
+   
+        let lang = this.$i18n.locale;
+        const slugs = {
+            ar: 'نماذج-امتحانات-معهد-جوته',
+            en: 'online-Goethe-exam',
+            de: 'goethe-deutsch-test',
+            fr: 'goethe-institut-examens',
+            es: 'alemán-Goethe-tests'
+        };
+        const slug = slugs[lang] || slugs['de'];
+        return this.$router.push({
+            name: 'Levels',
+            params: { slug }
+        });
+        },
         logout() {
             this.$store.commit('logout')
         }

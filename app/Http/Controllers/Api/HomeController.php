@@ -104,7 +104,7 @@ class HomeController extends Controller
         // }
         $checkemail = User::where("email" , $request->email)->first();
         if($checkemail){
-            return $this -> returnError('E-Mail existiert bereits');
+            return $this -> returnError('emailAlreadyExists');
         }else{
             $token = Str::random(60);
             $add = User::create([

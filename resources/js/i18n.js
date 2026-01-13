@@ -46,6 +46,7 @@ const messages = {
         send: 'Send',
         agreeOn: 'I agree to',
         terms: 'the Terms of Use',
+        zu: '',
         acceptTerms: 'You must agree to the Terms of Use',
         YouMustRegister: 'You must register to receive your result and see the key solution.',
         invalidEmail: 'invalid email',
@@ -54,6 +55,10 @@ const messages = {
         dontHaveAnAccount: "If you don't have an account yet, click Register!",
         alreadyHaveAnAccount: 'If you already have an account, click Sign in!',
         SuccessfullyRegistered: 'Successfully registered',
+
+        emailAlreadyExists: 'Email already exists',
+        ServerError: 'Server error',
+        somethingWentWrong: 'Something went wrong. Please try again later.',
     },
     ar: {
         signUp: 'إنشاء حساب',
@@ -97,6 +102,7 @@ const messages = {
         send: 'إرسال',
         agreeOn: 'أوافق على',
         terms: 'شروط الاستخدام',
+        zu: '',
         acceptTerms: 'يجب الموافقة على شروط الاستخدام',
 
         YouMustRegister: 'يجب ان تسجل لتتمكن من الحصول على علامتك و رؤية الإجابات النموذجية.',
@@ -106,6 +112,10 @@ const messages = {
         dontHaveAnAccount: "إذا لم يكن لديك حساب بعد، فانقر على التسجيل!",
         alreadyHaveAnAccount: 'إذا كان لديك حساب بالفعل، فانقر على تسجيل الدخول!',
         SuccessfullyRegistered: 'تم التسجيل بنجاح',
+        emailAlreadyExists: 'البريد الإلكتروني موجود مسبقاً.',
+        ServerError: 'خطأ في الخادم',
+        somethingWentWrong: 'حدث خطأ ما. يُرجى المحاولة مرة أخرى لاحقًا.',
+
     },
     de: {
         signUp: 'Sign up ',
@@ -149,6 +159,7 @@ const messages = {
         send: 'Senden',
         agreeOn: 'Ich stimme den',
         terms: 'Nutzungsbedingungen',
+        zu: 'zu',
         acceptTerms: 'Sie müssen den Nutzungsbedingungen zustimmen',
 
         YouMustRegister: 'You must register to receive your result and see the key solution.',
@@ -158,6 +169,10 @@ const messages = {
         dontHaveAnAccount: "If you don't have an account yet, click Register!",
         alreadyHaveAnAccount: 'If you already have an account, click Sign in!',
         SuccessfullyRegistered: 'Erfolgreich registriert',
+
+        emailAlreadyExists: 'E-Mail-Adresse existiert bereits.',
+        ServerError: 'Serverfehler',
+        somethingWentWrong: "Es ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.",
     },
     fr: {
         signUp: 'Sign up ',
@@ -201,6 +216,7 @@ const messages = {
         send: 'Envoyer',
         agreeOn: 'J’accepte les ',
         terms: 'conditions d’utilisation',
+        zu: '',
         acceptTerms: 'Vous devez accepter les conditions d’utilisation',
 
         YouMustRegister: 'Vous devez vous inscrire pour recevoir votre résultat et consulter la solution.',
@@ -210,6 +226,9 @@ const messages = {
         dontHaveAnAccount: "Si vous n'avez pas encore de compte, cliquez sur  S'inscrire !",
         alreadyHaveAnAccount: 'Si vous avez déjà un compte, cliquez sur Se connecter !',
         SuccessfullyRegistered: 'Inscription réussie',
+        emailAlreadyExists: 'Adresse e-mail déjà existante.',
+        ServerError: 'Erreur serveur.',
+        somethingWentWrong: "Une erreur s'est produite.Veuillez réessayer plus tard.",
     },
     es: {
         signUp: 'Sign up ',
@@ -253,6 +272,7 @@ const messages = {
         send: 'Enviar',
         agreeOn: 'Acepto los ',
         terms: 'términos de uso',
+        zu: '',
         acceptTerms: 'Debe aceptar los Términos de uso',
 
         YouMustRegister: 'You must register to receive your result and see the key solution.',
@@ -262,6 +282,10 @@ const messages = {
         dontHaveAnAccount: "Si aún no tienes una cuenta, haz clic en Registrarse.",
         alreadyHaveAnAccount: 'Si ya tienes una cuenta, haz clic en Iniciar sesión.',
         SuccessfullyRegistered: 'Registrado exitosamente',
+
+        emailAlreadyExists: 'El correo electrónico ya existe',
+        ServerError: 'Error del servidor',
+        somethingWentWrong: "Algo salió mal. Inténtalo de nuevo más tarde.",
     },
 };
 

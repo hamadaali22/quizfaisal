@@ -23,7 +23,7 @@
                 <div class="form-check" :class="{ rtl: $i18n.locale === 'ar' }">
                   <input  v-model="acceptTerms" class="form-check-input" type="checkbox" id="terms" required />
                   <label class="form-check-label" for="terms" style="margin-right: 26px;">
-                   {{ $t('agreeOn') }} <a href="terms" target="_blank" style="color:#007bff;"> {{ $t('terms') }} </a>
+                   {{ $t('agreeOn') }} <a href="terms" target="_blank" style="color:#007bff;"> {{ $t('terms') }} </a> {{ $t('zu') }}
                   </label>
                 </div>
                 <span v-if="errors.Terms" class="text-danger " >{{ errors.Terms }}</span>

@@ -123,7 +123,7 @@
                     <div class="col-md-2 d-flex flex-column flex-md-row">
                         <div class="d-flex flex-row ">
                             <div class="p-2">
-                                <h6 class="widget-title"><a  href="javascript:void(0)"  @click="goToGoethe"> Telc Tests</a></h6>
+                                <h6 class="widget-title"><a  href="javascript:void(0)" @click="goToTelc"> Telc Tests</a></h6>
                             </div>
                         </div>
                     </div>
@@ -136,7 +136,7 @@
                             class="d-flex flex-row flex-fill w-100">
 
                             <div class="p-2 w-100" style="font-size:14px;">
-                                <a :href="getLocalizedSlug(item)">
+                                <a :href="getLocalizedSlugTelc(item)">
                                     {{ item.name }}
                                 </a>
                             </div>
@@ -471,6 +471,7 @@ export default {
         this.$store.dispatch('getContactinfo');
     },
     methods: {
+
         getLocalizedSlug(item) {
             const slugs = {
                 en: 'online-Goethe-exam',
@@ -489,20 +490,56 @@ export default {
             return `/goethe/${slugs[this.$i18n.locale]}/${slugs2[this.$i18n.locale] || item.slug_de}`;
         },
         goToGoethe() {
-   
-        let lang = this.$i18n.locale;
-        const slugs = {
-            ar: 'نماذج-امتحانات-معهد-جوته',
-            en: 'online-Goethe-exam',
-            de: 'goethe-deutsch-test',
-            fr: 'goethe-institut-examens',
-            es: 'alemán-Goethe-tests'
-        };
-        const slug = slugs[lang] || slugs['de'];
-        return this.$router.push({
-            name: 'Levels',
-            params: { slug }
-        });
+            let lang = this.$i18n.locale;
+            const slugs = {
+                ar: 'نماذج-امتحانات-معهد-جوته',
+                en: 'online-Goethe-exam',
+                de: 'goethe-deutsch-test',
+                fr: 'goethe-institut-examens',
+                es: 'alemán-Goethe-tests'
+            };
+            const slug = slugs[lang] || slugs['de'];
+            return this.$router.push({
+                name: 'Levels',
+                params: { slug }
+            });
+        },
+        getLocalizedSlugTelc(item) {
+            console.log(this.$i18n.locale);
+            const slugs = {
+                en: 'telc-exam-online',
+                ar: 'Telc-نماذج-امتحان',
+                fr: 'allemand-examens-telc',
+                es: 'examen-telc-aleman',
+                de: 'deutsch-test-online',
+            };
+            const slugs2 = {
+                en: item.slug_en,
+                ar: item.slug_ar,
+                fr: item.slug_fr,
+                es: item.slug_es,
+                de: item.slug_de,
+            };
+            return `/telc/${slugs[this.$i18n.locale]}/${slugs2[this.$i18n.locale] || item.slug_de}`;
+        },
+        goToTelc() {
+            let lang = this.$i18n.locale;
+            const slugs = {
+                ar: 'Telc-نماذج-امتحان',
+                en: 'telc-exam-online',
+                de: 'deutsch-test-online',
+                fr: 'allemand-examens-telc',
+                es: 'examen-telc-aleman'
+            };
+
+            // 🔹 نحدد الـ slug المناسب بناءً على اللغة
+            const slug = slugs[lang] || slugs['de'];
+
+            // 🔹 التوجيه إلى صفحة Goethe المناسبة
+            this.$router.push({
+                name: 'Telcs',
+                params: { slug }
+            });
         },
         logout() {
             this.$store.commit('logout')

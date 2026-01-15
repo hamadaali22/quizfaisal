@@ -104,9 +104,73 @@
             <!-- true_false -->
             <div v-if="SubQuestions.answer_type == 'true_false'"
               v-bind:class="[SubQuestions.color == 'b' ? 'bg-information' : '']">
-              <div class="true-false p-3 ">
-                <ul class="multi-choice list-unstyled p-2 d-flex  ">
 
+
+
+
+              <div class="true-false p-3">
+                <ul class="multi-choice list-unstyled p-2 d-flex flex-column flex-md-row align-items-start align-items-md-center">
+                  <!-- السؤال -->
+                  <h6 class="w-100 mb-2 mb-md-0 mr-md-4">
+                    {{ SubQuestions.title }}
+                  </h6>
+                  <!-- الاختيارات -->
+                  <div class="d-flex">
+                    <li class="multi-item q-2 border border-raduis pt-2 pl-3 pr-3 mr-3"
+                      :id="'subq' + index + 'a'"
+                      v-on:click="dissapear(
+                        index,
+                        item.exam_id,
+                        SubQuestions.question_id,
+                        SubQuestions.id,
+                        SubQuestions.expected_answer,
+                        SubQuestions.first_choice,
+                        'subq' + index + 'a',
+                        'a',
+                        SubQuestions.answer_type
+                      )">
+                      <input class="multi-input d-none" type="radio" name="q-2" value="true">
+                      <label class="multi-label">
+                        {{ SubQuestions.first_choice }}
+                      </label>
+                    </li>
+
+                    <li
+                      class="multi-item q-2 border border-raduis pt-2 pl-3 pr-3"
+                      :id="'subq' + index + 'b'"
+                      v-on:click="dissapear(
+                        index,
+                        item.exam_id,
+                        SubQuestions.question_id,
+                        SubQuestions.id,
+                        SubQuestions.expected_answer,
+                        SubQuestions.second_choice,
+                        'subq' + index + 'b',
+                        'b',
+                        SubQuestions.answer_type
+                      )"
+                    >
+                      <input class="multi-input d-none" type="radio" name="q-2" value="false">
+                      <label class="multi-label">
+                        {{ SubQuestions.second_choice }}
+                      </label>
+                    </li>
+
+                  </div>
+
+                </ul>
+              </div>
+
+
+
+
+
+
+
+
+
+              <!-- <div class="true-false p-3 ">
+                <ul class="multi-choice list-unstyled p-2 d-flex  ">
                   <h6 class="w-100">{{ SubQuestions.title }} </h6>
                   <li class="multi-item q-2 border border-raduis pt-2 pl-3 pr-3 mr-5" :id="'subq' + index + 'a'"
                     v-on:click="dissapear(index, item.exam_id, SubQuestions.question_id, SubQuestions.id, SubQuestions.expected_answer, SubQuestions.first_choice, 'subq' + index + 'a', 'a', SubQuestions.answer_type)">
@@ -120,7 +184,7 @@
                   </li>
 
                 </ul>
-              </div>
+              </div> -->
               <div v-if="SubQuestions.bannarImage != null" class="picture multi-item  pl-5">
                 <img :src="SubQuestions.bannarImage" alt="bannar image" class="img-fluid ">
               </div>
@@ -428,3 +492,16 @@ export default {
 
 }
 </script>
+<style>
+  .questions .main-text,.questions .main-quiz {
+      height: auto !important;
+  }
+
+@media (min-width: 992px) {
+    .questions .main-text,
+    .questions .main-quiz {
+        max-height: 100vh;
+        overflow-y: auto;
+    }
+}
+</style>

@@ -30,8 +30,7 @@
         </div>
       </section>
       <section class="questions  row m-2 p-1">
-        <div v-if="(item.type != 'listening') && (item.type != 'sub')"
-          class="col-lg-7 main-text col-md-8 mt-md-3 ml-md-auto mr-md-auto p-2 mt-3 mr-lg-2 bg-white">
+        <div v-if="(item.type != 'listening') && (item.type != 'sub')" class="col-lg-7 main-text col-md-8 mt-md-3 ml-md-auto mr-md-auto p-2 mt-3 mr-lg-2 bg-white">
           <!-- <h2>Title</h2>
               <h5>Sub Title Sub Title Sub Title</h5> -->
 

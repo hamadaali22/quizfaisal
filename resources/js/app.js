@@ -280,7 +280,6 @@ const store = new Vuex.Store({
     },
     RegisterUser({ commit }, payload) {
       return new Promise((resolve, reject) => {
-        let msgerror = '';
 
         axios.post('https://deutschtests.com/api/register', payload)
           .then(res => {
@@ -295,15 +294,15 @@ const store = new Vuex.Store({
               });
               router.push({ name: 'Levels' });
             } else {
+              console.log(res.data.msg);
+              const msgerrors =
+                res.data.msg === 'emailAlreadyExists'
+                  ? i18n.t('emailAlreadyExists')
+                  : i18n.t('somethingWentWrong');
 
-              if (res.data.msg == 'emailAlreadyExists') {
-                let msgerror = i18n.t('emailAlreadyExists');
-              } else {
-                msgerror = '';
-              }
               swal({
                 title: i18n.t('occurred'),
-                text: msgerror,
+                text: msgerrors,
                 icon: "error",
                 timer: 10500
               });
@@ -359,12 +358,12 @@ const store = new Vuex.Store({
       axios.post('https://deutschtests.com/api/login', payload)
         .then(res => {
           console.log(res.data);
-          if (res.data.status == true) {
-            var resTitle = 'Erfolgreich registriert';
-          } else {
-            var resTitle = i18n.t('occurred');
-          }
-          console.log(resTitle);
+          // if (res.data.status == true) {
+          //   var resTitle = 'Erfolgreich registriert';
+          // } else {
+          //   var resTitle = i18n.t('occurred');
+          // }
+          // console.log(resTitle);
           // SuccessfullyRegistered
           if (res.data.status == true) {
             commit('setUserToken', res.data.data.token);
@@ -373,15 +372,15 @@ const store = new Vuex.Store({
             // localStorage.setItem('userTokenn', JSON.stringify('hgcychchchcghchgchghcgchgchgchgchg'));
             router.push({ name: 'Levels' })
             swal({
-              title: resTitle,
-              text: i18n.t('received'),
+              title: i18n.t('SuccessfullyRegistered'),
+              // text: i18n.t('received'),
               icon: "success",
               timer: 10500
             });
           } else {
             router.push({ name: 'Login' })
             swal({
-              title: resTitle,
+              title: i18n.t('occurred'),
               text: i18n.t('wrongEmail'),
               icon: "error",
               timer: 10500

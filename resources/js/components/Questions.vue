@@ -78,7 +78,7 @@
                     <div class="col-sm-6 ">
                       <li class="mr-2 multi-item q-9  border-raduis pt-2 pl-3 mb-1 text-center"
                         :id="'subq' + index + 'image_a'"
-                        v-on:click="dissapear(index, item.exam_id, SubQuestions.question_id, SubQuestions.id, SubQuestions.expected_answer, 'a', 'subq' + index + 'image_a', 'image_a', SubQuestions.answer_type)">
+                        v-on:click="dissapear(index, item.exam_id, SubQuestions.question_id, SubQuestions.id, SubQuestions.expected_answer, 'A', 'subq' + index + 'image_a', 'image_a', SubQuestions.answer_type)">
                         <input class=" multi-input d-none" type="radio" name="q-9" value="mars" id="img-1">
                         <label class="multi-label" id="mars">A.<img :src="SubQuestions.image_a"
                             class="img-fluid multi-label-img" alt=""></label>
@@ -87,7 +87,7 @@
                     <div class="col-sm-6 ">
                       <li class="mr-2 multi-item q-9  border-raduis pt-2 pl-3 mb-1  text-center"
                         :id="'subq' + index + 'image_b'"
-                        v-on:click="dissapear(index, item.exam_id, SubQuestions.question_id, SubQuestions.id, SubQuestions.expected_answer, 'b', 'subq' + index + 'image_b', 'image_b', SubQuestions.answer_type)">
+                        v-on:click="dissapear(index, item.exam_id, SubQuestions.question_id, SubQuestions.id, SubQuestions.expected_answer, 'B', 'subq' + index + 'image_b', 'image_b', SubQuestions.answer_type)">
                         <input class=" multi-input d-none" type="radio" name="q-9" value="jupiter" id="img-2">
                         <label class="multi-label" id="jupiter">B.<img :src="SubQuestions.image_b"
                             class="img-fluid  multi-label-img" alt=""></label>

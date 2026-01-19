@@ -146,92 +146,86 @@
                   </div>
 
                   <div  v-if="SubQuestions.is_multy == 'image'" class="mcq mt-5">
-                      <!-- <h6>question question question question question question question question ?</h6> -->
-                      <ul class="multi-choice list-unstyled p-2"  v-if="SubQuestions.exam_answer !=null">
-                          <p>{{SubQuestions.title}}</p>
-                          <div class="row">
-                        <!-- first imag -->
-                            <div class="col-sm-6 " v-if="'a' == SubQuestions.exam_answer.answer
-                                                                            && 'a' == SubQuestions.exam_answer.expected_answer" >
-                              <li class="mr-2 multi-item q-9  pt-2 pl-3 mb-1 text-center" style="border: #28D094 1px solid;">
-                                  <input class=" multi-input d-none" type="radio" name="q-9" value="mars" id="img-1">
-                                  <label class="multi-label" id="mars">A.<img :src="SubQuestions.image_a" class="img-fluid multi-label-img" alt=""></label>
-                              </li>
-                            </div>
-                            <div class="col-sm-6" v-else-if=" 'a' == SubQuestions.exam_answer.expected_answer" >
-                              <li class="mr-2 multi-item q-9  pt-2 pl-3 mb-1 text-center" style="border: #28D094 1px solid;">
-                                  <input class=" multi-input d-none" type="radio" name="q-9" value="mars" id="img-1">
-                                  <label class="multi-label" id="mars">A.<img :src="SubQuestions.image_a" class="img-fluid multi-label-img" alt=""></label>
-                              </li>
-                            </div>
-
-
-                            <div class="col-sm-6" v-else-if="'a' == SubQuestions.exam_answer.answer
-                                                                            && 'a' != SubQuestions.exam_answer.expected_answer" >
-                              <li class="mr-2 multi-item q-9   pt-2 pl-3 mb-1 text-center"  style="border: #f6bfc4 1px solid;">
-                                  <input class=" multi-input d-none" type="radio" name="q-9" value="mars" id="img-1">
-                                  <label class="multi-label" id="mars">A.<img :src="SubQuestions.image_a" class="img-fluid multi-label-img" alt=""></label>
-                              </li>
-                            </div>
-                            <div class="col-sm-6 " v-else>
-                              <li class="mr-2 multi-item q-9  border-raduis pt-2 pl-3 mb-1 text-center" >
-                                  <input class=" multi-input d-none" type="radio" name="q-9" value="mars" id="img-1">
-                                  <label class="multi-label" id="mars">A.<img :src="SubQuestions.image_a" class="img-fluid multi-label-img" alt=""></label>
-                              </li>
-                            </div>
-
-
-                      <!-- end -->
-                      <!-- start b-->
-                            <div class="col-sm-6 " v-if="'b' == SubQuestions.exam_answer.answer
-                                                                            && 'b' == SubQuestions.exam_answer.expected_answer">
-                              <li class="mr-2 multi-item q-9  border-raduis pt-2 pl-3 mb-1  text-center" style="border: #28D094 1px solid;">
-                                  <input class=" multi-input d-none" type="radio" name="q-9" value="jupiter" id="img-2">
-                                  <label class="multi-label" id="jupiter">B.<img :src="SubQuestions.image_b" class="img-fluid  multi-label-img" alt=""></label>
-                              </li>
-                            </div>
-                            <div class="col-sm-6 " v-else-if=" 'b' == SubQuestions.exam_answer.expected_answer" style="border: #28D094 1px solid;">
-                              <li class="mr-2 multi-item q-9  border-raduis pt-2 pl-3 mb-1  text-center" >
-                                  <input class=" multi-input d-none" type="radio" name="q-9" value="jupiter" id="img-2">
-                                  <label class="multi-label" id="jupiter">B.<img :src="SubQuestions.image_b" class="img-fluid  multi-label-img" alt=""></label>
-                              </li>
-                            </div>
-                            <div class="col-sm-6 " v-else-if="'b' == SubQuestions.exam_answer.answer
-                                                                            && 'b' != SubQuestions.exam_answer.expected_answer" >
-                              <li class="mr-2 multi-item q-9  border-raduis pt-2 pl-3 mb-1  text-center" style="border: #f6bfc4 1px solid;">
-                                  <input class=" multi-input d-none" type="radio" name="q-9" value="jupiter" id="img-2">
-                                  <label class="multi-label" id="jupiter">B.<img :src="SubQuestions.image_b" class="img-fluid  multi-label-img" alt=""></label>
-                              </li>
-                            </div>
-                            <div class="col-sm-6 " v-else>
-                              <li class="mr-2 multi-item q-9  border-raduis pt-2 pl-3 mb-1  text-center" >
-                                  <input class=" multi-input d-none" type="radio" name="q-9" value="jupiter" id="img-2">
-                                  <label class="multi-label" id="jupiter">B.<img :src="SubQuestions.image_b" class="img-fluid  multi-label-img" alt=""></label>
-                              </li>
-                            </div>
-                    <!-- end -->
+                    <ul class="multi-choice list-unstyled p-2"  v-if="SubQuestions.exam_answer !=null">
+                        <p>{{SubQuestions.title}}</p>
+                        <div class="row">
+                      <!-- first imag -->
+                          <div class="col-sm-6 " v-if="'a' == SubQuestions.exam_answer.answer  && 'A' == SubQuestions.exam_answer.expected_answer" >
+                            <li class="mr-2 multi-item q-9  pt-2 pl-3 mb-1 text-center" style="border: #28D094 1px solid;">
+                                <input class=" multi-input d-none" type="radio" name="q-9" value="mars" id="img-1">
+                                <label class="multi-label" id="mars">A.<img :src="SubQuestions.image_a" class="img-fluid multi-label-img" alt=""></label>
+                            </li>
                           </div>
-                      </ul>
-                      <ul class="multi-choice list-unstyled p-2" v-else>
-                          <p>{{SubQuestions.title}}</p>
-                          <div class="row">
-                            <div class="col-sm-6 ">
-                              <li class="mr-2 multi-item q-9  border-raduis pt-2 pl-3 mb-1 text-center" :id="'subq'+index+'image_a'" v-on:click="dissapear(index,item.exam_id,SubQuestions.question_id,SubQuestions.id,SubQuestions.expected_answer,'a','subq'+index+'image_a','image_a',SubQuestions.answer_type)">
-                                  <input class=" multi-input d-none" type="radio" name="q-9" value="mars" id="img-1">
-                                  <label class="multi-label" id="mars">A.<img :src="SubQuestions.image_a" class="img-fluid multi-label-img" alt=""></label>
-                              </li>
-                            </div>
-                            <div class="col-sm-6 ">
-                              <li class="mr-2 multi-item q-9  border-raduis pt-2 pl-3 mb-1  text-center" :id="'subq'+index+'image_b'" v-on:click="dissapear(index,item.exam_id,SubQuestions.question_id,SubQuestions.id,SubQuestions.expected_answer,'b','subq'+index+'image_b','image_b',SubQuestions.answer_type)">
-                                  <input class=" multi-input d-none" type="radio" name="q-9" value="jupiter" id="img-2">
-                                  <label class="multi-label" id="jupiter">B.<img :src="SubQuestions.image_b" class="img-fluid  multi-label-img" alt=""></label>
-                              </li>
-                            </div>
-
+                          <div class="col-sm-6" v-else-if=" 'A' == SubQuestions.exam_answer.expected_answer" >
+                            <li class="mr-2 multi-item q-9  pt-2 pl-3 mb-1 text-center" style="border: #28D094 1px solid;">
+                                <input class=" multi-input d-none" type="radio" name="q-9" value="mars" id="img-1">
+                                <label class="multi-label" id="mars">A.<img :src="SubQuestions.image_a" class="img-fluid multi-label-img" alt=""></label>
+                            </li>
                           </div>
-                      </ul>
+
+
+                          <div class="col-sm-6" v-else-if="'A' == SubQuestions.exam_answer.answer && 'A' != SubQuestions.exam_answer.expected_answer" >
+                            <li class="mr-2 multi-item q-9   pt-2 pl-3 mb-1 text-center"  style="border: #f6bfc4 1px solid;">
+                                <input class=" multi-input d-none" type="radio" name="q-9" value="mars" id="img-1">
+                                <label class="multi-label" id="mars">A.<img :src="SubQuestions.image_a" class="img-fluid multi-label-img" alt=""></label>
+                            </li>
+                          </div>
+                          <div class="col-sm-6 " v-else>
+                            <li class="mr-2 multi-item q-9  border-raduis pt-2 pl-3 mb-1 text-center" >
+                                <input class=" multi-input d-none" type="radio" name="q-9" value="mars" id="img-1">
+                                <label class="multi-label" id="mars">A.<img :src="SubQuestions.image_a" class="img-fluid multi-label-img" alt=""></label>
+                            </li>
+                          </div>
+                        <!-- end -->
+                        <!-- start b-->
+                          <div class="col-sm-6 " v-if="'B' == SubQuestions.exam_answer.answer
+                                                                          && 'B' == SubQuestions.exam_answer.expected_answer">
+                            <li class="mr-2 multi-item q-9  border-raduis pt-2 pl-3 mb-1  text-center" style="border: #28D094 1px solid;">
+                                <input class=" multi-input d-none" type="radio" name="q-9" value="jupiter" id="img-2">
+                                <label class="multi-label" id="jupiter">B.<img :src="SubQuestions.image_b" class="img-fluid  multi-label-img" alt=""></label>
+                            </li>
+                          </div>
+                          <div class="col-sm-6 " v-else-if=" 'B' == SubQuestions.exam_answer.expected_answer" style="border: #28D094 1px solid;">
+                            <li class="mr-2 multi-item q-9  border-raduis pt-2 pl-3 mb-1  text-center" >
+                                <input class=" multi-input d-none" type="radio" name="q-9" value="jupiter" id="img-2">
+                                <label class="multi-label" id="jupiter">B.<img :src="SubQuestions.image_b" class="img-fluid  multi-label-img" alt=""></label>
+                            </li>
+                          </div>
+                          <div class="col-sm-6 " v-else-if="'B' == SubQuestions.exam_answer.answer
+                                                                          && 'B' != SubQuestions.exam_answer.expected_answer" >
+                            <li class="mr-2 multi-item q-9  border-raduis pt-2 pl-3 mb-1  text-center" style="border: #f6bfc4 1px solid;">
+                                <input class=" multi-input d-none" type="radio" name="q-9" value="jupiter" id="img-2">
+                                <label class="multi-label" id="jupiter">B.<img :src="SubQuestions.image_b" class="img-fluid  multi-label-img" alt=""></label>
+                            </li>
+                          </div>
+                          <div class="col-sm-6 " v-else>
+                            <li class="mr-2 multi-item q-9  border-raduis pt-2 pl-3 mb-1  text-center" >
+                                <input class=" multi-input d-none" type="radio" name="q-9" value="jupiter" id="img-2">
+                                <label class="multi-label" id="jupiter">B.<img :src="SubQuestions.image_b" class="img-fluid  multi-label-img" alt=""></label>
+                            </li>
+                          </div>
+                  <!-- end -->
+                        </div>
+                    </ul>
+                    <ul class="multi-choice list-unstyled p-2" v-else>
+                        <p>{{SubQuestions.title}}</p>
+                        <div class="row">
+                          <div class="col-sm-6 ">
+                            <li class="mr-2 multi-item q-9  border-raduis pt-2 pl-3 mb-1 text-center" :id="'subq'+index+'image_a'" v-on:click="dissapear(index,item.exam_id,SubQuestions.question_id,SubQuestions.id,SubQuestions.expected_answer,'a','subq'+index+'image_a','image_a',SubQuestions.answer_type)">
+                                <input class=" multi-input d-none" type="radio" name="q-9" value="mars" id="img-1">
+                                <label class="multi-label" id="mars">A.<img :src="SubQuestions.image_a" class="img-fluid multi-label-img" alt=""></label>
+                            </li>
+                          </div>
+                          <div class="col-sm-6 ">
+                            <li class="mr-2 multi-item q-9  border-raduis pt-2 pl-3 mb-1  text-center" :id="'subq'+index+'image_b'" v-on:click="dissapear(index,item.exam_id,SubQuestions.question_id,SubQuestions.id,SubQuestions.expected_answer,'b','subq'+index+'image_b','image_b',SubQuestions.answer_type)">
+                                <input class=" multi-input d-none" type="radio" name="q-9" value="jupiter" id="img-2">
+                                <label class="multi-label" id="jupiter">B.<img :src="SubQuestions.image_b" class="img-fluid  multi-label-img" alt=""></label>
+                            </li>
+                          </div>
+
+                        </div>
+                    </ul>
                   </div>
-
                 </div>
 
                 <!-- true_false -->

@@ -47,7 +47,11 @@
           <li v-if="!isLogged" class="nav-item p-1 active ">
             <router-link to="/register" class="nav-link text-light" @click.native="closeMenu">{{ $t('Register') }}</router-link>
           </li>
-          <li class="nav-item p-1 active"> <a href="/contact-us" class="nav-link text-light" @click.native="closeMenu"> {{ $t('contactUs') }} </a> </li>
+          <li class="nav-item p-1 active">
+             <!-- <a href="/contact-us" class="nav-link text-light" @click.native="closeMenu"> {{ $t('contactUs') }} </a>  -->
+             <router-link to="/contact-us" class="nav-link text-light" @click.native="closeMenu">{{ $t('contactUs') }}</router-link>
+
+            </li>
           
           <li class="nav-item p-1 active"><a href="https://forum.deutschtests.com/" @click.native="closeMenu" class="nav-link text-light">{{ $t('Forum') }}</a></li>
           <!-- <li v-if="isLogged" class="nav-item p-1 active "><router-link to="/placement-result"

@@ -38,12 +38,15 @@
           </li>
           <!-- <li class="nav-item p-1 active "><router-link to="/placement-test"
               class="nav-link text-light"> {{ $t('PlacementTest') }}</router-link></li> -->
-          <li v-if="isLogged" class="nav-item p-1 active "><router-link to="/goethe-user-exam"
-              class="nav-link text-light">{{ $t('Mytests') }}</router-link></li>
-          <li v-if="!isLogged" class="nav-item p-1 active "><router-link to="/login"
-              class="nav-link text-light">{{ $t('LogIn') }}</router-link></li>
-          <li v-if="!isLogged" class="nav-item p-1 active "><router-link to="/register"
-              class="nav-link text-light">{{ $t('Register') }}</router-link></li>
+          <li v-if="isLogged" class="nav-item p-1 active ">
+            <router-link to="/goethe-user-exam" class="nav-link text-light" @click.native="closeMenu">{{ $t('Mytests') }}</router-link>
+          </li>
+          <li v-if="!isLogged" class="nav-item p-1 active ">
+            <router-link to="/login" class="nav-link text-light" @click.native="closeMenu">{{ $t('LogIn') }}</router-link>
+          </li>
+          <li v-if="!isLogged" class="nav-item p-1 active ">
+            <router-link to="/register" class="nav-link text-light" @click.native="closeMenu">{{ $t('Register') }}</router-link>
+          </li>
           <li class="nav-item p-1 active"> <a href="/contact-us" class="nav-link text-light" @click.native="closeMenu"> {{ $t('contactUs') }} </a> </li>
           
           <li class="nav-item p-1 active"><a href="https://forum.deutschtests.com/" @click.native="closeMenu" class="nav-link text-light">{{ $t('Forum') }}</a></li>

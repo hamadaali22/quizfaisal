@@ -1,6 +1,7 @@
 <template>
     <div>
-        <section id="" v-if="userId">
+        <!-- <section id="" v-if="userId" ></section> -->
+        <section id="" v-if="isLogged" >
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
@@ -136,12 +137,10 @@
                     </div>
                 </div>
             </div>
-            
             <div class="row ">
                 <p>&nbsp;</p>
             </div>
             <div class="row justify-content-center">
-                
                 <button class="button " type="button"><router-link v-if="isLogged" :to="'/goethe-report/'+this.examId" class="a-link">Ihr detailliertes Ergebnis</router-link></button>
             </div>
             <div class="row">

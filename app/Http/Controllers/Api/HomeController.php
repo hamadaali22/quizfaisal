@@ -121,10 +121,10 @@ class HomeController extends Controller
             $user = $add->toArray();
             $user['link'] = Str::random(32);
             DB::table('user_activations')->insert(['id_user'=>$user['id'],'token'=>$user['link']]);
-            Mail::send('emails.activation', $user, function($message) use ($user){
-                $message->to($user['email']);
-                $message->subject('Deutschprüfungen - Aktivierungscode');
-            });            
+            // Mail::send('emails.activation', $user, function($message) use ($user){
+            //     $message->to($user['email']);
+            //     $message->subject('Deutschprüfungen - Aktivierungscode');
+            // });            
             $credentials = [
                 'email' => $request->email,
                 'password' => $request->password,

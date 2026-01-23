@@ -160,10 +160,10 @@ export default {
       this.errors = {};
       let isValid = true;
 
-      if (!this.recaptchaToken) {
-        this.errors.recaptcha = this.$t('RecaptchaRequired');
-        isValid = false;
-      }
+      // if (!this.recaptchaToken) {
+      //   this.errors.recaptcha = this.$t('RecaptchaRequired');
+      //   isValid = false;
+      // }
       if(!this.acceptTerms){
         this.errors.Terms = this.$t('acceptTerms');
         isValid = false;

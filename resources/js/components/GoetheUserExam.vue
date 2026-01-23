@@ -103,7 +103,7 @@
                             <div class="progress1">
                                 <input type="hidden" value="88" id="progress1" />
                                 <div class="progress__fill"
-                                    :style="{ background: '#3aa6d0', width: item.count_read_succes + '%' }"></div>
+                                    :style="{ background: '#3aa6d0', width: item.count_read_percent + '%' }"></div>
                                 <span class="progress__text">{{ item.count_read_percent }}%</span>
                                 <span class="progress__text" style="left: 25px !important;">Lesen</span>
                             </div>
@@ -122,7 +122,7 @@
                             <div class="progress2">
                                 <input type="hidden" value="66" id="progress2" />
                                 <div class="progress__fill"
-                                    :style="{ background: '#3aa6d0', width: item.count_listen_succes + '%' }"></div>
+                                    :style="{ background: '#3aa6d0', width: item.count_listen_percent + '%' }"></div>
                                 <span class="progress__text">{{ item.count_listen_percent}}%</span>
                                 <span class="progress__text" style="left: 25px !important;">Hören</span>
                             </div>

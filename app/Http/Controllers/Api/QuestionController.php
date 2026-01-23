@@ -402,7 +402,9 @@ class QuestionController extends Controller
         // }else{
         //     return 'n';
         // }
-        $xam_answer=ExamAnswer::where("user_id" , $request->user_id)->orderBy('id','DESC')->get();
+        $xam_answer=ExamAnswer::where("user_id" , $request->user_id)
+        // ->orderBy('id','DESC')
+        ->get();
         $values=[];
         $exams=[];
         $date='2020-01-20';
@@ -596,7 +598,7 @@ class QuestionController extends Controller
             ->with(['examAnswers' => function ($q) use ($request) {
                 $q->where('user_id', $request->user_id);
             }])
-            ->orderBy('id', 'DESC')
+            // ->orderBy('id', 'DESC')
             ->get();
 
        foreach ($exams as $_item) {

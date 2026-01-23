@@ -28,6 +28,13 @@
                 </div>
                 <span v-if="errors.Terms" class="text-danger " >{{ errors.Terms }}</span>
 
+                <vue-recaptcha
+                  :sitekey="'YOUR_SITE_KEY_HERE'"
+                  @verify="onVerify"
+                />
+                <span v-if="errors.recaptcha" class="text-danger">
+                  {{ errors.recaptcha }}
+                </span>
                 <!-- <select class="w-100 mb-2 form-control formselect" v-model="country">
                         <option selected value=""> Country </option>
                         <option  value="Deutschland">Deutschland</option>
@@ -128,6 +135,7 @@ export default {
       mobile: '',
       language: '',
       country: '',
+      recaptchaToken: null, 
       errors: {}
     }
   },
@@ -145,9 +153,17 @@ export default {
 
   },
   methods: {
+    onVerify(token) {
+      this.recaptchaToken = token; // ✅ حفظ التوكن
+    },
     submitRegister() {
       this.errors = {};
       let isValid = true;
+
+      if (!this.recaptchaToken) {
+        this.errors.recaptcha = this.$t('RecaptchaRequired');
+        isValid = false;
+      }
       if(!this.acceptTerms){
         this.errors.Terms = this.$t('acceptTerms');
         isValid = false;

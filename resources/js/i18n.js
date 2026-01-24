@@ -59,6 +59,7 @@ const messages = {
         emailAlreadyExists: 'Email already exists',
         ServerError: 'Server error',
         somethingWentWrong: 'Something went wrong. Please try again later.',
+        NotRepot: 'Please verify that you are not a robot',
     },
     ar: {
         signUp: 'إنشاء حساب',
@@ -115,7 +116,7 @@ const messages = {
         emailAlreadyExists: 'البريد الإلكتروني موجود مسبقاً.',
         ServerError: 'خطأ في الخادم',
         somethingWentWrong: 'حدث خطأ ما. يُرجى المحاولة مرة أخرى لاحقًا.',
-
+        NotRepot: 'يرجى تأكيد أنك لست روبوتًا',
     },
     de: {
         signUp: 'Sign up ',
@@ -173,6 +174,7 @@ const messages = {
         emailAlreadyExists: 'E-Mail-Adresse existiert bereits.',
         ServerError: 'Serverfehler',
         somethingWentWrong: "Es ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.",
+        NotRepot: 'Bitte bestätigen Sie, dass Sie kein Roboter sind',
     },
     fr: {
         signUp: 'Sign up ',
@@ -229,6 +231,7 @@ const messages = {
         emailAlreadyExists: 'Adresse e-mail déjà existante.',
         ServerError: 'Erreur serveur.',
         somethingWentWrong: "Une erreur s'est produite.Veuillez réessayer plus tard.",
+        NotRepot: "Veuillez vérifier que vous n'êtes pas un robot",
     },
     es: {
         signUp: 'Sign up ',
@@ -286,6 +289,7 @@ const messages = {
         emailAlreadyExists: 'El correo electrónico ya existe',
         ServerError: 'Error del servidor',
         somethingWentWrong: "Algo salió mal. Inténtalo de nuevo más tarde.",
+        NotRepot: 'Por favor, verifique que no es un robot',
     },
 };
 

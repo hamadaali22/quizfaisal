@@ -1,4 +1,3 @@
-
 <!--
 <nav class="navbar navbar-expand-lg back w-100 pt-0 pb-0">
     <a href="index.php" class="navbar-brand text-light" id="brand">Exam site</a>
@@ -17,3 +16,5 @@
         </ul>
 </nav> -->
 <header-component></header-component>
+<!-- <script src="https://www.google.com/recaptcha/enterprise.js" async defer></script> -->
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>

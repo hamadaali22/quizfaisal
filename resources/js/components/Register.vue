@@ -29,12 +29,12 @@
                 <span v-if="errors.Terms" class="text-danger " >{{ errors.Terms }}</span>
 
                 <vue-recaptcha
-                  :sitekey="'YOUR_SITE_KEY_HERE'"
+                  ref="recaptcha"
+                  sitekey="6Lc_xVMsAAAAAH9FjC4lrmRqeDCdygqTpGTdScLr"
                   @verify="onVerify"
-                />
-                <span v-if="errors.recaptcha" class="text-danger">
-                  {{ errors.recaptcha }}
-                </span>
+                  @expired="onExpired"
+                ></vue-recaptcha>
+                <span v-if="errors.captchaResponse" class="text-danger">{{ errors.captchaResponse }}</span>
                 <!-- <select class="w-100 mb-2 form-control formselect" v-model="country">
                         <option selected value=""> Country </option>
                         <option  value="Deutschland">Deutschland</option>
@@ -124,7 +124,9 @@
 </template>
 
 <script>
+import VueRecaptcha from 'vue-recaptcha'
 export default {
+   components: { VueRecaptcha },
   data() {
     return {
       isLoading: false,
@@ -135,8 +137,8 @@ export default {
       mobile: '',
       language: '',
       country: '',
-      recaptchaToken: null, 
-      errors: {}
+      errors: {},
+      captchaResponse: null
     }
   },
   computed: {
@@ -153,17 +155,17 @@ export default {
 
   },
   methods: {
-    onVerify(token) {
-      this.recaptchaToken = token; // ✅ حفظ التوكن
+    onVerify(response) {
+      this.captchaResponse = response
+      console.log('Captcha verified:', response)
+    },
+    onExpired() {
+      this.captchaResponse = null
+      console.log('Captcha expired')
     },
     submitRegister() {
       this.errors = {};
       let isValid = true;
-
-      // if (!this.recaptchaToken) {
-      //   this.errors.recaptcha = this.$t('RecaptchaRequired');
-      //   isValid = false;
-      // }
       if(!this.acceptTerms){
         this.errors.Terms = this.$t('acceptTerms');
         isValid = false;
@@ -189,6 +191,10 @@ export default {
       // Name validation
       if (!this.name) {
         this.errors.name = this.$t('NameRequired');
+        isValid = false;
+      }
+      if (!this.captchaResponse) {
+        this.errors.captchaResponse = this.$t('NotRepot');
         isValid = false;
       }
 

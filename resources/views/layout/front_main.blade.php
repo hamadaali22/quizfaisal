@@ -6,6 +6,7 @@
 <head>
 	@include('layout.front_head')
 	<!-- <link rel="stylesheet" type="text/css" href="{{asset('css/app.css')}}"> -->
+	<!-- <link href="{{ mix('css/app.css') }}" rel="stylesheet"> -->
 	<style>
 		body {
 			-webkit-user-select: none;
@@ -30,18 +31,17 @@
 
 	</div>
 	<!-- prettier-ignore -->
-	
-	<script id="messenger-widget-b" src="https://cdn.botpenguin.com/website-bot.js"defer>69491c482cd09804d72aa732,69491abde2d15bcd0ce034b9</script>
 
+
+	<script id="messenger-widget-b" src="https://cdn.botpenguin.com/website-bot.js"defer>69491c482cd09804d72aa732,69491abde2d15bcd0ce034b9</script>
 
 
 	<script src="{{asset('front/bootstrap-4.0.0-dist/js/popper.min.js')}}"></script>
 	<script src="{{asset('front/bootstrap-4.0.0-dist/js/jquery-3.6.3.min.js')}}"></script>
 	<script src="{{asset('front/bootstrap-4.0.0-dist/js/bootstrap.js')}}"></script>
 	<script src="{{asset('front/main.js')}}"></script>
-	<script src="{{asset('js/app.js')}}"></script>
-
-
+	<!-- <script src="{{asset('js/app.js')}}"></script> -->
+	<script src="{{ mix('js/app.js') }}" defer></script>
 
 
 

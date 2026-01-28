@@ -773,8 +773,7 @@ class QuestionController extends Controller
 					$count_read +=count($subquestion_read);
 				}
 			}
-// 			dd($allquestion);
-//             dd($count_listen);
+
 			if($count_listen_succes !=0){
 				$count_listen_percent=($count_listen_succes / $count_listen) * 100;
 			}else{
@@ -792,29 +791,10 @@ class QuestionController extends Controller
 			$_item->count_listen_succes= $count_listen_succes;
 			$_item->count_listen= $count_listen;
 			$_item->count_listen_percent= round($count_listen_percent, 1);
-			
-// 			echo $count_listen_succes;
-// 			dd($_item);
-// 			$_item->one_exams=$one_exams;
         }
         return $this->returnDataa('data', $exams,'');
     }
-    // public function telcUserExamss(Request $request)
-    // {
-    //         $exams=ExamAnswer::where("user_id" , $request->user_id)->get();
-    //         $values=[];
-    //         $data=[];
-    //         foreach ($exams as $item) {
-    //             if (!in_array($item->exam_id, $values)) {
-    //                 $exam=Exam::where("id" , $item->exam_id)->where('section','telc')->first();
-    //                 if($exam){
-    //                   $values[]=$item->exam_id;
-    //                   $data[]=$exam;
-    //                 }
-    //             }
-    //         }
-    //         return $this->returnDataa('data', $data,'');
-    // }
+
     public function question(Request $request)
     {
         $data=Question::where("exam_id" , $request->exam_id)->orderBy('order','ASC')->paginate(1);

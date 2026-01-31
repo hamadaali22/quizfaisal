@@ -372,7 +372,7 @@ const store = new Vuex.Store({
             // localStorage.setItem('userTokenn', JSON.stringify('hgcychchchcghchgchghcgchgchgchgchg'));
             router.push({ name: 'Levels' })
             swal({
-              title: i18n.t('SuccessfullyRegistered'),
+              title: i18n.t('SuccessfullyLogin'),
               // text: i18n.t('received'),
               icon: "success",
               timer: 10500

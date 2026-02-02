@@ -308,7 +308,14 @@ export default {
   mounted() {
     // let {examId} = this;
     // this.scrollToTop();
-    this.$store.dispatch('getQuestions', { examId: this.examId, pageId: this.pageId });
+    this.$store.dispatch('getQuestions', { 
+      examId: this.examId,
+      pageId: this.pageId
+    }).then(() => {
+      this.$nextTick(() => {
+        window.scrollTo(0, 0)
+      })
+    });
   },
 
 

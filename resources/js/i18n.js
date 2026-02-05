@@ -139,7 +139,7 @@ const messages = {
         reading: 'Lesen',
         listening: 'Hören',
         registerToReceive: 'Sie müssen sich registireieren, um Ihr Ergebnis zu erhalten und die Musterlösung zu sehen.',
-        PlacementTest: 'Einstunfungstest',
+        PlacementTest: 'Einstufungstest',
         PlacementResult: 'Platzierungsergebnis',
         language: 'Sprache',
         EmailInvalid: 'Ungültige Email-Adresse',

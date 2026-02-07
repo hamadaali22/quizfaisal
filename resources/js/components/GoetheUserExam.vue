@@ -86,7 +86,7 @@
                             </div>
                         </div>
                     </div> -->
-                    <div v-for="(item, itemIndex) in telcUserExams" class="col-lg-12 col-md-12">
+                    <div v-for="(item, itemIndex) in sortedTelcUserExams"  :key="itemIndex"  class="col-lg-12 col-md-12">
                         <div class=" col-lg-2 col-md-12">
                             <div class="our-skill   w-100 text-center text-light mt-1 pt-2 pb-2"
                                 style="background-color: #3d83b3;border-radius: 5px;margin-top: -9px !important;    margin-bottom:16px !important;">
@@ -165,7 +165,11 @@ export default {
         telcUserExams() {
             return this.$store.state.TelcUserExam
         },
-
+        sortedTelcUserExams() {
+            return [...this.telcUserExams].sort((a, b) => {
+            return new Date(b.date) - new Date(a.date)
+            })
+        },
         isLogged() {
             return this.$store.getters.isLogged
         }

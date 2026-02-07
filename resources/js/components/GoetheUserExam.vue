@@ -33,7 +33,7 @@
                         <div class="col-md-2"></div>
                     </div>
 
-                    <div v-for="(_item, itemIndex) in goetheUserExams" class="col-lg-12 col-md-12">
+                    <!-- <div v-for="(_item, itemIndex) in goetheUserExams" class="col-lg-12 col-md-12">
                         <div class=" col-lg-2 col-md-12">
                             <div class="our-skill   w-100 text-center text-light mt-1 pt-2 pb-2"
                                 style="background-color: #3d83b3;border-radius: 5px;margin-top: -9px !important;    margin-bottom: 16px !important;">
@@ -71,7 +71,7 @@
                                 <div class="progress__fill"
                                     :style="{ background: '#3aa6d0', width: _item.count_listen_percent + '%' }"></div>
                                 <span class="progress__text">{{ _item.count_listen_percent }}%</span>
-                                <!-- <span class="progress__name">Hören</span> -->
+
                                 <span class="progress__text" style="left: 25px !important;">Hören</span>
                             </div>
                         </div>
@@ -85,7 +85,7 @@
                                 <h5 id="demo1" style="color: red;">nicht bestanden</h5>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <div v-for="(item, itemIndex) in telcUserExams" class="col-lg-12 col-md-12">
                         <div class=" col-lg-2 col-md-12">
                             <div class="our-skill   w-100 text-center text-light mt-1 pt-2 pb-2"

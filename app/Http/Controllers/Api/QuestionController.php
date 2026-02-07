@@ -512,30 +512,11 @@ class QuestionController extends Controller
 			$_item->count_listen= $count_listen;
 			$_item->count_listen_percent= round($count_listen_percent, 1);
 			
-// 			echo $count_listen_succes;
-// 			dd($_item);
-// 			$_item->one_exams=$one_exams;
         }
         
         return $this->returnDataa('data', $exams,'');
     }
-    // public function goetheUserExamss(Request $request)
-    // {
-    //     $exams=ExamAnswer::where("user_id" , $request->user_id)->get();
-    //     $values=[];
-    //     $data=[];
-    //     foreach ($exams as $item) {
-    //         if (!in_array($item->exam_id, $values)) {
-    //             $values[]=$item->exam_id;
-    //             $exam=Exam::where("id" , $item->exam_id)->where('section',null)->first();
-    //             if($exam){
-    //               $values[]=$item->exam_id;
-    //               $data[]=$exam;
-    //             }
-    //         }
-    //     }
-    //     return $this->returnDataa('data', $data,'');
-    // }
+  
 
     public function goetheReportExams(Request $request)
     {
@@ -591,8 +572,9 @@ class QuestionController extends Controller
         $count_listen=0;
         $count_read_succes=0;
         $count_read=0;
-        $exams = Exam::where('section', 'telc')
-            ->whereHas('examAnswers', function ($q) use ($request) {
+        $exams = Exam::
+        // where('section', 'telc')->
+        whereHas('examAnswers', function ($q) use ($request) {
                 $q->where('user_id', $request->user_id);
             })
             ->with(['examAnswers' => function ($q) use ($request) {

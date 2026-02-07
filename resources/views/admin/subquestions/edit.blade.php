@@ -134,7 +134,7 @@
                   <div class="col-md-4 col-sm-6">
                     <div class="form-group">
                       <label>color</label>
-                      <input type="text" name="color" class="form-control titleId">
+                      <input type="text" name="color" class="form-control titleId" value="{{$subquestion->color}}">
                       <!-- <span id="titleError" style="color: red;"></span> -->
                     </div>
                   </div>

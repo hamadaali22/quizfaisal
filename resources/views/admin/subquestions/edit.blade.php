@@ -134,7 +134,7 @@
                   <div class="col-md-4 col-sm-6">
                     <div class="form-group">
                       <label>color</label>
-                      <input type="text" name="color" class="form-control titleId" value="{{$subquestion->color}}">
+                      <input type="text" name="color" class="form-control titleId">
                       <!-- <span id="titleError" style="color: red;"></span> -->
                     </div>
                   </div>
@@ -216,12 +216,15 @@ $videos=session()->get('videos_sessions');
 <!-- <script src="http://code.jquery.com/jquery-3.4.1.js"></script> -->
 
 <script>
-  var first_choice =<? php echo json_encode($subquestion -> first_choice) ?>;
-  var second_choice =<? php echo json_encode($subquestion -> second_choice) ?>;
-  var third_choice =<? php echo json_encode($subquestion -> third_choice) ?>;
-  var image_a =<? php echo json_encode($subquestion -> image_a) ?>;
-  var image_b =<? php echo json_encode($subquestion -> image_b) ?>;
-  var image_b =<? php echo json_encode($subquestion -> image_b) ?>;
+
+  var first_choice = @json($subquestion -> first_choice);
+  var second_choice = @json($subquestion -> second_choice);
+  var third_choice = @json($subquestion -> third_choice);
+
+  var image_a = @json($subquestion -> image_a);
+  var image_b = @json($subquestion -> image_b);
+
+
 
   let complete_n_one = document.getElementById('answer-one');
   let complete_n_two = document.getElementById('answer-two');
@@ -250,9 +253,9 @@ $videos=session()->get('videos_sessions');
   let complete_expected_six = document.getElementById('answer-expected-six');
 
 
-  var answer_type =<? php echo json_encode($subquestion -> answer_type) ?>;
-  var is_multy =<? php echo json_encode($subquestion -> is_multy) ?>;
-  var is_complete =<? php echo json_encode($subquestion -> is_complete) ?>;
+  var answer_type = @json($subquestion -> answer_type);
+  var is_multy = @json($subquestion -> is_multy);
+  var is_complete = @json($subquestion -> is_complete);
 
   $('.loader-container').hide();
   $('.is_multy-hidden1').hide();

@@ -4,7 +4,7 @@
 
     
 
-    <div v-for="item in getQuestion" :key="item.id">
+    <div v-for="item in getQuestion" :key="item.id" :style="$i18n.locale==='ar' ? 'direction: ltr; text-align: left;' : 'direction: ltr; text-align: left;'">
       <section class="row bg-white m-2 p-1 ">
         <div class="col-lg-11 col-md-10  border border-raduis mb-2">
           <!-- <h6>Title</h6> -->

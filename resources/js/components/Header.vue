@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg back  ">
+  <nav class="navbar navbar-expand-lg back  " :style="$i18n.locale==='ar' ? 'direction: rtl; text-align: right;' : ''">
     <div class="container">
     <!-- <a href="/" class="navbar-brand text-light" id="brand">
         <img :src="contactInfo.logo" class="footer-logo" alt="“deutschtests Logo" width="70" height="70">

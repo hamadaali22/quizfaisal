@@ -4,7 +4,8 @@
 
 
 
-<html lang="{{str_replace('_','-', app()->getLocale())}}" dir="{{app()->getLocale() =='ar' ? 'rtl' :'ltr' }}">
+<html lang="{{str_replace('_','-', app()->getLocale())}}" 
+dir="{{app()->getLocale() =='ar' ? 'rtl' :'ltr' }}">
 
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 <!-- <script src="https://accounts.google.com/gsi/client" async></script> -->

@@ -41,8 +41,7 @@
 	<!-- prettier-ignore -->
 
 
-	<script id="messenger-widget-b" src="https://cdn.botpenguin.com/website-bot.js"
-		defer>69491c482cd09804d72aa732, 69491abde2d15bcd0ce034b9</script>
+	<script id="messenger-widget-b" src="https://cdn.botpenguin.com/website-bot.js"defer>69491c482cd09804d72aa732, 69491abde2d15bcd0ce034b9</script>
 
 
 	<script src="{{asset('front/bootstrap-4.0.0-dist/js/popper.min.js')}}"></script>

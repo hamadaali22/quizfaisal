@@ -68,6 +68,7 @@ Route::get('/data-t', 'DataController@process');
 //     return view('front.front');
 // })->where('any', '^((?!admin).)*$');
 
+
 Route::get('{any}',function($any){
 
       return view('front.front',['data' => '']);

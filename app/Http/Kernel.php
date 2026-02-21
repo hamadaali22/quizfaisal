@@ -39,6 +39,7 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\Localization::class,
             \App\Http\Middleware\UserActivity::class,
             \App\Http\Middleware\SetLanguage::class,
+            \App\Http\Middleware\SetLocaleFromUrl::class,
         ],
 
         'api' => [

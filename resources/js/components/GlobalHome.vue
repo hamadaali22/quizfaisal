@@ -20,7 +20,9 @@ export default {
     }
   },
   mounted() {
+     console.log('xxx');
     this.$store.dispatch('CheckUserAuth');
+    console.log('xxx');
   },
   created() {
     this.updateToken();

@@ -28,12 +28,8 @@
                 </div>
                 <span v-if="errors.Terms" class="text-danger " >{{ errors.Terms }}</span>
 
-                <vue-recaptcha
-                  ref="recaptcha"
-                  sitekey="6Lc_xVMsAAAAAH9FjC4lrmRqeDCdygqTpGTdScLr"
-                  @verify="onVerify"
-                  @expired="onExpired"
-                ></vue-recaptcha>
+                
+                <div id="recaptcha-container"></div>
                 <span v-if="errors.captchaResponse" class="text-danger">{{ errors.captchaResponse }}</span>
                 <!-- <select class="w-100 mb-2 form-control formselect" v-model="country">
                         <option selected value=""> Country </option>
@@ -124,9 +120,9 @@
 </template>
 
 <script>
-import VueRecaptcha from 'vue-recaptcha'
+
 export default {
-   components: { VueRecaptcha },
+
   data() {
     return {
       isLoading: false,
@@ -138,7 +134,9 @@ export default {
       language: '',
       country: '',
       errors: {},
-      captchaResponse: null
+      captchaResponse: null,
+
+      recaptchaWidget: null
     }
   },
   computed: {
@@ -152,9 +150,59 @@ export default {
   },
   mounted() {
     this.$store.dispatch('getContactinfo');
-
+    this.loadRecaptcha();
+  },
+  beforeDestroy() {
+    this.removeRecaptchaScript();
   },
   methods: {
+    loadRecaptcha() {
+
+      // لو السكربت مش موجود نحمله
+      if (!document.querySelector('#recaptcha-script')) {
+
+        const script = document.createElement('script');
+        script.id = 'recaptcha-script';
+        script.src = "https://www.google.com/recaptcha/api.js?onload=onloadRecaptcha&render=explicit";
+        script.async = true;
+        script.defer = true;
+
+        window.onloadRecaptcha = () => {
+          this.renderRecaptcha();
+        };
+
+        document.head.appendChild(script);
+
+      } else {
+        this.renderRecaptcha();
+      }
+    },
+
+    renderRecaptcha() {
+
+      if (typeof grecaptcha !== "undefined") {
+
+        this.recaptchaWidget = grecaptcha.render('recaptcha-container', {
+          sitekey: '6Lc_xVMsAAAAAH9FjC4lrmRqeDCdygqTpGTdScLr',
+          callback: (response) => {
+            this.captchaResponse = response;
+          },
+          'expired-callback': () => {
+            this.captchaResponse = null;
+          }
+        });
+
+      }
+    },
+
+    removeRecaptchaScript() {
+
+      const script = document.querySelector('#recaptcha-script');
+      if (script) script.remove();
+
+      const iframe = document.querySelector('iframe[src*="recaptcha"]');
+      if (iframe) iframe.remove();
+    },
     onVerify(response) {
       this.captchaResponse = response
       console.log('Captcha verified:', response)

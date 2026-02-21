@@ -18,7 +18,7 @@
                   </div>
                 </div>
                 <div class="row justify-content-center">
-                    <div class="col-lg-12 col-md-12 center-block">
+                    <div class="row col-lg-12 col-md-12 center-block">
                         <div class="col-lg-5 col-md-10 center-block " style="border:solid">
                             <div class="row bigrow" style="border-bottom:solid">
                                 <img class="book" src="/front/Animation/book.png" alt="book">
@@ -26,6 +26,7 @@
                                     <p><strong>Lesen</strong></p>
                                 </div>
                             </div>
+                            <div class="row">
                             <div class="col-lg-4 col-md-12 text-center">
                                 <div class="chart-wrapper">
                                     <div class="chart" :style="{ width: size + 'px', height: size + 'px' }">
@@ -70,7 +71,7 @@
                                         <h5 id="facetext" style="color: red;">nicht bestanden</h5>
                                     </div>
                                 </div>
-                            </div>
+                            </div> </div>
                         </div>
                         <!-- {{ Results.count_listen }} -->
                         <div class="col-md-1">
@@ -88,6 +89,7 @@
                                     <p><strong>Hören</strong></p>
                                 </div>
                             </div>
+                            <div class="row">
                             <div class="col-lg-4 col-md-12 center-block ">
                                 <div class="chart-wrapper">
                                     <div class="chart" :style="{ width: size2 + 'px', height: size2 + 'px' }">
@@ -132,7 +134,7 @@
                                         <h5 id="facetext" style="color: red;">nicht bestanden</h5>
                                     </div>
                                 </div>
-                            </div>
+                            </div></div>
                         </div>
                     </div>
                 </div>

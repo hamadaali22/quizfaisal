@@ -46,15 +46,21 @@
               <div class="d-flex justify-content-between">
                 <!-- <a href="#" style="color:#6298bf">Register</a> -->
                 <router-link to="register" style="color:#6298bf">{{ $t('Register') }}</router-link>
-                <a href="google/redirect" style="color:#6298bf">{{ googleparam }}</a>
+                
                 <router-link to="forgetpassword" style="color:#6298bf"> {{ $t('forgottenYourPassword') }}</router-link>
                 <!-- <a href="#" style="color:#6298bf">Passwort vergessen</a> -->
               </div>
             </div>
             <div class=" col-12 col-lg-12  mr-4 " style="padding: 3px 27px 5px 32px;">
-              <a href="google-login" style="text-decoration:none;">
+              <!-- <a href="google-login" style="text-decoration:none;">
                 <button class="btn google-login-button w-100 mt-3">
                   <img src="/img/googlelogin.png" alt="Google Logo" width="20" height="20">
+                  {{ $t('RegisterWithGoogle') }}
+                </button>
+              </a> -->
+              <a :href="'/' + $i18n.locale + '/google-login'" style="text-decoration:none;">
+                <button class="btn google-login-button w-100 mt-3">
+                  <img src="/img/googlelogin.png" width="20" height="20">
                   {{ $t('RegisterWithGoogle') }}
                 </button>
               </a>
@@ -89,10 +95,12 @@ export default {
   },
   mounted() {
     this.$store.dispatch('getContactinfo');
-    if (this.request_path == '/google/callback') {
+    if (this.$route.path.includes('google/callback')){
+    // if (this.request_path == '/google/callback') {
+      console.log('gggggggggb');
       swal({
-        title: i18n.t('SuccessfullyRegistered'),
-        text: i18n.t('SuccessfullyRegistered'),
+        title: i18n.t('SuccessfullyLogin'),
+        text: i18n.t('SuccessfullyLogin'),
         icon: "success",
         timer: 4000
       });

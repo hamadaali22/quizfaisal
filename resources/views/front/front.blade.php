@@ -5,6 +5,8 @@
 
 <script>
     window.processedData = @json($data);
-    // console.log(window.processedData);
+    // console.log(window.processedData, "✅ Google data from Bladeccccc");
+    // console.log($data, "✅ Google data from Bladeccccc");
 </script>
+
 @endsection

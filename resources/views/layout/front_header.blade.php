@@ -17,4 +17,6 @@
 </nav> -->
 <header-component></header-component>
 <!-- <script src="https://www.google.com/recaptcha/enterprise.js" async defer></script> -->
+@if(Route::currentRouteName() == 'register')
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+@endif

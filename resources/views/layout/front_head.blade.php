@@ -16,7 +16,6 @@
 <!-- Font Awesome -->
 <!-- <link href="assets/css/font-awesome.css" rel="stylesheet"> -->
 <!-- Bootstrap -->
-<link href="{{asset('front/Animation/bootstrap.css')}}" rel="stylesheet">
 <!-- Slick slider -->
 <link rel="stylesheet" type="text/css" href="{{asset('front/Animation/slick.css')}}" />
 <!-- Fancybox slider -->

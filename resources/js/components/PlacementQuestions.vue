@@ -7,6 +7,7 @@
                     <p>Viele Prüfungsteilnehmer sprechen oft von Goethe Deutsch oder Telc Deutsch. Sie meinen berechtigt damit, dass die Prüfungen beim Goethe-Institut oder bei Telc einer speziellen Vorbereitung bedürfen.</p>
                 </div>
             </div> -->
+            <!--  -->
             <div v-for="(item, itemIndex) in getquizes" :key="item.id" class="mcq p-2">
                 <div class="row">
                     <h6>{{ itemIndex + 1 }}- {{ item.title }}</h6>

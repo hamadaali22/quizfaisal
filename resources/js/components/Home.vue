@@ -4,7 +4,7 @@
       <div class="col-lg m-auto pl-4">
         <!-- <h1 v-html="contactInfo.title" style="font-size: 19px;"></h1> -->
         <!-- <h2 v-html="contactInfo.title2" style="font-size: 16px;"></h2> -->
-        <p v-html="getLocalizedDesc(contactInfo)"></p>
+        <p v-html="getLocalizedDesc(contactInfo)"></p>dddd
       </div>
       <!-- <div class="row col-lg m-auto"> -->
       <!-- <img  :src="contactInfo.image" class="img-fluid w-100" alt=""> -->
@@ -12,7 +12,7 @@
           <img  src="http://127.0.0.1:8000/img/settings/home2.png" class="img-fluid " alt="">
           <img  src="http://127.0.0.1:8000/img/settings/home3.png" class="img-fluid " alt=""> -->
       <!-- <img  src="http://127.0.0.1:8000/img/settings/home1.png" class="img-fluid w-30" alt=""> -->
-
+<!--  -->
       <!-- </div> -->
       <div class="col-lg ">
         <div class="row">

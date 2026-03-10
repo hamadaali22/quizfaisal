@@ -120,3 +120,4 @@ Route::get('{any}',function($any){
     // Route::resource('/crud', App\Http\Controllers\CrudController::class);
     // Route::get('get-collection', [FirebaseController::class, 'hamadaindex']);
 //--end firebase-----------
+// 

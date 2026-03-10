@@ -16,7 +16,8 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot()
     {
-      
+      $cont = ContactInfo::first();
+      view()->share('contact', $cont);
 
 
     }

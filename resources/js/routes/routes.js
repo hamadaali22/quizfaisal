@@ -75,11 +75,7 @@ const routes = [
             //     name: 'Result',
             //     component: Result
             // },
-            {
-                path: 'result/:examId',
-                name: 'Result',
-                component: Result
-            },
+            { path: 'result/:examId', name: 'Result', component: Result },
 
             { path: 'my-result/:user_id/:exam_id', component: MyResult, name: 'MyResult' },
 

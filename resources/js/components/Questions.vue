@@ -46,8 +46,7 @@
             <div v-if="SubQuestions.answer_type == 'multiple_choice'">
 
               <!-- <div v-if="SubQuestions.is_multy == 'text'" class="mcq p-3 " > -->
-              <div v-if="SubQuestions.is_multy == 'text'" class="mcq p-3 "
-                v-bind:class="[SubQuestions.color == 'b' ? 'bg-information' : '']">
+              <div v-if="SubQuestions.is_multy == 'text'" class="mcq p-3 " v-bind:class="[SubQuestions.color == 'b' ? 'bg-information' : '']">
                 <div class="answers">
                   <ul class="multi-choice list-unstyled">
                     <h6>{{ SubQuestions.title }}</h6>
@@ -191,8 +190,6 @@
             <!-- complete -->
             <div v-if="SubQuestions.answer_type == 'complete'">
               <div v-if="SubQuestions.is_complete == 'write'" class="dropdown d-flex justify-content-between mt-3">
-                <!-- <input type="text"  @input="CompleteWrite($event,index,item.exam_id,SubQuestions.question_id,SubQuestions.id,SubQuestions.expected_answer)" /> -->
-
                 <div v-if="SubQuestions.answer_location == 'beginning'" class="d-flex">
                   <input type="text"
                     @input="CompleteWrite($event, index, item.exam_id, SubQuestions.question_id, SubQuestions.id, SubQuestions.expected_answer)"

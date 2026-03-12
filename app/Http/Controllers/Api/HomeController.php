@@ -258,7 +258,7 @@ class HomeController extends Controller
          if(!$user)
             return $this->returnError('يجب تسجيل الدخول أولا');
 
-            $user->photo= "https://deutschtests.com/img/profiles/".$user->photo;
+            $user->photo= "https://backend.deutschtests.com/img/profiles/".$user->photo;
 
 
         return $this -> returnDataa(
@@ -310,7 +310,7 @@ class HomeController extends Controller
         $edit-> save();
         // return $request->all();
         $user = User::find($edit->id);
-        $user->photo= "https://deutschtests.com/img/profiles/".$user->photo;
+        $user->photo= "https://backend.deutschtests.com/img/profiles/".$user->photo;
         return $this -> returnDataa('data',$user,'updated successfully');
 
     }
@@ -318,16 +318,16 @@ class HomeController extends Controller
     {
          $contactinfo = ContactInfo::first();
 
-         $contactinfo->logo="https://deutschtests.com/img/settings/".$contactinfo->logo;
-         $contactinfo->favicon="https://deutschtests.com/img/settings/".$contactinfo->favicon;
-         $contactinfo->image="https://deutschtests.com/img/settings/".$contactinfo->image;
+         $contactinfo->logo="https://backend.deutschtests.com/img/settings/".$contactinfo->logo;
+         $contactinfo->favicon="https://backend.deutschtests.com/img/settings/".$contactinfo->favicon;
+         $contactinfo->image="https://backend.deutschtests.com/img/settings/".$contactinfo->image;
 
-         $contactinfo->a1="https://deutschtests.com/img/settings/".$contactinfo->a1;
-         $contactinfo->a2="https://deutschtests.com/img/settings/".$contactinfo->a2;
-         $contactinfo->b1="https://deutschtests.com/img/settings/".$contactinfo->b1;
-         $contactinfo->b2="https://deutschtests.com/img/settings/".$contactinfo->b2;
-         $contactinfo->c1="https://deutschtests.com/img/settings/".$contactinfo->c1;
-         $contactinfo->m1="https://deutschtests.com/img/settings/".$contactinfo->m1;
+         $contactinfo->a1="https://backend.deutschtests.com/img/settings/".$contactinfo->a1;
+         $contactinfo->a2="https://backend.deutschtests.com/img/settings/".$contactinfo->a2;
+         $contactinfo->b1="https://backend.deutschtests.com/img/settings/".$contactinfo->b1;
+         $contactinfo->b2="https://backend.deutschtests.com/img/settings/".$contactinfo->b2;
+         $contactinfo->c1="https://backend.deutschtests.com/img/settings/".$contactinfo->c1;
+         $contactinfo->m1="https://backend.deutschtests.com/img/settings/".$contactinfo->m1;
 
 
 

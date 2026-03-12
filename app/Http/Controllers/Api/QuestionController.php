@@ -523,12 +523,12 @@ class QuestionController extends Controller
         $data=Question::where("exam_id" , $request->exam_id)->orderBy('order','ASC')->paginate(1);
         foreach ($data as $item) {
             if($item->type=='listening'){
-                $item->file="https://deutschtests.com/img/questions-file/".$item->file;
+                $item->file="https://backend.deutschtests.com/img/questions-file/".$item->file;
             }elseif($item->type=='image'){
-                $item->image="https://deutschtests.com/img/questions-image/".$item->image;
+                $item->image="https://backend.deutschtests.com/img/questions-image/".$item->image;
             }elseif($item->type=='listening and image'){
-                $item->file="https://deutschtests.com/img/questions-file/".$item->file;
-                $item->image="https://deutschtests.com/img/questions-image/".$item->image;
+                $item->file="https://backend.deutschtests.com/img/questions-file/".$item->file;
+                $item->image="https://backend.deutschtests.com/img/questions-image/".$item->image;
             }else{
 
             }
@@ -538,15 +538,15 @@ class QuestionController extends Controller
             $subquestion=SubQuestion::where('question_id',$item->id)->orderBy('order','ASC')->get();
             foreach ($subquestion as $sub) {
                 if($sub->bannar){
-                    $sub->bannarImage="https://deutschtests.com/img/banner/".$sub->bannar;
+                    $sub->bannarImage="https://backend.deutschtests.com/img/banner/".$sub->bannar;
                 }else{
                      $sub->bannarImage=null;
                 }
                 if($sub->image_a){
-                    $sub->image_a="https://deutschtests.com/img/answer-image/".$sub->image_a;
+                    $sub->image_a="https://backend.deutschtests.com/img/answer-image/".$sub->image_a;
                 }
                 if($sub->image_b){
-                    $sub->image_b="https://deutschtests.com/img/answer-image/".$sub->image_b;
+                    $sub->image_b="https://backend.deutschtests.com/img/answer-image/".$sub->image_b;
                 }
 
                 $answer=Answer::where('subquestion_id',$sub->id)->first();
@@ -782,12 +782,12 @@ class QuestionController extends Controller
         $data=Question::where("exam_id" , $request->exam_id)->orderBy('order','ASC')->paginate(1);
         foreach ($data as $item) {
             if($item->type=='listening'){
-                $item->file="https://deutschtests.com/img/questions-file/".$item->file;
+                $item->file="https://backend.deutschtests.com/img/questions-file/".$item->file;
             }elseif($item->type=='image'){
-                $item->image="https://deutschtests.com/img/questions-image/".$item->image;
+                $item->image="https://backend.deutschtests.com/img/questions-image/".$item->image;
             }elseif($item->type=='listening and image'){
-                $item->file="https://deutschtests.com/img/questions-file/".$item->file;
-                $item->image="https://deutschtests.com/img/questions-image/".$item->image;
+                $item->file="https://backend.deutschtests.com/img/questions-file/".$item->file;
+                $item->image="https://backend.deutschtests.com/img/questions-image/".$item->image;
             }else{
 
             }
@@ -797,15 +797,15 @@ class QuestionController extends Controller
             $subquestion=SubQuestion::where('question_id',$item->id)->orderBy('order','ASC')->get();
             foreach ($subquestion as $sub) {
                 if($sub->bannar){
-                    $sub->bannarImage="https://deutschtests.com/img/banner/".$sub->bannar;
+                    $sub->bannarImage="https://backend.deutschtests.com/img/banner/".$sub->bannar;
                 }else{
                      $sub->bannarImage=null;
                 }
                 if($sub->image_a){
-                    $sub->image_a="https://deutschtests.com/img/answer-image/".$sub->image_a;
+                    $sub->image_a="https://backend.deutschtests.com/img/answer-image/".$sub->image_a;
                 }
                 if($sub->image_b){
-                    $sub->image_b="https://deutschtests.com/img/answer-image/".$sub->image_b;
+                    $sub->image_b="https://backend.deutschtests.com/img/answer-image/".$sub->image_b;
                 }
 
                 $answer=Answer::where('subquestion_id',$sub->id)->first();

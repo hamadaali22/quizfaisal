@@ -4,6 +4,7 @@
 /public/admin
 /front
 /public/hot
+/public/img
 /public/storage
 /node_modules
 /storage/*.key

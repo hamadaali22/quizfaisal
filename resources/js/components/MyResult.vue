@@ -1,8 +1,8 @@
 <template>
     <div>
-        <p>{{myparam.user_id}}</p>
-        <p>{{myparam.exam_id}}</p>
-        <button type="submit" @click.prevent="makesd" style="background: #3e83b3;color: #fff;" >
+        <p>{{ myparam.user_id }}</p>
+        <p>{{ myparam.exam_id }}</p>
+        <button type="submit" @click.prevent="makesd" style="background: #3e83b3;color: #fff;">
             result
         </button>
         <section id="about">
@@ -52,14 +52,16 @@
                             </div>
                             <div class="col-lg-3 col-md-12 center-block">
                                 <div class="row center-block" v-if="total1 >= 60">
-                                    <div class="wow zoomIn facesize centerImge img-fluid" id="face"><img src="front/Animation/happy-face.png" /></div>
+                                    <div class="wow zoomIn facesize centerImge img-fluid" id="face"><img
+                                            src="front/Animation/happy-face.png" /></div>
                                     <div class="row justify-content-center ">
                                         <h5 id="facetext2" style="color: green;">bestanden</h5>
                                     </div>
                                 </div>
                                 <div class="row center-block " v-else>
-                                    <div class="wow zoomIn facesize centerImge img-fluid" id="face"><img src="front/Animation/sad-face.png" /></div>
-                                    <div class="row justify-content-center " >
+                                    <div class="wow zoomIn facesize centerImge img-fluid" id="face"><img
+                                            src="front/Animation/sad-face.png" /></div>
+                                    <div class="row justify-content-center ">
                                         <h5 id="facetext" style="color: red;">nicht bestanden</h5>
                                     </div>
                                 </div>
@@ -90,7 +92,8 @@
                                                 :stroke="strokeColorBack2" :stroke-width="strokeWidth2"></circle>
                                             <circle :cx="center2" :cy="center2" :r="radius2" fill="none"
                                                 :stroke="strokeColorFront2" :stroke-width="strokeWidth2"
-                                                :stroke-dasharray="dashArray2" :stroke-dashoffset="dashOffset2"></circle>
+                                                :stroke-dasharray="dashArray2" :stroke-dashoffset="dashOffset2">
+                                            </circle>
                                         </svg>
                                         <p class="value"> <span>{{ value2 }} / {{ maxvalue2 }}</span></p>
                                     </div>
@@ -105,23 +108,26 @@
                                                 :stroke="strokeColorBack2" :stroke-width="strokeWidth2"></circle>
                                             <circle :cx="center2" :cy="center2" :r="radius2" fill="none"
                                                 :stroke="strokeColorFront2" :stroke-width="strokeWidth2"
-                                                :stroke-dasharray="dashArray2" :stroke-dashoffset="dashOffset2"></circle>
+                                                :stroke-dasharray="dashArray2" :stroke-dashoffset="dashOffset2">
+                                            </circle>
                                         </svg>
                                         <p class="value">{{ total2 }}% <span></span></p>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-12 center-block " style="text-align: center">
-                                
+
                                 <div class="row center-block" v-if="total2 >= 60">
-                                    <div class="wow zoomIn facesize centerImge img-fluid" id="face"><img src="front/Animation/happy-face.png" /></div>
+                                    <div class="wow zoomIn facesize centerImge img-fluid" id="face"><img
+                                            src="front/Animation/happy-face.png" /></div>
                                     <div class="row justify-content-center ">
                                         <h5 id="facetext2" style="color: green;">bestanden</h5>
                                     </div>
                                 </div>
                                 <div class="row center-block " v-else>
-                                    <div class="wow zoomIn facesize centerImge img-fluid" id="face"><img src="front/Animation/sad-face.png" /></div>
-                                    <div class="row justify-content-center " >
+                                    <div class="wow zoomIn facesize centerImge img-fluid" id="face"><img
+                                            src="front/Animation/sad-face.png" /></div>
+                                    <div class="row justify-content-center ">
                                         <h5 id="facetext" style="color: red;">nicht bestanden</h5>
                                     </div>
                                 </div>
@@ -130,13 +136,14 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="row ">
                 <p>&nbsp;</p>
             </div>
             <div class="row justify-content-center">
-                
-                <button class="button " type="button"><router-link v-if="isLogged" :to="'/goethe-report/'+this.examId" class="a-link">Ihr detailliertes Ergebnis</router-link></button>
+
+                <button class="button " type="button"><router-link v-if="isLogged" :to="'/goethe-report/' + this.examId"
+                        class="a-link">Ihr detailliertes Ergebnis</router-link></button>
             </div>
             <div class="row">
                 <p>&nbsp;</p>
@@ -144,7 +151,7 @@
             <div class="row">
                 <p>&nbsp;</p>
             </div>
-           
+
 
         </section>
     </div>
@@ -178,21 +185,21 @@ export default {
             strokeColorFront1: '#007bff',
             radius1: 50,
             maxvalue1: 150,
-            value1:  0,
-            total1:0,
+            value1: 0,
+            total1: 0,
 
             strokeWidth2: 10,
             strokeColorBack2: '#f2f2f2',
             strokeColorFront2: '#007bff',
             radius2: 50,
             maxvalue2: 150,
-            value2:  0,
-            total2:0,
+            value2: 0,
+            total2: 0,
 
-            Results:{},
+            Results: {},
         }
     },
-    created(){
+    created() {
         this.getQuestionResult();
     },
     computed: {
@@ -200,12 +207,12 @@ export default {
         getResult() {
             return this.$store.state.Results;
         },
-        isLogged(){
+        isLogged() {
             return this.$store.getters.isLogged
         },
         center: function () {
             let cal = this.strokeWidth1 / 2 + this.radius1;
-            return cal; 
+            return cal;
         },
         size: function () {
             let cal = this.strokeWidth1 + this.radius1 * 2;
@@ -223,7 +230,7 @@ export default {
         // Listening
         center2: function () {
             let cal = this.strokeWidth2 / 2 + this.radius2;
-            return cal; 
+            return cal;
         },
         size2: function () {
             let cal = this.strokeWidth2 + this.radius2 * 2;
@@ -244,21 +251,21 @@ export default {
         // this.$store.dispatch('getQuestionResult', { userId: this.userId, examId: 15 });
     },
     methods: {
-        getQuestionResult(){
-            axios.get('https://deutschtests.com/api/results?user_id='+this.myparam.user_id+'&exam_id='+this.myparam.exam_id)
-            .then(res => {
-              console.log('Component mountvvvvmmmm.');
-              console.log(this.userId);
-              this.Results = res.data.data;
-              this.value1=res.data.data.count_read_succes;
-              this.maxvalue1=res.data.data.count_read;
-              this.total1=res.data.data.count_read_percent;
+        getQuestionResult() {
+            axios.get('https://backend.deutschtests.com/api/results?user_id=' + this.myparam.user_id + '&exam_id=' + this.myparam.exam_id)
+                .then(res => {
+                    console.log('Component mountvvvvmmmm.');
+                    console.log(this.userId);
+                    this.Results = res.data.data;
+                    this.value1 = res.data.data.count_read_succes;
+                    this.maxvalue1 = res.data.data.count_read;
+                    this.total1 = res.data.data.count_read_percent;
 
-              this.value2=res.data.data.count_listen_succes;
-              this.maxvalue2=res.data.data.count_listen;
-              this.total2=res.data.data.count_listen_percent;
-            })
-            .then(err => console.log(err))
+                    this.value2 = res.data.data.count_listen_succes;
+                    this.maxvalue2 = res.data.data.count_listen;
+                    this.total2 = res.data.data.count_listen_percent;
+                })
+                .then(err => console.log(err))
         },
     },
 }

@@ -37,13 +37,13 @@ Route::get('/', 'Admin\DashBoardController@index');
 
 
 // Route::get('get-collection', 'FirebaseController@hamadaindex');
-// Route::get('en/google-login', 'GoogleLoginController@redirectToGoogle')->name('google.redirect');
-// Route::get('ar/google-login', 'GoogleLoginController@redirectToGoogle')->name('google.redirect');
-// Route::get('de/google-login', 'GoogleLoginController@redirectToGoogle')->name('google.redirect');
-// Route::get('fr/google-login', 'GoogleLoginController@redirectToGoogle')->name('google.redirect');
-// Route::get('es/google-login', 'GoogleLoginController@redirectToGoogle')->name('google.redirect');
+Route::get('en/google-login', 'GoogleLoginController@redirectToGoogle')->name('google.redirect');
+Route::get('ar/google-login', 'GoogleLoginController@redirectToGoogle')->name('google.redirect');
+Route::get('de/google-login', 'GoogleLoginController@redirectToGoogle')->name('google.redirect');
+Route::get('fr/google-login', 'GoogleLoginController@redirectToGoogle')->name('google.redirect');
+Route::get('es/google-login', 'GoogleLoginController@redirectToGoogle')->name('google.redirect');
 
-// Route::get('/google/callback', 'GoogleLoginController@handleGoogleCallback')->name('google.callback');
+Route::get('/google/callback', 'GoogleLoginController@handleGoogleCallback')->name('google.callback');
 
 
 
@@ -58,6 +58,7 @@ Route::get('/', 'Admin\DashBoardController@index');
 
 //       return view('front.front',['data' => '']);
 //   })->where('any','^((?!admin|api|activation|myanswer).)*$');
+
 
 
 

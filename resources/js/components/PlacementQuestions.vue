@@ -16,32 +16,32 @@
                     <div class="col-md-4 multi-item q-1 border border-raduis pt-2 pl-3 pr-3 mr-5 mb-3"
                         :id="'quize' + itemIndex + 'a'"
                         v-on:click="addQuize(itemIndex, item.id, item.level_id, item.levels.name, item.first_choice, item.expected_answer, item.sets.type, 'a', 'quize' + itemIndex + 'a')">
-                        <input class=" multi-input d-none" type="radio" name="q-1" >
-                        <label class="multi-label"  >{{ item.first_choice }}</label>
+                        <input class=" multi-input d-none" type="radio" name="q-1">
+                        <label class="multi-label">{{ item.first_choice }}</label>
                     </div>
                 </div>
                 <div class="row ml-3">
                     <div class="col-md-4 multi-item q-1 border border-raduis pt-2 pl-3 pr-3 mr-5 mb-3"
                         :id="'quize' + itemIndex + 'b'"
                         v-on:click="addQuize(itemIndex, item.id, item.level_id, item.levels.name, item.second_choice, item.expected_answer, item.sets.type, 'b', 'quize' + itemIndex + 'b')">
-                        <input class=" multi-input d-none" type="radio" name="q-1" >
-                        <label class="multi-label"  >{{ item.second_choice }}</label>
+                        <input class=" multi-input d-none" type="radio" name="q-1">
+                        <label class="multi-label">{{ item.second_choice }}</label>
                     </div>
                 </div>
                 <div class="row ml-3">
                     <div class="col-md-4 multi-item q-1 border border-raduis pt-2 pl-3 pr-3 mr-5 mb-3"
                         :id="'quize' + itemIndex + 'c'"
                         v-on:click="addQuize(itemIndex, item.id, item.level_id, item.levels.name, item.third_choice, item.expected_answer, item.sets.type, 'c', 'quize' + itemIndex + 'c')">
-                        <input class=" multi-input d-none" type="radio" name="q-1" >
-                        <label class="multi-label"  >{{ item.third_choice }}</label>
+                        <input class=" multi-input d-none" type="radio" name="q-1">
+                        <label class="multi-label">{{ item.third_choice }}</label>
                     </div>
                 </div>
                 <div class="row ml-3">
                     <div class="col-md-4 multi-item q-1 border border-raduis pt-2 pl-3 pr-3 mr-5 mb-3"
                         :id="'quize' + itemIndex + 'd'"
                         v-on:click="addQuize(itemIndex, item.id, item.level_id, item.levels.name, item.fourth_choice, item.expected_answer, item.sets.type, 'd', 'quize' + itemIndex + 'd')">
-                        <input class=" multi-input d-none" type="radio" name="q-1" >
-                        <label class="multi-label"  >{{ item.fourth_choice }}</label>
+                        <input class=" multi-input d-none" type="radio" name="q-1">
+                        <label class="multi-label">{{ item.fourth_choice }}</label>
                     </div>
                 </div>
             </div>
@@ -86,7 +86,7 @@ export default {
     },
     methods: {
         addQuize(index, quizeId, levelId, levelName, myanswer, expected_answer, quizeType, chooseItem, quizeClass) {
-            console.log(this.$store.state.userIdNumber+'fffffff');
+            console.log(this.$store.state.userIdNumber + 'fffffff');
             this.levelName = levelName;
             this.type = quizeType;
             let quize_ans;
@@ -161,18 +161,18 @@ export default {
             }
             if (chooseItem == 'd') {
                 let answera = this.$el.querySelector("#quize" + index + 'a');
-                    answera.style.color = '';
-                    answera.style.background = '';
+                answera.style.color = '';
+                answera.style.background = '';
                 let answerb = this.$el.querySelector("#quize" + index + 'b');
-                    answerb.style.color = '';
-                    answerb.style.background = '';
+                answerb.style.color = '';
+                answerb.style.background = '';
                 let answerc = this.$el.querySelector("#quize" + index + 'c');
-                    answerc.style.color = '';
-                    answerc.style.background = '';
+                answerc.style.color = '';
+                answerc.style.background = '';
 
                 let answerd = this.$el.querySelector("#" + quizeClass);
-                    answerd.style.color = '#fff';
-                    answerd.style.background = '#3e83b3';
+                answerd.style.color = '#fff';
+                answerd.style.background = '#3e83b3';
             }
         },
 

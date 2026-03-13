@@ -2,7 +2,7 @@
   <div>
     <a href="hamada"></a>
 
-    
+
 
     <div v-for="item in getQuestion" :key="item.id">
       <section class="row bg-white m-2 p-1 ">
@@ -30,7 +30,8 @@
         </div>
       </section>
       <section class="questions  row m-2 p-1">
-        <div v-if="(item.type != 'listening') && (item.type != 'sub')" class="col-lg-7 main-text col-md-8 mt-md-3 ml-md-auto mr-md-auto p-2 mt-3 mr-lg-2 bg-white">
+        <div v-if="(item.type != 'listening') && (item.type != 'sub')"
+          class="col-lg-7 main-text col-md-8 mt-md-3 ml-md-auto mr-md-auto p-2 mt-3 mr-lg-2 bg-white">
           <!-- <h2>Title</h2>
               <h5>Sub Title Sub Title Sub Title</h5> -->
 
@@ -46,7 +47,8 @@
             <div v-if="SubQuestions.answer_type == 'multiple_choice'">
 
               <!-- <div v-if="SubQuestions.is_multy == 'text'" class="mcq p-3 " > -->
-              <div v-if="SubQuestions.is_multy == 'text'" class="mcq p-3 " v-bind:class="[SubQuestions.color == 'b' ? 'bg-information' : '']">
+              <div v-if="SubQuestions.is_multy == 'text'" class="mcq p-3 "
+                v-bind:class="[SubQuestions.color == 'b' ? 'bg-information' : '']">
                 <div class="answers">
                   <ul class="multi-choice list-unstyled">
                     <h6>{{ SubQuestions.title }}</h6>
@@ -107,15 +109,15 @@
 
 
               <div class="true-false p-3">
-                <ul class="multi-choice list-unstyled p-2 d-flex flex-column flex-md-row align-items-start align-items-md-center">
+                <ul
+                  class="multi-choice list-unstyled p-2 d-flex flex-column flex-md-row align-items-start align-items-md-center">
                   <!-- السؤال -->
                   <h6 class="w-100 mb-2 mb-md-0 mr-md-4">
                     {{ SubQuestions.title }}
                   </h6>
                   <!-- الاختيارات -->
                   <div class="d-flex">
-                    <li class="multi-item q-2 border border-raduis pt-2 pl-3 pr-3 mr-3"
-                      :id="'subq' + index + 'a'"
+                    <li class="multi-item q-2 border border-raduis pt-2 pl-3 pr-3 mr-3" :id="'subq' + index + 'a'"
                       v-on:click="dissapear(
                         index,
                         item.exam_id,
@@ -133,9 +135,7 @@
                       </label>
                     </li>
 
-                    <li
-                      class="multi-item q-2 border border-raduis pt-2 pl-3 pr-3"
-                      :id="'subq' + index + 'b'"
+                    <li class="multi-item q-2 border border-raduis pt-2 pl-3 pr-3" :id="'subq' + index + 'b'"
                       v-on:click="dissapear(
                         index,
                         item.exam_id,
@@ -146,8 +146,7 @@
                         'subq' + index + 'b',
                         'b',
                         SubQuestions.answer_type
-                      )"
-                    >
+                      )">
                       <input class="multi-input d-none" type="radio" name="q-2" value="false">
                       <label class="multi-label">
                         {{ SubQuestions.second_choice }}
@@ -305,7 +304,7 @@ export default {
   mounted() {
     // let {examId} = this;
     // this.scrollToTop();
-    this.$store.dispatch('getQuestions', { 
+    this.$store.dispatch('getQuestions', {
       examId: this.examId,
       pageId: this.pageId
     }).then(() => {
@@ -471,7 +470,7 @@ export default {
         //   });
       } else {
         let data = { 'data': this.questionAnswer };
-        axios.post('https://deutschtests.com/api/save-exam', data)
+        axios.post('https://backend.deutschtests.com/api/save-exam', data)
           .then(res => {
             console.log(res)
             commit('setUserToken', res.data.token)
@@ -497,15 +496,17 @@ export default {
 }
 </script>
 <style>
-  .questions .main-text,.questions .main-quiz {
-      height: auto !important;
-  }
+.questions .main-text,
+.questions .main-quiz {
+  height: auto !important;
+}
 
 @media (min-width: 992px) {
-    .questions .main-text,
-    .questions .main-quiz {
-        max-height: 100vh;
-        overflow-y: auto;
-    }
+
+  .questions .main-text,
+  .questions .main-quiz {
+    max-height: 100vh;
+    overflow-y: auto;
+  }
 }
 </style>

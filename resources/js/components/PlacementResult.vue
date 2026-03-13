@@ -125,7 +125,7 @@ export default {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ' + this.$store.state.userToken
       };
-      axios.get('https://deutschtests.com/api/quizes-result', { headers })
+      axios.get('https://backend.deutschtests.com/api/quizes-result', { headers })
         .then(res => {
           this.result = res.data.data;
           if (res.data.data) {

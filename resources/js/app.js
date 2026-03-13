@@ -107,7 +107,7 @@ const store = new Vuex.Store({
     QuizesTest: [],
     CurrentPage: null,
     Results: {},
-    basName: "https://deutschtests.com/api/",
+    basName: "https://backend.deutschtests.com/api/",
     examAnswer: [],
     // levelId:null,
     contactInfo: '',
@@ -223,7 +223,7 @@ const store = new Vuex.Store({
     getQuizes({ state, commit }, payload) {
       console.log(payload.levelName + 'vcxcc' + payload.type);
       // axios.get(state.basName+'exams?level_id='+payload)
-      axios.get('https://deutschtests.com/api/quizes', {
+      axios.get('https://backend.deutschtests.com/api/quizes', {
         params: {
           data: JSON.stringify(payload.quizes),
           levelName: payload.levelName,
@@ -242,7 +242,7 @@ const store = new Vuex.Store({
 
 
               let data = { 'user_id': payload.user_id };
-              axios.post('https://deutschtests.com/api/edit-quize-test', data)
+              axios.post('https://backend.deutschtests.com/api/edit-quize-test', data)
                 .then(res => {
                   // console.log(res)
                   router.push('/placement-result')
@@ -270,7 +270,7 @@ const store = new Vuex.Store({
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ' + state.userToken
       };
-      axios.get('https://deutschtests.com/api/user-quizes-test', { headers })
+      axios.get('https://backend.deutschtests.com/api/user-quizes-test', { headers })
         .then(res => {
           console.log(res.data.data.id + "my-quizes-test");
           store.commit('updateQuizesTest', res.data.data.quizes_answers);
@@ -281,7 +281,7 @@ const store = new Vuex.Store({
     RegisterUser({ commit }, payload) {
       return new Promise((resolve, reject) => {
 
-        axios.post('https://deutschtests.com/api/register', payload)
+        axios.post('https://backend.deutschtests.com/api/register', payload)
           .then(res => {
             if (res.data.status == true) {
               commit('setUserToken', res.data.data.token);
@@ -355,7 +355,7 @@ const store = new Vuex.Store({
     //     });
     // },
     LoginUser({ commit }, payload) {
-      axios.post('https://deutschtests.com/api/login', payload)
+      axios.post('https://backend.deutschtests.com/api/login', payload)
         .then(res => {
           console.log(res.data);
           // if (res.data.status == true) {
@@ -394,7 +394,7 @@ const store = new Vuex.Store({
         })
     },
     ForgetPassword({ commit }, payload) {
-      axios.post('https://deutschtests.com/api/forgetpassword', payload)
+      axios.post('https://backend.deutschtests.com/api/forgetpassword', payload)
         .then(res => {
           console.log(res.data);
           if (res.data.status == true) {
@@ -433,7 +433,7 @@ const store = new Vuex.Store({
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ' + state.userToken.token
       };
-      axios.post('https://deutschtests.com/api/profile-update', payload, { headers })
+      axios.post('https://backend.deutschtests.com/api/profile-update', payload, { headers })
         .then(res => {
           if (res.data.status == true) {
             var resTitle = 'uvbujhbjh';
@@ -463,7 +463,7 @@ const store = new Vuex.Store({
         'Authorization': 'Bearer ' + state.userToken
       };
       console.log(state.userToken + 'vvvvvbbbtttt');
-      axios.get('https://deutschtests.com/api/check-user-auth', headers)
+      axios.get('https://backend.deutschtests.com/api/check-user-auth', headers)
         .then(res => {
           // console.log(res.data.msg);
           if (res.data.msg == 'You must login first') {
@@ -490,7 +490,7 @@ const store = new Vuex.Store({
     },
 
     getContactinfo({ commit }) {
-      axios.get('https://deutschtests.com/api/contactinfo')
+      axios.get('https://backend.deutschtests.com/api/contactinfo')
         .then(res => {
           // console.log(res.data.data);
           store.commit('updateContactinfo', res.data.data);

@@ -1,9 +1,9 @@
 <template>
-  <div class="container" :style="$i18n.locale==='ar' ? 'direction: rtl; text-align: right;' : ''">
+  <div class="container" :style="$i18n.locale === 'ar' ? 'direction: rtl; text-align: right;' : ''">
     <section class="mb-4">
 
       <h2 class="h1-responsive font-weight-bold text-center my-4">
-        {{ $t('contactUs') }} 
+        {{ $t('contactUs') }}
       </h2>
 
       <p class="text-center w-responsive mx-auto mb-5">
@@ -53,7 +53,7 @@
 
             <div class="text-center text-md-left mt-3">
               <button class="btn btn-primary" type="submit" :disabled="loading">
-               
+
                 {{ loading ? 'Sending...' : $t('send') }}
               </button>
             </div>
@@ -119,7 +119,7 @@ export default {
 
       try {
         const res = await axios.post(
-          "https://deutschtests.com/api/contact-us",
+          "https://backend.deutschtests.com/api/contact-us",
           this.form
         );
 

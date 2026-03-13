@@ -1,58 +1,65 @@
 <template>
-   <div>
-      <section class="row home-main-section p-4 container-fluid">
-          <div v-for="item in getLevels" :key="item.id" class="col-md-6 m-auto pl-4">
-            <!-- <router-link :to="'/telc-tests/'+item.slug2" class="a-link">
+  <div>
+    <section class="row home-main-section p-4 container-fluid">
+      <div v-for="item in getLevels" :key="item.id" class="col-md-6 m-auto pl-4">
+        <!-- <router-link :to="'/telc-tests/'+item.slug2" class="a-link">
               <div  class="level  w-100 text-center text-light mt-1 pt-2 pb-2">
                   {{ item.name }}
               </div></router-link> -->
-              
-              <router-link :to="getLocalizedSlug(item)"  class="a-link">
-                <div  class="level  w-100 text-center text-light mt-1 pt-2 pb-2">
-                  {{ item.name }}
-                </div>
-              </router-link>
 
-        </div>
-        
-      </section>
-      <section class="row home-main-section p-4 container-fluid">
-       <div class="col-lg pl-4">
+        <router-link :to="getLocalizedSlug(item)" class="a-link">
+          <div class="level  w-100 text-center text-light mt-1 pt-2 pb-2">
+            {{ item.name }}
+          </div>
+        </router-link>
+
+      </div>
+
+    </section>
+    <section class="row home-main-section p-4 container-fluid">
+      <div class="col-lg pl-4">
         <p v-html="getLevelDesc(contactInfo)"></p>
-       </div>
-       <h2 class="text-center "></h2>
-       <div class="col-lg ">
-          <div class="row">
-             <div class="col-4">
-                 <img  src="https://deutschtests.com/img/Telc-Tests.png" class="img-fluid w-100" :alt="altText1[currentLanguage]">
-             </div>
-             <div class="col-4">
-                 <img  src="https://deutschtests.com/img/Telc-Deutsch-Prüfungen.png" class="img-fluid w-100" :alt="altText2[currentLanguage]">
-             </div>
-             
+      </div>
+      <h2 class="text-center "></h2>
+      <div class="col-lg ">
+        <div class="row">
+          <div class="col-4">
+            <img src="https://backend.deutschtests.com/img/Telc-Tests.png" class="img-fluid w-100"
+              :alt="altText1[currentLanguage]">
           </div>
-          <div class="row">
-            <div class="col-3">
+          <div class="col-4">
+            <img src="https://backend.deutschtests.com/img/Telc-Deutsch-Prüfungen.png" class="img-fluid w-100"
+              :alt="altText2[currentLanguage]">
+          </div>
 
-            </div>
-            <div class="col-3" style="    margin-top: -50px;">
-                 <img  src="https://deutschtests.com/img/Telc-A1-Prüfung.png" class="img-fluid w-100" :alt="altText3[currentLanguage]">
-                 <img  src="https://deutschtests.com/img/prüfung-telc-b1.png" class="img-fluid w-100" :alt="altText4[currentLanguage]">
-             </div>
-             <div class="col-3" style="    margin-top: -28px;">
-                 <img  src="https://deutschtests.com/img/telc-a2-modelltest.png" class="img-fluid w-100" :alt="altText5[currentLanguage]">
-                 <img  src="https://deutschtests.com/img/telc-b2-modelltest.png" class="img-fluid w-100" :alt="altText6[currentLanguage]">
-             </div>
+        </div>
+        <div class="row">
+          <div class="col-3">
+
           </div>
-          <div class="row mt-3 mb-5">
-             <div class="col-3" style="    margin-top: -55px;">
-                 <img  src="https://deutschtests.com/img/Telc-C1-Prüfung.png" class="img-fluid w-100" :alt="altText7[currentLanguage]">
-             </div>
+          <div class="col-3" style="    margin-top: -50px;">
+            <img src="https://backend.deutschtests.com/img/Telc-A1-Prüfung.png" class="img-fluid w-100"
+              :alt="altText3[currentLanguage]">
+            <img src="https://deutschtests.com/img/prüfung-telc-b1.png" class="img-fluid w-100"
+              :alt="altText4[currentLanguage]">
+          </div>
+          <div class="col-3" style="    margin-top: -28px;">
+            <img src="https://backend.deutschtests.com/img/telc-a2-modelltest.png" class="img-fluid w-100"
+              :alt="altText5[currentLanguage]">
+            <img src="https://deutschtests.com/img/telc-b2-modelltest.png" class="img-fluid w-100"
+              :alt="altText6[currentLanguage]">
           </div>
         </div>
-     
-      </section>
-     <!-- <section class="row home-main-section p-5 container-fluid">
+        <div class="row mt-3 mb-5">
+          <div class="col-3" style="    margin-top: -55px;">
+            <img src="https://backend.deutschtests.com/img/Telc-C1-Prüfung.png" class="img-fluid w-100"
+              :alt="altText7[currentLanguage]">
+          </div>
+        </div>
+      </div>
+
+    </section>
+    <!-- <section class="row home-main-section p-5 container-fluid">
        <div class="col-lg m-auto pl-4">
         <p v-html="contactInfo.telc_desc"></p>
        </div>
@@ -65,13 +72,13 @@
 
        </div>
       </section> -->
-   </div>
+  </div>
 </template>
 
 <script>
 
 export default {
-  data(){
+  data() {
     return {
       currentLanguage: this.$i18n.locale,
       altText1: {
@@ -126,18 +133,18 @@ export default {
     }
 
   },
-  computed:{
-    getLevels(){
+  computed: {
+    getLevels() {
       return this.$store.state.telcs
     },
-    contactInfo(){
-       return this.$store.state.contactInfo
+    contactInfo() {
+      return this.$store.state.contactInfo
     }
   },
   created() {
-      console.log(this.$store.state.userToken);
+    console.log(this.$store.state.userToken);
   },
-  mounted(){
+  mounted() {
     this.$store.dispatch('getTelcs');
     this.$store.dispatch('getContactinfo');
   },
@@ -162,15 +169,15 @@ export default {
       return `/telc/${slugs[this.$i18n.locale]}/${slugs2[this.$i18n.locale] || item.slug_de}`;
     },
     getLevelDesc(item) {
-        const slugs = {
-          en: item.telc_desc_en,
-          ar: item.telc_desc_ar,
-          fr: item.telc_desc_fr,
-          es: item.telc_desc_es,
-          de: item.telc_desc_de,
-        };
+      const slugs = {
+        en: item.telc_desc_en,
+        ar: item.telc_desc_ar,
+        fr: item.telc_desc_fr,
+        es: item.telc_desc_es,
+        de: item.telc_desc_de,
+      };
 
-        return slugs[this.$i18n.locale] || item.telc_desc_de;
+      return slugs[this.$i18n.locale] || item.telc_desc_de;
     }
   },
 

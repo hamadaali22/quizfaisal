@@ -18,6 +18,7 @@ use App\Question;
 use App\SubQuestion;
 use Carbon\Carbon;
 use App\Mail\ContactMail;
+use JWTAuth;
 class HomeController extends Controller
 {
     use GeneralTrait;
@@ -94,8 +95,8 @@ class HomeController extends Controller
         }
     }
 
-   public function register(Request $request)
-   {
+    public function register(Request $request)
+    {
         //  $user = Auth::guard('user-api')->user();
         // if($user){
         //    return $user;
@@ -137,7 +138,53 @@ class HomeController extends Controller
             // return $this -> returnSuccessMessage('successfully registered');
         }
     }
-    
+   
+
+    public function loginWithGoogle(Request $request)
+    {
+        $request->validate([
+            'token' => 'required'
+        ]);
+
+        // التحقق من التوكن مع جوجل
+        $response = file_get_contents(
+            "https://oauth2.googleapis.com/tokeninfo?id_token=".$request->token
+        );
+
+        $googleUser = json_decode($response);
+
+        if (!isset($googleUser->email)) {
+            return response()->json([
+                'status' => false,
+                'msg' => 'Invalid Google token'
+            ]);
+        }
+
+        $user = User::where('email', $googleUser->email)->first();
+
+        if (!$user) {
+            $user = User::create([
+                'name' => $googleUser->name,
+                'email' => $googleUser->email,
+                'password' => bcrypt(rand(100000,999999))
+            ]);
+        }
+
+        $token = JWTAuth::fromUser($user);
+
+        $user->token = $token;
+        $user->save();
+
+        // return response()->json([
+        //     'status' => true,
+        //     'msg' => 'Login successful',
+        //     'data' => [
+        //         'token' => $token,
+        //         'user' => $user
+        //     ]
+        // ]);
+         return $this -> returnDataa('data',$user,'Sie haben sich erfolgreich angemeldet');
+    }
     public function userActivation($token){
         // dd('vdvgdvgd');
         $check = DB::table('user_activations')->where('token',$token)->first();
@@ -209,7 +256,8 @@ class HomeController extends Controller
        }
 
 
-   public function changePassword(Request $request)
+   
+       public function changePassword(Request $request)
    {
 
        $user = Auth::guard('user-api')->user();

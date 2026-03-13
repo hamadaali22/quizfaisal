@@ -54,6 +54,7 @@ Route::group(['middleware' => ['api'], 'namespace' => 'Api'], function () {
 
     // Route::group(['middleware' => ['auth:patient-api','changeLanguage'], 'namespace' => 'Api'], function () {
 
+    Route::post('/google-login', 'HomeController@loginWithGoogle');
   	Route::post('login', 'HomeController@login');
   	Route::post('register', 'HomeController@register');
     Route::post('forget-password', 'HomeController@forgetPassword');

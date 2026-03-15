@@ -65,7 +65,6 @@ Route::get('/google/callback', 'GoogleLoginController@handleGoogleCallback')->na
 //     return view('front.myanswer');
 // });
 
-/
 
 
 

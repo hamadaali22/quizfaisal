@@ -520,7 +520,8 @@ class QuestionController extends Controller
 
     public function goetheReportExams(Request $request)
     {
-        $data=Question::where("exam_id" , $request->exam_id)->orderBy('order','ASC')->paginate(1);
+        // ->orderBy('order','ASC')
+        $data=Question::where("exam_id" , $request->exam_id)->paginate(1);
         foreach ($data as $item) {
             if($item->type=='listening'){
                 $item->file="https://backend.deutschtests.com/img/questions-file/".$item->file;
@@ -535,6 +536,7 @@ class QuestionController extends Controller
 
             // $item->level= Level::where('id',$item->level_id)->first();
             $item->exam=Exam::where('id',$item->exam_id)->first();
+            // ->orderBy('order','ASC')
             $subquestion=SubQuestion::where('question_id',$item->id)->orderBy('order','ASC')->get();
             foreach ($subquestion as $sub) {
                 if($sub->bannar){

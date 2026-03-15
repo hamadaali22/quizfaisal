@@ -17,12 +17,21 @@ use App\User;
 */
 
 
+
+
+Route::get('/', 'Admin\DashBoardController@index');
+
+
 // Route::get('/', function () {
    
 //     return view('front.front',['data' => '']);
 // });
+// Route::get('{any}',function($any){
+//       return view('front.front',['data' => '']);
+// })->where('any','^((?!admin|api|activation|myanswer).)*$');
 
-Route::get('/', 'Admin\DashBoardController@index');
+
+
 
 // Route::get('/insert', function() {
 //     $students = app('firebase.firestore')->database()->collection('users')->documents();
@@ -56,12 +65,7 @@ Route::get('/google/callback', 'GoogleLoginController@handleGoogleCallback')->na
 //     return view('front.myanswer');
 // });
 
-// Route::get('{any}',function($any){
-
-//       return view('front.front',['data' => '']);
-//   })->where('any','^((?!admin|api|activation|myanswer).)*$');
-
-
+/
 
 
 

@@ -10,7 +10,7 @@
 
           </div>
           <form class="col text-center" method="post">
-            <h4 class="m-3"> REGESTRIEN {{ this.userData.name }}</h4>
+            <h4 class="m-3"> REGESTRIEN {{ this.userData.id }}</h4>
             <!-- <input type="email" class="w-100 mb-2" placeholder="Email"  v-model="email" > -->
             <!-- <input type="password" class="w-100 mb-2" placeholder="Password"  v-model="password"> -->
 

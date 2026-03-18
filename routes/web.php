@@ -19,16 +19,16 @@ use App\User;
 
 
 
-Route::get('/', 'Admin\DashBoardController@index');
+// Route::get('/', 'Admin\DashBoardController@index');
 
 
-// Route::get('/', function () {
+Route::get('/', function () {
    
-//     return view('front.front',['data' => '']);
-// });
-// Route::get('{any}',function($any){
-//       return view('front.front',['data' => '']);
-// })->where('any','^((?!admin|api|activation|myanswer).)*$');
+    return view('front.front',['data' => '']);
+});
+Route::get('{any}',function($any){
+      return view('front.front',['data' => '']);
+})->where('any','^((?!admin|api|activation|myanswer).)*$');
 
 
 

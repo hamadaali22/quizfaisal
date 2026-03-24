@@ -72,6 +72,11 @@
             <a href="{{url('admin/settings')}}"><i class="la la-envelope"></i><span class="menu-title"
                     data-i18n="">settings</span></a>
         </li>
+        <li class="nav-item {{ Request::is('admin/meta-pages') ? 'active' : '' }}">
+            <a href="{{url('admin/meta-pages')}}"><i class="la la-envelope"></i><span class="menu-title"
+                    data-i18n="">meta of pages</span></a>
+        </li>
+
 
 
 

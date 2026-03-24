@@ -181,6 +181,9 @@ Route::get('admin-login', 'Auth\LoginController@LoginAdmin')->name('admin-login'
 		Route::post('certificate_price/update','ProfileController@updateCertificatePrice');
 
         Route::get('contact', 'ProfileController@contact');
+
+		Route::get('meta-pages', 'ProfileController@metaPages');
+		Route::post('meta-pages-update', 'ProfileController@metaPagesUpdate');
         Route::post('settings/contactdata','ProfileController@updateContactData');
 
         Route::get('privacy', 'ProfileController@privacy');

@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\File;
 use App\Admin_Video;
+use App\siteMetasTitle;
 class ProfileController extends Controller
 {
     public function __construct()
@@ -178,8 +179,8 @@ class ProfileController extends Controller
         }else{
             $edit->m1  = $edit->m1;
         }
-        $edit->title = $request->title;
-        $edit->title2 = $request->title2;
+        // $edit->title = $request->title;
+        // $edit->title2 = $request->title2;
         // $edit->about = $request->about;
         // $edit->level_desc =  $request->level_desc;
         // $edit->telc_desc  =  $request->telc_desc;
@@ -221,6 +222,36 @@ class ProfileController extends Controller
         return back()->with("message", 'updated ');
     }
 
+     public function metaPages()
+    {
+        $meta_pages=siteMetasTitle::get();
+        return view('admin.settings.meta_pages',compact('meta_pages'));
+    }
+    public function metaPagesUpdate(Request $request)
+    {
+        $edit = siteMetasTitle::where('type',$request->type)->first();
+        // dd($request->all());
+        $edit->title_de = $request->title_de;
+        $edit->title_ar = $request->title_ar;
+        $edit->title_en = $request->title_en;
+        $edit->title_fr = $request->title_fr;
+        $edit->title_es = $request->title_es;
+
+        $edit->desc_de = $request->desc_de;
+        $edit->desc_ar = $request->desc_ar;
+        $edit->desc_en = $request->desc_en;
+        $edit->desc_fr = $request->desc_fr;
+        $edit->desc_es = $request->desc_es;
+
+        $edit->keyword_de = $request->keyword_de;
+        $edit->keyword_ar = $request->keyword_ar;
+        $edit->keyword_en = $request->keyword_en;
+        $edit->keyword_fr = $request->keyword_fr;
+        $edit->keyword_es = $request->keyword_es;
+
+        $edit->save();
+        return back()->with("message", 'updated ');
+    }
     public function updateContactData(Request $request)
     {
          // $userId = 1;

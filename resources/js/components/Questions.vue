@@ -159,6 +159,29 @@
               </div>
 
 
+
+
+
+
+
+
+
+              <!-- <div class="true-false p-3 ">
+                <ul class="multi-choice list-unstyled p-2 d-flex  ">
+                  <h6 class="w-100">{{ SubQuestions.title }} </h6>
+                  <li class="multi-item q-2 border border-raduis pt-2 pl-3 pr-3 mr-5" :id="'subq' + index + 'a'"
+                    v-on:click="dissapear(index, item.exam_id, SubQuestions.question_id, SubQuestions.id, SubQuestions.expected_answer, SubQuestions.first_choice, 'subq' + index + 'a', 'a', SubQuestions.answer_type)">
+                    <input class=" multi-input d-none" type="radio" name="q-2" value="true" id="true-1">
+                    <label class="multi-label" id="true"> {{ SubQuestions.first_choice }}</label>
+                  </li>
+                  <li class="multi-item q-2 border border-raduis pt-2 pl-3 pr-3 ml-2" :id="'subq' + index + 'b'"
+                    v-on:click="dissapear(index, item.exam_id, SubQuestions.question_id, SubQuestions.id, SubQuestions.expected_answer, SubQuestions.second_choice, 'subq' + index + 'b', 'b', SubQuestions.answer_type)">
+                    <input class="multi-input d-none" type="radio" name="q-2" value="false" id="false-1">
+                    <label class="multi-label" id="false">{{ SubQuestions.second_choice }}</label>
+                  </li>
+
+                </ul>
+              </div> -->
               <div v-if="SubQuestions.bannarImage != null" class="picture multi-item  pl-5">
                 <img :src="SubQuestions.bannarImage" alt="bannar image" class="img-fluid ">
               </div>

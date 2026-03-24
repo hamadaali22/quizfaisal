@@ -50,7 +50,7 @@
 								enctype="multipart/form-data">
 								@csrf
 								<input type="hidden" name="id" value="{{Auth::user()->id}}">
-								<div class="form-group">
+								<!-- <div class="form-group">
 									<label> title</label>
 									<input type="text" name="title" class="form-control"
 										value="{{$contactInfo->title}}">
@@ -59,7 +59,7 @@
 									<label> title 2</label>
 									<input type="text" name="title2" class="form-control"
 										value="{{$contactInfo->title2}}">
-								</div>
+								</div> -->
 								<!--  -->
 								<div class="form-group">
 									<label> about de</label>

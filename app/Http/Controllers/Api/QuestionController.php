@@ -24,6 +24,7 @@ use App\QuizesTest;
 use App\QuizesAnswers;
 use App\Traits\QuizeTrait;
 use App\Helpers\QuizeHelpers;
+use App\siteMetasTitle;
 class QuestionController extends Controller
 {
     use GeneralTrait;

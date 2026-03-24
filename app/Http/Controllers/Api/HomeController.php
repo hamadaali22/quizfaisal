@@ -16,6 +16,7 @@ use Illuminate\Support\Str;
 use App\User;
 use App\Question;
 use App\SubQuestion;
+use App\siteMetasTitle;
 use Carbon\Carbon;
 use App\Mail\ContactMail;
 use JWTAuth;
@@ -366,6 +367,7 @@ class HomeController extends Controller
     {
          $contactinfo = ContactInfo::first();
 
+         
          $contactinfo->logo="https://backend.deutschtests.com/img/settings/".$contactinfo->logo;
          $contactinfo->favicon="https://backend.deutschtests.com/img/settings/".$contactinfo->favicon;
          $contactinfo->image="https://backend.deutschtests.com/img/settings/".$contactinfo->image;
@@ -378,10 +380,19 @@ class HomeController extends Controller
          $contactinfo->m1="https://backend.deutschtests.com/img/settings/".$contactinfo->m1;
 
 
+        $siteMetas = siteMetasTitle::get();
 
-         return $this -> returnDataa(
-             'data',$contactinfo,'erifhr'
-         );
+        //  return $this -> returnDataa(
+        //      'data',$contactinfo,'erifhr'
+        //  );
+         return $this->returnDataa(
+            'data',
+            [
+                'contactinfo' => $contactinfo,
+                'siteMetas'   => $siteMetas
+            ],
+            'erifhr'
+        );
      }
      public function checkUserAuth(Request $request)
      {

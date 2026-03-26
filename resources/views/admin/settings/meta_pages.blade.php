@@ -54,6 +54,8 @@
                                 enctype="multipart/form-data">
                                 @csrf
                                 <input type="hidden" name="type" value="{{$_item->type}}">
+
+
                                 <div class="row g-3">
                                     <div class="col">
                                         <label class="form-label">title de</label>
@@ -156,7 +158,9 @@
             </div>
         </div>
     </div>
+
     @endforeach
+
 </section>
 
 

@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\File;
 use App\Admin_Video;
+use App\Level;
 use App\siteMetasTitle;
 class ProfileController extends Controller
 {
@@ -225,12 +226,20 @@ class ProfileController extends Controller
      public function metaPages()
     {
         $meta_pages=siteMetasTitle::get();
-        return view('admin.settings.meta_pages',compact('meta_pages'));
+        
+        $levels_exercise=Level::where('type','exercise')->get();
+        $levels_telc=Level::where('type','telc')->get();
+        $levels_goethe=Level::where('type','goethe')->get();
+        return view('admin.settings.meta_pages',compact('meta_pages','levels_exercise','levels_telc','levels_goethe'));
     }
     public function metaPagesUpdate(Request $request)
     {
         $edit = siteMetasTitle::where('type',$request->type)->first();
         // dd($request->all());
+        // if($request->level_id){
+        //     $edit->level_id = $request->level_id;
+        // }
+        
         $edit->title_de = $request->title_de;
         $edit->title_ar = $request->title_ar;
         $edit->title_en = $request->title_en;

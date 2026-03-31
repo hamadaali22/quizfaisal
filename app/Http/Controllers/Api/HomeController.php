@@ -368,9 +368,12 @@ class HomeController extends Controller
          $contactinfo = ContactInfo::first();
 
          
-         $contactinfo->logo="https://backend.deutschtests.com/img/settings/".$contactinfo->logo;
-         $contactinfo->favicon="https://backend.deutschtests.com/img/settings/".$contactinfo->favicon;
-         $contactinfo->image="https://backend.deutschtests.com/img/settings/".$contactinfo->image;
+        //  $contactinfo->logo="https://backend.deutschtests.com/img/settings/".$contactinfo->logo;
+
+        $contactinfo->logo="https://backend.deutschtests.com/img/settings/deutschtests-logo.png";
+
+        $contactinfo->favicon="https://backend.deutschtests.com/img/settings/".$contactinfo->favicon;
+        $contactinfo->image="https://backend.deutschtests.com/img/settings/".$contactinfo->image;
 
          $contactinfo->a1="https://backend.deutschtests.com/img/settings/".$contactinfo->a1;
          $contactinfo->a2="https://backend.deutschtests.com/img/settings/".$contactinfo->a2;

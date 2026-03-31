@@ -200,7 +200,7 @@ export default {
 
             } else {
                 let data = { 'quizes': this.questionAnswer, 'levelName': this.levelName };
-                axios.post('https://deutschtests.com/api/save-quize-test', data)
+                axios.post('https://backend.deutschtests.com/api/save-quize-test', data)
                     .then(res => {
                         console.log(res)
                         // commit('setUserToken', res.data.token)

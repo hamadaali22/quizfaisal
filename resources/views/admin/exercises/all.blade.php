@@ -73,7 +73,8 @@
                                 <tr>
                                     <th class="text-center">sortable</th>
                                     <th>#</th>
-                                    <th>exam </th>
+                                    <th>title </th>
+                                    <th>level </th>
                                     <th>type </th>
                                     <!-- <th>paragraph </th> -->
                                     <th>image </th>
@@ -92,6 +93,9 @@
                                     </td>
                                     <td>
                                         {{ $_item->id }}
+                                    </td>
+                                    <td>
+                                        {{ $_item->title }}
                                     </td>
                                     <td>
                                         {{ $_item->levels->name }}

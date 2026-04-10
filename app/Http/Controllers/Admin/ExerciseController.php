@@ -51,7 +51,7 @@ class ExerciseController extends Controller
         }
 
         $add->level_id    = $request->level_id;
-        // $add->exam_id    = $request->exam_id;
+        $add->title    = $request->title;
         $add->bio    = $request->bio;
         $add->type    = $request->type;
         $add->mark    = $request->mark;
@@ -281,7 +281,7 @@ class ExerciseController extends Controller
 
 
         $edit->level_id    = $request->level_id;
-        // $edit->exam_id    = $request->exam_id;
+        $edit->title    = $request->title;
         $edit->type    = $request->type;
         $edit->mark    = $request->mark;
         $edit->bio    = $request->bio;

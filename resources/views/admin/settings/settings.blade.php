@@ -131,7 +131,7 @@
 								</div>
 								<div class="form-group">
 									<label> telc desc fr</label>
-									<textarea name="telc_desc_frrr" id="ckeditor" cols="30" rows="15"
+									<textarea name="telc_desc_frr" id="ckeditor" cols="30" rows="15"
 										class="form-control ckeditor">{{$contactInfo->telc_desc_fr}}</textarea>
 								</div>
 								<div class="form-group">
@@ -151,11 +151,11 @@
 										class="form-control ckeditor">{{$contactInfo->telc_desc}}</textarea>
 								</div>-->
 
-								<div class="form-group">
+								<!-- <div class="form-group">
 									<label>placement description de </label>
 									<textarea name="placement_desc" id="ckeditor" cols="30" rows="15"
 										class="form-control ckeditor">{{$contactInfo->placement_desc}}</textarea>
-								</div>
+								</div> -->
 								<div class="form-group">
 									<label>placement description de </label>
 									<textarea name="placement_desc_de" id="ckeditor" cols="30" rows="15"
@@ -207,6 +207,50 @@
 									<textarea name="terms_es" id="ckeditor" cols="30" rows="15"
 										class="form-control ckeditor">{{$contactInfo->terms_es}}</textarea>
 								</div>
+
+
+
+
+
+
+								<div class="form-group">
+									<label>exercise de</label>
+									<textarea name="exercise_de" id="ckeditor" cols="30" rows="15"
+										class="form-control ckeditor">{{$contactInfo->exercise_de}}</textarea>
+								</div>
+								<div class="form-group">
+									<label> exercise ar</label>
+									<textarea name="exercise_ar" id="ckeditor" cols="30" rows="15"
+										class="form-control ckeditor">{{$contactInfo->exercise_ar}}</textarea>
+								</div>
+								<div class="form-group">
+									<label> exercise en</label>
+									<textarea name="exercise_en" id="ckeditor" cols="30" rows="15"
+										class="form-control ckeditor">{{$contactInfo->exercise_en}}</textarea>
+								</div>
+								<div class="form-group">
+									<label>terms fr</label>
+									<textarea name="terms_fr" id="ckeditor" cols="30" rows="15"
+										class="form-control ckeditor">{{$contactInfo->terms_fr}}</textarea>
+								</div>
+								<div class="form-group">
+									<label> exercise es</label>
+									<textarea name="exercise_es" id="ckeditor" cols="30" rows="15"
+										class="form-control ckeditor">{{$contactInfo->exercise_es}}</textarea>
+								</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 								<div class="form-group row">
 									<div class="col-md-2">
 										<img class="avatar-img" src="{{asset('img/settings/'.$contactInfo->image) }}"

@@ -208,16 +208,22 @@ class ProfileController extends Controller
         $edit->telc_desc_de  =  $request->telc_desc_de;
         $edit->telc_desc_ar  =  $request->telc_desc_ar;
         $edit->telc_desc_en  =  $request->telc_desc_en;
-        $edit->telc_desc_fr  =  $request->telc_desc_frrr;
+        $edit->telc_desc_fr  =  $request->telc_desc_fr;
         $edit->telc_desc_es  =  $request->telc_desc_es;
 
 
-        $edit->placement_desc  = $request->placement_desc;
+        // $edit->placement_desc  = $request->placement_desc;
         $edit->placement_desc_de  =  $request->placement_desc_de;
         $edit->placement_desc_ar  =  $request->placement_desc_ar;
         $edit->placement_desc_en  =  $request->placement_desc_en;
         $edit->placement_desc_fr  =  $request->placement_desc_fr;
         $edit->placement_desc_es  =  $request->placement_desc_es;
+
+        $edit->exercise_de  =  $request->exercise_de;
+        $edit->exercise_ar  =  $request->exercise_ar;
+        $edit->exercise_en  =  $request->exercise_en;
+        $edit->exercise_fr  =  $request->exercise_fr;
+        $edit->exercise_es  =  $request->exercise_es;
         
         $edit->save();
         return back()->with("message", 'updated ');

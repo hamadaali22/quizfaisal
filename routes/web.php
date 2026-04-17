@@ -27,8 +27,6 @@ Route::get('/', 'Admin\DashBoardController@index');
 //     return view('front.front',['data' => '']);
 // });
 
-
-
 // Route::get('{any}',function($any){
 //       return view('front.front',['data' => '']);
 // })->where('any','^((?!admin|api|activation|myanswer).)*$');

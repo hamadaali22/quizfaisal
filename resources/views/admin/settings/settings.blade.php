@@ -229,9 +229,9 @@
 										class="form-control ckeditor">{{$contactInfo->exercise_en}}</textarea>
 								</div>
 								<div class="form-group">
-									<label>terms fr</label>
-									<textarea name="terms_fr" id="ckeditor" cols="30" rows="15"
-										class="form-control ckeditor">{{$contactInfo->terms_fr}}</textarea>
+									<label>exercise fr</label>
+									<textarea name="exercise_fr" id="ckeditor" cols="30" rows="15"
+										class="form-control ckeditor">{{$contactInfo->exercise_fr}}</textarea>
 								</div>
 								<div class="form-group">
 									<label> exercise es</label>

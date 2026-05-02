@@ -319,66 +319,154 @@ class QuestionController extends Controller
         $QuizesTest->status    = 0;
         $QuizesTest->save();
     }
+    // public function goethes(Request $request)
+    // {
+    //     $data=Level::where('type','goethe')->get();
+    //     return $this->returnDataa('data', $data,'');
+    // }
     public function goethes(Request $request)
     {
-        $data=Level::where('type','goethe')->get();
-        return $this->returnDataa('data', $data,'');
+        $lang = $request->lang ?? 'ar';
+
+        $data = Level::where('type', 'goethe')->get()->map(function ($item) use ($lang) {
+            return [
+                'id' => $item->id,
+                'type' => $item->type,
+                'name' => $item->{'name'} ?? null,
+
+                'slug' => $item->{'slug_'.$lang},
+                'description' => $item->{'description_'.$lang},
+            ];
+        });
+
+        return $this->returnDataa('data', $data, '');
     }
+    // public function exams(Request $request)
+    // {
+    //     if($request->lang=='ar'){
+    //         $level=Level::with('level_images')->where('type','goethe')->where("slug_ar" , $request->levelSlug)->first();
+    //     }elseif($request->lang=='en'){
+    //         $level=Level::with('level_images')->where('type','goethe')->where("slug_en" , $request->levelSlug)->first();
+    //     }elseif($request->lang=='fr'){
+    //         $level=Level::with('level_images')->where('type','goethe')->where("slug_fr" , $request->levelSlug)->first();
+    //     }elseif($request->lang=='es'){
+    //         $level=Level::with('level_images')->where('type','goethe')->where("slug_es" , $request->levelSlug)->first();
+    //     }else{
+    //         $level=Level::with('level_images')->where('type','goethe')->where("slug_de" , $request->levelSlug)->first();
+    //     }
+
+    //     // $level_images = [];
+
+    //     //     if ($level && $level->level_images) {
+    //     //         foreach ($level->level_images as $image) {
+    //     //             $level_images[] = 'https://deutschtests.com/img/goethe/' . $image->image; // تأكد أن اسم العمود صحيح
+    //     //         }
+    //     //     }
+    //     //     $level->level_images=$level_images;
+    //     // $level->goethe1="https://deutschtests.com/img/goethe/".$level->goethe1;
+    //     // $level->goethe2="https://deutschtests.com/img/goethe/".$level->goethe2;
+    //     // $level->goethe3="https://deutschtests.com/img/goethe/".$level->goethe3;
+    //     // $level->goethe4="https://deutschtests.com/img/goethe/".$level->goethe4;
+    //     // $level->goethe5="https://deutschtests.com/img/goethe/".$level->goethe5;
+    //     https://deutschtests.com/api/exams?levelSlug=%D9%86%D9%85%D8%A7%D8%B0%D8%AC-%D8%A7%D9%85%D8%AA%D8%AD%D8%A7%D9%86%D8%A7%D8%AA-%D9%85%D8%B9%D9%87%D8%AF-%D8%AC%D9%88%D8%AA%D9%87-B1&lang=de
+
+    //     $exam=Exam::where("level_id" , $level->id)->where('section',null)->get();
+        
+    //     $home  =[
+    //         'exam'=> $exam,
+    //         'level'=> $level,
+    //     ];
+    //    return $this->returnDataa('data', $home,'');
+    // }
+    // public function exams(Request $request)
+    // {
+    //     if($request->lang=='ar'){
+    //         $level=Level::with('level_images')->where('type','goethe')->where("slug_ar" , $request->levelSlug)->first();
+    //     }elseif($request->lang=='en'){
+    //         $level=Level::with('level_images')->where('type','goethe')->where("slug_en" , $request->levelSlug)->first();
+    //     }elseif($request->lang=='fr'){
+    //         $level=Level::with('level_images')->where('type','goethe')->where("slug_fr" , $request->levelSlug)->first();
+    //     }elseif($request->lang=='es'){
+    //         $level=Level::with('level_images')->where('type','goethe')->where("slug_es" , $request->levelSlug)->first();
+    //     }else{
+    //         $level=Level::with('level_images')->where('type','goethe')->where("slug_de" , $request->levelSlug)->first();
+    //     }
+    //     $exam=Exam::where("level_id" , $level->id)->where('section',null)->get();
+    //     $home  =[
+    //         'exam'=> $exam,
+    //         'level'=> $level,
+    //     ];
+    //    return $this->returnDataa('data', $home,'');
+    // }
+    
     public function exams(Request $request)
     {
-        if($request->lang=='ar'){
-            $level=Level::with('level_images')->where('type','goethe')->where("slug_ar" , $request->levelSlug)->first();
-        }elseif($request->lang=='en'){
-            $level=Level::with('level_images')->where('type','goethe')->where("slug_en" , $request->levelSlug)->first();
-        }elseif($request->lang=='fr'){
-            $level=Level::with('level_images')->where('type','goethe')->where("slug_fr" , $request->levelSlug)->first();
-        }elseif($request->lang=='es'){
-            $level=Level::with('level_images')->where('type','goethe')->where("slug_es" , $request->levelSlug)->first();
-        }else{
-            $level=Level::with('level_images')->where('type','goethe')->where("slug_de" , $request->levelSlug)->first();
+        $lang = $request->lang ?? 'de';
+        $slugField = 'slug_' . $lang;
+        $level = Level::with('level_images')->where('type', 'goethe')->where($slugField, $request->levelSlug)->first();
+        if (!$level) {
+            return $this->returnDataa('data', null, 'Not found');
         }
-
-        // $level_images = [];
-
-        //     if ($level && $level->level_images) {
-        //         foreach ($level->level_images as $image) {
-        //             $level_images[] = 'https://deutschtests.com/img/goethe/' . $image->image; // تأكد أن اسم العمود صحيح
-        //         }
-        //     }
-        //     $level->level_images=$level_images;
-        // $level->goethe1="https://deutschtests.com/img/goethe/".$level->goethe1;
-        // $level->goethe2="https://deutschtests.com/img/goethe/".$level->goethe2;
-        // $level->goethe3="https://deutschtests.com/img/goethe/".$level->goethe3;
-        // $level->goethe4="https://deutschtests.com/img/goethe/".$level->goethe4;
-        // $level->goethe5="https://deutschtests.com/img/goethe/".$level->goethe5;
-        https://deutschtests.com/api/exams?levelSlug=%D9%86%D9%85%D8%A7%D8%B0%D8%AC-%D8%A7%D9%85%D8%AA%D8%AD%D8%A7%D9%86%D8%A7%D8%AA-%D9%85%D8%B9%D9%87%D8%AF-%D8%AC%D9%88%D8%AA%D9%87-B1&lang=de
-
-        $exam=Exam::where("level_id" , $level->id)->where('section',null)->get();
-        
-        $home  =[
-            'exam'=> $exam,
-            'level'=> $level,
+         // 🔥 هنا استخدام map على level (مش collection)
+        $levelData = [
+            'id' => $level->id,
+            'type' => $level->type,
+            'name' => $level->name,
+            'slug' => $level->{'slug_'.$lang},
+            'description' => $level->{'description_'.$lang},
+            'level_images' => $level->level_images,
         ];
-       return $this->returnDataa('data', $home,'');
+        $exam = Exam::where('level_id', $level->id) ->whereNull('section')->get();
+        return $this->returnDataa('data', [
+            'exam' => $exam,
+            'level' => $levelData,
+        ], '');
     }
+    // public function telcs(Request $request)
+    // {
+    //     $data=Level::where('type','telc')->get();
+    //     return $this->returnDataa('data', $data,'');
+    // }
     public function telcs(Request $request)
     {
-        $data=Level::where('type','telc')->get();
-        return $this->returnDataa('data', $data,'');
+        $lang = $request->get('lang', 'ar'); // الافتراضي عربي
+
+        $data = Level::where('type', 'telc')->get()->map(function ($item) use ($lang) {
+
+            return [
+                'id' => $item->id,
+                'type' => $item->type,
+                'name' => $item->name,
+
+                // 🔥 ديناميك حسب اللغة
+                'slug' => $item->{'slug_' . $lang},
+                'description' => $item->{'description_' . $lang},
+
+                'created_at' => $item->created_at,
+                'updated_at' => $item->updated_at,
+            ];
+        });
+
+        return $this->returnDataa('data', $data, '');
     }
     public function telcExams(Request $request)
     {
-        if($request->lang=='ar'){
-            $level=Level::with('level_images')->where('type','telc')->where("slug_ar" , $request->levelSlug)->first();
-        }elseif($request->lang=='en'){
-            $level=Level::with('level_images')->where('type','telc')->where("slug_en" , $request->levelSlug)->first();    
-        }elseif($request->lang=='fr'){
-            $level=Level::with('level_images')->where('type','telc')->where("slug_fr" , $request->levelSlug)->first();
-        }elseif($request->lang=='es'){
-            $level=Level::with('level_images')->where('type','telc')->where("slug_es" , $request->levelSlug)->first();
-        }else{
-            $level=Level::with('level_images')->where('type','telc')->where("slug_de" , $request->levelSlug)->first();
+        $lang = $request->lang ?? 'de';
+        $slugField = 'slug_' . $lang;
+        $level = Level::with('level_images')->where('type', 'telc')->where($slugField, $request->levelSlug)->first();
+        if (!$level) {
+            return $this->returnDataa('data', null, 'Not found');
         }
+         // 🔥 هنا استخدام map على level (مش collection)
+        $levelData = [
+            'id' => $level->id,
+            'type' => $level->type,
+            'name' => $level->name,
+            'slug' => $level->{'slug_'.$lang},
+            'description' => $level->{'description_'.$lang},
+            'level_images' => $level->level_images,
+        ];
+       
         // $level->telc1="https://deutschtests.com/img/telc/".$level->telc1;
         // $level->telc2="https://deutschtests.com/img/telc/".$level->telc2;
         // $level->telc3="https://deutschtests.com/img/telc/".$level->telc3;
@@ -387,7 +475,7 @@ class QuestionController extends Controller
         $exam=Exam::where("level_id" , $level->id)->where('section','telc')->get();
         $home  =[
             'exam'=> $exam,
-            'level'=> $level,
+            'level'=> $levelData,
         ];
         return $this->returnDataa('data', $home,'');
     }

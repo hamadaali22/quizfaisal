@@ -363,33 +363,81 @@ class HomeController extends Controller
         return $this -> returnDataa('data',$user,'updated successfully');
 
     }
-    public function contactInfo()
+
+    public function contactInfo(Request $request)
     {
-         $contactinfo = ContactInfo::first();
+        $lang = $request->get('lang', 'en'); // default en
 
-         
-        //  $contactinfo->logo="https://backend.deutschtests.com/img/settings/".$contactinfo->logo;
+        $contactinfo = ContactInfo::first();
 
+        // الصور زي ما هي
+        $contactinfo->logo = "https://backend.deutschtests.com/img/settings/deutschtests-logo.png";
+        $contactinfo->favicon = "https://backend.deutschtests.com/img/settings/" . $contactinfo->favicon;
+        $contactinfo->image = "https://backend.deutschtests.com/img/settings/" . $contactinfo->image;
+
+        $contactinfo->a1 = "https://backend.deutschtests.com/img/settings/" . $contactinfo->a1;
+        $contactinfo->a2 = "https://backend.deutschtests.com/img/settings/" . $contactinfo->a2;
+        $contactinfo->b1 = "https://backend.deutschtests.com/img/settings/" . $contactinfo->b1;
+        $contactinfo->b2 = "https://backend.deutschtests.com/img/settings/" . $contactinfo->b2;
+        $contactinfo->c1 = "https://backend.deutschtests.com/img/settings/" . $contactinfo->c1;
+        $contactinfo->m1 = "https://backend.deutschtests.com/img/settings/" . $contactinfo->m1;
+
+        // 👇 فلترة الكونتكت حسب اللغة
+        $contactinfo = [
+            'logo' => $contactinfo->logo,
+            'phone' => $contactinfo->phone,
+            'email' => $contactinfo->email,
+
+            'about' => $contactinfo->{'about_' . $lang},
+            'goethe_desc' => $contactinfo->{'goethe_desc_' . $lang},
+            'telc_desc' => $contactinfo->{'telc_desc_' . $lang},
+            'placement_desc' => $contactinfo->{'placement_desc_' . $lang},
+            'terms' => $contactinfo->{'terms_' . $lang},
+            'exercise' => $contactinfo->{'exercise_' . $lang},
+
+            'favicon' => $contactinfo->favicon,
+            'image' => $contactinfo->image,
+            'a1' => $contactinfo->a1,
+            'a2' => $contactinfo->a2,
+            'b1' => $contactinfo->b1,
+            'b2' => $contactinfo->b2,
+            'c1' => $contactinfo->c1,
+            'm1' => $contactinfo->m1,
+        ];
+
+        // 👇 نفس الفكرة للـ meta
+        $siteMetas = siteMetasTitle::get()->map(function ($item) use ($lang) {
+            return [
+                'type' => $item->type,
+                'title' => $item->{'title_' . $lang},
+                'desc' => $item->{'desc_' . $lang},
+                'keyword' => $item->{'keyword_' . $lang},
+            ];
+        });
+
+        return $this->returnDataa(
+            'data',
+            [
+                'contactinfo' => $contactinfo,
+                'siteMetas'   => $siteMetas
+            ],
+            'success'
+        );
+    }
+    public function contactInfoooo()
+    {
+        $contactinfo = ContactInfo::first();
         $contactinfo->logo="https://backend.deutschtests.com/img/settings/deutschtests-logo.png";
-
         $contactinfo->favicon="https://backend.deutschtests.com/img/settings/".$contactinfo->favicon;
         $contactinfo->image="https://backend.deutschtests.com/img/settings/".$contactinfo->image;
-
          $contactinfo->a1="https://backend.deutschtests.com/img/settings/".$contactinfo->a1;
          $contactinfo->a2="https://backend.deutschtests.com/img/settings/".$contactinfo->a2;
          $contactinfo->b1="https://backend.deutschtests.com/img/settings/".$contactinfo->b1;
          $contactinfo->b2="https://backend.deutschtests.com/img/settings/".$contactinfo->b2;
          $contactinfo->c1="https://backend.deutschtests.com/img/settings/".$contactinfo->c1;
          $contactinfo->m1="https://backend.deutschtests.com/img/settings/".$contactinfo->m1;
-
-
         $siteMetas = siteMetasTitle::get();
-
-        //  return $this -> returnDataa(
-        //      'data',$contactinfo,'erifhr'
-        //  );
-         return $this->returnDataa(
-            'data',
+         return $this->returnDataa('data',
             [
                 'contactinfo' => $contactinfo,
                 'siteMetas'   => $siteMetas
@@ -397,6 +445,7 @@ class HomeController extends Controller
             'erifhr'
         );
      }
+
      public function checkUserAuth(Request $request)
      {
          $user = Auth::guard('user-api')->user();
@@ -430,3 +479,4 @@ class HomeController extends Controller
         ]);
     }
 }
+

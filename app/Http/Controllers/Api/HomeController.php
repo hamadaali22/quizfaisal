@@ -408,6 +408,8 @@ class HomeController extends Controller
         // 👇 نفس الفكرة للـ meta
         $siteMetas = siteMetasTitle::get()->map(function ($item) use ($lang) {
             return [
+                'level_id'=> $item->level_id,
+                'type' => $item->type,
                 'type' => $item->type,
                 'title' => $item->{'title_' . $lang},
                 'desc' => $item->{'desc_' . $lang},

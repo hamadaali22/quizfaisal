@@ -21,6 +21,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 Route::group(['middleware' => ['api'], 'namespace' => 'Api'], function () {
 
+    // Route::get('exercises', 'QuestionController@exercises');
+
+
     Route::get('quizes', 'QuestionController@quizes');
     Route::post('save-quize-test', 'QuestionController@SaveQuizeTest');
     Route::get('quizes-result', 'QuestionController@quizesResult');
@@ -49,6 +52,7 @@ Route::group(['middleware' => ['api'], 'namespace' => 'Api'], function () {
 
     Route::post('edit-quize-test', 'QuestionController@editQuizeTest');
     Route::post('contact-us', 'HomeController@ContactUs');
+    Route::get('exams', 'QuestionController@exams');
 
 //   Route::group(['middleware' => ['api','changeLanguage','checkDoctor:patient-api'], 'namespace' => 'Api'], function () {
 

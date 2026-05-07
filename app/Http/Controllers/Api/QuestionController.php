@@ -611,7 +611,7 @@ class QuestionController extends Controller
     {
         $lang = $request->get('lang', 'ar'); // الافتراضي عربي
 
-        $data = Level::get()->map(function ($item) use ($lang) {
+        $data = Level::where('type', 'exercise')->get()->map(function ($item) use ($lang) {
 
             return [
                 'id' => $item->id,

@@ -364,7 +364,7 @@ class HomeController extends Controller
 
     }
 
-    public function contactInfou(Request $request)
+    public function contactInfo(Request $request)
     {
         $lang = $request->get('lang', 'en'); // default en
 
@@ -426,7 +426,7 @@ class HomeController extends Controller
             'success'
         );
     }
-    public function contactInfo()
+    public function contactInfooooo()
     {
         $contactinfo = ContactInfo::first();
         $contactinfo->logo="https://backend.deutschtests.com/img/settings/deutschtests-logo.png";

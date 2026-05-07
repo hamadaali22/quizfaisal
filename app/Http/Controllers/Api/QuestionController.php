@@ -629,6 +629,37 @@ class QuestionController extends Controller
 
         return $this->returnDataa('data', $data, '');
     }
+    
+    public function exerciseExams(Request $request)
+    {
+        $lang = $request->lang ?? 'de';
+        $slugField = 'slug_' . $lang;
+        $level = Level::with('level_images')->where('type', 'exercise')->where($slugField, $request->levelSlug)->first();
+        if (!$level) {
+            return $this->returnDataa('data', null, 'Not found');
+        }
+         // 🔥 هنا استخدام map على level (مش collection)
+        $levelData = [
+            'id' => $level->id,
+            'type' => $level->type,
+            'name' => $level->name,
+            'slug' => $level->{'slug_'.$lang},
+            'description' => $level->{'description_'.$lang},
+            'level_images' => $level->level_images,
+        ];
+       
+        // $level->telc1="https://deutschtests.com/img/telc/".$level->telc1;
+        // $level->telc2="https://deutschtests.com/img/telc/".$level->telc2;
+        // $level->telc3="https://deutschtests.com/img/telc/".$level->telc3;
+        // $level->telc4="https://deutschtests.com/img/telc/".$level->telc4;
+        // $level->telc5="https://deutschtests.com/img/telc/".$level->telc5;
+        $Question=Question::where("level_id" , $level->id)->get();
+        $home  =[
+            'exam'=> $exam,
+            'level'=> $levelData,
+        ];
+        return $this->returnDataa('data', $home,'');
+    }
 
     public function goetheReportExams(Request $request)
     {

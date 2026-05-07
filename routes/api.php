@@ -22,7 +22,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group(['middleware' => ['api'], 'namespace' => 'Api'], function () {
 
     Route::get('exercises', 'QuestionController@exercises');
-
+    Route::get('exercise-exams', 'QuestionController@exerciseExams');
 
     Route::get('quizes', 'QuestionController@quizes');
     Route::post('save-quize-test', 'QuestionController@SaveQuizeTest');

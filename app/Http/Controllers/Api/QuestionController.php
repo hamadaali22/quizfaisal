@@ -427,6 +427,7 @@ class QuestionController extends Controller
     //     $data=Level::where('type','telc')->get();
     //     return $this->returnDataa('data', $data,'');
     // }
+
     public function telcs(Request $request)
     {
         $lang = $request->get('lang', 'ar'); // الافتراضي عربي
@@ -605,7 +606,29 @@ class QuestionController extends Controller
         
         return $this->returnDataa('data', $exams,'');
     }
-  
+
+    public function exercises(Request $request)
+    {
+        $lang = $request->get('lang', 'ar'); // الافتراضي عربي
+
+        $data = Level::get()->map(function ($item) use ($lang) {
+
+            return [
+                'id' => $item->id,
+                'type' => $item->type,
+                'name' => $item->name,
+
+                // 🔥 ديناميك حسب اللغة
+                'slug' => $item->{'slug_' . $lang},
+                'description' => $item->{'description_' . $lang},
+
+                'created_at' => $item->created_at,
+                'updated_at' => $item->updated_at,
+            ];
+        });
+
+        return $this->returnDataa('data', $data, '');
+    }
 
     public function goetheReportExams(Request $request)
     {

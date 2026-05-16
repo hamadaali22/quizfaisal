@@ -627,13 +627,13 @@ class QuestionController extends Controller
                 'name' => $item->name,
 
                 // 🔥 ديناميك حسب اللغة
-                'slug' => $item->{'slug_' . $lang},
-                
-                'slug_de' => $level->slug_de,
-                'slug_ar' => $level->slug_ar,
-                'slug_en' => $level->slug_en,
-                'slug_fr' => $level->slug_fr,
-                'slug_es' => $level->slug_es,
+                // 'slug' => $item->{'slug_' . $lang},
+
+                'slug_de' => $item->slug_de,
+                'slug_ar' => $item->slug_ar,
+                'slug_en' => $item->slug_en,
+                'slug_fr' => $item->slug_fr,
+                'slug_es' => $item->slug_es,
 
                 'description' => $item->{'description_' . $lang},
 

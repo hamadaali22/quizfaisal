@@ -628,6 +628,13 @@ class QuestionController extends Controller
 
                 // 🔥 ديناميك حسب اللغة
                 'slug' => $item->{'slug_' . $lang},
+                
+                'slug_de' => $level->slug_de,
+                'slug_ar' => $level->slug_ar,
+                'slug_en' => $level->slug_en,
+                'slug_fr' => $level->slug_fr,
+                'slug_es' => $level->slug_es,
+
                 'description' => $item->{'description_' . $lang},
 
                 'created_at' => $item->created_at,

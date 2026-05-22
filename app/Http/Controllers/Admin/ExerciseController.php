@@ -319,7 +319,7 @@ class ExerciseController extends Controller
 
         }
         $delete->delete();
-
+// 
         return redirect()->route('exercises.index')->with("message",'The question has been deleted');
     }
 

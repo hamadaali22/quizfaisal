@@ -14,6 +14,9 @@ use App\User;
 use App\Level;
 use App\Exam;
 use App\Question;
+use App\exercise;
+use App\SubExercise;
+use App\ExpectedAnswer;
 use App\SubQuestion;
 use App\Answer;
 // use App\stuendAnswer;
@@ -668,9 +671,9 @@ class QuestionController extends Controller
         // $level->telc3="https://deutschtests.com/img/telc/".$level->telc3;
         // $level->telc4="https://deutschtests.com/img/telc/".$level->telc4;
         // $level->telc5="https://deutschtests.com/img/telc/".$level->telc5;
-        $Question=Question::where("level_id" , $level->id)->get();
+        $exercise=Exercise::where("level_id" , $level->id)->get();
         $home  =[
-            'exercise'=> $Question,
+            'exercise'=> $exercise,
             'level'=> $levelData,
         ];
         return $this->returnDataa('data', $home,'');

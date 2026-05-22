@@ -21,7 +21,6 @@ use App\SubQuestion;
 use App\Answer;
 // use App\stuendAnswer;
 use App\ExamAnswer;
-use App\ExpectedAnswer;
 use App\Quize;
 use App\QuizesTest;
 use App\QuizesAnswers;

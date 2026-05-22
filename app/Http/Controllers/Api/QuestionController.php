@@ -14,7 +14,7 @@ use App\User;
 use App\Level;
 use App\Exam;
 use App\Question;
-use App\exercise;
+use App\Exercise;
 use App\SubExercise;
 use App\ExpectedAnswer;
 use App\SubQuestion;

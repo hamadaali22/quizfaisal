@@ -655,7 +655,6 @@ class QuestionController extends Controller
         if (!$level) {
             return $this->returnDataa('data', null, 'Not found');
         }
-         // 🔥 هنا استخدام map على level (مش collection)
         $levelData = [
             'id' => $level->id,
             'type' => $level->type,

@@ -307,7 +307,7 @@ class ExerciseController extends Controller
         $delete = Exercise::findOrFail($request->id);
         // dd('gggghytghgt');
         if($delete){
-            $subquestions= SubExercise::where('subexercise_id',$delete->id)->get();
+            $subquestions= SubExercise::where('exercise_id',$delete->id)->get();
             foreach ($subquestions as $subquestion) {
                 $subquestion->delete();
                 $answers= Answer::where('subexercise_id',$subquestion->id)->get();

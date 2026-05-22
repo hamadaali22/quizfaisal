@@ -670,7 +670,7 @@ class QuestionController extends Controller
         // $level->telc5="https://deutschtests.com/img/telc/".$level->telc5;
         $Question=Question::where("level_id" , $level->id)->get();
         $home  =[
-            'exam'=> $Question,
+            'exercise'=> $Question,
             'level'=> $levelData,
         ];
         return $this->returnDataa('data', $home,'');

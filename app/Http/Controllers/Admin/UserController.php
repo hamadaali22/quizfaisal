@@ -27,7 +27,10 @@ class UserController extends Controller
 	
 	public function allexam()
     {
-        $exams=ExamAnswer::where("user_id" ,'!=', 1)->orderBy('id', 'DESC')->get();
+        // $exams=ExamAnswer::where("user_id" ,'!=', 1)->orderBy('id', 'DESC')->get();
+		$exams = ExamAnswer::where('user_id', '!=', 1)
+    ->orderBy('id', 'DESC')
+    ->paginate(500);
 		foreach ($exams as $item) {            
          	$item->exam=Exam::where("id" , $item->exam_id)->first();
 			$user=User::where("id" , $item->user_id)->first();

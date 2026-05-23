@@ -676,7 +676,45 @@ class QuestionController extends Controller
         ];
         return $this->returnDataa('data', $home,'');
     }
+  public function exerciseQuestions(Request $request)
+    {
+        // ->orderBy('order','ASC')
+        $data=Exercise::where("id" , $request->exercise_id)->get();
+        foreach ($data as $item) {
+            if($item->type=='listening'){
+                $item->file="https://backend.deutschtests.com/img/questions-file/".$item->file;
+            }elseif($item->type=='image'){
+                $item->image="https://backend.deutschtests.com/img/questions-image/".$item->image;
+            }elseif($item->type=='listening and image'){
+                $item->file="https://backend.deutschtests.com/img/questions-file/".$item->file;
+                $item->image="https://backend.deutschtests.com/img/questions-image/".$item->image;
+            }else{
 
+            }
+            $subs=SubExercise::where('question_id',$item->level_id)->get();
+            foreach ($subs as $sub) {
+                if($sub->bannar){
+                    $sub->bannarImage="https://backend.deutschtests.com/img/banner/".$sub->bannar;
+                }else{
+                     $sub->bannarImage=null;
+                }
+                if($sub->image_a){
+                    $sub->image_a="https://backend.deutschtests.com/img/answer-image/".$sub->image_a;
+                }
+                if($sub->image_b){
+                    $sub->image_b="https://backend.deutschtests.com/img/answer-image/".$sub->image_b;
+                }
+
+                $answer=Answer::where('subexercise_id',$sub->id)->first();
+                if($answer){
+                  $sub->answer=$answer;
+                }
+
+            }
+            $item->subquestion=$subquestion;
+        }
+        return $this->returnDataa('data', $data,'');
+    }
     public function goetheReportExams(Request $request)
     {
         // ->orderBy('order','ASC')

@@ -23,6 +23,7 @@ Route::group(['middleware' => ['api'], 'namespace' => 'Api'], function () {
 
     Route::get('exercises', 'QuestionController@exercises');
     Route::get('exercise-exams', 'QuestionController@exerciseExams');
+    Route::get('exercise-exams-questions', 'QuestionController@exerciseQuestions');
 
     Route::get('quizes', 'QuestionController@quizes');
     Route::post('save-quize-test', 'QuestionController@SaveQuizeTest');
@@ -36,6 +37,7 @@ Route::group(['middleware' => ['api'], 'namespace' => 'Api'], function () {
 
 
     Route::get('questions', 'QuestionController@question');
+
     Route::get('goethes', 'QuestionController@goethes');
     Route::get('telcs', 'QuestionController@telcs');
     Route::get('exams', 'QuestionController@exams');

@@ -691,7 +691,7 @@ class QuestionController extends Controller
             }else{
 
             }
-            $subs=SubExercise::where('exercise_id',$item->level_id)->get();
+            $subs=SubExercise::where('exercise_id',$item->id)->get();
             foreach ($subs as $sub) {
                 if($sub->bannar){
                     $sub->bannarImage="https://backend.deutschtests.com/img/banner/".$sub->bannar;

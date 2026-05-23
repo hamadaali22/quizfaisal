@@ -711,7 +711,7 @@ class QuestionController extends Controller
                 }
 
             }
-            $item->subquestion=$subquestion;
+            $item->subquestion=$subs;
         }
         return $this->returnDataa('data', $data,'');
     }

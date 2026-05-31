@@ -21,6 +21,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 Route::group(['middleware' => ['api'], 'namespace' => 'Api'], function () {
 
+    Route::post('exercise-exam-save', 'QuestionController@ExerciseExamAnswerSave');
     Route::get('exercises', 'QuestionController@exercises');
     Route::get('exercise-exams', 'QuestionController@exerciseExams');
     Route::get('exercise-exams-questions', 'QuestionController@exerciseQuestions');

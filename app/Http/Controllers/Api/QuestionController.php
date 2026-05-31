@@ -40,6 +40,31 @@ class QuestionController extends Controller
     //     $data=QuizesAnswers::with('quizes')->has('quizes')->where('user_id',$user->id)->get();
     //     return $this->returnDataa('data', $data,'');
     // }
+    public function ExerciseExamAnswerSave(Request $request)
+    {
+        $answers = $request->all();
+
+        foreach ($answers as $answer) {
+
+            ExerciseExamAnswer::updateOrCreate(
+                [
+                    'user_id' => $answer['user_id'],
+                    'sub_id' => $answer['sub_id'],
+                ],
+                [
+                    'level_id' => $answer['level_id'],
+                    'exercise_id' => $answer['exercise_id'],
+                    'answer' => $answer['answer'],
+                    'expected_answer' => $answer['expected_answer'],
+                ]
+            );
+        }
+
+        return response()->json([
+            'status' => true,
+            'msg' => 'Answers saved successfully'
+        ]);
+    }
     public function userquizestest(Request $request)
     {
         $user = Auth::guard('user-api')->user();

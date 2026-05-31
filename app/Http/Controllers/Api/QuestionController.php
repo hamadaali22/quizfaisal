@@ -41,6 +41,67 @@ class QuestionController extends Controller
     //     $data=QuizesAnswers::with('quizes')->has('quizes')->where('user_id',$user->id)->get();
     //     return $this->returnDataa('data', $data,'');
     // }
+    public function userExamExercises(Request $request)
+    {
+        $exerciseIds = ExerciseExamAnswer::where('user_id', $request->user_id)
+            ->distinct()
+            ->pluck('exercise_id');
+
+        $exercises = Exercise::whereIn('id', $exerciseIds)->get();
+
+        return response()->json([
+            'status' => true,
+            'data' => $exercises
+        ]);
+    }
+    // public function Exerciseresult(Request $request $exerciseId, $userId)
+    // {
+    //     $results = ExerciseExamAnswer::query()
+    //         ->where('exercise_id', $request->exercise_id)
+    //         ->where('user_id', $request->user_id)
+    //         ->get();
+
+    //     return response()->json([
+    //         'status' => true,
+    //         'data' => $results
+    //     ]);
+    // }
+   public function exerciseReview(Request $request)
+{
+    $exercise = Exercise::find($request->exercise_id);
+
+    if (!$exercise) {
+        return response()->json([
+            'status' => false,
+            'message' => 'Exercise not found'
+        ]);
+    }
+
+    $subs = SubExercise::where('exercise_id', $exercise->id)->get();
+
+    foreach ($subs as $sub) {
+
+        $correctAnswer = Answer::where(
+            'subexercise_id',
+            $sub->id
+        )->first();
+
+        $userAnswer = ExerciseExamAnswer::where('user_id', $request->user_id)
+            ->where('exercise_id', $exercise->id)
+            ->where('subexercise_id', $sub->id)
+            ->first();
+
+        $sub->correct_answer = $correctAnswer?->answer;
+        $sub->user_answer = $userAnswer?->answer;
+    }
+
+    $exercise->subquestion = $subs;
+
+    return response()->json([
+        'status' => true,
+        'data' => $exercise
+    ]);
+}
     public function ExerciseExamAnswerSave(Request $request)
     {
         $answers = $request->all();
@@ -702,7 +763,7 @@ class QuestionController extends Controller
         ];
         return $this->returnDataa('data', $home,'');
     }
-  public function exerciseQuestions(Request $request)
+    public function exerciseQuestions(Request $request)
     {
         // ->orderBy('order','ASC')
         $data=Exercise::where("id" , $request->exercise_id)->get();

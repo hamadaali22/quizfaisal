@@ -43,7 +43,10 @@ class QuestionController extends Controller
     // }
     public function userExamExercises(Request $request)
     {
-        $exerciseIds = ExerciseExamAnswer::where('user_id', $request->user_id)
+        $user = Auth::guard('user-api')->user();
+        if(!$user)
+            return $this->returnError('يجب تسجيل الدخول أولا');
+        $exerciseIds = ExerciseExamAnswer::where('user_id', $user->id)
             ->distinct()
             ->pluck('exercise_id');
 
@@ -66,8 +69,11 @@ class QuestionController extends Controller
     //         'data' => $results
     //     ]);
     // }
-   public function exerciseReview(Request $request)
-{
+    public function exerciseReview(Request $request)
+    {
+    $user = Auth::guard('user-api')->user();
+        if(!$user)
+            return $this->returnError('يجب تسجيل الدخول أولا');
     $exercise = Exercise::find($request->exercise_id);
 
     if (!$exercise) {

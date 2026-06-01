@@ -60,9 +60,9 @@ class QuestionController extends Controller
     
     public function exerciseReview(Request $request)
     {
-        $user = Auth::guard('user-api')->user();
-            if(!$user)
-                return $this->returnError('يجب تسجيل الدخول أولا');
+        // $user = Auth::guard('user-api')->user();
+        //     if(!$user)
+        //         return $this->returnError('يجب تسجيل الدخول أولا');
         $exercise = Exercise::find($request->exercise_id);
 
         if (!$exercise) {

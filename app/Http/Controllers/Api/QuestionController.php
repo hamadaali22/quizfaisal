@@ -60,9 +60,9 @@ class QuestionController extends Controller
     
     public function exerciseReview(Request $request)
     {
-        // $user = Auth::guard('user-api')->user();
-        //     if(!$user)
-        //         return $this->returnError('يجب تسجيل الدخول أولا');
+        $user = Auth::guard('user-api')->user();
+            if(!$user)
+                return $this->returnError('يجب تسجيل الدخول أولا');
         $exercise = Exercise::find($request->exercise_id);
 
         if (!$exercise) {
@@ -81,7 +81,7 @@ class QuestionController extends Controller
                 $sub->id
             )->first();
 
-            $userAnswer = ExerciseExamAnswer::where('user_id', $request->user_id)
+            $userAnswer = ExerciseExamAnswer::where('user_id', $user->user_id)
                 ->where('exercise_id', $exercise->id)
                 ->where('sub_id', $sub->id)
                 ->first();

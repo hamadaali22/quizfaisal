@@ -57,63 +57,50 @@ class QuestionController extends Controller
             'data' => $exercises
         ]);
     }
-    // public function Exerciseresult(Request $request $exerciseId, $userId)
-    // {
-    //     $results = ExerciseExamAnswer::query()
-    //         ->where('exercise_id', $request->exercise_id)
-    //         ->where('user_id', $request->user_id)
-    //         ->get();
-
-    //     return response()->json([
-    //         'status' => true,
-    //         'data' => $results
-    //     ]);
-    // }
+    
     public function exerciseReview(Request $request)
     {
-    $user = Auth::guard('user-api')->user();
-        if(!$user)
-            return $this->returnError('يجب تسجيل الدخول أولا');
-    $exercise = Exercise::find($request->exercise_id);
+        $user = Auth::guard('user-api')->user();
+            if(!$user)
+                return $this->returnError('يجب تسجيل الدخول أولا');
+        $exercise = Exercise::find($request->exercise_id);
 
-    if (!$exercise) {
+        if (!$exercise) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Exercise not found'
+            ]);
+        }
+
+        $subs = SubExercise::where('exercise_id', $exercise->id)->get();
+
+        foreach ($subs as $sub) {
+
+            $correctAnswer = Answer::where(
+                'subexercise_id',
+                $sub->id
+            )->first();
+
+            $userAnswer = ExerciseExamAnswer::where('user_id', $request->user_id)
+                ->where('exercise_id', $exercise->id)
+                ->where('sub_id', $sub->id)
+                ->first();
+
+            $sub->correct_answer = $correctAnswer?->answer;
+            $sub->user_answer = $userAnswer?->answer;
+        }
+
+        $exercise->subquestion = $subs;
+
         return response()->json([
-            'status' => false,
-            'message' => 'Exercise not found'
+            'status' => true,
+            'data' => $exercise
         ]);
     }
-
-    $subs = SubExercise::where('exercise_id', $exercise->id)->get();
-
-    foreach ($subs as $sub) {
-
-        $correctAnswer = Answer::where(
-            'subexercise_id',
-            $sub->id
-        )->first();
-
-        $userAnswer = ExerciseExamAnswer::where('user_id', $request->user_id)
-            ->where('exercise_id', $exercise->id)
-            ->where('subexercise_id', $sub->id)
-            ->first();
-
-        $sub->correct_answer = $correctAnswer?->answer;
-        $sub->user_answer = $userAnswer?->answer;
-    }
-
-    $exercise->subquestion = $subs;
-
-    return response()->json([
-        'status' => true,
-        'data' => $exercise
-    ]);
-}
     public function ExerciseExamAnswerSave(Request $request)
     {
         $answers = $request->all();
-
         foreach ($answers as $answer) {
-
             ExerciseExamAnswer::updateOrCreate(
                 [
                     'user_id' => $answer['user_id'],

@@ -61,8 +61,14 @@ class QuestionController extends Controller
     public function exerciseReview(Request $request)
     {
         $user = Auth::guard('user-api')->user();
-            if(!$user)
-                return $this->returnError('يجب تسجيل الدخول أولا');
+
+        if (!$user) {
+            return response()->json([
+                'status' => false,
+                'message' => 'يجب تسجيل الدخول أولا'
+            ]);
+        }
+
         $exercise = Exercise::find($request->exercise_id);
 
         if (!$exercise) {
@@ -72,22 +78,22 @@ class QuestionController extends Controller
             ]);
         }
 
-        $subs = SubExercise::where('exercise_id', $exercise->id)->get();
+        $subs = SubExercise::where(
+            'exercise_id',
+            $exercise->id
+        )->get();
 
         foreach ($subs as $sub) {
 
-            $correctAnswer = Answer::where(
-                'subexercise_id',
-                $sub->id
-            )->first();
-
-            $userAnswer = ExerciseExamAnswer::where('user_id', $user->user_id)
+            $userAnswer = ExerciseExamAnswer::where('user_id', $user->id)
                 ->where('exercise_id', $exercise->id)
                 ->where('sub_id', $sub->id)
                 ->first();
 
-            $sub->correct_answer = $correctAnswer?->answer;
             $sub->user_answer = $userAnswer?->answer;
+
+            // الإجابة الصحيحة موجودة أصلاً
+            $sub->correct_answer = $sub->expected_answer;
         }
 
         $exercise->subquestion = $subs;

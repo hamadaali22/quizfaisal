@@ -51,7 +51,7 @@
                                 <input type="hidden" name="level_id" class="form-control" value="">
                                 <div class="form-group col-md-3 col-sm-4">
                                     <label>title</label>
-                                    <input type="text" name="title" class="form-control titleId">
+                                    <input type="text" name="name" class="form-control titleId">
                                     <span id="titleError" style="color: red;"></span>
                                 </div>
                                 <div class="col-md-3">

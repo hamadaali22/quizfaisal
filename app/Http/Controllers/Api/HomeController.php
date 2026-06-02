@@ -20,6 +20,7 @@ use App\siteMetasTitle;
 use Carbon\Carbon;
 use App\Mail\ContactMail;
 use JWTAuth;
+use Illuminate\Support\Facades\Http;
 class HomeController extends Controller
 {
     use GeneralTrait;
@@ -148,11 +149,25 @@ class HomeController extends Controller
         ]);
 
         // التحقق من التوكن مع جوجل
-        $response = file_get_contents(
-            "https://oauth2.googleapis.com/tokeninfo?id_token=".$request->token
+        // $response = file_get_contents(
+        //     "https://oauth2.googleapis.com/tokeninfo?id_token=".$request->token
+        // );
+        //   $googleUser = json_decode($response);
+
+
+        $response = Http::get(
+            'https://oauth2.googleapis.com/tokeninfo',
+            [
+                'id_token' => $request->token
+            ]
         );
 
-        $googleUser = json_decode($response);
+        $googleUser = $response->object();
+
+
+
+
+      
 
         if (!isset($googleUser->email)) {
             return response()->json([

@@ -25,7 +25,7 @@ Route::group(['middleware' => ['api'], 'namespace' => 'Api'], function () {
     ->name('exercise-audio.stream')
     ->middleware('signed');
     Route::get('/exam-audio/{exercise}', 'QuestionController@streamExamAudio')
-    ->name('audio.stream')
+    ->name('exam-audio.stream')
     ->middleware('signed');
     
 

@@ -840,22 +840,22 @@ class QuestionController extends Controller
         foreach ($data as $item) {
             if($item->type=='listening'){
                 // $item->file = url('/api/audio/'.$item->id);
-                $item->file = URL::temporarySignedRoute(
-                    'exercise-audio.stream',
-                    now()->addMinutes(1),
-                    ['exercise' => $item->id]
-                );
-                // $item->file="https://backend.deutschtests.com/img/questions-file/".$item->file;
+                // $item->file = URL::temporarySignedRoute(
+                //     'exercise-audio.stream',
+                //     now()->addMinutes(1),
+                //     ['exercise' => $item->id]
+                // );
+                $item->file="https://backend.deutschtests.com/img/questions-file/".$item->file;
             }elseif($item->type=='image'){
                 $item->image="https://backend.deutschtests.com/img/questions-image/".$item->image;
             }elseif($item->type=='listening and image'){
                 
-                $item->file = URL::temporarySignedRoute(
-                    'exercise-audio.stream',
-                    now()->addMinutes(1),
-                    ['exercise' => $item->id]
-                );
-                // $item->file="https://backend.deutschtests.com/img/questions-file/".$item->file;
+                // $item->file = URL::temporarySignedRoute(
+                //     'exercise-audio.stream',
+                //     now()->addMinutes(1),
+                //     ['exercise' => $item->id]
+                // );
+                $item->file="https://backend.deutschtests.com/img/questions-file/".$item->file;
                 $item->image="https://backend.deutschtests.com/img/questions-image/".$item->image;
             }else{
 
@@ -1151,21 +1151,21 @@ class QuestionController extends Controller
         $data=Question::where("exam_id" , $request->exam_id)->paginate(1);
         foreach ($data as $item) {
             if($item->type=='listening'){
-                $item->file = URL::temporarySignedRoute(
-                    'exam-audio.stream',
-                    now()->addMinutes(1),
-                    ['exercise' => $item->id]
-                );
-                // $item->file="https://backend.deutschtests.com/img/questions-file/".$item->file;
+                // $item->file = URL::temporarySignedRoute(
+                //     'exam-audio.stream',
+                //     now()->addMinutes(1),
+                //     ['exercise' => $item->id]
+                // );
+                $item->file="https://backend.deutschtests.com/img/questions-file/".$item->file;
             }elseif($item->type=='image'){
                 $item->image="https://backend.deutschtests.com/img/questions-image/".$item->image;
             }elseif($item->type=='listening and image'){
-                $item->file = URL::temporarySignedRoute(
-                    'exam-audio.stream',
-                    now()->addMinutes(1),
-                    ['exercise' => $item->id]
-                );
-                // $item->file="https://backend.deutschtests.com/img/questions-file/".$item->file;
+                // $item->file = URL::temporarySignedRoute(
+                //     'exam-audio.stream',
+                //     now()->addMinutes(1),
+                //     ['exercise' => $item->id]
+                // );
+                $item->file="https://backend.deutschtests.com/img/questions-file/".$item->file;
                 $item->image="https://backend.deutschtests.com/img/questions-image/".$item->image;
             }else{
 

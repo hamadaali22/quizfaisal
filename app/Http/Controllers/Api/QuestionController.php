@@ -28,6 +28,7 @@ use App\Traits\QuizeTrait;
 use App\Helpers\QuizeHelpers;
 use App\siteMetasTitle;
 use App\ExerciseExamAnswer;
+use Illuminate\Support\Facades\URL;
 class QuestionController extends Controller
 {
     use GeneralTrait;
@@ -757,17 +758,104 @@ class QuestionController extends Controller
         ];
         return $this->returnDataa('data', $home,'');
     }
+
+    // public function streamAudio($id)
+    // {
+    //     $exercise = Exercise::findOrFail($id);
+
+    //     $path = public_path('img/questions-file/' . $exercise->file);
+
+    //     if (!file_exists($path)) {
+    //         abort(404);
+    //     }
+
+    //     return response()->file($path, [
+    //         'Content-Type' => 'audio/mpeg',
+    //         'Content-Disposition' => 'inline',
+    //         'Cache-Control' => 'no-store'
+    //     ]);
+    // }
+    public function streamExerciseAudio(Request $request, $id)
+    {
+        $exercise = Exercise::findOrFail($id);
+
+        $path = public_path('img/questions-file/' . $exercise->file);
+
+        if (!file_exists($path)) {
+            abort(404);
+        }
+
+        return response()->file($path, [
+            'Content-Type' => 'audio/mpeg',
+            'Content-Disposition' => 'inline',
+            'Cache-Control' => 'no-store, no-cache, must-revalidate'
+        ]);
+    }
+    public function streamExamAudio(Request $request, $id)
+    {
+        $exercise = Question::findOrFail($id);
+
+        $path = public_path('img/questions-file/' . $exercise->file);
+
+        if (!file_exists($path)) {
+            abort(404);
+        }
+
+        return response()->file($path, [
+            'Content-Type' => 'audio/mpeg',
+            'Content-Disposition' => 'inline',
+            'Cache-Control' => 'no-store, no-cache, must-revalidate'
+        ]);
+    }
+    // public function streamAudio($id)
+    // {
+    //     $exercise = Exercise::findOrFail($id);
+
+    //     $path = storage_path('app/private/questions-file/' . $exercise->file);
+
+    //     if (!file_exists($path)) {
+    //         abort(404);
+    //     }
+
+    //     $size = filesize($path);
+    //     $stream = fopen($path, 'rb');
+
+    //     return response()->stream(function () use ($stream) {
+    //         while (!feof($stream)) {
+    //             echo fread($stream, 1024 * 8);
+    //             flush();
+    //         }
+    //         fclose($stream);
+    //     }, 200, [
+    //         'Content-Type' => 'audio/mpeg',
+    //         'Content-Length' => $size,
+    //         'Content-Disposition' => 'inline',
+    //         'Cache-Control' => 'no-store, no-cache, must-revalidate',
+    //     ]);
+    // }
     public function exerciseQuestions(Request $request)
     {
         // ->orderBy('order','ASC')
         $data=Exercise::where("id" , $request->exercise_id)->get();
         foreach ($data as $item) {
             if($item->type=='listening'){
-                $item->file="https://backend.deutschtests.com/img/questions-file/".$item->file;
+                // $item->file = url('/api/audio/'.$item->id);
+                $item->file = URL::temporarySignedRoute(
+                    'exercise-audio.stream',
+                    now()->addMinutes(1),
+                    ['exercise' => $item->id]
+                );
+                // $item->file="https://backend.deutschtests.com/img/questions-file/".$item->file;
             }elseif($item->type=='image'){
                 $item->image="https://backend.deutschtests.com/img/questions-image/".$item->image;
             }elseif($item->type=='listening and image'){
-                $item->file="https://backend.deutschtests.com/img/questions-file/".$item->file;
+                
+                $item->file = URL::temporarySignedRoute(
+                    'exercise-audio.stream',
+                    now()->addMinutes(1),
+                    ['exercise' => $item->id]
+                );
+                // $item->file="https://backend.deutschtests.com/img/questions-file/".$item->file;
                 $item->image="https://backend.deutschtests.com/img/questions-image/".$item->image;
             }else{
 
@@ -1063,11 +1151,21 @@ class QuestionController extends Controller
         $data=Question::where("exam_id" , $request->exam_id)->paginate(1);
         foreach ($data as $item) {
             if($item->type=='listening'){
-                $item->file="https://backend.deutschtests.com/img/questions-file/".$item->file;
+                $item->file = URL::temporarySignedRoute(
+                    'exam-audio.stream',
+                    now()->addMinutes(1),
+                    ['exercise' => $item->id]
+                );
+                // $item->file="https://backend.deutschtests.com/img/questions-file/".$item->file;
             }elseif($item->type=='image'){
                 $item->image="https://backend.deutschtests.com/img/questions-image/".$item->image;
             }elseif($item->type=='listening and image'){
-                $item->file="https://backend.deutschtests.com/img/questions-file/".$item->file;
+                $item->file = URL::temporarySignedRoute(
+                    'exam-audio.stream',
+                    now()->addMinutes(1),
+                    ['exercise' => $item->id]
+                );
+                // $item->file="https://backend.deutschtests.com/img/questions-file/".$item->file;
                 $item->image="https://backend.deutschtests.com/img/questions-image/".$item->image;
             }else{
 

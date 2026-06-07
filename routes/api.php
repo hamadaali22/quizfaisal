@@ -21,6 +21,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 Route::group(['middleware' => ['api'], 'namespace' => 'Api'], function () {
 
+    Route::get('/exercise-audio/{exercise}', 'QuestionController@streamExerciseAudio')
+    ->name('exercise-audio.stream')
+    ->middleware('signed');
+    Route::get('/exam-audio/{exercise}', 'QuestionController@streamExamAudio')
+    ->name('audio.stream')
+    ->middleware('signed');
+    
+
     Route::get('exercise-result', 'QuestionController@exerciseReview');
     Route::get('user-exam-exercises', 'QuestionController@userExamExercises');
     Route::post('exercise-exam-save', 'QuestionController@ExerciseExamAnswerSave');

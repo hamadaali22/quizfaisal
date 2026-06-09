@@ -836,7 +836,7 @@ class QuestionController extends Controller
     public function exerciseQuestions(Request $request)
     {
         // ->orderBy('order','ASC')
-        $data=Exercise::where("id" , $request->exercise_id)->get();
+        $data=Exercise::where("id" , $request->exercise_id)->orderBy('order','ASC')->get();
         foreach ($data as $item) {
             if($item->type=='listening'){
                 // $item->file = url('/api/audio/'.$item->id);

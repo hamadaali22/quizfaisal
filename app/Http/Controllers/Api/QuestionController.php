@@ -733,7 +733,7 @@ class QuestionController extends Controller
     {
         $lang = $request->lang ?? 'de';
         $slugField = 'slug_' . $lang;
-        $level = Level::with('level_images')->where('type', 'exercise')->where($slugField, $request->levelSlug)->first();
+        $level = Level::with('level_images')->where('type', 'exercise')->where($slugField, $request->levelSlug)->orderBy('order','ASC')->first();
         if (!$level) {
             return $this->returnDataa('data', null, 'Not found');
         }
@@ -836,7 +836,7 @@ class QuestionController extends Controller
     public function exerciseQuestions(Request $request)
     {
         // ->orderBy('order','ASC')
-        $data=Exercise::where("id" , $request->exercise_id)->orderBy('order','ASC')->get();
+        $data=Exercise::where("id" , $request->exercise_id)->get();
         foreach ($data as $item) {
             if($item->type=='listening'){
                 // $item->file = url('/api/audio/'.$item->id);

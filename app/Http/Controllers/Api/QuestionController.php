@@ -51,7 +51,7 @@ class QuestionController extends Controller
             ->distinct()
             ->pluck('exercise_id');
 
-        $exercises = Exercise::whereIn('id', $exerciseIds)->get();
+        $exercises = Exercise::whereIn('id', $exerciseIds)->orderBy('order','ASC')->get();
 
         return response()->json([
             'status' => true,
@@ -733,7 +733,7 @@ class QuestionController extends Controller
     {
         $lang = $request->lang ?? 'de';
         $slugField = 'slug_' . $lang;
-        $level = Level::with('level_images')->where('type', 'exercise')->where($slugField, $request->levelSlug)->orderBy('order','ASC')->first();
+        $level = Level::with('level_images')->where('type', 'exercise')->where($slugField, $request->levelSlug)->first();
         if (!$level) {
             return $this->returnDataa('data', null, 'Not found');
         }
@@ -751,7 +751,7 @@ class QuestionController extends Controller
         // $level->telc3="https://deutschtests.com/img/telc/".$level->telc3;
         // $level->telc4="https://deutschtests.com/img/telc/".$level->telc4;
         // $level->telc5="https://deutschtests.com/img/telc/".$level->telc5;
-        $exercise=Exercise::where("level_id" , $level->id)->get();
+        $exercise=Exercise::where("level_id" , $level->id)->orderBy('order','ASC')->get();
         $home  =[
             'exercise'=> $exercise,
             'level'=> $levelData,

@@ -237,7 +237,7 @@
             console.log("my roow tableeee");
             $.ajax({
                 type: "POST",
-                url: "{{ url('api/question-sortable') }}",
+                url: "{{ url('api/exercises-sortable') }}",
                 data: {
                     myorder: myorder,
                     _token: token

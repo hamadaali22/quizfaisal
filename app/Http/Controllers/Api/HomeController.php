@@ -16,6 +16,7 @@ use Illuminate\Support\Str;
 use App\User;
 use App\Question;
 use App\SubQuestion;
+use App\Exercise;
 use App\siteMetasTitle;
 use Carbon\Carbon;
 use App\Mail\ContactMail;
@@ -24,6 +25,23 @@ use Illuminate\Support\Facades\Http;
 class HomeController extends Controller
 {
     use GeneralTrait;
+    public function exercisesSortable(Request $request)
+    {
+
+        $videos = Exercise::get();
+        foreach ($videos as $video) {
+            foreach ($request->myorder as $order) {
+                if ($order['id'] == $video->id) {
+                    $editv = Exercise::findOrFail($order['id']);
+                    $editv->order    = $order['position'];
+                    $editv->save();
+                    //  return response($order['position'], 200);
+                }
+            }
+        }
+
+        return response('Update Successfully.', 200);
+    }
     public function questionSortable(Request $request)
     {
 

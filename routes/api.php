@@ -41,7 +41,7 @@ Route::group(['middleware' => ['api'], 'namespace' => 'Api'], function () {
     Route::get('quizes-result', 'QuestionController@quizesResult');
     Route::get('user-quizes-test', 'QuestionController@userquizestest');
     
-    
+    Route::post('exercises-sortable','HomeController@exercisesSortable');
 
     Route::post('question-sortable','HomeController@questionSortable');
     Route::post('sub-question-sortable','HomeController@subQuestionSortable');

@@ -73,6 +73,10 @@
                     <option value="reading" {{ old('type')=='reading' ? "selected" : "" }}>reading</option>
                     <option value="image" {{ old('type')=='image' ? "selected" : "" }}>image</option>
                     <option value="sub" {{ old('type')=='sub' ? "selected" : "" }}>sub</option>
+
+                    <option value="writing" {{ old('type')=='writing' ? "selected" : "" }}>writing</option>
+                    <option value="writing and image" {{ old('type')=='writing and image' ? "selected" : "" }}>
+                      writing and image</option>
                     <!-- <option value="sub" {{ old('type')=='exercise' ? "selected" : "" }}>Exercise</option> -->
                   </select>
                   <span id="typeError" style="color: red;"></span>
@@ -123,7 +127,7 @@
               </div>
 
 
-              <div class="education-info" id="addvideo">
+              <div class="education-info addvideo" id="addvideo">
                 <div class="row form-row education-cont"
                   style="background-color: #f0f1f6;border-bottom-color: red; padding: 10px;    margin: 24px;">
                   <div class="row form-row col-md-12">
@@ -237,7 +241,7 @@
 
 
               </div>
-              <div class="col-md-2">
+              <div class="col-md-2 AddSubquestions">
                 <a href="#Save-btn-scroll" onclick="addVideo()" class="btn btn-primary ">Add Subquestions</a>
               </div>
               <div class="col-md-12" style="color: #FF4961; padding-right: 23px;padding-left: 23px" id="upload-error">
@@ -371,29 +375,61 @@ $videos=session()->get('videos_sessions');
         $('.file-hidden').show();
         $('.paragraph-hidden').hide();
         $('.image-hidden').hide();
+
+        $('.addvideo').show();
+        $('.AddSubquestions').show();
       }
       if (id == "reading") {
         $('.paragraph-hidden').show();
         $('.file-hidden').hide();
         $('.image-hidden').hide();
+
+        $('.addvideo').show();
+        $('.AddSubquestions').show();
       }
       if (id == "image") {
         $('.image-hidden').show();
         $('.file-hidden').hide();
         $('.paragraph-hidden').hide();
+
+        $('.addvideo').show();
+        $('.AddSubquestions').show();
       }
 
       if (id == "listening and image") {
         $('.file-hidden').show();
         $('.paragraph-hidden').hide();
         $('.image-hidden').show();
+
+        $('.addvideo').show();
+        $('.AddSubquestions').show();
       }
       if (id == "sub") {
         $('.file-hidden').hide();
         $('.paragraph-hidden').hide();
         $('.image-hidden').hide();
+
+        $('.addvideo').show();
+        $('.AddSubquestions').show();
       }
 
+      if (id == "writing") {
+        $('.paragraph-hidden').show();
+        $('.file-hidden').hide();
+        $('.image-hidden').hide();
+
+        $('.addvideo').hide();
+        $('.AddSubquestions').hide();
+      }
+
+      if (id == "writing and image") {
+        $('.file-hidden').hide();
+        $('.paragraph-hidden').show();
+        $('.image-hidden').show();
+
+        $('.addvideo').hide();
+        $('.AddSubquestions').hide();
+      }
 
     });
     // $('#answerTypeId').on('change', function () {

@@ -77,6 +77,8 @@
                     <option value="writing" {{ old('type')=='writing' ? "selected" : "" }}>writing</option>
                     <option value="writing and image" {{ old('type')=='writing and image' ? "selected" : "" }}>
                       writing and image</option>
+                    <option value="writing and question" {{ old('type')=='writing and question' ? "selected" : "" }}>
+                      wwriting and question</option>
                     <!-- <option value="sub" {{ old('type')=='exercise' ? "selected" : "" }}>Exercise</option> -->
                   </select>
                   <span id="typeError" style="color: red;"></span>
@@ -429,6 +431,14 @@ $videos=session()->get('videos_sessions');
 
         $('.addvideo').hide();
         $('.AddSubquestions').hide();
+      }
+      if (id == "writing and question") {
+        $('.file-hidden').hide();
+        $('.paragraph-hidden').show();
+        $('.image-hidden').show();
+
+        $('.addvideo').show();
+        $('.AddSubquestions').show();
       }
 
     });

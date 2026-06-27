@@ -96,9 +96,16 @@ class QuestionController extends Controller
         }
         $add->save();
 
-        $length = count($request->title);
-        if($length > 0)
-        {
+        // $length = count($request->title);
+
+        $titles = array_filter($request->title);
+
+        if(count($titles) > 0){
+            dd($titles);
+        
+        // if($length > 0)
+        // {
+            dd($request->title);
             for($i=0; $i<$length; $i++)
             {
                 // dd($request->first_choice[$i]);

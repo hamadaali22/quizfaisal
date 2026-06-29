@@ -70,6 +70,15 @@
                     <option value="reading" {{ $question->type == 'reading' ? "selected" : "" }}>reading</option>
                     <option value="image" {{ $question->type == 'image' ? "selected" : "" }}>image</option>
                     <option value="sub" {{ $question->type == 'sub' ? "selected" : "" }}>sub</option>
+
+                    <option value="writing" {{ $question->type == 'writing' ? "selected" : "" }}>writing</option>
+                    <option value="writing and image" {{ $question->type == 'writing and image' ? "selected" : ""
+                      }}>writing and image</option>
+                    <option value="writing and question" {{ $question->type == 'writing and question' ? "selected" : ""
+                      }}>writing and question</option>
+
+
+
                     <!-- <option value="sub" {{ $question->type == 'exercise' ? "selected" : "" }}>Exercise</option> -->
 
                   </select>
@@ -269,6 +278,26 @@ $videos=session()->get('videos_sessions');
     // $('.file-hidden').hide();
     // $('.image-hidden').hide();
   }
+
+  if (q_type == "writing") {
+    $('.paragraph-hidden').show();
+    $('.file-hidden').hide();
+    $('.image-hidden').hide();
+  }
+
+  if (q_type == "writing and image") {
+    $('.file-hidden').hide();
+    $('.paragraph-hidden').show();
+    $('.image-hidden').show();
+  }
+  if (q_type == "writing and question") {
+    $('.file-hidden').hide();
+    $('.paragraph-hidden').show();
+    $('.image-hidden').show();
+  }
+
+
+
   // if(q_type =='listening and image'){
   //     $('.file-hidden').show();
   //     $('.image-hidden').show();
@@ -381,7 +410,29 @@ $videos=session()->get('videos_sessions');
         $('.image-hidden').hide();
       }
 
+      if (id == "writing") {
+        $('.paragraph-hidden').show();
+        $('.file-hidden').hide();
+        $('.image-hidden').hide();
+
+
+      }
+
+      if (id == "writing and image") {
+        $('.file-hidden').hide();
+        $('.paragraph-hidden').show();
+        $('.image-hidden').show();
+
+      }
+      if (id == "writing and question") {
+        $('.file-hidden').hide();
+        $('.paragraph-hidden').show();
+        $('.image-hidden').show();
+
+      }
     });
+
+
     // $('#answerTypeId').on('change', function () {
     //     let id = $(this).val();
 

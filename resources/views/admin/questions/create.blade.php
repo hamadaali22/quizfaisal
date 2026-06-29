@@ -78,7 +78,7 @@
                     <option value="writing and image" {{ old('type')=='writing and image' ? "selected" : "" }}>
                       writing and image</option>
                     <option value="writing and question" {{ old('type')=='writing and question' ? "selected" : "" }}>
-                      wwriting and question</option>
+                      writing and question</option>
                     <!-- <option value="sub" {{ old('type')=='exercise' ? "selected" : "" }}>Exercise</option> -->
                   </select>
                   <span id="typeError" style="color: red;"></span>

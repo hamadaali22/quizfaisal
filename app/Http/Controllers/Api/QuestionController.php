@@ -1167,6 +1167,12 @@ class QuestionController extends Controller
                 // );
                 $item->file="https://backend.deutschtests.com/img/questions-file/".$item->file;
                 $item->image="https://backend.deutschtests.com/img/questions-image/".$item->image;
+            }elseif($item->type=='writing and image'){
+               
+                $item->image="https://backend.deutschtests.com/img/questions-image/".$item->image;
+            }elseif($item->type=='writing and question'){
+                
+                $item->image="https://backend.deutschtests.com/img/questions-image/".$item->image;
             }else{
 
             }

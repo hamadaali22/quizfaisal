@@ -120,7 +120,7 @@
                   @enderror
                   <span id="short_detailError" style="color: red;"></span>
                 </div>
-                <div class="form-group col-md-12 col-sm-6 paragraph-hidden">
+                <!-- <div class="form-group col-md-12 col-sm-6 paragraph-hidden">
                   <label>Paragraph AR</label>
                   <textarea name="paragraph_ar" cols="20" rows="1" class="form-control ckeditor"
                     id='paragraphid'>{{$question->paragraph_ar}}</textarea>
@@ -155,7 +155,7 @@
                   <span class="text-danger">{{$message}}</span>
                   @enderror
                   <span id="short_detailError" style="color: red;"></span>
-                </div>
+                </div> -->
                 <div class="form-group col-md-12 col-sm-6 ">
                   <label>Question Bio DE </label>
                   <textarea name="bio" cols="20" rows="1" class="form-control ckeditor"
@@ -165,7 +165,7 @@
                   @enderror
                   <span id="bioError" style="color: red;"></span>
                 </div>
-                <div class="form-group col-md-12 col-sm-6 ">
+                <!-- <div class="form-group col-md-12 col-sm-6 ">
                   <label>Question Bio Ar</label>
                   <textarea name="bio_ar" cols="20" rows="1" class="form-control ckeditor"
                     id='bioId'>{{$question->bio_ar}}</textarea>
@@ -200,7 +200,7 @@
                   <span class="text-danger">{{$message}}</span>
                   @enderror
                   <span id="bioError" style="color: red;"></span>
-                </div>
+                </div> -->
 
 
               </div>

@@ -1148,7 +1148,14 @@ class QuestionController extends Controller
     public function question(Request $request)
     {
         // ->orderBy('order','ASC')
-        $data=Question::where("exam_id" , $request->exam_id)->paginate(1);
+        // $data=Question::where("exam_id" , $request->exam_id)->paginate(1);
+        $data = Question::where('exam_id', $request->exam_id)
+                ->whereNotIn('type', [
+                    'writing',
+                    'writing and image',
+                    'writing and question'
+                ])
+                ->paginate(1);
         foreach ($data as $item) {
             if($item->type=='listening'){
                 // $item->file = URL::temporarySignedRoute(

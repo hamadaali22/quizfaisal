@@ -44,6 +44,10 @@ class QuestionController extends Controller
     // }
     public function userExamExercises(Request $request)
     {
+
+    }
+    public function userExamExercises(Request $request)
+    {
         $user = Auth::guard('user-api')->user();
         if(!$user)
             return $this->returnError('يجب تسجيل الدخول أولا');

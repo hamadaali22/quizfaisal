@@ -19,10 +19,43 @@
             <a href="{{url('admin/telc-exams')}}"><i class="la la-envelope"></i><span class="menu-title"
                     data-i18n="">telc exams</span></a>
         </li>
-        <li class="nav-item {{ Request::is('admin/exercises') ? 'active' : '' }}">
-            <a href="{{url('admin/exercises')}}"><i class="la la-envelope"></i><span class="menu-title"
-                    data-i18n="">exercises</span></a>
+        <li class=" nav-item ">
+            <a href="{{url('admin/exercises')}}"><i class="la la-home"></i>
+                <span class="menu-title" data-i18n="nav.dash.main">exercises</span>
+                <!-- <span class="badge badge badge-info badge-pill float-right mr-2">3</span> -->
+            </a>
+            <ul class="menu-content">
+                <li class="{{ Request::is('admin/exercises') ? 'active' : '' }}"><a class="menu-item"
+                        href="{{url('admin/exercises')}}" data-i18n="nav.dash.ecommerce">exercises
+                        listening</a>
+                </li>
+                <li class="{{ Request::is('admin/exercises-listening-image') ? 'active' : '' }}"><a class="menu-item"
+                        href="{{url('admin/exercises-listening-image')}}" data-i18n="nav.dash.crypto">exercises
+                        listening image</a>
+                </li>
+                <li class="{{ Request::is('admin/exercises-read') ? 'active' : '' }}"><a class="menu-item"
+                        href="{{url('admin/exercises-read')}}" data-i18n="nav.dash.crypto">exercises
+                        reading</a>
+                </li>
+
+                <li class="{{ Request::is('admin/exercises-image') ? 'active' : '' }}"><a class="menu-item"
+                        href="{{url('admin/exercises-image')}}" data-i18n="nav.dash.crypto">exercises
+                        listening image</a>
+                </li>
+                <li class="{{ Request::is('admin/exercises-sub') ? 'active' : '' }}"><a class="menu-item"
+                        href="{{url('admin/exercises-sub')}}" data-i18n="nav.dash.crypto">exercises
+                        listening image</a>
+                </li>
+            </ul>
         </li>
+        <!-- <li class="nav-item ">
+            <a href="{{url('admin/exercises')}}"><i class="la la-envelope"></i><span class="menu-title"
+                    data-i18n="">exercises listening</span></a>
+        </li>
+        <li class="nav-item {{ Request::is('admin/exercises-read') ? 'active' : '' }}">
+            <a href="{{url('admin/exercises-read')}}"><i class="la la-envelope"></i><span class="menu-title"
+                    data-i18n="">exercises reading </span></a>
+        </li> -->
         <li class="nav-item {{ Request::is('admin/quize-exams') ? 'active' : '' }}">
             <a href="{{url('admin/quize-exams')}}"><i class="la la-envelope"></i><span class="menu-title"
                     data-i18n="">quize
@@ -82,19 +115,11 @@
 
 
 
-        <!--  <li class=" nav-item"><a href="index.html"><i class="la la-home"></i><span class="menu-title" data-i18n="nav.dash.main">Dashboard</span><span class="badge badge badge-info badge-pill float-right mr-2">3</span></a>
-          <ul class="menu-content">
-            <li><a class="menu-item" href="dashboard-ecommerce.html" data-i18n="nav.dash.ecommerce">eCommerce</a>
-            </li>
-            <li><a class="menu-item" href="dashboard-crypto.html" data-i18n="nav.dash.crypto">Crypto</a>
-            </li>
-            <li class=""><a class="menu-item" href="dashboard-sales.html" data-i18n="nav.dash.sales">Sales</a>
-            </li>
-          </ul>
-        </li>
 
-        <li class=" nav-item"><a href="add-on-block-ui.html"><i class="la la-terminal"></i><span class="menu-title" data-i18n="nav.add_on_block_ui.main">Block UI</span></a>
-        </li> -->
+
+        <!--<li class=" nav-item"><a href="add-on-block-ui.html"><i class="la la-terminal"></i><span class="menu-title"
+                    data-i18n="nav.add_on_block_ui.main">Block UI</span></a>
+            </li> -->
 
     </ul>
 </div>

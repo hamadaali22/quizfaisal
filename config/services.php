@@ -34,6 +34,9 @@ return [
         'client_secret' => env('GOOGLE_CLIENT_SECRET'),
         'redirect' => env('GOOGLE_REDIRECT_URL'),
     ],
+    'gemini' => [
+        'key' => env('GEMINI_API_KEY'),
+    ],
 //    'recaptcha' => [
 //         'secret' => env('RECAPTCHA_SECRET'),
 //     ],

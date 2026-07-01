@@ -132,6 +132,10 @@ Route::get('admin-login', 'Auth\LoginController@LoginAdmin')->name('admin-login'
 			Route::get('questionsTelc','QuestionController@questionsTelc');
 
 			Route::resource('exercises','ExerciseController');
+			Route::get('exercises-read','ExerciseController@exercisesListeningImage');
+			Route::get('exercises-listening-image','ExerciseController@exercisesListeningImage');
+			Route::get('exercises-image','ExerciseController@exercisesImage');
+			Route::get('exercises-sub','ExerciseController@exercisesSub');
 			Route::resource('subexercises','SubExercisesController');
 		    Route::get('allsubexercises/{id}','SubExercisesController@allSubexercises');
 

@@ -20,7 +20,35 @@ class ExerciseController extends Controller
     public function index()
     {
         $levels=Level::where('type','exercise')->get();
-        $exercises=Exercise::with('levels')->orderBy('order','ASC')->get();
+        $exercises=Exercise::where('type','listening')->with('levels')->orderBy('order','ASC')->get();
+       
+        return view('admin.exercises.all',compact('exercises','levels'));
+    }
+    public function exercisesListeningImage()
+    {
+        $levels=Level::where('type','exercise')->get();
+        $exercises=Exercise::where('type','listening and image')->with('levels')->orderBy('order','ASC')->get();
+       
+        return view('admin.exercises.all',compact('exercises','levels'));
+    }
+    public function exercisesRead()
+    {
+        $levels=Level::where('type','exercise')->get();
+        $exercises=Exercise::where('type','reading')->with('levels')->orderBy('order','ASC')->get();
+       
+        return view('admin.exercises.all',compact('exercises','levels'));
+    }
+    public function exercisesImage()
+    {
+        $levels=Level::where('type','exercise')->get();
+        $exercises=Exercise::where('type','image')->with('levels')->orderBy('order','ASC')->get();
+       
+        return view('admin.exercises.all',compact('exercises','levels'));
+    }
+    public function exercisesSub()
+    {
+        $levels=Level::where('type','exercise')->get();
+        $exercises=Exercise::where('type','sub')->with('levels')->orderBy('order','ASC')->get();
        
         return view('admin.exercises.all',compact('exercises','levels'));
     }

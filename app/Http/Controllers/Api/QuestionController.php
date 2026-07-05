@@ -42,10 +42,7 @@ class QuestionController extends Controller
     //     $data=QuizesAnswers::with('quizes')->has('quizes')->where('user_id',$user->id)->get();
     //     return $this->returnDataa('data', $data,'');
     // }
-    public function userExamExercises(Request $request)
-    {
-
-    }
+    
     public function userExamExercises(Request $request)
     {
         $user = Auth::guard('user-api')->user();

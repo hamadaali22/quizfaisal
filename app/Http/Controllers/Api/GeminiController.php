@@ -15,143 +15,224 @@ class GeminiController extends Controller
             'student_text' => 'required|string',
         ]);
 
-        $question = $request->question;
-        $studentAnswer = trim($request->student_text);
+    $question = $request->question;
+    $studentAnswer = trim($request->student_text);
 
-        $prompt = <<<PROMPT
+$prompt = <<<PROMPT
 
-        You are an official Goethe German A1 writing examiner.
+You are an official Goethe German A1 writing examiner.
 
-        Evaluate the student's answer STRICTLY according to the following JSON rubric.
+Evaluate the student's answer STRICTLY according to the following JSON rubric.
 
-        The rubric defines:
-        - task
-        - scoring
-        - calculation
-        - output format
+The rubric defines:
+- task
+- scoring
+- calculation
+- output format
 
-        You MUST follow it exactly.
+You MUST follow it exactly.
 
-        Return ONLY valid JSON.
+Return ONLY valid JSON.
 
-        Do NOT use markdown.
+Do NOT use markdown.
 
-        Do NOT wrap the response inside ```json.
+Do NOT wrap the response inside ```json.
+{
+  "exam_type": "goethe_B1_writing_task_1_email_experience",
+  "level": "B1",
 
-        {
-          "task": {
-            "level": "A1",
-            "type": "email",
-            "description": "Write an email inviting a friend to your birthday party",
-            "required_points": [
-              "Why are you writing? (birthday invitation)",
-              "Say when and where the party is",
-              "Ask if she can help"
-            ],
-            "constraints": {
-              "word_count_min": 15,
-              "word_count_max": 40,
-              "must_include": [
-                "greeting",
-                "closing"
-              ]
-            }
+  "task": {
+    "type": "email",
+    "description": "Write an email about attending a job fair in Dortmund",
+    "context": "Friend could not attend because they were at a job interview",
+
+    "required_content": [
+      {
+        "id": "I1",
+        "description": "Describe the job fair: How was the event?"
+      },
+      {
+        "id": "I2",
+        "description": "Explain what you liked most and why"
+      },
+      {
+        "id": "I3",
+        "description": "Make a suggestion for meeting the friend"
+      }
+    ],
+
+    "constraints": {
+      "word_count_min": 40,
+      "word_count_max": 90,
+      "must_include": [
+        "greeting",
+        "introduction",
+        "logical_order_of_points",
+        "closing"
+      ],
+      "text_structure_required": true,
+      "coherence_expectation": "B1 level structured email"
+    }
+  },
+"critical_global_rules": {
+"automatic_fail_conditions": {
+"rule_1": "If topic is off-topic or does not match the task → total score = 0 automatically",
+"rule_2": "If word count is below 40 words → total score = 0 automatically"
+},
+  "scoring_system": {
+    "max_total_points": 40,
+
+    "criteria": {
+      "fulfillment": {
+        "max_points": 10,
+        "levels": {
+          "A": {
+            "points": 10,
+            "description": "All 3 content points fully and appropriately addressed (B1-B2 level job fair context)"
           },
-          "scoring": {
-            "content": {
-              "max_points": 9,
-              "criteria": {
-                "point_1": {
-                  "description": "Why are you writing? (birthday invitation)",
-                  "max": 3,
-                  "levels": {
-                    "3": "fully addressed, clear and understandable",
-                    "1.5": "partially addressed or unclear",
-                    "0": "missing or incomprehensible"
-                  }
-                },
-                "point_2": {
-                  "description": "Say when and where the party is",
-                  "max": 3,
-                  "levels": {
-                    "3": "fully addressed, clear and understandable",
-                    "1.5": "partially addressed or unclear",
-                    "0": "missing or incomprehensible"
-                  }
-                },
-                "point_3": {
-                  "description": "Ask if she can help",
-                  "max": 3,
-                  "levels": {
-                    "3": "fully addressed, clear and understandable",
-                    "1.5": "partially addressed or unclear",
-                    "0": "missing or incomprehensible"
-                  }
-                }
-              }
-            },
-            "communication": {
-              "max_points": 1,
-              "criteria": {
-                "1": "correct email format with greeting and closing",
-                "0.5": "partially correct format (missing greeting or closing)",
-                "0": "no clear email structure"
-              }
-            }
+          "B": {
+            "points": 7.5,
+            "description": "2 points fully or 1 fully + 2 partially addressed"
           },
-          "calculation": {
-            "total_max": 10,
-            "formula": "content_score + communication_score",
-            "grading": {
-              "type": "linear",
-              "mapping": {
-                "10": 10,
-                "9": 9,
-                "8": 8,
-                "7": 7,
-                "6": 6,
-                "5": 5,
-                "4": 4,
-                "3": 3,
-                "2": 2,
-                "1": 1,
-                "0": 0
-              }
-            }
+          "C": {
+            "points": 5,
+            "description": "1 fully + 1 partially OR all partially addressed"
           },
-          "output_format": {
-            "must_return": [
-              
-              "total_score",
-              "corrected_text"
-            ],
-            "structure": {
-              
-              "total_score": "0-10",
-            
-            },
-            "corrected_text_rules": [
-              "fix grammar",
-              "fix spelling",
-              "keep meaning unchanged",
-              "keep A1 level"
-            ]
+          "D": {
+            "points": 2.5,
+            "description": "Only 1 point partially addressed"
+          },
+          "E": {
+            "points": 0,
+            "description": "Task not fulfilled or topic missed"
           }
         }
+      },
 
-        =========================================
-        ORIGINAL WRITING TASK
-        =========================================
+      "coherence": {
+        "max_points": 10,
+        "levels": {
+          "A": {
+            "points": 10,
+            "description": "Clear B1-level structure: introduction, body, conclusion with logical flow"
+          },
+          "B": {
+            "points": 7.5,
+            "description": "Mostly clear structure with minor issues"
+          },
+          "C": {
+            "points": 5,
+            "description": "Partially clear structure, limited linking"
+          },
+          "D": {
+            "points": 2.5,
+            "description": "Weak structure, difficult to follow"
+          },
+          "E": {
+            "points": 0,
+            "description": "No clear structure"
+          }
+        }
+      },
 
-        $question
+      "vocabulary": {
+        "max_points": 10,
+        "levels": {
+          "A": {
+            "points": 10,
+            "description": "Appropriate and varied B1 vocabulary for job fair and career topics"
+          },
+          "B": {
+            "points": 7.5,
+            "description": "Mostly appropriate vocabulary with some repetition"
+          },
+          "C": {
+            "points": 5,
+            "description": "Limited vocabulary, but understandable"
+          },
+          "D": {
+            "points": 2.5,
+            "description": "Very limited vocabulary (A2 level)"
+          },
+          "E": {
+            "points": 0,
+            "description": "Insufficient vocabulary"
+          }
+        }
+      },
 
-        =========================================
-        STUDENT ANSWER
-        =========================================
+      "grammar": {
+        "max_points": 10,
+        "levels": {
+          "A": {
+            "points": 10,
+            "description": "Very good control of B1 grammar (past tense, connectors, descriptive structures)"
+          },
+          "B": {
+            "points": 7.5,
+            "description": "Good control with some errors"
+          },
+          "C": {
+            "points": 5,
+            "description": "Frequent errors but meaning understandable"
+          },
+          "D": {
+            "points": 2.5,
+            "description": "Very frequent errors, comprehension difficult"
+          },
+          "E": {
+            "points": 0,
+            "description": "Grammar below B1 level"
+          }
+        }
+      }
+    },
 
-        $studentAnswer
+    "special_rule": {
+      "critical_fail_condition": "If fulfillment = E (0 points), total score = 0 automatically"
+    }
+  },
 
-        PROMPT;
+  "calculation": {
+    "formula": "fulfillment + coherence + vocabulary + grammar",
+    "max_score": 40,
+    "note": "All criteria weighted equally for B1 writing task 1"
+  },
+
+  "output_format": {
+    "must_return": [
+      "total_score",
+      "corrected_email"
+    ],
+
+    "structure": {
+      "total": "0-40"
+    },
+
+    "correction_rules": [
+      "fix grammar",
+      "fix spelling",
+      "keep meaning unchanged",
+      "maintain B1 level language",
+      "use past tense appropriately",
+      "ensure email structure (greeting, introduction, body, closing)",
+      "improve coherence without changing content"
+    ]
+  }
+}
+=========================================
+ORIGINAL WRITING TASK
+=========================================
+
+$question
+
+=========================================
+STUDENT ANSWER
+=========================================
+
+$studentAnswer
+
+PROMPT;
 
         $response = Http::post(
             "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=" . config('services.gemini.key'),
@@ -164,31 +245,75 @@ class GeminiController extends Controller
                             ]
                         ]
                     ]
+                ],
+                "generationConfig" => [
+                    "responseMimeType" => "application/json"
                 ]
             ]
         );
-
         $result = data_get(
             $response->json(),
             'candidates.0.content.parts.0.text'
         );
-
-        // إزالة ```json لو النموذج رجعها
-        $clean = preg_replace('/^```json|```$/m', '', trim($result));
-
-        $data = json_decode($clean, true);
-
-        if (!$data) {
+        
+        // لو Gemini لم يرجع أي نص
+        if (empty($result)) {
             return response()->json([
                 'success' => false,
-                'raw_response' => $result
+                'message' => 'Gemini returned no text.',
+                'status' => $response->status(),
+                'response' => $response->json()
             ]);
         }
-
+        
+        // إزالة ```json و ```
+        $clean = preg_replace('/```json|```/i', '', trim($result));
+        
+        // استخراج أول JSON موجود داخل النص
+        preg_match('/\{.*\}/s', $clean, $matches);
+        
+        $cleanJson = $matches[0] ?? $clean;
+        
+        // تحويل إلى Array
+        $data = json_decode($cleanJson, true);
+        
+        // لو الـ JSON غير صالح
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Invalid JSON returned from Gemini.',
+                'json_error' => json_last_error_msg(),
+                'raw_response' => $result,
+                'clean_json' => $cleanJson
+            ]);
+        }
+        
+        // نجاح
         return response()->json([
             'success' => true,
             'data' => $data
         ]);
+        // $result = data_get(
+        //     $response->json(),
+        //     'candidates.0.content.parts.0.text'
+        // );
+
+        // // إزالة ```json لو النموذج رجعها
+        // $clean = preg_replace('/^```json|```$/m', '', trim($result));
+
+        // $data = json_decode($clean, true);
+
+        // if (!$data) {
+        //     return response()->json([
+        //         'success' => false,
+        //         'raw_response' => $result
+        //     ]);
+        // }
+
+        // return response()->json([
+        //     'success' => true,
+        //     'data' => $data
+        // ]);
     }
 }
 

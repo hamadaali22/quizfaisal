@@ -167,11 +167,8 @@
                 </div>
                 <div class="form-group col-md-12 col-sm-6 ">
                   <label>prompt</label>
-                  <textarea name="prompt" cols="20" rows="1" class="form-control">{{$question->prompt}}</textarea>
-                  @error('prompt')
-                  <span class="text-danger">{{$message}}</span>
-                  @enderror
-                  <span id="promptError" style="color: red;"></span>
+                  <textarea name="prompt" cols="20" rows="2" class="form-control">{{$question->prompt}}</textarea>
+
                 </div>
                 <!-- <div class="form-group col-md-12 col-sm-6 ">
                   <label>Question Bio Ar</label>

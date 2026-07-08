@@ -121,6 +121,14 @@
                   @enderror
                   <span id="bioError" style="color: red;"></span>
                 </div>
+                <div class="form-group col-md-12 col-sm-6 ">
+                  <label>prompt</label>
+                  <textarea name="prompt" cols="20" rows="1" class="form-control"></textarea>
+                  @error('prompt')
+                  <span class="text-danger">{{$message}}</span>
+                  @enderror
+                  <span id="promptError" style="color: red;"></span>
+                </div>
 
 
               </div>

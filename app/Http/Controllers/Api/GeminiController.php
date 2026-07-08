@@ -15,143 +15,143 @@ class GeminiController extends Controller
             'student_text' => 'required|string',
         ]);
 
-    $question = $request->question;
-    $studentAnswer = trim($request->student_text);
+        $question = $request->question;
+        $studentAnswer = trim($request->student_text);
 
-$prompt = <<<PROMPT
+        $prompt = <<<PROMPT
 
-You are an official Goethe German A1 writing examiner.
+        You are an official Goethe German A1 writing examiner.
 
-Evaluate the student's answer STRICTLY according to the following JSON rubric.
+        Evaluate the student's answer STRICTLY according to the following JSON rubric.
 
-The rubric defines:
-- task
-- scoring
-- calculation
-- output format
+        The rubric defines:
+        - task
+        - scoring
+        - calculation
+        - output format
 
-You MUST follow it exactly.
+        You MUST follow it exactly.
 
-Return ONLY valid JSON.
+        Return ONLY valid JSON.
 
-Do NOT use markdown.
+        Do NOT use markdown.
 
-Do NOT wrap the response inside ```json.
+        Do NOT wrap the response inside ```json.
 
-{
-  "task": {
-    "level": "A1",
-    "type": "email",
-    "description": "Write an email inviting a friend to your birthday party",
-    "required_points": [
-      "Why are you writing? (birthday invitation)",
-      "Say when and where the party is",
-      "Ask if she can help"
-    ],
-    "constraints": {
-      "word_count_min": 15,
-      "word_count_max": 40,
-      "must_include": [
-        "greeting",
-        "closing"
-      ]
-    }
-  },
-  "scoring": {
-    "content": {
-      "max_points": 9,
-      "criteria": {
-        "point_1": {
-          "description": "Why are you writing? (birthday invitation)",
-          "max": 3,
-          "levels": {
-            "3": "fully addressed, clear and understandable",
-            "1.5": "partially addressed or unclear",
-            "0": "missing or incomprehensible"
-          }
-        },
-        "point_2": {
-          "description": "Say when and where the party is",
-          "max": 3,
-          "levels": {
-            "3": "fully addressed, clear and understandable",
-            "1.5": "partially addressed or unclear",
-            "0": "missing or incomprehensible"
-          }
-        },
-        "point_3": {
-          "description": "Ask if she can help",
-          "max": 3,
-          "levels": {
-            "3": "fully addressed, clear and understandable",
-            "1.5": "partially addressed or unclear",
-            "0": "missing or incomprehensible"
+        {
+          "task": {
+            "level": "A1",
+            "type": "email",
+            "description": "Write an email inviting a friend to your birthday party",
+            "required_points": [
+              "Why are you writing? (birthday invitation)",
+              "Say when and where the party is",
+              "Ask if she can help"
+            ],
+            "constraints": {
+              "word_count_min": 15,
+              "word_count_max": 40,
+              "must_include": [
+                "greeting",
+                "closing"
+              ]
+            }
+          },
+          "scoring": {
+            "content": {
+              "max_points": 9,
+              "criteria": {
+                "point_1": {
+                  "description": "Why are you writing? (birthday invitation)",
+                  "max": 3,
+                  "levels": {
+                    "3": "fully addressed, clear and understandable",
+                    "1.5": "partially addressed or unclear",
+                    "0": "missing or incomprehensible"
+                  }
+                },
+                "point_2": {
+                  "description": "Say when and where the party is",
+                  "max": 3,
+                  "levels": {
+                    "3": "fully addressed, clear and understandable",
+                    "1.5": "partially addressed or unclear",
+                    "0": "missing or incomprehensible"
+                  }
+                },
+                "point_3": {
+                  "description": "Ask if she can help",
+                  "max": 3,
+                  "levels": {
+                    "3": "fully addressed, clear and understandable",
+                    "1.5": "partially addressed or unclear",
+                    "0": "missing or incomprehensible"
+                  }
+                }
+              }
+            },
+            "communication": {
+              "max_points": 1,
+              "criteria": {
+                "1": "correct email format with greeting and closing",
+                "0.5": "partially correct format (missing greeting or closing)",
+                "0": "no clear email structure"
+              }
+            }
+          },
+          "calculation": {
+            "total_max": 10,
+            "formula": "content_score + communication_score",
+            "grading": {
+              "type": "linear",
+              "mapping": {
+                "10": 10,
+                "9": 9,
+                "8": 8,
+                "7": 7,
+                "6": 6,
+                "5": 5,
+                "4": 4,
+                "3": 3,
+                "2": 2,
+                "1": 1,
+                "0": 0
+              }
+            }
+          },
+          "output_format": {
+            "must_return": [
+              
+              "total_score",
+              "corrected_text"
+            ],
+            "structure": {
+              
+              "total_score": "0-10",
+            
+            },
+            "corrected_text_rules": [
+              "fix grammar",
+              "fix spelling",
+              "keep meaning unchanged",
+              "keep A1 level"
+            ]
           }
         }
-      }
-    },
-    "communication": {
-      "max_points": 1,
-      "criteria": {
-        "1": "correct email format with greeting and closing",
-        "0.5": "partially correct format (missing greeting or closing)",
-        "0": "no clear email structure"
-      }
-    }
-  },
-  "calculation": {
-    "total_max": 10,
-    "formula": "content_score + communication_score",
-    "grading": {
-      "type": "linear",
-      "mapping": {
-        "10": 10,
-        "9": 9,
-        "8": 8,
-        "7": 7,
-        "6": 6,
-        "5": 5,
-        "4": 4,
-        "3": 3,
-        "2": 2,
-        "1": 1,
-        "0": 0
-      }
-    }
-  },
-  "output_format": {
-    "must_return": [
-      
-      "total_score",
-      "corrected_text"
-    ],
-    "structure": {
-      
-      "total_score": "0-10",
-     
-    },
-    "corrected_text_rules": [
-      "fix grammar",
-      "fix spelling",
-      "keep meaning unchanged",
-      "keep A1 level"
-    ]
-  }
-}
 
-=========================================
-ORIGINAL WRITING TASK
-=========================================
+        =========================================
+        ORIGINAL WRITING TASK
+        =========================================
 
-$question
+        $question
 
-=========================================
-STUDENT ANSWER
-=========================================
+        =========================================
+        STUDENT ANSWER
+        =========================================
 
-$studentAnswer
+        $studentAnswer
 
-PROMPT;
+        PROMPT;
 
         $response = Http::post(
             "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=" . config('services.gemini.key'),

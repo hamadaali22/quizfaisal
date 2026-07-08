@@ -91,6 +91,7 @@ class QuestionController extends Controller
         $add->bio    = $request->bio;
         $add->type    = $request->type;
         $add->mark    = $request->mark;
+        $add->prompt    = $request->prompt;
         if(isset($request->paragraph)){
             $add->paragraph    = $request->paragraph;
         }
@@ -360,7 +361,7 @@ class QuestionController extends Controller
         $edit->bio_en    = $request->bio_en;
         $edit->bio_fr    = $request->bio_fr;
         $edit->bio_es    = $request->bio_es;
-
+        $edit->prompt    = $request->prompt;
 
         $edit->save();
 

@@ -18,7 +18,7 @@ class GeminiController extends Controller
     $question = $request->question;
     $studentAnswer = trim($request->student_text);
 
-    $examQuestion = Question::findOrFail(460);
+    $examQuestion = Question::findOrFail($request->question_id);
 $promptText = $examQuestion->prompt;
 
 $prompt = <<<PROMPT

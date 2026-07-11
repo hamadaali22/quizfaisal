@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
-
+use App\Question;
 class GeminiController extends Controller
 {
     public function evaluate(Request $request)

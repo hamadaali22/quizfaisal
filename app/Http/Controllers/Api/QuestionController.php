@@ -1149,14 +1149,14 @@ class QuestionController extends Controller
     public function question(Request $request)
     {
         // ->orderBy('order','ASC')
-        $data=Question::where("exam_id" , $request->exam_id)->paginate(1);
-        // $data = Question::where('exam_id', $request->exam_id)
-        //         ->whereNotIn('type', [
-        //             'writing',
-        //             'writing and image',
-        //             'writing and question'
-        //         ])
-        //         ->paginate(1);
+        // $data=Question::where("exam_id" , $request->exam_id)->paginate(1);
+        $data = Question::where('exam_id', $request->exam_id)
+                ->whereNotIn('type', [
+                    'writing',
+                    'writing and image',
+                    'writing and question'
+                ])
+                ->paginate(1);
         foreach ($data as $item) {
             if($item->type=='listening'){
                 // $item->file = URL::temporarySignedRoute(
@@ -1255,12 +1255,10 @@ class QuestionController extends Controller
                     $add->questionType = $request->data[$i]['questionType'];
                     $add->totalScore = $request->data[$i]['totalScore'] ?? null;
                     $add->correctedText = $request->data[$i]['correctedText'] ?? null;
+                }else{
+                    $add->subquestion_id    = $request->data[$i]['subQuestionId'];
+                    $add->expected_answer    = $request->data[$i]['expected_answer'];
                 }
-               
-                
-                
-                $add->subquestion_id    = $request->data[$i]['subQuestionId'];
-                $add->expected_answer    = $request->data[$i]['expected_answer'];
                 $add->answer    = $request->data[$i]['answerid'];
 
                 $add->save();

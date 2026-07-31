@@ -1250,11 +1250,11 @@ class QuestionController extends Controller
                 $add->user_id    = $request->data[$i]['user_id'];
                 $add->exam_id    = $request->data[$i]['examId'];
                 $add->question_id    = $request->data[$i]['questionId'];
-                if($request->data[$i]['questionType']){
-                    $add->levelName    = $request->data[$i]['levelName'];
-                    $add->questionType    = $request->data[$i]['questionType'];
-                    $add->totalScore    = $request->data[$i]['totalScore'];
-                    $add->correctedText    = $request->data[$i]['correctedText'];
+                if (isset($request->data[$i]['questionType'])) {
+                    $add->levelName = $request->data[$i]['levelName'] ?? null;
+                    $add->questionType = $request->data[$i]['questionType'];
+                    $add->totalScore = $request->data[$i]['totalScore'] ?? null;
+                    $add->correctedText = $request->data[$i]['correctedText'] ?? null;
                 }
                
                 

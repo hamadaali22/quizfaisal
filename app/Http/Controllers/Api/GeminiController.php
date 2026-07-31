@@ -56,7 +56,9 @@ $studentAnswer
 PROMPT;
 
         $response = Http::post(
-            "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=" . config('services.gemini.key'),
+             
+             "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent?key=" . config('services.gemini.key'),
+            // "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=" . config('services.gemini.key'),
             [
                 "contents" => [
                     [

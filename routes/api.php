@@ -17,7 +17,11 @@ use Illuminate\Support\Facades\Auth;
 
 Route::post('/evaluate', 'Api\GeminiController@evaluate');
 
-
+Route::get('/test', function () {
+    return response()->json([
+        'status' => true
+    ]);
+});
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });

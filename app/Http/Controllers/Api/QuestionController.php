@@ -1152,8 +1152,8 @@ class QuestionController extends Controller
         // $data=Question::where("exam_id" , $request->exam_id)->paginate(1);
         $data = Question::where('exam_id', $request->exam_id)
                 ->whereNotIn('type', [
-                    'writing',
-                    'writing and image',
+                    // 'writing',
+                    // 'writing and image',
                     'writing and question'
                 ])
                 ->paginate(1);
@@ -1334,9 +1334,9 @@ class QuestionController extends Controller
                 $subquestion_listening=SubQuestion::where("question_id" , $_item->id)->get();
                 $count_listen +=count($subquestion_listening);
             }elseif($_item->type =='writing'){
-                $count_write +=1;
+                $count_write +=$_item->mark;
             }elseif($_item->type =='writing and image'){
-                $count_write +=1;
+                $count_write +=$_item->mark;
             }else{
                 $subquestion_read=SubQuestion::where("question_id" , $_item->id)->get();
                 $count_read +=count($subquestion_read);
@@ -1370,8 +1370,8 @@ class QuestionController extends Controller
                    'count_read'=> $count_read,
                    'count_read_percent'=> round($count_read_percent, 1),
 
-                   'count_write_marks'=> $count_write_marks,
                    'count_write'=> $count_write,
+                   'count_write_marks'=> $count_write_marks,
                    'count_write_percent'=> round($count_write_percent, 1),
                    
                ];

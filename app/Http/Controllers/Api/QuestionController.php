@@ -1274,6 +1274,10 @@ class QuestionController extends Controller
        $count_listen=0;
        $count_read_succes=0;
        $count_read=0;
+
+       $count_write_marks=0;
+       $count_write=0;
+
        $data=ExamAnswer::where("user_id" , $request->user_id)->where("exam_id" , $request->exam_id)->get();
        foreach ($data as $item) {
            $question=Question::where('id',$item->question_id)->first();
@@ -1315,6 +1319,7 @@ class QuestionController extends Controller
                         }
                      }
                 }
+                $count_write_marks +=$item->totalScore;
             }
            $item->question=$question;
            $item->exam=Exam::where('id',$item->exam_id)->first();
@@ -1322,16 +1327,20 @@ class QuestionController extends Controller
        }
        $allquestion=Question::where('exam_id',$request->exam_id)->get();
        foreach ($allquestion as $_item) {
-         if($_item->type =='listening'){
-           $subquestion_listening=SubQuestion::where("question_id" , $_item->id)->get();
-             $count_listen +=count($subquestion_listening);
-         }elseif($_item->type =='listening and image'){
-           $subquestion_listening=SubQuestion::where("question_id" , $_item->id)->get();
-             $count_listen +=count($subquestion_listening);
-         }else{
-             $subquestion_read=SubQuestion::where("question_id" , $_item->id)->get();
-             $count_read +=count($subquestion_read);
-         }
+            if($_item->type =='listening'){
+                $subquestion_listening=SubQuestion::where("question_id" , $_item->id)->get();
+                $count_listen +=count($subquestion_listening);
+            }elseif($_item->type =='listening and image'){
+                $subquestion_listening=SubQuestion::where("question_id" , $_item->id)->get();
+                $count_listen +=count($subquestion_listening);
+            }elseif($_item->type =='writing'){
+                $count_write +=1;
+            }elseif($_item->type =='writing and image'){
+                $count_write +=1;
+            }else{
+                $subquestion_read=SubQuestion::where("question_id" , $_item->id)->get();
+                $count_read +=count($subquestion_read);
+            }
        }
 
        if($count_listen_succes !=0){
@@ -1339,18 +1348,32 @@ class QuestionController extends Controller
        }else{
            $count_listen_percent=0;
        }
+
        if($count_read_succes !=0){
            $count_read_percent=($count_read_succes / $count_read) * 100;
        }else{
            $count_read_percent=0;
        }
+
+        if($count_write_marks !=0){
+           $count_write_percent=($count_write_marks / $count_write) * 100;
+        }else{
+            $count_write_percent=0;
+        }
+
        $home  =[
+                    'count_listen_succes'=> $count_listen_succes,
+                   'count_listen'=> $count_listen,
+                   'count_listen_percent'=> round($count_listen_percent, 1),
+
                    'count_read_succes'=> $count_read_succes,
                    'count_read'=> $count_read,
                    'count_read_percent'=> round($count_read_percent, 1),
-                   'count_listen_succes'=> $count_listen_succes,
-                   'count_listen'=> $count_listen,
-                   'count_listen_percent'=> round($count_listen_percent, 1),
+
+                   'count_write_marks'=> $count_write_marks,
+                   'count_write'=> $count_write,
+                   'count_write_percent'=> round($count_write_percent, 1),
+                   
                ];
        return $this->returnDataa('data', $home,'');
     }

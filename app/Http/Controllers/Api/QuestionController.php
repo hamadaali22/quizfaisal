@@ -1371,7 +1371,7 @@ class QuestionController extends Controller
                    'count_read_percent'=> round($count_read_percent, 1),
 
                    'count_write'=> $count_write,
-                   'count_write_marks'=> $count_write_marks,
+                   'count_write_marks'=>  round($count_write_marks, 1),
                    'count_write_percent'=> round($count_write_percent, 1),
                    
                ];

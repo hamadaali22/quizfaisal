@@ -15,45 +15,45 @@ class GeminiController extends Controller
             'student_text' => 'required|string',
         ]);
 
-    $question = $request->question;
-    $studentAnswer = trim($request->student_text);
+        $question = $request->question;
+        $studentAnswer = trim($request->student_text);
 
-    $examQuestion = Question::findOrFail($request->question_id);
-$promptText = $examQuestion->prompt;
+        $examQuestion = Question::findOrFail($request->question_id);
+        $promptText = $examQuestion->prompt;
 
-$prompt = <<<PROMPT
+        $prompt = <<<PROMPT
 
-You are an official Goethe German A1 writing examiner.
+        You are an official Goethe German A1 writing examiner.
 
-Evaluate the student's answer STRICTLY according to the following JSON rubric.
+        Evaluate the student's answer STRICTLY according to the following JSON rubric.
 
-The rubric defines:
-- task
-- scoring
-- calculation
-- output format
+        The rubric defines:
+        - task
+        - scoring
+        - calculation
+        - output format
 
-You MUST follow it exactly.
+        You MUST follow it exactly.
 
-Return ONLY valid JSON.
+        Return ONLY valid JSON.
 
-Do NOT use markdown.
+        Do NOT use markdown.
 
-Do NOT wrap the response inside ```json.
-$promptText
-=========================================
-ORIGINAL WRITING TASK
-=========================================
+        Do NOT wrap the response inside ```json.
+        $promptText
+        =========================================
+        ORIGINAL WRITING TASK
+        =========================================
 
-$question
+        $question
 
-=========================================
-STUDENT ANSWER
-=========================================
+        =========================================
+        STUDENT ANSWER
+        =========================================
 
-$studentAnswer
+        $studentAnswer
 
-PROMPT;
+        PROMPT;
 
         $response = Http::post(
              

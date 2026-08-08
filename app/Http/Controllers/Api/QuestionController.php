@@ -1212,61 +1212,314 @@ class QuestionController extends Controller
         }
         return $this->returnDataa('data', $data,'');
     }
+    
+    public function evaluate(Request $request)
+    {
+        $request->validate([
+            'question' => 'required|string',
+            'student_text' => 'required|string',
+            'question_id' => 'required|integer',
+        ]);
+
+        $question = $request->question;
+        $studentAnswer = trim($request->student_text);
+
+        // جلب السؤال
+        $examQuestion = Question::findOrFail($request->question_id);
+
+        // التأكد أن السؤال Writing
+        if (
+            $examQuestion->type !== 'writing' &&
+            $examQuestion->type !== 'writing and image'
+        ) {
+            return response()->json([
+                'success' => false,
+                'message' => 'This question is not a writing question.'
+            ], 422);
+        }
+
+        $promptText = $examQuestion->prompt;
+
+        $prompt = <<<PROMPT
+
+        You are an official Goethe German A1 writing examiner.
+
+        Evaluate the student's answer STRICTLY according to the following JSON rubric.
+
+        The rubric defines:
+        - task
+        - scoring
+        - calculation
+        - output format
+
+        You MUST follow it exactly.
+
+        Return ONLY valid JSON.
+
+        Do NOT use markdown.
+
+        Do NOT wrap the response inside ```json.
+
+        $promptText
+
+        =========================================
+        ORIGINAL WRITING TASK
+        =========================================
+
+        $question
+
+        =========================================
+        STUDENT ANSWER
+        =========================================
+
+        $studentAnswer
+
+        PROMPT;
+
+        $response = Http::post(
+            "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent?key="
+            . config('services.gemini.key'),
+            [
+                "contents" => [
+                    [
+                        "parts" => [
+                            [
+                                "text" => $prompt
+                            ]
+                        ]
+                    ]
+                ],
+                "generationConfig" => [
+                    "responseMimeType" => "application/json"
+                ]
+            ]
+        );
+
+        $result = data_get(
+            $response->json(),
+            'candidates.0.content.parts.0.text'
+        );
+
+        // Gemini لم يرجع أي نص
+        if (empty($result)) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Gemini returned no text.',
+                'status' => $response->status(),
+                'response' => $response->json()
+            ]);
+        }
+
+        // إزالة ```json و ```
+        $clean = preg_replace('/```json|```/i', '', trim($result));
+
+        // استخراج أول JSON موجود داخل النص
+        preg_match('/\{.*\}/s', $clean, $matches);
+
+        $cleanJson = $matches[0] ?? $clean;
+
+        // تحويل JSON إلى Array
+        $data = json_decode($cleanJson, true);
+
+        // لو JSON غير صالح
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Invalid JSON returned from Gemini.',
+                'json_error' => json_last_error_msg(),
+                'raw_response' => $result,
+                'clean_json' => $cleanJson
+            ]);
+        }
+
+        // نجاح
+        return response()->json([
+            'success' => true,
+            'data' => $data
+        ]);
+    }
     public function SaveExam(Request $request)
     {
-        // return $request->data[0]['user_id'];
-        // return $request->data[0]['examId'];
-        // return $request->data[0]['questionId'];
+        /*
+        |--------------------------------------------------------------------------
+        | Answers - Array
+        |--------------------------------------------------------------------------
+        */
 
-        // return $request->data;
-        $check_examanswer=ExamAnswer::where("user_id", $request->data[0]['user_id'])->where("exam_id", $request->data[0]['examId'])->where("question_id" , $request->data[0]['questionId'])->get();
-        if(count($check_examanswer) >0){
-            foreach ($check_examanswer as $item) {
-                // $delete_exam = ExamAnswer::findOrFail($item->id);
-                $item->delete();
+        $data = $request->input('data', []);
+
+        if (count($data) > 0) {
+
+            $userId = $data[0]['user_id'];
+            $examId = $data[0]['examId'];
+            $questionId = $data[0]['questionId'];
+
+            $check_examanswer = ExamAnswer::where("user_id", $userId)
+                ->where("exam_id", $examId)
+                ->where("question_id", $questionId)
+                ->get();
+
+            if (count($check_examanswer) > 0) {
+                foreach ($check_examanswer as $item) {
+                    $item->delete();
+                }
             }
-        }
-        $length = count($request->data);
-        if($length > 0)
-        {
-            for($i=0; $i<$length; $i++)
-            {
-            //   return $request->data[$i]['subQuestionId'];
-                // return $request->subQuestionId[$i];
-                // return $request->data;
-                // $check_examanswer=ExamAnswer::where("user_id", $request->data[$i]['user_id'])->where("exam_id", $request->data[$i]['examId'])->where("question_id" , $request->data[$i]['questionId'])->get();
-                // if(count($check_examanswer) >0){
-                //     foreach ($check_examanswer as $item) {
-                //         // $delete_exam = ExamAnswer::findOrFail($item->id);
-                //         $item->delete();
-                //     }
-                // }
-                // $check_examanswer=ExamAnswer::where("user_id", $request->data[$i]['user_id'])->where("question_id" , $request->data[$i]['questionId'])->where("subquestion_id" , $request->data[$i]['subQuestionId'])->first();
-                // if($check_examanswer){
-                //     $check_examanswer->delete();
-                // }
+
+            $length = count($data);
+
+            for ($i = 0; $i < $length; $i++) {
 
                 $add = new ExamAnswer;
-                $add->user_id    = $request->data[$i]['user_id'];
-                $add->exam_id    = $request->data[$i]['examId'];
-                $add->question_id    = $request->data[$i]['questionId'];
-                if (isset($request->data[$i]['questionType'])) {
-                    $add->levelName = $request->data[$i]['levelName'] ?? null;
-                    $add->questionType = $request->data[$i]['questionType'];
-                    $add->totalScore = $request->data[$i]['totalScore'] ?? null;
-                    $add->correctedText = $request->data[$i]['correctedText'] ?? null;
-                }else{
-                    $add->subquestion_id    = $request->data[$i]['subQuestionId'];
-                    $add->expected_answer    = $request->data[$i]['expected_answer'];
-                }
-                $add->answer    = $request->data[$i]['answerid'];
+
+                $add->user_id = $data[$i]['user_id'];
+                $add->exam_id = $data[$i]['examId'];
+                $add->question_id = $data[$i]['questionId'];
+
+                // if (isset($data[$i]['questionType'])) {
+
+                //     $add->levelName = $data[$i]['levelName'] ?? null;
+                //     $add->questionType = $data[$i]['questionType'];
+                //     $add->totalScore = $data[$i]['totalScore'] ?? null;
+                //     $add->correctedText = $data[$i]['correctedText'] ?? null;
+
+                // } else {
+
+                    $add->subquestion_id = $data[$i]['subQuestionId'];
+                    $add->expected_answer = $data[$i]['expected_answer'];
+                // }
+
+                $add->answer = $data[$i]['answerid'];
 
                 $add->save();
             }
         }
-        // return 'ddd';
-        return $this -> returnDataa('data',$add,'تم الحفظ');
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | Writing - Object
+        |--------------------------------------------------------------------------
+        */
+
+        $writing = $request->input('writing');
+
+        if ($writing) {
+
+            // حذف الإجابة القديمة لنفس سؤال الـ Writing
+            $check_writing = ExamAnswer::where("user_id", $writing['user_id'])
+                ->where("exam_id", $writing['examId'])
+                ->where("question_id", $writing['questionId'])
+                ->get();
+
+            if (count($check_writing) > 0) {
+                foreach ($check_writing as $item) {
+                    $item->delete();
+                }
+            }
+
+
+            /*
+            |--------------------------------------------------------------------------
+            | استدعاء evaluate()
+            |--------------------------------------------------------------------------
+            */
+
+            $evaluateRequest = new Request([
+                'question' => $writing['question'] ?? '',
+                'student_text' => $writing['answerid'],
+                'question_id' => $writing['questionId'],
+            ]);
+
+            $evaluationResponse = $this->evaluate($evaluateRequest);
+
+            $evaluation = $evaluationResponse->getData(true);
+
+
+            /*
+            |--------------------------------------------------------------------------
+            | استخراج نتيجة AI
+            |--------------------------------------------------------------------------
+            */
+
+            $totalScore = null;
+            $correctedText = null;
+
+            if (
+                isset($evaluation['success']) && $evaluation['success'] === true && isset($evaluation['data'])
+            ) {
+                $totalScore = $evaluation['data']['total_score'] ?? null;
+                $correctedText = $evaluation['data']['corrected_text'] ?? null;
+            }
+
+
+            /*
+            |--------------------------------------------------------------------------
+            | حفظ Writing
+            |--------------------------------------------------------------------------
+            */
+
+            $add = new ExamAnswer;
+
+            $add->user_id = $writing['user_id'];
+            $add->exam_id = $writing['examId'];
+            $add->question_id = $writing['questionId'];
+
+            $add->levelName = $writing['levelName'] ?? null;
+            $add->questionType = $writing['questionType'];
+
+            // نتيجة Gemini
+            $add->totalScore = $totalScore;
+            $add->correctedText = $correctedText;
+
+            // إجابة الطالب
+            $add->answer = $writing['answerid'];
+
+            $add->save();
+        }
+
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Exam answers saved successfully'
+        ]);
     }
+    // public function SaveExam(Request $request)
+    // {
+        
+    //     $check_examanswer=ExamAnswer::where("user_id", $request->data[0]['user_id'])->where("exam_id", $request->data[0]['examId'])->where("question_id" , $request->data[0]['questionId'])->get();
+    //     if(count($check_examanswer) >0){
+    //         foreach ($check_examanswer as $item) {
+    //             $item->delete();
+    //         }
+    //     }
+    //     $length = count($request->data);
+    //     if($length > 0)
+    //     {
+    //         for($i=0; $i<$length; $i++)
+    //         {
+            
+    //             $add = new ExamAnswer;
+    //             $add->user_id    = $request->data[$i]['user_id'];
+    //             $add->exam_id    = $request->data[$i]['examId'];
+    //             $add->question_id    = $request->data[$i]['questionId'];
+    //             if (isset($request->data[$i]['questionType'])) {
+    //                 $add->levelName = $request->data[$i]['levelName'] ?? null;
+    //                 $add->questionType = $request->data[$i]['questionType'];
+    //                 $add->totalScore = $request->data[$i]['totalScore'] ?? null;
+    //                 $add->correctedText = $request->data[$i]['correctedText'] ?? null;
+    //             }else{
+    //                 $add->subquestion_id    = $request->data[$i]['subQuestionId'];
+    //                 $add->expected_answer    = $request->data[$i]['expected_answer'];
+    //             }
+    //             $add->answer    = $request->data[$i]['answerid'];
+
+    //             $add->save();
+    //         }
+    //     }
+    //     // return 'ddd';
+    //     return $this -> returnDataa('data',$add,'تم الحفظ');
+    // }
+
     public function results(Request $request)
    {
        // dd('hhhh');

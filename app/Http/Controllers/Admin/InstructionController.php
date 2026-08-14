@@ -2,8 +2,8 @@
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 
-use App\Models\Instruction;
-use App\Models\Level;
+use App\Instruction;
+use App\Level;
 use Illuminate\Http\Request;
 
 class InstructionController extends Controller

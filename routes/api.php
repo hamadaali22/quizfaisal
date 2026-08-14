@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::post('/evaluate', 'Api\GeminiController@evaluate');
+Route::get('/evaluatee/{a}/{s}/{d}', 'Api\QuestionController@evaluate');
 
 Route::get('/test', function () {
     return response()->json([

@@ -126,10 +126,25 @@ Route::get('admin-login', 'Auth\LoginController@LoginAdmin')->name('admin-login'
 			Route::get('exercise-exams','ExamController@exerciseExams');
 			Route::get('quize-exams','ExamController@quizeExams');
 		    Route::resource('questions','QuestionController');
-			
+
+			Route::get('goethe-listening-image','ExerciseController@goetheListeningImage');
+			Route::get('goethe-read','QuestionController@goetheRead');
+			Route::get('goethe-image','QuestionController@goetheImage');
+			Route::get('goethe-sub','QuestionController@goetheSub');
+			Route::get('goethe-writing','QuestionController@goetheWriting');
+			Route::get('goethe-writing-image','QuestionController@goetheWritingImage');
+			Route::get('goethe-writing-question','QuestionController@goetheWritingQuestion');
 			
 
-			Route::get('questionsTelc','QuestionController@questionsTelc');
+			Route::get('telc-listening','QuestionController@telcListening');
+			Route::get('telc-listening-image','ExerciseController@telcListeningImage');
+			Route::get('telc-read','QuestionController@telcRead');
+			Route::get('telc-image','QuestionController@telcImage');
+			Route::get('telc-sub','QuestionController@telcSub');
+			Route::get('telc-writing','QuestionController@telcWriting');
+			Route::get('telc-writing-image','QuestionController@telcWritingImage');
+			Route::get('telc-writing-question','QuestionController@telcWritingQuestion');
+
 
 			Route::resource('exercises','ExerciseController');
 			Route::get('exercises-read','ExerciseController@exercisesListeningImage');
@@ -203,6 +218,8 @@ Route::get('admin-login', 'Auth\LoginController@LoginAdmin')->name('admin-login'
         Route::get('terms', 'ProfileController@terms');
         Route::post('update/terms','ProfileController@updateTerms');
 
+		Route::resource('instructions','InstructionController');
+		
 
         Route::get('return_policy', 'ProfileController@return_policy');
         Route::post('update/return_policy','ProfileController@updateReturn_policy');

@@ -18,48 +18,239 @@ class QuestionController extends Controller
     }
     
    
-
+    /**
+     * start goethe questions
+    */
     public function index()
     {
         $exams=Exam::all();
         $levels=Level::all();
-        $allquestions=Question::orderBy('order','ASC')->get();
-        $questions=[];
-        foreach ($allquestions as $item) {
-            $exam=Exam::where('id',$item->exam_id)->first();
-            if($exam){
-                if($exam->section !='telc'){
-                $questions[]=$item;
-                }
-            }
-        }
-        foreach ($questions as $_item) {
-            $_item->exam=Exam::where('id',$_item->exam_id)->first();
-            $_item->level= Level::where('id',$_item->level_id)->first();
-        }
+        $questions = Question::with(['exam','level'])
+            ->where('type','listening')
+            ->whereHas('exam', function ($q) {
+                $q->where('section','!=','telc');
+            })
+            ->orderBy('order')
+            ->get();
         return view('admin.questions.all',compact('questions','levels','exams'));
+        
+        // $allquestions=Question::where('type','listening')->orderBy('order','ASC')->get();
+        // $questions=[];
+        // foreach ($allquestions as $item) {
+        //     $exam=Exam::where('id',$item->exam_id)->first();
+        //     if($exam){
+        //         if($exam->section !='telc'){
+        //         $questions[]=$item;
+        //         }
+        //     }
+        // }
+        // foreach ($questions as $_item) {
+        //     $_item->exam=Exam::where('id',$_item->exam_id)->first();
+        //     $_item->level= Level::where('id',$_item->level_id)->first();
+        // }
+        
+        
     }
-
-    public function questionsTelc()
+    public function goetheListeningImage()
     {
         $exams=Exam::all();
         $levels=Level::all();
-        $allquestions=Question::orderBy('order','ASC')->get();
-        $questions=[];
-        foreach ($allquestions as $item) {
-            $exam=Exam::where('id',$item->exam_id)->first();
-            if($exam){
-                if($exam->section=='telc'){
-                $questions[]=$item;
-                }
-            }
-        }
-        foreach ($questions as $_item) {
-            $_item->exam=Exam::where('id',$_item->exam_id)->first();
-            $_item->level= Level::where('id',$_item->level_id)->first();
-        }
+        $questions = Question::with(['exam','level'])
+            ->where('type','listening and image')
+            ->whereHas('exam', function ($q) {
+                $q->where('section','!=','telc');
+            })
+            ->orderBy('order')
+            ->get();
         return view('admin.questions.all',compact('questions','levels','exams'));
     }
+    public function goetheRead()
+    {
+       $exams=Exam::all();
+        $levels=Level::all();
+        $questions = Question::with(['exam','level'])
+            ->where('type','reading')
+            ->whereHas('exam', function ($q) {
+                $q->where('section','!=','telc');
+            })
+            ->orderBy('order')
+            ->get();
+        return view('admin.questions.all',compact('questions','levels','exams'));
+    }
+    public function goetheImage()
+    {
+        $exams=Exam::all();
+        $levels=Level::all();
+        $questions = Question::with(['exam','level'])
+            ->where('type','image')
+            ->whereHas('exam', function ($q) {
+                $q->where('section','!=','telc');
+            })
+            ->orderBy('order')
+            ->get();
+        return view('admin.questions.all',compact('questions','levels','exams'));
+    }
+    public function goetheSub()
+    {
+        $exams=Exam::all();
+        $levels=Level::all();
+        $questions = Question::with(['exam','level'])
+            ->where('type','sub')
+            ->whereHas('exam', function ($q) {
+                $q->where('section','!=','telc');
+            })
+            ->orderBy('order')
+            ->get();
+        return view('admin.questions.all',compact('questions','levels','exams'));
+    }
+    public function goetheWriting()
+    {
+        $exams=Exam::all();
+        $levels=Level::all();
+        $questions = Question::with(['exam','level'])
+            ->where('type','writing')
+            ->whereHas('exam', function ($q) {
+                $q->where('section','!=','telc');
+            })
+            ->orderBy('order')
+            ->get();
+        return view('admin.questions.all',compact('questions','levels','exams'));
+    }
+    public function goetheWritingImage()
+    {
+        $exams=Exam::all();
+        $levels=Level::all();
+        $questions = Question::with(['exam','level'])
+            ->where('type','writing and image')
+            ->whereHas('exam', function ($q) {
+                $q->where('section','!=','telc');
+            })
+            ->orderBy('order')
+            ->get();
+        return view('admin.questions.all',compact('questions','levels','exams'));
+    }
+    public function goetheWritingQuestion()
+    {
+        $exams=Exam::all();
+        $levels=Level::all();
+        $questions = Question::with(['exam','level'])
+            ->where('type','writing and question')
+            ->whereHas('exam', function ($q) {
+                $q->where('section','!=','telc');
+            })
+            ->orderBy('order')
+            ->get();
+        return view('admin.questions.all',compact('questions','levels','exams'));
+    }
+    /**
+     * start telc questions
+    */
+    public function telcListening()
+    {
+        $exams=Exam::all();
+        $levels=Level::all();
+        $questions = Question::with(['exam','level'])
+            ->where('type','listening')
+            ->whereHas('exam', function ($q) {
+                $q->where('section','telc');
+            })
+            ->orderBy('order')
+            ->get();
+        return view('admin.questions.all',compact('questions','levels','exams'));
+    }
+    public function telcListeningImage()
+    {
+        $exams=Exam::all();
+        $levels=Level::all();
+        $questions = Question::with(['exam','level'])
+            ->where('type','listening and image')
+            ->whereHas('exam', function ($q) {
+                $q->where('section','telc');
+            })
+            ->orderBy('order')
+            ->get();
+        return view('admin.questions.all',compact('questions','levels','exams'));
+    }
+    public function telcRead()
+    {
+       $exams=Exam::all();
+        $levels=Level::all();
+        $questions = Question::with(['exam','level'])
+            ->where('type','reading')
+            ->whereHas('exam', function ($q) {
+                $q->where('section','telc');
+            })
+            ->orderBy('order')
+            ->get();
+        return view('admin.questions.all',compact('questions','levels','exams'));
+    }
+    public function telcImage()
+    {
+        $exams=Exam::all();
+        $levels=Level::all();
+        $questions = Question::with(['exam','level'])
+            ->where('type','image')
+            ->whereHas('exam', function ($q) {
+                $q->where('section','telc');
+            })
+            ->orderBy('order')
+            ->get();
+        return view('admin.questions.all',compact('questions','levels','exams'));
+    }
+    public function telcSub()
+    {
+        $exams=Exam::all();
+        $levels=Level::all();
+        $questions = Question::with(['exam','level'])
+            ->where('type','sub')
+            ->whereHas('exam', function ($q) {
+                $q->where('section','telc');
+            })
+            ->orderBy('order')
+            ->get();
+        return view('admin.questions.all',compact('questions','levels','exams'));
+    }
+    public function telcWriting()
+    {
+        $exams=Exam::all();
+        $levels=Level::all();
+        $questions = Question::with(['exam','level'])
+            ->where('type','writing')
+            ->whereHas('exam', function ($q) {
+                $q->where('section','telc');
+            })
+            ->orderBy('order')
+            ->get();
+        return view('admin.questions.all',compact('questions','levels','exams'));
+    }
+    public function telcWritingImage()
+    {
+        $exams=Exam::all();
+        $levels=Level::all();
+        $questions = Question::with(['exam','level'])
+            ->where('type','writing and image')
+            ->whereHas('exam', function ($q) {
+                $q->where('section','telc');
+            })
+            ->orderBy('order')
+            ->get();
+        return view('admin.questions.all',compact('questions','levels','exams'));
+    }
+    public function telcWritingQuestion()
+    {
+        $exams=Exam::all();
+        $levels=Level::all();
+        $questions = Question::with(['exam','level'])
+            ->where('type','writing and question')
+            ->whereHas('exam', function ($q) {
+                $q->where('section','telc');
+            })
+            ->orderBy('order')
+            ->get();
+        return view('admin.questions.all',compact('questions','levels','exams'));
+    }
+
+
 
     public function create()
     {

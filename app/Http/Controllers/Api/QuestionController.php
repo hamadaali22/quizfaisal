@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Traits\GeneralTrait;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Http;
 use Auth;
 use Validator;
 use Hash;
@@ -1152,8 +1153,8 @@ class QuestionController extends Controller
         // $data=Question::where("exam_id" , $request->exam_id)->paginate(1);
         $data = Question::where('exam_id', $request->exam_id)
                 ->whereNotIn('type', [
-                    // 'writing',
-                    // 'writing and image',
+                    'writing',
+                    'writing and image',
                     'writing and question'
                 ])
                 ->paginate(1);
@@ -1212,14 +1213,14 @@ class QuestionController extends Controller
         }
         return $this->returnDataa('data', $data,'');
     }
-    
-    public function evaluate(Request $request)
+
+public function evaluate(Request $request)
     {
-        $request->validate([
-            'question' => 'required|string',
-            'student_text' => 'required|string',
-            'question_id' => 'required|integer',
-        ]);
+        // $request->validate([
+        //     'question' => 'required|string',
+        //     'student_text' => 'required|string',
+        //     'question_id' => 'required|integer',
+        // ]);
 
         $question = $request->question;
         $studentAnswer = trim($request->student_text);
@@ -1338,6 +1339,7 @@ class QuestionController extends Controller
             'data' => $data
         ]);
     }
+    
     public function SaveExam(Request $request)
     {
         /*
@@ -1483,6 +1485,7 @@ class QuestionController extends Controller
             'message' => 'Exam answers saved successfully'
         ]);
     }
+    
     // public function SaveExam(Request $request)
     // {
         

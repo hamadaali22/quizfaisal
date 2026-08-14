@@ -76,10 +76,10 @@
 
                         {{ $instructions->links() }}
 
-                        @endsection
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</section>
+</section>@endsection

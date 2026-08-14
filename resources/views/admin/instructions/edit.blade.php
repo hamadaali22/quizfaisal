@@ -9,7 +9,7 @@
     @csrf
     @method('PUT')
 
-    @include('instructions.form')
+    @include('admin.instructions.form')
 
 </form>
 

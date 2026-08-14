@@ -13,7 +13,7 @@ class InstructionController extends Controller
     {
         $instructions = Instruction::with('level')->latest()->paginate(20);
 
-        return view('instructions.index', compact('instructions'));
+        return view('admin.instructions.index', compact('instructions'));
     }
 
 
@@ -21,7 +21,7 @@ class InstructionController extends Controller
     {
         $levels = Level::all();
 
-        return view('instructions.create', compact('levels'));
+        return view('admin.instructions.create', compact('levels'));
     }
 
 
@@ -48,7 +48,7 @@ class InstructionController extends Controller
     {
         $instruction = Instruction::findOrFail($id);
 
-        return view('instructions.show', compact('instruction'));
+        return view('admin.instructions.show', compact('instruction'));
     }
 
 
@@ -58,7 +58,7 @@ class InstructionController extends Controller
 
         $levels = Level::all();
 
-        return view('instructions.edit', compact('instruction', 'levels'));
+        return view('admin.instructions.edit', compact('instruction', 'levels'));
     }
 
 

@@ -8,7 +8,7 @@
 
     @csrf
 
-    @include('instructions.form')
+    @include('admin.instructions.form')
 
 </form>
 

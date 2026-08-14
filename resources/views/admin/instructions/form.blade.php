@@ -6,7 +6,8 @@
 
         @foreach($levels as $level)
 
-        <option value="{{ $level->id }}" {{ old('level_id',$instruction->level_id ?? '')==$level->id?'selected':'' }}>
+        <option value="{{ $level->id }}"
+            class="{{ old('level_id',$instruction->level_id ?? '')==$level->id?'selected':'' }}">
             {{ $level->name }}
         </option>
 

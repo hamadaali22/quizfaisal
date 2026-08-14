@@ -28,10 +28,11 @@ class QuestionController extends Controller
         $questions = Question::with(['exam','level'])
             ->where('type','listening')
             ->whereHas('exam', function ($q) {
-                $q->where('section','!=','telc');
+                $q->whereNull('section');
             })
             ->orderBy('order')
             ->get();
+            
         return view('admin.questions.all',compact('questions','levels','exams'));
         
         // $allquestions=Question::where('type','listening')->orderBy('order','ASC')->get();
@@ -58,7 +59,7 @@ class QuestionController extends Controller
         $questions = Question::with(['exam','level'])
             ->where('type','listening and image')
             ->whereHas('exam', function ($q) {
-                $q->where('section','!=','telc');
+                $q->whereNull('section');
             })
             ->orderBy('order')
             ->get();
@@ -71,7 +72,7 @@ class QuestionController extends Controller
         $questions = Question::with(['exam','level'])
             ->where('type','reading')
             ->whereHas('exam', function ($q) {
-                $q->where('section','!=','telc');
+                $q->whereNull('section');
             })
             ->orderBy('order')
             ->get();
@@ -84,7 +85,7 @@ class QuestionController extends Controller
         $questions = Question::with(['exam','level'])
             ->where('type','image')
             ->whereHas('exam', function ($q) {
-                $q->where('section','!=','telc');
+                $q->whereNull('section');
             })
             ->orderBy('order')
             ->get();
@@ -97,7 +98,7 @@ class QuestionController extends Controller
         $questions = Question::with(['exam','level'])
             ->where('type','sub')
             ->whereHas('exam', function ($q) {
-                $q->where('section','!=','telc');
+                $q->whereNull('section');
             })
             ->orderBy('order')
             ->get();
@@ -110,7 +111,7 @@ class QuestionController extends Controller
         $questions = Question::with(['exam','level'])
             ->where('type','writing')
             ->whereHas('exam', function ($q) {
-                $q->where('section','!=','telc');
+                $q->whereNull('section');
             })
             ->orderBy('order')
             ->get();
@@ -123,7 +124,7 @@ class QuestionController extends Controller
         $questions = Question::with(['exam','level'])
             ->where('type','writing and image')
             ->whereHas('exam', function ($q) {
-                $q->where('section','!=','telc');
+                $q->whereNull('section');
             })
             ->orderBy('order')
             ->get();
@@ -136,7 +137,7 @@ class QuestionController extends Controller
         $questions = Question::with(['exam','level'])
             ->where('type','writing and question')
             ->whereHas('exam', function ($q) {
-                $q->where('section','!=','telc');
+                $q->whereNull('section');
             })
             ->orderBy('order')
             ->get();

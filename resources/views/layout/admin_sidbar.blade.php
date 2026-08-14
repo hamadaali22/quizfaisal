@@ -65,7 +65,7 @@
         <!-- start g -->
         <li class=" nav-item ">
             <a href="{{url('admin/goethe')}}"><i class="la la-home"></i>
-                <span class="menu-title" data-i18n="nav.dash.main">questions</span>
+                <span class="menu-title" data-i18n="nav.dash.main">goethe</span>
             </a>
             <ul class="menu-content">
 

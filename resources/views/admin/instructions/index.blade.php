@@ -27,7 +27,7 @@
                 <div class="card-content collapse show">
                     <div class="card-body card-dashboard">
 
-                        <table class="table table-bordered">
+                        <table class="table table-striped table-bordered keytable-integration">
 
                             <tr>
                                 <th>ID</th>

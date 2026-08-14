@@ -19,32 +19,7 @@
             <a href="{{url('admin/telc-exams')}}"><i class="la la-envelope"></i><span class="menu-title"
                     data-i18n="">telc exams</span></a>
         </li>
-        <li class=" nav-item ">
-            <a href="{{url('admin/exercises')}}"><i class="la la-home"></i>
-                <span class="menu-title" data-i18n="nav.dash.main">exercises</span>
-                <!-- <span class="badge badge badge-info badge-pill float-right mr-2">3</span> -->
-            </a>
-            <ul class="menu-content">
-                <li class="{{ Request::is('admin/exercises') ? 'active' : '' }}"><a class="menu-item"
-                        href="{{url('admin/exercises')}}" data-i18n="nav.dash.ecommerce">exercises
-                        listening</a>
-                </li>
-                <li class="{{ Request::is('admin/exercises-listening-image') ? 'active' : '' }}"><a class="menu-item"
-                        href="{{url('admin/exercises-listening-image')}}" data-i18n="nav.dash.crypto">exercises
-                        listening image</a>
-                </li>
-                <li class="{{ Request::is('admin/exercises-read') ? 'active' : '' }}"><a class="menu-item"
-                        href="{{url('admin/exercises-read')}}" data-i18n="nav.dash.crypto">exercises Read</a>
-                </li>
 
-                <li class="{{ Request::is('admin/exercises-image') ? 'active' : '' }}"><a class="menu-item"
-                        href="{{url('admin/exercises-image')}}" data-i18n="nav.dash.crypto">exercises Image</a>
-                </li>
-                <li class="{{ Request::is('admin/exercises-sub') ? 'active' : '' }}"><a class="menu-item"
-                        href="{{url('admin/exercises-sub')}}" data-i18n="nav.dash.crypto">exercises Sub</a>
-                </li>
-            </ul>
-        </li>
         <!-- <li class="nav-item ">
             <a href="{{url('admin/exercises')}}"><i class="la la-envelope"></i><span class="menu-title"
                     data-i18n="">exercises listening</span></a>
@@ -62,7 +37,7 @@
             <a href="{{url('admin/allexam')}}"><i class="la la-envelope"></i><span class="menu-title"
                     data-i18n="">Latest Exam</span></a>
         </li>
-        <!-- start g -->
+        <!-- start goethe -->
         <li class=" nav-item ">
             <a href="{{url('admin/goethe')}}"><i class="la la-home"></i>
                 <span class="menu-title" data-i18n="nav.dash.main">goethe</span>
@@ -95,8 +70,6 @@
                 </li>
             </ul>
         </li>
-
-
 
         <!-- start telc -->
         <li class=" nav-item ">
@@ -132,6 +105,33 @@
             </ul>
         </li>
 
+        <!-- exercises -->
+        <li class=" nav-item ">
+            <a href="{{url('admin/exercises')}}"><i class="la la-home"></i>
+                <span class="menu-title" data-i18n="nav.dash.main">exercises</span>
+                <!-- <span class="badge badge badge-info badge-pill float-right mr-2">3</span> -->
+            </a>
+            <ul class="menu-content">
+                <li class="{{ Request::is('admin/exercises') ? 'active' : '' }}"><a class="menu-item"
+                        href="{{url('admin/exercises')}}" data-i18n="nav.dash.ecommerce">exercises
+                        listening</a>
+                </li>
+                <li class="{{ Request::is('admin/exercises-listening-image') ? 'active' : '' }}"><a class="menu-item"
+                        href="{{url('admin/exercises-listening-image')}}" data-i18n="nav.dash.crypto">exercises
+                        listening image</a>
+                </li>
+                <li class="{{ Request::is('admin/exercises-read') ? 'active' : '' }}"><a class="menu-item"
+                        href="{{url('admin/exercises-read')}}" data-i18n="nav.dash.crypto">exercises Read</a>
+                </li>
+
+                <li class="{{ Request::is('admin/exercises-image') ? 'active' : '' }}"><a class="menu-item"
+                        href="{{url('admin/exercises-image')}}" data-i18n="nav.dash.crypto">exercises Image</a>
+                </li>
+                <li class="{{ Request::is('admin/exercises-sub') ? 'active' : '' }}"><a class="menu-item"
+                        href="{{url('admin/exercises-sub')}}" data-i18n="nav.dash.crypto">exercises Sub</a>
+                </li>
+            </ul>
+        </li>
 
 
 

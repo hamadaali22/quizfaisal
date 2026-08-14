@@ -127,7 +127,7 @@ Route::get('admin-login', 'Auth\LoginController@LoginAdmin')->name('admin-login'
 			Route::get('quize-exams','ExamController@quizeExams');
 		    Route::resource('questions','QuestionController');
 
-			Route::get('goethe-listening-image','ExerciseController@goetheListeningImage');
+			Route::get('goethe-listening-image','QuestionController@goetheListeningImage');
 			Route::get('goethe-read','QuestionController@goetheRead');
 			Route::get('goethe-image','QuestionController@goetheImage');
 			Route::get('goethe-sub','QuestionController@goetheSub');
@@ -137,7 +137,7 @@ Route::get('admin-login', 'Auth\LoginController@LoginAdmin')->name('admin-login'
 			
 
 			Route::get('telc-listening','QuestionController@telcListening');
-			Route::get('telc-listening-image','ExerciseController@telcListeningImage');
+			Route::get('telc-listening-image','QuestionController@telcListeningImage');
 			Route::get('telc-read','QuestionController@telcRead');
 			Route::get('telc-image','QuestionController@telcImage');
 			Route::get('telc-sub','QuestionController@telcSub');

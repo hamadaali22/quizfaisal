@@ -6,52 +6,80 @@
     Add Instruction
 </a>
 
-<table class="table table-bordered">
 
-    <tr>
-        <th>ID</th>
-        <th>Level</th>
-        <th>German</th>
-        <th>Action</th>
-    </tr>
 
-    @foreach($instructions as $item)
+<section id="keytable">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <!-- <div class="card-header">
+                    <h4 class="card-title"></h4>
+                    <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
+                    <div class="heading-elements">
+                        <ul class="list-inline mb-0">
+                            <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
+                            <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
+                            <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
+                            <li><a data-action="close"><i class="ft-x"></i></a></li>
+                        </ul>
+                    </div>
+                </div> -->
+                <div class="card-content collapse show">
+                    <div class="card-body card-dashboard">
 
-    <tr>
+                        <table class="table table-bordered">
 
-        <td>{{ $item->id }}</td>
+                            <tr>
+                                <th>ID</th>
+                                <th>Level</th>
+                                <th>German</th>
+                                <th>Action</th>
+                            </tr>
 
-        <td>{{ optional($item->level)->name }}</td>
+                            @foreach($instructions as $item)
 
-        <td>{{ Str::limit($item->desc_de,60) }}</td>
+                            <tr>
 
-        <td>
+                                <td>{{ $item->id }}</td>
 
-            <a href="{{ route('instructions.edit',$item->id) }}" class="btn btn-warning">
-                Edit
-            </a>
+                                <td>{{ optional($item->level)->name }}</td>
 
-            <form action="{{ route('instructions.destroy',$item->id) }}" method="POST" style="display:inline;">
+                                <td>{{ Str::limit($item->desc_de,60) }}</td>
 
-                @csrf
-                @method('DELETE')
+                                <td>
 
-                <button class="btn btn-danger" onclick="return confirm('Delete?')">
+                                    <a href="{{ route('instructions.edit',$item->id) }}" class="btn btn-warning">
+                                        Edit
+                                    </a>
 
-                    Delete
+                                    <form action="{{ route('instructions.destroy',$item->id) }}" method="POST"
+                                        style="display:inline;">
 
-                </button>
+                                        @csrf
+                                        @method('DELETE')
 
-            </form>
+                                        <button class="btn btn-danger" onclick="return confirm('Delete?')">
 
-        </td>
+                                            Delete
 
-    </tr>
+                                        </button>
 
-    @endforeach
+                                    </form>
 
-</table>
+                                </td>
 
-{{ $instructions->links() }}
+                            </tr>
 
-@endsection
+                            @endforeach
+
+                        </table>
+
+                        {{ $instructions->links() }}
+
+                        @endsection
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

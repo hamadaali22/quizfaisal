@@ -28,48 +28,48 @@
                     <div class="card-body card-dashboard">
 
                         <table class="table table-striped table-bordered keytable-integration">
-
-                            <tr>
-                                <th>ID</th>
-                                <th>Level</th>
-                                <th>German</th>
-                                <th>Action</th>
-                            </tr>
-
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Level</th>
+                                    <th>German</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
                             @foreach($instructions as $item)
+                            <tbody>
+                                <tr>
 
-                            <tr>
+                                    <td>{{ $item->id }}</td>
 
-                                <td>{{ $item->id }}</td>
+                                    <td>{{ optional($item->level)->name }}</td>
 
-                                <td>{{ optional($item->level)->name }}</td>
+                                    <td>{{ Str::limit($item->desc_de,60) }}</td>
 
-                                <td>{{ Str::limit($item->desc_de,60) }}</td>
+                                    <td>
 
-                                <td>
+                                        <a href="{{ route('instructions.edit',$item->id) }}" class="btn btn-warning">
+                                            Edit
+                                        </a>
 
-                                    <a href="{{ route('instructions.edit',$item->id) }}" class="btn btn-warning">
-                                        Edit
-                                    </a>
+                                        <form action="{{ route('instructions.destroy',$item->id) }}" method="POST"
+                                            style="display:inline;">
 
-                                    <form action="{{ route('instructions.destroy',$item->id) }}" method="POST"
-                                        style="display:inline;">
+                                            @csrf
+                                            @method('DELETE')
 
-                                        @csrf
-                                        @method('DELETE')
+                                            <button class="btn btn-danger" onclick="return confirm('Delete?')">
 
-                                        <button class="btn btn-danger" onclick="return confirm('Delete?')">
+                                                Delete
 
-                                            Delete
+                                            </button>
 
-                                        </button>
+                                        </form>
 
-                                    </form>
+                                    </td>
 
-                                </td>
-
-                            </tr>
-
+                                </tr>
+                            </tbody>
                             @endforeach
 
                         </table>

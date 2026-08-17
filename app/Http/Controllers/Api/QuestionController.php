@@ -1213,8 +1213,74 @@ class QuestionController extends Controller
         }
         return $this->returnDataa('data', $data,'');
     }
+    public function questions(Request $request)
+    {
+        // ->orderBy('order','ASC')
+        // $data=Question::where("exam_id" , $request->exam_id)->paginate(1);
+        $data = Question::where('exam_id', $request->exam_id)
+                ->whereNotIn('type', [
+                    'writing',
+                    'writing and image',
+                    'writing and question'
+                ])
+                ->paginate(1);
+        foreach ($data as $item) {
+            if($item->type=='listening'){
+                // $item->file = URL::temporarySignedRoute(
+                //     'exam-audio.stream',
+                //     now()->addMinutes(1),
+                //     ['exercise' => $item->id]
+                // );
+                $item->file="https://backend.deutschtests.com/img/questions-file/".$item->file;
+            }elseif($item->type=='image'){
+                $item->image="https://backend.deutschtests.com/img/questions-image/".$item->image;
+            }elseif($item->type=='listening and image'){
+                // $item->file = URL::temporarySignedRoute(
+                //     'exam-audio.stream',
+                //     now()->addMinutes(1),
+                //     ['exercise' => $item->id]
+                // );
+                $item->file="https://backend.deutschtests.com/img/questions-file/".$item->file;
+                $item->image="https://backend.deutschtests.com/img/questions-image/".$item->image;
+            }elseif($item->type=='writing and image'){
+               
+                $item->image="https://backend.deutschtests.com/img/questions-image/".$item->image;
+            }elseif($item->type=='writing and question'){
+                
+                $item->image="https://backend.deutschtests.com/img/questions-image/".$item->image;
+            }else{
 
-public function evaluate(Request $request)
+            }
+
+            // $item->level= Level::where('id',$item->level_id)->first();
+            $item->exam=Exam::where('id',$item->exam_id)->first();
+            // ->orderBy('order','ASC')
+            $subquestion=SubQuestion::where('question_id',$item->id)->get();
+            foreach ($subquestion as $sub) {
+                if($sub->bannar){
+                    $sub->bannarImage="https://backend.deutschtests.com/img/banner/".$sub->bannar;
+                }else{
+                     $sub->bannarImage=null;
+                }
+                if($sub->image_a){
+                    $sub->image_a="https://backend.deutschtests.com/img/answer-image/".$sub->image_a;
+                }
+                if($sub->image_b){
+                    $sub->image_b="https://backend.deutschtests.com/img/answer-image/".$sub->image_b;
+                }
+
+                $answer=Answer::where('subquestion_id',$sub->id)->first();
+                if($answer){
+                  $sub->answer=$answer;
+                }
+
+            }
+            $item->subquestion=$subquestion;
+        }
+        return $this->returnDataa('data', $data,'');
+    }
+
+    public function evaluate(Request $request)
     {
         // $request->validate([
         //     'question' => 'required|string',

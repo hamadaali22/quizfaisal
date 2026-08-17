@@ -55,6 +55,7 @@ Route::group(['middleware' => ['api'], 'namespace' => 'Api'], function () {
 
 
     Route::get('questions', 'QuestionController@question');
+    Route::get('questionss', 'QuestionController@questions');
 
     Route::get('goethes', 'QuestionController@goethes');
     Route::get('telcs', 'QuestionController@telcs');

@@ -1219,8 +1219,8 @@ class QuestionController extends Controller
         // $data=Question::where("exam_id" , $request->exam_id)->paginate(1);
         $data = Question::where('exam_id', $request->exam_id)
                 ->whereNotIn('type', [
-                    'writing',
-                    'writing and image',
+                    // 'writing',
+                    // 'writing and image',
                     'writing and question'
                 ])
                 ->paginate(1);

@@ -219,7 +219,7 @@ Route::get('admin-login', 'Auth\LoginController@LoginAdmin')->name('admin-login'
         Route::post('update/terms','ProfileController@updateTerms');
 
 		Route::resource('instructions','InstructionController');
-		
+		Route::resource('faqs', 'FaqController');
 
         Route::get('return_policy', 'ProfileController@return_policy');
         Route::post('update/return_policy','ProfileController@updateReturn_policy');

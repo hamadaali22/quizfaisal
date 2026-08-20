@@ -10,6 +10,7 @@ class FaqController extends Controller
     public function index()
     {
         $faqs = Faq::with('level')->latest()->paginate(15);
+        dd($faqs);
         return view('admin.faqs.index', compact('faqs'));
     }
 

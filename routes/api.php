@@ -68,6 +68,7 @@ Route::group(['middleware' => ['api'], 'namespace' => 'Api'], function () {
     Route::get('check-user-auth', 'HomeController@checkUserAuth');
     Route::get('goethe-user-exams', 'QuestionController@goetheUserExams');
     Route::get('goethe-report-exams', 'QuestionController@goetheReportExams');
+    Route::get('goethe-report-examss', 'QuestionController@goetheReportExamss');
 
     Route::get('telc-user-exams', 'QuestionController@telcUserExams');
 

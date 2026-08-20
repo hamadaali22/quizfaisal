@@ -886,6 +886,77 @@ class QuestionController extends Controller
         }
         return $this->returnDataa('data', $data,'');
     }
+    public function goetheReportExamss(Request $request)
+    {
+        $data = Question::with([
+            'exam',
+            'examAnswer' => function ($query) use ($request) {
+                $query->where('user_id', $request->user_id);
+            },
+            'subquestions.answer',
+            'subquestions.expectedAnswer',
+            'subquestions.examAnswer' => function ($query) use ($request) {
+                $query->where('user_id', $request->user_id);
+            }
+        ])
+        ->where('exam_id', $request->exam_id)
+        ->paginate(1);
+
+        foreach ($data as $question) {
+
+            // ملفات السؤال
+            switch ($question->type) {
+
+                case 'listening':
+                    if ($question->file) {
+                        $question->file = url('img/questions-file/' . $question->file);
+                    }
+                    break;
+
+                case 'image':
+                    if ($question->image) {
+                        $question->image = url('img/questions-image/' . $question->image);
+                    }
+                    break;
+
+                case 'listening and image':
+                    if ($question->file) {
+                        $question->file = url('img/questions-file/' . $question->file);
+                    }
+
+                    if ($question->image) {
+                        $question->image = url('img/questions-image/' . $question->image);
+                    }
+                    break;
+            }
+
+            // صور الأسئلة الفرعية
+            foreach ($question->subquestions as $sub) {
+
+                $sub->bannarImage = $sub->bannar
+                    ? url('img/banner/' . $sub->bannar)
+                    : null;
+
+                if ($sub->image_a) {
+                    $sub->image_a = url('img/answer-image/' . $sub->image_a);
+                }
+
+                if ($sub->image_b) {
+                    $sub->image_b = url('img/answer-image/' . $sub->image_b);
+                }
+            }
+
+            // لو السؤال Writing مفيهوش SubQuestions
+            if (in_array($question->type, ['writing', 'writing and image'])) {
+                $question->subquestions = [];
+            } else {
+                // الأسئلة العادية ملهاش ExamAnswer مباشر
+                $question->examAnswer = null;
+            }
+        }
+
+        return $this->returnDataa('data', $data, '');
+    }
     public function goetheReportExams(Request $request)
     {
         // ->orderBy('order','ASC')

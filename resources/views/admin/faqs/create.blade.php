@@ -6,7 +6,7 @@
 
     <form action="{{ route('faqs.store') }}" method="POST">
         @csrf
-        @include('faqs._form', ['faq' => null, 'levels' => $levels])
+        @include('admin.faqs._form', ['faq' => null, 'levels' => $levels])
         <button class="btn btn-primary mt-3">حفظ</button>
     </form>
 </div>

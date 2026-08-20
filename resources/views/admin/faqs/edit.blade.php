@@ -6,7 +6,7 @@
 
     <form action="{{ route('faqs.update', $faq) }}" method="POST">
         @csrf @method('PUT')
-        @include('faqs._form', ['faq' => $faq, 'levels' => $levels])
+        @include('admin.faqs._form', ['faq' => $faq, 'levels' => $levels])
         <button class="btn btn-primary mt-3">تحديث</button>
     </form>
 </div>

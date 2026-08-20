@@ -138,6 +138,10 @@
             <a href="{{url('admin/instructions')}}"><i class="la la-envelope"></i><span class="menu-title"
                     data-i18n="">instructions</span></a>
         </li>
+        <li class="nav-item {{ Request::is('admin/faqs') ? 'active' : '' }}">
+            <a href="{{url('admin/faqs')}}"><i class="la la-envelope"></i><span class="menu-title"
+                    data-i18n="">faqs</span></a>
+        </li>
         <li class="nav-item {{ Request::is('admin/users') ? 'active' : '' }}">
             <a href="{{url('admin/users')}}"><i class="la la-envelope"></i><span class="menu-title"
                     data-i18n="">users</span></a>

@@ -10,13 +10,13 @@ class FaqController extends Controller
     public function index()
     {
         $faqs = Faq::with('level')->latest()->paginate(15);
-        return view('faqs.index', compact('faqs'));
+        return view('admin.faqs.index', compact('faqs'));
     }
 
     public function create()
     {
         $levels = Level::all();
-        return view('faqs.create', compact('levels'));
+        return view('admin.faqs.create', compact('levels'));
     }
 
     public function store(Request $request)
@@ -30,7 +30,7 @@ class FaqController extends Controller
     public function edit(Faq $faq)
     {
         $levels = Level::all();
-        return view('faqs.edit', compact('faq', 'levels'));
+        return view('admin.faqs.edit', compact('faq', 'levels'));
     }
 
     public function update(Request $request, Faq $faq)
@@ -38,7 +38,7 @@ class FaqController extends Controller
         $validated = $this->validateFaq($request);
         $faq->update($validated);
 
-        return redirect()->route('faqs.index')->with('success', 'تم تعديل السؤال بنجاح');
+        return redirect()->route('admin.faqs.index')->with('success', 'تم تعديل السؤال بنجاح');
     }
 
     public function destroy(Faq $faq)

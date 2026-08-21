@@ -21,7 +21,11 @@
     <textarea name="desc_de" id="ckeditor" class="form-control ckeditor"
         rows="5">{{ old('desc_de',$instruction->desc_de ?? '') }}</textarea>
 </div>
-
+<div class="form-group">
+    <label>exercise fr</label>
+    <textarea name="exercise_fr" id="ckeditor" cols="30" rows="15"
+        class="form-control ckeditor">{{ old('desc_de',$instruction->desc_de ?? '') }}</textarea>
+</div>
 <div class="form-group">
     <label>Arabic</label>
     <textarea name="desc_ar" id="ckeditor" class="form-control ckeditor"

@@ -46,21 +46,47 @@ class QuestionController extends Controller
     //     return $this->returnDataa('data', $data,'');
     // }
     
+    
     public function instructions(Request $request)
     {
-        $instruction = Instruction::with('level:id,name')->get();
-        
+        $lang = $request->get('lang', 'en'); // default en
+
+        $instructions = Instruction::with('level:id,name')->get();
+
+        $data = $instructions->map(function ($item) use ($lang) {
+            return [
+                'id'         => $item->id,
+                'level_id'   => $item->level_id,
+                'level_name' => $item->level->name ?? null,
+                'desc'       => $item->{'desc_' . $lang} ?? $item->desc_en,
+            ];
+        });
+
         return response()->json([
             'status' => true,
-            'data' => $instruction
+            'data'   => $data
         ]);
     }
+    
     public function faqs(Request $request)
     {
-        $faq = Faq::with('level:id,name')->get();
+        $lang = $request->get('lang', 'en'); // default en
+
+        $faqs = Faq::with('level:id,name')->get();
+
+        $data = $faqs->map(function ($item) use ($lang) {
+            return [
+                'id'         => $item->id,
+                'level_id'   => $item->level_id,
+                'level_name' => $item->level->name ?? null,
+                'question'   => $item->{'question_' . $lang} ?? $item->question_en,
+                'answer'     => $item->{'answer_' . $lang} ?? $item->answer_en,
+            ];
+        });
+
         return response()->json([
             'status' => true,
-            'data' => $faq
+            'data'   => $data
         ]);
     }
     public function userExamExercises(Request $request)

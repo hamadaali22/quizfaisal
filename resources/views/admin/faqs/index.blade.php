@@ -43,7 +43,11 @@
                                 <tr>
                                     <td>{{ $faq->id }}</td>
                                     <td>{{ Str::limit($faq->question_ar, 50) }}</td>
-                                    <td>{{ $faq->level->name ? $faq->level->name :'' }}</td>
+                                    <td>
+                                        @if($faq->level)
+                                        {{ $faq->level->name ? $faq->level->name :'' }}
+                                        @endif
+                                    </td>
                                     <td>
                                         <span class="badge {{ $faq->status ? 'bg-success' : 'bg-secondary' }}">
                                             {{ $faq->status ? 'نشط' : 'غير نشط' }}

@@ -42,7 +42,11 @@
 
                                     <td>{{ $item->id }}</td>
 
-                                    <td>{{ optional($item->level)->name }}</td>
+                                    <td>
+                                        @if($faq->level)
+                                        {{ optional($item->level)->name }}
+                                        @endif
+                                    </td>
 
                                     <td>{{ Str::limit($item->desc_de,60) }}</td>
 

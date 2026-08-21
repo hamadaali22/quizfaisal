@@ -39,7 +39,7 @@ class FaqController extends Controller
         $validated = $this->validateFaq($request);
         $faq->update($validated);
 
-        return redirect()->route('admin.faqs.index')->with('success', 'تم تعديل السؤال بنجاح');
+        return redirect()->route('faqs.index')->with('success', 'تم تعديل السؤال بنجاح');
     }
 
     public function destroy(Faq $faq)

@@ -2,8 +2,8 @@
 
 @section('content')
 
-<h2>الأسئلة الشائعة</h2>
-<a href="{{ route('faqs.create') }}" class="btn btn-primary mb-3">إضافة سؤال جديد</a>
+<h2> faqs question </h2>
+<a href="{{ route('faqs.create') }}" class="btn btn-primary mb-3">add new question</a>
 
 @if(session('success'))
 <div class="alert alert-success">{{ session('success') }}</div>
@@ -32,10 +32,10 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>السؤال (عربي)</th>
-                                    <th>المستوى</th>
-                                    <th>الحالة</th>
-                                    <th>الإجراءات</th>
+                                    <th>question</th>
+                                    <th>level</th>
+                                    <th>status</th>
+                                    <th>action</th>
                                 </tr>
                             </thead>
                             <tbody>

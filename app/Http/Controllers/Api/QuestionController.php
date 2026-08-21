@@ -48,7 +48,7 @@ class QuestionController extends Controller
     
     public function instructions(Request $request)
     {
-        $instruction = Instruction::with('level')->get();
+        $instruction = Instruction::with('level:id,name')->get();
         
         return response()->json([
             'status' => true,
@@ -57,7 +57,7 @@ class QuestionController extends Controller
     }
     public function faqs(Request $request)
     {
-        $faq = Faq::with('level')->get();
+        $faq = Faq::with('level:id,name')->get();
         return response()->json([
             'status' => true,
             'data' => $faq

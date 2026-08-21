@@ -42,7 +42,7 @@
                                 @foreach($faqs as $faq)
                                 <tr>
                                     <td>{{ $faq->id }}</td>
-                                    <td>{{ Str::limit($faq->question_ar, 50) }}</td>
+                                    <td>{{ Str::limit($faq->question_de, 50) }}</td>
                                     <td>
                                         @if($faq->level)
                                         {{ $faq->level->name ? $faq->level->name :'' }}

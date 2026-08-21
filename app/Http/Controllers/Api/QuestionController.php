@@ -29,6 +29,8 @@ use App\Traits\QuizeTrait;
 use App\Helpers\QuizeHelpers;
 use App\siteMetasTitle;
 use App\ExerciseExamAnswer;
+use App\Instruction;
+use App\Faq;
 use Illuminate\Support\Facades\URL;
 class QuestionController extends Controller
 {
@@ -44,6 +46,23 @@ class QuestionController extends Controller
     //     return $this->returnDataa('data', $data,'');
     // }
     
+    public function instructions(Request $request)
+    {
+        $instruction = Instruction::with('level')->get();
+        
+        return response()->json([
+            'status' => true,
+            'data' => $instruction
+        ]);
+    }
+    public function faqs(Request $request)
+    {
+        $faq = Faq::with('level')->get();
+        return response()->json([
+            'status' => true,
+            'data' => $faq
+        ]);
+    }
     public function userExamExercises(Request $request)
     {
         $user = Auth::guard('user-api')->user();

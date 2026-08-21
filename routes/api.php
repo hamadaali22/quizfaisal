@@ -76,6 +76,10 @@ Route::group(['middleware' => ['api'], 'namespace' => 'Api'], function () {
     Route::post('contact-us', 'HomeController@ContactUs');
     Route::get('exams', 'QuestionController@exams');
 
+    Route::get('instructions', 'QuestionController@instructions');
+    Route::get('faqs', 'QuestionController@faqs');
+
+
 //   Route::group(['middleware' => ['api','changeLanguage','checkDoctor:patient-api'], 'namespace' => 'Api'], function () {
 
     // Route::group(['middleware' => ['auth:patient-api','changeLanguage'], 'namespace' => 'Api'], function () {

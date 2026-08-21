@@ -10,6 +10,7 @@ class Faq extends Model
         'level_id',
         'question_de', 'question_ar', 'question_en', 'question_fr', 'question_es',
         'answer_de', 'answer_ar', 'answer_en', 'answer_fr', 'answer_es',
+        'slug_de', 'slug_ar', 'slug_en', 'slug_fr', 'slug_es',
         'status',
     ];
 

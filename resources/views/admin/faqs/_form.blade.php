@@ -1,5 +1,5 @@
 @php
-$languages = ['ar' => 'عربي', 'en' => 'إنجليزي', 'de' => 'ألماني', 'fr' => 'فرنسي', 'es' => 'إسباني'];
+$languages = ['ar' => 'ar', 'en' => 'en', 'de' => 'de', 'fr' => 'fr', 'es' => 'es'];
 @endphp
 
 <div class="mb-3">
@@ -18,16 +18,22 @@ $languages = ['ar' => 'عربي', 'en' => 'إنجليزي', 'de' => 'ألمان�
 <div class="border p-3 mb-3">
     <h5>{{ $label }}</h5>
     <div class="mb-2">
-        <label>السؤال</label>
+        <label>question</label>
         <textarea name="question_{{ $code }}" class="form-control"
             required>{{ old("question_{$code}", $faq->{"question_{$code}"} ?? '') }}</textarea>
         @error("question_{$code}") <small class="text-danger">{{ $message }}</small> @enderror
     </div>
     <div class="mb-2">
-        <label>الإجابة</label>
+        <label>answer</label>
         <textarea name="answer_{{ $code }}" class="form-control"
             required>{{ old("answer_{$code}", $faq->{"answer_{$code}"} ?? '') }}</textarea>
         @error("answer_{$code}") <small class="text-danger">{{ $message }}</small> @enderror
+    </div>
+    <div class="mb-2">
+        <label>slug</label>
+        <textarea name="slug_{{ $code }}" class="form-control"
+            required>{{ old("slug_{$code}", $faq->{"slug_{$code}"} ?? '') }}</textarea>
+        @error("slug_{$code}") <small class="text-danger">{{ $message }}</small> @enderror
     </div>
 </div>
 @endforeach

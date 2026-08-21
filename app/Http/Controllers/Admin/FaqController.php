@@ -62,6 +62,13 @@ class FaqController extends Controller
             'answer_en'   => 'required|string',
             'answer_fr'   => 'required|string',
             'answer_es'   => 'required|string',
+
+            'slug_de'   => 'required|string',
+            'slug_ar'   => 'required|string',
+            'slug_en'   => 'required|string',
+            'slug_fr'   => 'required|string',
+            'slug_es'   => 'required|string',
+
             'status'      => 'required|boolean',
         ]);
     }

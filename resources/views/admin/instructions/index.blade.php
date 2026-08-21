@@ -43,7 +43,7 @@
                                     <td>{{ $item->id }}</td>
 
                                     <td>
-                                        @if($faq->level)
+                                        @if($item->level)
                                         {{ optional($item->level)->name }}
                                         @endif
                                     </td>

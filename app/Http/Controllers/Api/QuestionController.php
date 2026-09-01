@@ -828,7 +828,7 @@ class QuestionController extends Controller
         // $level->telc4="https://deutschtests.com/img/telc/".$level->telc4;
         // $level->telc5="https://deutschtests.com/img/telc/".$level->telc5;
         $exercise=Exercise::where("level_id" , $level->id)
-                ->where("type" ,"listening and image")
+                ->where("type" ,"listening")
                 ->orWhere("type" ,"listening and image")->orderBy('order','ASC')->get();
         $home  =[
             'exercise'=> $exercise,

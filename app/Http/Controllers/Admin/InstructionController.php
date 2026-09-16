@@ -29,6 +29,19 @@ class InstructionController extends Controller
     {
         $request->validate([
             'level_id' => 'nullable|exists:levels,id',
+
+            'title_de'   => 'required|string',
+            'title_ar'   => 'required|string',
+            'title_en'   => 'required|string',
+            'title_fr'   => 'required|string',
+            'title_es'   => 'required|string',
+
+            'slug_de'   => 'required|string',
+            'slug_ar'   => 'required|string',
+            'slug_en'   => 'required|string',
+            'slug_fr'   => 'required|string',
+            'slug_es'   => 'required|string',
+            
             'desc_de' => 'required',
             'desc_ar' => 'required',
             'desc_en' => 'required',
@@ -67,6 +80,19 @@ class InstructionController extends Controller
 
         $request->validate([
             'level_id' => 'nullable|exists:levels,id',
+
+            'title_de' => 'required',
+            'title_ar' => 'required',
+            'title_en' => 'required',
+            'title_fr' => 'required',
+            'title_es' => 'required',
+
+            'slug_de' => 'required',
+            'slug_ar' => 'required',
+            'slug_en' => 'required',
+            'slug_fr' => 'required',
+            'slug_es' => 'required',
+
             'desc_de' => 'required',
             'desc_ar' => 'required',
             'desc_en' => 'required',

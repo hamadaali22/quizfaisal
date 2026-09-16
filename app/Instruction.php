@@ -10,6 +10,18 @@ class Instruction extends Model
 
     protected $fillable = [
         'level_id',
+        'title_de',
+        'title_ar',
+        'title_en',
+        'title_fr',
+        'title_es',
+
+        'slug_de',
+        'slug_ar',
+        'slug_en',
+        'slug_fr',
+        'slug_es',
+
         'desc_de',
         'desc_ar',
         'desc_en',

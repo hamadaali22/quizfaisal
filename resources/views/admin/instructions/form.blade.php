@@ -43,35 +43,35 @@
                     <label for="title_de">German (DE)</label>
                     <input type="text" id="title_de" name="title_de"
                         class="form-control"
-                        value="{{ old('title_de', $_item->title_de ?? '') }}">
+                        value="{{ old('title_de', $instruction->title_de ?? '') }}">
                 </div>
 
                 <div class="form-group col-md-6">
                     <label for="title_ar">Arabic (AR)</label>
                     <input type="text" id="title_ar" name="title_ar"
                         class="form-control"
-                        value="{{ old('title_ar', $_item->title_ar ?? '') }}">
+                        value="{{ old('title_ar', $instruction->title_ar ?? '') }}">
                 </div>
 
                 <div class="form-group col-md-6">
                     <label for="title_en">English (EN)</label>
                     <input type="text" id="title_en" name="title_en"
                         class="form-control"
-                        value="{{ old('title_en', $_item->title_en ?? '') }}">
+                        value="{{ old('title_en', $instruction->title_en ?? '') }}">
                 </div>
 
                 <div class="form-group col-md-6">
                     <label for="title_fr">French (FR)</label>
                     <input type="text" id="title_fr" name="title_fr"
                         class="form-control"
-                        value="{{ old('title_fr', $_item->title_fr ?? '') }}">
+                        value="{{ old('title_fr', $instruction->title_fr ?? '') }}">
                 </div>
 
                 <div class="form-group col-md-6 mb-0">
                     <label for="title_es">Spanish (ES)</label>
                     <input type="text" id="title_es" name="title_es"
                         class="form-control"
-                        value="{{ old('title_es', $_item->title_es ?? '') }}">
+                        value="{{ old('title_es', $instruction->title_es ?? '') }}">
                 </div>
 
             </div>
@@ -93,35 +93,35 @@
                     <label for="slug_de">German (DE)</label>
                     <input type="text" id="slug_de" name="slug_de"
                         class="form-control"
-                        value="{{ old('slug_de', $_item->slug_de ?? '') }}">
+                        value="{{ old('slug_de', $instruction->slug_de ?? '') }}">
                 </div>
 
                 <div class="form-group col-md-6">
                     <label for="slug_ar">Arabic (AR)</label>
                     <input type="text" id="slug_ar" name="slug_ar"
                         class="form-control"
-                        value="{{ old('slug_ar', $_item->slug_ar ?? '') }}">
+                        value="{{ old('slug_ar', $instruction->slug_ar ?? '') }}">
                 </div>
 
                 <div class="form-group col-md-6">
                     <label for="slug_en">English (EN)</label>
                     <input type="text" id="slug_en" name="slug_en"
                         class="form-control"
-                        value="{{ old('slug_en', $_item->slug_en ?? '') }}">
+                        value="{{ old('slug_en', $instruction->slug_en ?? '') }}">
                 </div>
 
                 <div class="form-group col-md-6">
                     <label for="slug_fr">French (FR)</label>
                     <input type="text" id="slug_fr" name="slug_fr"
                         class="form-control"
-                        value="{{ old('slug_fr', $_item->slug_fr ?? '') }}">
+                        value="{{ old('slug_fr', $instruction->slug_fr ?? '') }}">
                 </div>
 
                 <div class="form-group col-md-6 mb-0">
                     <label for="slug_es">Spanish (ES)</label>
                     <input type="text" id="slug_es" name="slug_es"
                         class="form-control"
-                        value="{{ old('slug_es', $_item->slug_es ?? '') }}">
+                        value="{{ old('slug_es', $instruction->slug_es ?? '') }}">
                 </div>
 
             </div>

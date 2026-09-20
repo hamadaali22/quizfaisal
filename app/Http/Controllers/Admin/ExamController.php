@@ -73,7 +73,7 @@ class ExamController extends Controller
         $edit = Exam::findOrFail($exam->id);
         $edit->name    = $request->name;
         $edit->level_id    = $request->level_id;
-        $exam->view = $request->has('view') ? 1 : 0;
+        $edit->view = $request->has('view') ? 1 : 0;
         $edit->save();
         return redirect()->route('exams.index')->with("message", 'Updated successfully');
     }

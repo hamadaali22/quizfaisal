@@ -82,12 +82,26 @@
                                         <span class="text-danger">{{$message}}</span>
                                     @enderror
                                 </div>
-                                <div class="form-group col-md-4 col-sm-4">           
+                                <!-- <div class="form-group col-md-4 col-sm-4">           
                                     <label> View </label>
                                     
-                                    <input type="checkbox" name="view" class="form-control"  value="1" {{ $exam->view == 1 ? 'checked' : '' }}>
+                                    <input type="checkbox" name="view" class="form-control"  value="1"  {{ $exam->view == 1 ? 'checked' : '' }} >
                                                                                                     
-                                </div>
+                                </div> -->
+                                <div class="form-check">
+                                  <input
+                                      type="checkbox"
+                                      name="view"
+                                      class="form-check-input"
+                                      id="view"
+                                      value="1"
+                                      {{ $exam->view == 1 ? 'checked' : '' }}
+                                  >
+
+                                  <label class="form-check-label" for="view">
+                                      View
+                                  </label>
+                              </div>
                             </div>
 			             <button type="submit" class="btn btn-primary btn-block">حفظ </button>
 			          </form>

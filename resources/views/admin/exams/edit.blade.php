@@ -65,11 +65,11 @@
                         @csrf
                         @method('put')
                             <div class="row form-row">
-                                <div class="form-group col-md-6 col-sm-6">           
+                                <div class="form-group col-md-4 col-sm-4">           
                                     <label> Name </label>
                                     <input type="text" name="name" class="form-control" value="{{$exam->name}}">
                                 </div>
-                                <div class="form-group col-md-6 col-sm-6">               
+                                <div class="form-group col-md-4 col-sm-4">               
                                     <label> select level  </label>
                                     <select name="level_id" class="form-control formselect">
                                         <option  value="" selected>Select </option>  
@@ -81,6 +81,10 @@
                                     @error('name')
                                         <span class="text-danger">{{$message}}</span>
                                     @enderror
+                                </div>
+                                <div class="form-group col-md-4 col-sm-4">           
+                                    <label> View </label>
+                                    <input type="text" name="view" class="form-control" value="{{$exam->view}}">
                                 </div>
                             </div>
 			             <button type="submit" class="btn btn-primary btn-block">حفظ </button>

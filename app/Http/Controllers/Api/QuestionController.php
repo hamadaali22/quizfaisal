@@ -551,7 +551,7 @@ class QuestionController extends Controller
             'description' => $level->{'description_'.$lang},
             'level_images' => $level->level_images,
         ];
-        $exam = Exam::where('level_id', $level->id) ->whereNull('section')->get();
+        $exam = Exam::where('level_id', $level->id) ->whereNull('section')->where('view',1)->get();
         return $this->returnDataa('data', [
             'exam' => $exam,
             'level' => $levelData,
@@ -612,7 +612,7 @@ class QuestionController extends Controller
         // $level->telc3="https://deutschtests.com/img/telc/".$level->telc3;
         // $level->telc4="https://deutschtests.com/img/telc/".$level->telc4;
         // $level->telc5="https://deutschtests.com/img/telc/".$level->telc5;
-        $exam=Exam::where("level_id" , $level->id)->where('section','telc')->get();
+        $exam=Exam::where("level_id" , $level->id)->where('section','telc')->where('view',1)->get();
         $home  =[
             'exam'=> $exam,
             'level'=> $levelData,

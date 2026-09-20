@@ -84,7 +84,7 @@
                                 </div>
                                 <div class="form-group col-md-4 col-sm-4">           
                                     <label> View </label>
-                                    <input type="text" name="view" class="form-control" value="{{$exam->view}}">
+                                    <input type="checkbox" name="view" class="form-control" value="{{$exam->view}}">
                                 </div>
                             </div>
 			             <button type="submit" class="btn btn-primary btn-block">حفظ </button>

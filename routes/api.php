@@ -63,6 +63,8 @@ Route::group(['middleware' => ['api'], 'namespace' => 'Api'], function () {
     Route::get('telc-exams', 'QuestionController@telcExams');
 
     Route::post('save-exam', 'QuestionController@SaveExam');
+    Route::post('save-exams', 'QuestionController@SaveExams');
+
     Route::get('results', 'QuestionController@results');
     Route::get('contactinfo', 'HomeController@contactInfo');
     Route::get('check-user-auth', 'HomeController@checkUserAuth');

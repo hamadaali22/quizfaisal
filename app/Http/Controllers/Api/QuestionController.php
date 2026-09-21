@@ -32,6 +32,7 @@ use App\ExerciseExamAnswer;
 use App\Instruction;
 use App\Faq;
 use Illuminate\Support\Facades\URL;
+use App\Jobs\EvaluateWritingJob;
 class QuestionController extends Controller
 {
     use GeneralTrait;
@@ -1555,7 +1556,123 @@ class QuestionController extends Controller
             'data' => $data
         ]);
     }
-    
+    public function SaveExams(Request $request)
+    {
+        /*
+        |--------------------------------------------------------------------------
+        | Answers - Array
+        |--------------------------------------------------------------------------
+        */
+
+        $data = $request->input('data', []);
+
+        if (count($data) > 0) {
+
+            $userId = $data[0]['user_id'];
+            $examId = $data[0]['examId'];
+            $questionId = $data[0]['questionId'];
+
+            $check_examanswer = ExamAnswer::where("user_id", $userId)
+                ->where("exam_id", $examId)
+                ->where("question_id", $questionId)
+                ->get();
+
+            if (count($check_examanswer) > 0) {
+                foreach ($check_examanswer as $item) {
+                    $item->delete();
+                }
+            }
+
+            $length = count($data);
+
+            for ($i = 0; $i < $length; $i++) {
+
+                $add = new ExamAnswer;
+
+                $add->user_id = $data[$i]['user_id'];
+                $add->exam_id = $data[$i]['examId'];
+                $add->question_id = $data[$i]['questionId'];
+
+                $add->subquestion_id = $data[$i]['subQuestionId'];
+                $add->expected_answer = $data[$i]['expected_answer'];
+
+                $add->answer = $data[$i]['answerid'];
+
+                $add->save();
+            }
+        }
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | Writing - Object
+        |--------------------------------------------------------------------------
+        */
+
+        $writing = $request->input('writing');
+
+        if ($writing) {
+
+            // حذف الإجابة القديمة لنفس سؤال الـ Writing
+            $check_writing = ExamAnswer::where("user_id", $writing['user_id'])
+                ->where("exam_id", $writing['examId'])
+                ->where("question_id", $writing['questionId'])
+                ->get();
+
+            if (count($check_writing) > 0) {
+                foreach ($check_writing as $item) {
+                    $item->delete();
+                }
+            }
+
+
+            /*
+            |--------------------------------------------------------------------------
+            | حفظ Writing أولًا
+            |--------------------------------------------------------------------------
+            */
+
+            $add = new ExamAnswer;
+
+            $add->user_id = $writing['user_id'];
+            $add->exam_id = $writing['examId'];
+            $add->question_id = $writing['questionId'];
+
+            $add->levelName = $writing['levelName'] ?? null;
+            $add->questionType = $writing['questionType'];
+
+            // سيتم تعبئتهم بواسطة الـ Job لاحقًا
+            $add->totalScore = null;
+            $add->correctedText = null;
+
+            // إجابة الطالب
+            $add->answer = $writing['answerid'];
+
+            // حفظ إجابة الطالب فورًا
+            $add->save();
+
+
+            /*
+            |--------------------------------------------------------------------------
+            | إرسال مهمة التقييم إلى Queue
+            |--------------------------------------------------------------------------
+            */
+
+            EvaluateWritingJob::dispatch($add->id);
+        }
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | Response
+        |--------------------------------------------------------------------------
+        */
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Exam answers saved successfully'
+        ]);
+    }
     public function SaveExam(Request $request)
     {
         /*

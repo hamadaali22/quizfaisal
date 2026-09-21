@@ -1298,7 +1298,7 @@ class QuestionController extends Controller
         return $this->returnDataa('data', $exams,'');
     }
 
-    public function question(Request $request)
+    public function questions(Request $request)
     {
         // ->orderBy('order','ASC')
         // $data=Question::where("exam_id" , $request->exam_id)->paginate(1);
@@ -1364,7 +1364,7 @@ class QuestionController extends Controller
         }
         return $this->returnDataa('data', $data,'');
     }
-    public function questions(Request $request)
+    public function questionss(Request $request)
     {
         // ->orderBy('order','ASC')
         // $data=Question::where("exam_id" , $request->exam_id)->paginate(1);

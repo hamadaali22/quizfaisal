@@ -236,8 +236,18 @@ class ProfileController extends Controller
         $levels_exercise=Level::where('type','exercise')->get();
         $levels_telc=Level::where('type','telc')->get();
         $levels_goethe=Level::where('type','goethe')->get();
-        return view('admin.settings.meta_pages',compact('meta_pages','levels_exercise','levels_telc','levels_goethe'));
+        return view('admin.settings.meta',compact('meta_pages','levels_exercise','levels_telc','levels_goethe'));
     }
+    public function metaEdit($id)
+    {
+        $meta_pages=siteMetasTitle::find($id);
+        
+        $levels_exercise=Level::where('type','exercise')->get();
+        $levels_telc=Level::where('type','telc')->get();
+        $levels_goethe=Level::where('type','goethe')->get();
+        return view('admin.settings.meta_edit',compact('meta_pages','levels_exercise','levels_telc','levels_goethe'));
+    }
+   
     public function metaPagesUpdate(Request $request)
     {
         $edit = siteMetasTitle::where('type',$request->type)->first();
@@ -266,6 +276,7 @@ class ProfileController extends Controller
 
         $edit->save();
         return back()->with("message", 'updated ');
+        // return redirect()->route('meta-pages')->with("message", 'updated ');
     }
     public function updateContactData(Request $request)
     {

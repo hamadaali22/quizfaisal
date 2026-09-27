@@ -176,6 +176,98 @@
         </div>
     </div>
 
+    {{-- Titles meta --}}
+    <div class="card mb-2">
+        <div class="card-header">
+            <h4 class="card-title mb-0">Titles meta</h4>
+            <small class="text-muted">Enter the title in each language.</small>
+        </div>
+
+        <div class="card-body">
+            <div class="form-row">
+
+                <div class="form-group col-md-6">
+                    <label for="title_de">German (DE)</label>
+                    <input type="text" id="title_meta_de" name="title_meta_de"
+                        class="form-control"
+                        value="{{ old('title_meta_de', $instruction->title_meta_de ?? '') }}">
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="title_meta_ar">Arabic (AR)</label>
+                    <input type="text" id="title_meta_ar" name="title_meta_ar"
+                        class="form-control"
+                        value="{{ old('title_meta_ar', $instruction->title_meta_ar ?? '') }}">
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="title_meta_en">English (EN)</label>
+                    <input type="text" id="title_meta_en" name="title_meta_en"
+                        class="form-control"
+                        value="{{ old('title_meta_en', $instruction->title_meta_en ?? '') }}">
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="title_meta_fr">French (FR)</label>
+                    <input type="text" id="title_meta_fr" name="title_meta_fr"
+                        class="form-control"
+                        value="{{ old('title_meta_fr', $instruction->title_meta_fr ?? '') }}">
+                </div>
+
+                <div class="form-group col-md-6 mb-0">
+                    <label for="title_meta_es">Spanish (ES)</label>
+                    <input type="text" id="title_meta_es" name="title_meta_es"
+                        class="form-control"
+                        value="{{ old('title_meta_es', $instruction->title_meta_es ?? '') }}">
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    {{-- Descriptions meta --}}
+    <div class="card mb-3">
+        
+
+        <div class="card-body">
+
+            <div class="form-group">
+                <label for="desc_de"> Desc meta German (DE)</label>
+                <textarea name="desc_meta_de" id="desc_de"
+                    class="form-control ckeditor"
+                    rows="5">{{ old('desc_meta_de', $instruction->desc_meta_de ?? '') }}</textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="desc_meta_ar">Desc meta Arabic (AR)</label>
+                <textarea name="desc_meta_ar" id="desc_meta_ar"
+                    class="form-control ckeditor"
+                    rows="5">{{ old('desc_meta_ar', $instruction->desc_meta_ar ?? '') }}</textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="desc_meta_en">Desc meta English (EN)</label>
+                <textarea name="desc_meta_en" id="desc_meta_en"
+                    class="form-control ckeditor"
+                    rows="5">{{ old('desc_meta_en', $instruction->desc_meta_en ?? '') }}</textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="desc_meta_fr">Desc meta French (FR)</label>
+                <textarea name="desc_meta_fr" id="desc_meta_fr"
+                    class="form-control ckeditor"
+                    rows="5">{{ old('desc_meta_fr', $instruction->desc_meta_fr ?? '') }}</textarea>
+            </div>
+
+            <div class="form-group mb-0">
+                <label for="desc_meta_es">Desc meta Spanish (ES)</label>
+                <textarea name="desc_meta_es" id="desc_meta_es"
+                    class="form-control ckeditor"
+                    rows="5">{{ old('desc_meta_es', $instruction->desc_meta_es ?? '') }}</textarea>
+            </div>
+
+        </div>
+    </div>
 
     {{-- Save --}}
     <div class="d-flex justify-content-end mb-2">

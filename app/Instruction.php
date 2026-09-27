@@ -27,6 +27,18 @@ class Instruction extends Model
         'desc_en',
         'desc_fr',
         'desc_es',
+
+        'tite_meta_de',
+        'tite_meta_ar',
+        'tite_meta_en',
+        'tite_meta_fr',
+        'tite_meta_es',
+
+        'desc_meta_de',
+        'desc_meta_ar',
+        'desc_meta_en',
+        'desc_meta_fr',
+        'desc_meta_es',
     ];
 
     public function level()

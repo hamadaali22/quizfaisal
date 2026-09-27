@@ -47,6 +47,18 @@ class InstructionController extends Controller
             'desc_en' => 'required',
             'desc_fr' => 'required',
             'desc_es' => 'required',
+
+            'title_meta_de' => 'required',
+            'title_meta_ar' => 'required',
+            'title_meta_en' => 'required',
+            'title_meta_fr' => 'required',
+            'title_meta_es' => 'required',
+
+            'desc_meta_de' => 'required',
+            'desc_meta_ar' => 'required',
+            'desc_meta_en' => 'required',
+            'desc_meta_fr' => 'required',
+            'desc_meta_es' => 'required',
         ]);
 
         Instruction::create($request->all());

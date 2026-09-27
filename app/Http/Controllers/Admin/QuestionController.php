@@ -299,7 +299,7 @@ class QuestionController extends Controller
         // if($length > 0)
         // {
             // dd($request->title);
-            for($i=0; $i<$length; $i++)
+            for($i=0; $i<count($titles); $i++)
             {
                 // dd($request->first_choice[$i]);
                 //dd($request->second_choice[$i]);

@@ -294,11 +294,11 @@ class QuestionController extends Controller
         $titles = array_filter($request->title);
 
         if(count($titles) > 0){
-            dd($titles);
+            // dd($titles);
         
         // if($length > 0)
         // {
-            dd($request->title);
+            // dd($request->title);
             for($i=0; $i<$length; $i++)
             {
                 // dd($request->first_choice[$i]);

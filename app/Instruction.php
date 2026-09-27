@@ -28,11 +28,11 @@ class Instruction extends Model
         'desc_fr',
         'desc_es',
 
-        'tite_meta_de',
-        'tite_meta_ar',
-        'tite_meta_en',
-        'tite_meta_fr',
-        'tite_meta_es',
+        'title_meta_de',
+        'title_meta_ar',
+        'title_meta_en',
+        'title_meta_fr',
+        'title_meta_es',
 
         'desc_meta_de',
         'desc_meta_ar',

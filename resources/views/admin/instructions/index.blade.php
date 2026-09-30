@@ -33,7 +33,7 @@
                                     <th>ID</th>
                                     <th>Level</th>
                                     <th>Title</th>
-                                    <th>German</th>
+                                    <!-- <th>German</th> -->
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -48,7 +48,7 @@
                                     </td>
 
                                     <td>{{ $item->title_de }}</td>
-                                    <td>{{ Str::limit($item->desc_de,60) }}</td>
+                                    <!-- <td>{{ Str::limit($item->desc_de,60) }}</td> -->
 
                                     <td>
 

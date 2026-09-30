@@ -32,6 +32,7 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Level</th>
+                                    <th>Title</th>
                                     <th>German</th>
                                     <th>Action</th>
                                 </tr>
@@ -39,15 +40,14 @@
                             @foreach($instructions as $item)
                             <tbody>
                                 <tr>
-
                                     <td>{{ $item->id }}</td>
-
                                     <td>
                                         @if($item->level)
                                         {{ optional($item->level)->name }}
                                         @endif
                                     </td>
 
+                                    <td>{{ $item->title_de }}</td>
                                     <td>{{ Str::limit($item->desc_de,60) }}</td>
 
                                     <td>

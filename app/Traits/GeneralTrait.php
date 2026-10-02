@@ -50,7 +50,8 @@ trait GeneralTrait
 
 
     //////////////////
-    public function returnValidationError($code = "E001", $validator)
+    // public function returnValidationError($code = "E001", $validator)
+    public function returnValidationError($validator, $code = "E001")
     {
         return $this->returnError($code, $validator->errors()->first());
     }

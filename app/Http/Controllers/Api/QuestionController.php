@@ -1673,6 +1673,7 @@ class QuestionController extends Controller
             'message' => 'Exam answers saved successfully'
         ]);
     }
+   
     public function SaveExam(Request $request)
     {
         /*
@@ -1710,18 +1711,8 @@ class QuestionController extends Controller
                 $add->exam_id = $data[$i]['examId'];
                 $add->question_id = $data[$i]['questionId'];
 
-                // if (isset($data[$i]['questionType'])) {
-
-                //     $add->levelName = $data[$i]['levelName'] ?? null;
-                //     $add->questionType = $data[$i]['questionType'];
-                //     $add->totalScore = $data[$i]['totalScore'] ?? null;
-                //     $add->correctedText = $data[$i]['correctedText'] ?? null;
-
-                // } else {
-
-                    $add->subquestion_id = $data[$i]['subQuestionId'];
-                    $add->expected_answer = $data[$i]['expected_answer'];
-                // }
+                $add->subquestion_id = $data[$i]['subQuestionId'];
+                $add->expected_answer = $data[$i]['expected_answer'];
 
                 $add->answer = $data[$i]['answerid'];
 
@@ -1755,41 +1746,7 @@ class QuestionController extends Controller
 
             /*
             |--------------------------------------------------------------------------
-            | استدعاء evaluate()
-            |--------------------------------------------------------------------------
-            */
-
-            $evaluateRequest = new Request([
-                'question' => $writing['question'] ?? '',
-                'student_text' => $writing['answerid'],
-                'question_id' => $writing['questionId'],
-            ]);
-
-            $evaluationResponse = $this->evaluate($evaluateRequest);
-
-            $evaluation = $evaluationResponse->getData(true);
-
-
-            /*
-            |--------------------------------------------------------------------------
-            | استخراج نتيجة AI
-            |--------------------------------------------------------------------------
-            */
-
-            $totalScore = null;
-            $correctedText = null;
-
-            if (
-                isset($evaluation['success']) && $evaluation['success'] === true && isset($evaluation['data'])
-            ) {
-                $totalScore = $evaluation['data']['total_score'] ?? null;
-                $correctedText = $evaluation['data']['corrected_text'] ?? null;
-            }
-
-
-            /*
-            |--------------------------------------------------------------------------
-            | حفظ Writing
+            | حفظ Writing بدون انتظار AI
             |--------------------------------------------------------------------------
             */
 
@@ -1802,22 +1759,40 @@ class QuestionController extends Controller
             $add->levelName = $writing['levelName'] ?? null;
             $add->questionType = $writing['questionType'];
 
-            // نتيجة Gemini
-            $add->totalScore = $totalScore;
-            $add->correctedText = $correctedText;
-
             // إجابة الطالب
             $add->answer = $writing['answerid'];
 
+            // لا نحسب totalScore و correctedText هنا
+            // الـ Queue Job سيقوم بذلك لاحقًا
+            $add->totalScore = null;
+            $add->correctedText = null;
+
             $add->save();
+
+
+            /*
+            |--------------------------------------------------------------------------
+            | إرسال تقييم Writing إلى Queue
+            |--------------------------------------------------------------------------
+            */
+
+            EvaluateWritingJob::dispatch($add->id);
         }
 
+
+        /*
+        |--------------------------------------------------------------------------
+        | Response
+        |--------------------------------------------------------------------------
+        */
 
         return response()->json([
             'success' => true,
             'message' => 'Exam answers saved successfully'
         ]);
     }
+
+
     
     // public function SaveExam(Request $request)
     // {

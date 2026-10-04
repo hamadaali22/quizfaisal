@@ -96,13 +96,18 @@
                       <!--     <button type="button" class="btn btn-outline-danger "><i class="la la-file-video-o"></i></button>-->
                       <!--     <span class="allvideo">الفيديوهات</span>-->
                       <!--</a>-->
+                      <a href="{{url('admin/exam',$_item->id)}}" class="all-video" >
+                                                <button type="button" class="btn btn-outline-danger ">
+                                                    <i class="la la-question-circle"></i></button>
+                                                <span class="allvideo">الأسئلة</span>
+                                            </a>
                       <a href="{{route('exams.edit',$_item->id)}}" class="edit-course">
                         <button type="button" class="btn btn-outline-success "><i class="la la-edit"></i></button>
-                        <span class="editcourse">تعديل الدورة</span>
+                        <span class="editcourse">تعديل </span>
                       </a>
                       <a data-toggle="modal" data-catid="{{ $_item->id }}" data-target="#delete" class="delete-course">
                         <button type="button" class=" btn btn-outline-warning"><i class="la la-trash-o"></i></button>
-                        <span class="deletecourse">حذف الدورة</span>
+                        <span class="deletecourse">حذف </span>
                       </a>
                     </div>
                   </td>

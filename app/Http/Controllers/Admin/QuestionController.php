@@ -21,6 +21,12 @@ class QuestionController extends Controller
     /**
      * start goethe questions
     */
+    public function examQuestion($examId)
+    {
+        $exam=Exam::where('id',$examId)->first();
+        $questions=Question::where('exam_id',$examId)->get();
+        return view('admin.questions.all',compact('questions','exam'));
+    }
     public function index()
     {
         $exams=Exam::all();

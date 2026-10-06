@@ -1831,116 +1831,205 @@ class QuestionController extends Controller
     //     return $this -> returnDataa('data',$add,'تم الحفظ');
     // }
 
-    public function results(Request $request)
-   {
-       // dd('hhhh');
-       $count_listen_succes=0;
-       $count_listen=0;
-       $count_read_succes=0;
-       $count_read=0;
+public function results(Request $request)
+{
+    $count_listen_succes = 0;
+    $count_listen = 0;
 
-       $count_write_marks=0;
-       $count_write=0;
+    $count_read_succes = 0;
+    $count_read = 0;
 
-       $data=ExamAnswer::where("user_id" , $request->user_id)->where("exam_id" , $request->exam_id)->get();
-       foreach ($data as $item) {
-           $question=Question::where('id',$item->question_id)->first();
-           $subquestion=SubQuestion::where('id',$item->subquestion_id)->first();
-            if ($question) {
-                // dd($subquestion);
-                if($subquestion){
-                    if($subquestion->is_complete !='write'){
-                        if($question->type =='listening'){
-                           if($item->answer === $item->expected_answer){
-                               $count_listen_succes +=1;
-                           }
-                        }elseif($question->type =='listening and image'){
-                            if($item->answer === $item->expected_answer){
-                               $count_listen_succes +=1;
-                           }
-                        }else{
-                            if($item->answer === $item->expected_answer){
-                                $count_read_succes +=1;
-                            }
+    $count_write_marks = 0;
+    $count_write = 0;
+
+    $data = ExamAnswer::where('user_id', $request->user_id)
+        ->where('exam_id', $request->exam_id)
+        ->get();
+
+    /*
+    |--------------------------------------------------------------------------
+    | نأخذ آخر إجابة لكل SubQuestion
+    |--------------------------------------------------------------------------
+    */
+
+    $data = $data
+        ->groupBy('subquestion_id')
+        ->map(function ($answers) {
+            return $answers->last();
+        });
+
+    foreach ($data as $item) {
+
+        $question = Question::where('id', $item->question_id)->first();
+
+        $subquestion = SubQuestion::where(
+            'id',
+            $item->subquestion_id
+        )->first();
+
+        if ($question) {
+
+            /*
+            |--------------------------------------------------------------------------
+            | Listening / Reading
+            |--------------------------------------------------------------------------
+            */
+
+            if ($subquestion) {
+
+                if ($subquestion->is_complete != 'write') {
+
+                    // Listening
+                    if (
+                        $question->type == 'listening' ||
+                        $question->type == 'listening and image'
+                    ) {
+
+                        if ($item->answer === $item->expected_answer) {
+                            $count_listen_succes++;
                         }
-                    }else{
-                        $expected_answer=ExpectedAnswer::where('subquestion_id',$subquestion->id)->get();
-                        foreach ($expected_answer as $expected) {
-                            if($item->answer == $expected->one){
-                              $count_listen_succes +=1;
-                            }elseif($item->answer == $expected->two){
-                                $count_listen_succes +=1;
-                            }elseif($item->answer == $expected->three){
-                                $count_listen_succes +=1;
-                            }elseif($item->answer == $expected->four){
-                                $count_listen_succes +=1;
-                            }elseif($item->answer == $expected->five){
-                                $count_listen_succes +=1;
-                            }elseif($item->answer == $expected->six){
-                                $count_listen_succes +=1;
-                            }else {
-                            }
+
+                    } else {
+
+                        // Reading
+                        if ($item->answer === $item->expected_answer) {
+                            $count_read_succes++;
                         }
-                     }
+                    }
+
+                } else {
+
+                    /*
+                    |--------------------------------------------------------------------------
+                    | Writing
+                    |--------------------------------------------------------------------------
+                    */
+
+                    $expected_answer = ExpectedAnswer::where(
+                        'subquestion_id',
+                        $subquestion->id
+                    )->get();
+
+                    foreach ($expected_answer as $expected) {
+
+                        if (
+                            $item->answer == $expected->one ||
+                            $item->answer == $expected->two ||
+                            $item->answer == $expected->three ||
+                            $item->answer == $expected->four ||
+                            $item->answer == $expected->five ||
+                            $item->answer == $expected->six
+                        ) {
+                            $count_write_marks++;
+                            break;
+                        }
+                    }
                 }
-                $count_write_marks +=$item->totalScore;
             }
-           $item->question=$question;
-           $item->exam=Exam::where('id',$item->exam_id)->first();
-           $item->user=User::where('id',$item->user_id)->first();
-       }
-       $allquestion=Question::where('exam_id',$request->exam_id)->get();
-       foreach ($allquestion as $_item) {
-            if($_item->type =='listening'){
-                $subquestion_listening=SubQuestion::where("question_id" , $_item->id)->get();
-                $count_listen +=count($subquestion_listening);
-            }elseif($_item->type =='listening and image'){
-                $subquestion_listening=SubQuestion::where("question_id" , $_item->id)->get();
-                $count_listen +=count($subquestion_listening);
-            }elseif($_item->type =='writing'){
-                $count_write +=$_item->mark;
-            }elseif($_item->type =='writing and image'){
-                $count_write +=$_item->mark;
-            }else{
-                $subquestion_read=SubQuestion::where("question_id" , $_item->id)->get();
-                $count_read +=count($subquestion_read);
-            }
-       }
 
-       if($count_listen_succes !=0){
-           $count_listen_percent=($count_listen_succes / $count_listen) * 100;
-       }else{
-           $count_listen_percent=0;
-       }
-
-       if($count_read_succes !=0){
-           $count_read_percent=($count_read_succes / $count_read) * 100;
-       }else{
-           $count_read_percent=0;
-       }
-
-        if($count_write_marks !=0){
-           $count_write_percent=($count_write_marks / $count_write) * 100;
-        }else{
-            $count_write_percent=0;
+            $count_write_marks += $item->totalScore;
         }
 
-       $home  =[
-                    'count_listen_succes'=> $count_listen_succes,
-                   'count_listen'=> $count_listen,
-                   'count_listen_percent'=> round($count_listen_percent, 1),
+        $item->question = $question;
 
-                   'count_read_succes'=> $count_read_succes,
-                   'count_read'=> $count_read,
-                   'count_read_percent'=> round($count_read_percent, 1),
+        $item->exam = Exam::where(
+            'id',
+            $item->exam_id
+        )->first();
 
-                   'count_write'=> $count_write,
-                   'count_write_marks'=>  round($count_write_marks, 1),
-                   'count_write_percent'=> round($count_write_percent, 1),
-                   
-               ];
-       return $this->returnDataa('data', $home,'');
+        $item->user = User::where(
+            'id',
+            $item->user_id
+        )->first();
     }
+
+    /*
+    |--------------------------------------------------------------------------
+    | حساب إجمالي الأسئلة
+    |--------------------------------------------------------------------------
+    */
+
+    $allquestion = Question::where(
+        'exam_id',
+        $request->exam_id
+    )->get();
+
+    foreach ($allquestion as $_item) {
+
+        if (
+            $_item->type == 'listening' ||
+            $_item->type == 'listening and image'
+        ) {
+
+            $subquestion_listening = SubQuestion::where(
+                'question_id',
+                $_item->id
+            )->get();
+
+            $count_listen += count($subquestion_listening);
+
+        } elseif (
+            $_item->type == 'writing' ||
+            $_item->type == 'writing and image'
+        ) {
+
+            $count_write += $_item->mark;
+
+        } else {
+
+            $subquestion_read = SubQuestion::where(
+                'question_id',
+                $_item->id
+            )->get();
+
+            $count_read += count($subquestion_read);
+        }
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Percentages
+    |--------------------------------------------------------------------------
+    */
+
+    $count_listen_percent = $count_listen > 0
+        ? ($count_listen_succes / $count_listen) * 100
+        : 0;
+
+    $count_read_percent = $count_read > 0
+        ? ($count_read_succes / $count_read) * 100
+        : 0;
+
+    $count_write_percent = $count_write > 0
+        ? ($count_write_marks / $count_write) * 100
+        : 0;
+
+    /*
+    |--------------------------------------------------------------------------
+    | Result
+    |--------------------------------------------------------------------------
+    */
+
+    $home = [
+        'count_listen_succes' => $count_listen_succes,
+        'count_listen' => $count_listen,
+        'count_listen_percent' => round($count_listen_percent, 1),
+
+        'count_read_succes' => $count_read_succes,
+        'count_read' => $count_read,
+        'count_read_percent' => round($count_read_percent, 1),
+
+        'count_write' => $count_write,
+        'count_write_marks' => round($count_write_marks, 1),
+        'count_write_percent' => round($count_write_percent, 1),
+    ];
+
+    return $this->returnDataa(
+        'data',
+        $home,
+        ''
+    );
+}
 
     // public function resultss(Request $request)
     // {

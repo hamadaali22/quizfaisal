@@ -66,6 +66,7 @@ class UserController extends Controller
 
 			$listenSuccess = 0;
 			$readSuccess = 0;
+			$listenAnswered = [];
 
 			foreach ($examAnswers as $answer) {
 
@@ -76,7 +77,7 @@ class UserController extends Controller
 					continue;
 				}
 
-				// Writing لا يدخل ضمن Listening أو Reading
+				// Writing لا يدخل في Listening أو Reading
 				if ($subQuestion->is_complete == 'write') {
 					continue;
 				}
@@ -86,6 +87,14 @@ class UserController extends Controller
 					$question->type == 'listening' ||
 					$question->type == 'listening and image'
 				) {
+
+					// كل SubQuestion يتحسب مرة واحدة فقط
+					if (isset($listenAnswered[$subQuestion->id])) {
+						continue;
+					}
+
+					$listenAnswered[$subQuestion->id] = true;
+
 					if ($answer->answer === $answer->expected_answer) {
 						$listenSuccess++;
 					}
@@ -93,7 +102,7 @@ class UserController extends Controller
 					continue;
 				}
 
-				// Reading
+				// Reading - نفس المنطق القديم
 				if ($answer->answer === $answer->expected_answer) {
 					$readSuccess++;
 				}
@@ -160,123 +169,132 @@ class UserController extends Controller
 		return view('admin.users.exam', compact('exams'));
 	}
     public function examsTelc($id)
-	{
-		$answers = ExamAnswer::with([
-			'exams',
-			'question',
-			'subquestion'
-		])
-		->where('user_id', $id)
-		->get();
+{
+    $answers = ExamAnswer::with([
+        'exams',
+        'question',
+        'subquestion'
+    ])
+    ->where('user_id', $id)
+    ->get();
 
-		$exams = $answers
-			->filter(function ($answer) {
-				return $answer->exams &&
-					$answer->exams->section === 'telc';
-			})
-			->groupBy('exam_id');
+    $exams = $answers
+        ->filter(function ($answer) {
+            return $answer->exams &&
+                   $answer->exams->section === 'telc';
+        })
+        ->groupBy('exam_id');
 
-		$result = [];
+    $result = [];
 
-		foreach ($exams as $examId => $examAnswers) {
+    foreach ($exams as $examId => $examAnswers) {
 
-			$exam = $examAnswers->first()->exams;
+        $exam = $examAnswers->first()->exams;
 
-			$listenSuccess = 0;
-			$readSuccess = 0;
+        $listenSuccess = 0;
+        $readSuccess = 0;
+        $listenAnswered = [];
 
-			foreach ($examAnswers as $answer) {
+        foreach ($examAnswers as $answer) {
 
-				$question = $answer->question;
-				$subQuestion = $answer->subquestion;
+            $question = $answer->question;
+            $subQuestion = $answer->subquestion;
 
-				if (!$question || !$subQuestion) {
-					continue;
-				}
+            if (!$question || !$subQuestion) {
+                continue;
+            }
 
-				// Writing لا يدخل في Listening أو Reading
-				if ($subQuestion->is_complete == 'write') {
-					continue;
-				}
+            // Writing لا يدخل في Listening أو Reading
+            if ($subQuestion->is_complete == 'write') {
+                continue;
+            }
 
-				// Listening
-				if (
-					$question->type == 'listening' ||
-					$question->type == 'listening and image'
-				) {
-					if ($answer->answer === $answer->expected_answer) {
-						$listenSuccess++;
-					}
+            // Listening
+            if (
+                $question->type == 'listening' ||
+                $question->type == 'listening and image'
+            ) {
 
-					continue;
-				}
+                // كل SubQuestion يتحسب مرة واحدة فقط
+                if (isset($listenAnswered[$subQuestion->id])) {
+                    continue;
+                }
 
-				// Reading
-				if ($answer->answer === $answer->expected_answer) {
-					$readSuccess++;
-				}
-			}
+                $listenAnswered[$subQuestion->id] = true;
 
-			/*
-			|--------------------------------------------------------------------------
-			| إجمالي الأسئلة
-			|--------------------------------------------------------------------------
-			*/
+                if ($answer->answer === $answer->expected_answer) {
+                    $listenSuccess++;
+                }
 
-			$questions = Question::where('exam_id', $exam->id)
-				->with('subquestions')
-				->get();
+                continue;
+            }
 
-			$listenCount = 0;
-			$readCount = 0;
+            // Reading - نفس المنطق الحالي
+            if ($answer->answer === $answer->expected_answer) {
+                $readSuccess++;
+            }
+        }
 
-			foreach ($questions as $question) {
+        /*
+        |--------------------------------------------------------------------------
+        | حساب إجمالي الأسئلة
+        |--------------------------------------------------------------------------
+        */
 
-				$count = $question->subquestions->count();
+        $questions = Question::where('exam_id', $exam->id)
+            ->with('subquestions')
+            ->get();
 
-				if (
-					$question->type == 'listening' ||
-					$question->type == 'listening and image'
-				) {
-					$listenCount += $count;
-				} else {
-					$readCount += $count;
-				}
-			}
+        $listenCount = 0;
+        $readCount = 0;
 
-			/*
-			|--------------------------------------------------------------------------
-			| Listening
-			|--------------------------------------------------------------------------
-			*/
+        foreach ($questions as $question) {
 
-			$exam->count_listen_succes = $listenSuccess;
-			$exam->count_listen = $listenCount;
+            $count = $question->subquestions->count();
 
-			$exam->count_listen_percent = $listenCount > 0
-				? round(($listenSuccess / $listenCount) * 100, 1)
-				: 0;
+            if (
+                $question->type == 'listening' ||
+                $question->type == 'listening and image'
+            ) {
+                $listenCount += $count;
+            } else {
+                $readCount += $count;
+            }
+        }
 
-			/*
-			|--------------------------------------------------------------------------
-			| Reading
-			|--------------------------------------------------------------------------
-			*/
+        /*
+        |--------------------------------------------------------------------------
+        | Listening Result
+        |--------------------------------------------------------------------------
+        */
 
-			$exam->count_read_succes = $readSuccess;
-			$exam->count_read = $readCount;
+        $exam->count_listen_succes = $listenSuccess;
+        $exam->count_listen = $listenCount;
 
-			$exam->count_read_percent = $readCount > 0
-				? round(($readSuccess / $readCount) * 100, 1)
-				: 0;
+        $exam->count_listen_percent = $listenCount > 0
+            ? round(($listenSuccess / $listenCount) * 100, 1)
+            : 0;
 
-			$result[] = $exam;
-		}
+        /*
+        |--------------------------------------------------------------------------
+        | Reading Result
+        |--------------------------------------------------------------------------
+        */
 
-		$exams = collect($result);
+        $exam->count_read_succes = $readSuccess;
+        $exam->count_read = $readCount;
 
-		return view('admin.users.exam', compact('exams'));
-	}
+        $exam->count_read_percent = $readCount > 0
+            ? round(($readSuccess / $readCount) * 100, 1)
+            : 0;
+
+        $result[] = $exam;
+    }
+
+    $exams = collect($result);
+
+    return view('admin.users.exam', compact('exams'));
+}
 //     public function examsGoethee($id)
 //     {
 //         $exams=ExamAnswer::where("user_id" , $id)->get();

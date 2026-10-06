@@ -41,112 +41,6 @@ class UserController extends Controller
 		// dd($exams);
 		return view('admin.users.allexam',compact('exams'));
 	}
-
-	// public function examsGoethe($id)
-    // {
-    //     $xam_answer=ExamAnswer::where("user_id" , $id)->get();
-    //     $values=[];
-    //     $exams=[];
-        
-    //     foreach ($xam_answer as $item) {
-    //         $exam=Exam::where("id" , $item->exam_id)->where('section',null)->first();
-    //         if($exam){
-    //             if (!in_array($item->exam_id, $values)) {
-    // 				$values[]=$item->exam_id;
-    // 				// $values[]=$item->exam_id;
-    // 				$exams[]=$exam;
-    // 			}
-    //         }
-    //     }
-    //     foreach ($exams as $_item) {
-    //         $count_listen_succes=0;
-    //     	$count_listen=0;
-    //     	$count_read_succes=0;
-    //     	$count_read=0;
-    //         $one_exams=ExamAnswer::where("user_id" , $id)->where("exam_id" , $_item->id)->get();
-    //         foreach ($one_exams as $one_exam) {
-    //             $question=Question::where('id',$one_exam->question_id)->first();
-	// 			$subquestion=SubQuestion::where('id',$one_exam->subquestion_id)->first();
-	// 			if($question){
-    //                 if($subquestion){
-                        
-	// 					if($subquestion->is_complete !='write'){
-						    
-	// 						if($question->type =='listening'){
-							    
-    // 							if($one_exam->answer === $one_exam->expected_answer){
-    // 								$count_listen_succes +=1;
-    								
-    // 							}
-	// 						}elseif($question->type =='listening and image'){
-	// 							if($one_exam->answer === $one_exam->expected_answer){
-	// 							$count_listen_succes +=1;
-	// 						}
-	// 						}else{
-	// 							if($one_exam->answer === $one_exam->expected_answer){
-	// 								$count_read_succes +=1;
-	// 							}
-	// 						}
-	// 					}else{
-	// 						$expected_answer=ExpectedAnswer::where('subquestion_id',$subquestion->id)->get();
-	// 						foreach ($expected_answer as $expected) {
-	// 							if($item->answer == $expected->one){
-	// 							$count_listen_succes +=1;
-	// 							}elseif($item->answer == $expected->two){
-	// 								$count_listen_succes +=1;
-	// 							}elseif($item->answer == $expected->three){
-	// 								$count_listen_succes +=1;
-	// 							}elseif($item->answer == $expected->four){
-	// 								$count_listen_succes +=1;
-	// 							}elseif($item->answer == $expected->five){
-	// 								$count_listen_succes +=1;
-	// 							}elseif($item->answer == $expected->six){
-	// 								$count_listen_succes +=1;
-	// 							}else {
-	// 							}
-	// 						}
-	// 					}
-    //                 }
-	// 			}
-				
-	// 			// $one_exam->count_listen_succes= $count_listen_succes;
-	// 		}
-			
-
-	// 	    $allquestion=Question::where('exam_id',$_item->id)->get();
-	// 		foreach ($allquestion as $sub) {
-	// 		    $subquestion_listening=SubQuestion::where("question_id" , $sub->id)->get();
-	// 		    $subquestion_read=SubQuestion::where("question_id" , $sub->id)->get();
-	// 			if($sub->type =='listening'){
-	// 				$count_listen +=count($subquestion_listening);
-	// 			}elseif($sub->type =='listening and image'){
-	// 				$count_listen +=count($subquestion_listening);
-	// 			}else{
-	// 				$count_read +=count($subquestion_read);
-	// 			}
-	// 		}
-
-	// 		if($count_listen_succes !=0){
-	// 			$count_listen_percent=($count_listen_succes / $count_listen) * 100;
-	// 		}else{
-	// 			$count_listen_percent=0;
-	// 		}
-	// 		if($count_read_succes !=0){
-	// 			$count_read_percent=($count_read_succes / $count_read) * 100;
-	// 		}else{
-	// 			$count_read_percent=0;
-	// 		}
-
-	// 		$_item->count_read_succes= $count_read_succes;
-	// 		$_item->count_read= $count_read;
-	// 		$_item->count_read_percent=round($count_read_percent, 1);
-	// 		$_item->count_listen_succes= $count_listen_succes;
-	// 		$_item->count_listen= $count_listen;
-	// 		$_item->count_listen_percent= round($count_listen_percent, 1);
-			
-    //     }
-    //     return view('admin.users.exam',compact('exams'));
-    // }
 	public function examsGoethe($id)
 	{
 		$answers = ExamAnswer::with([
@@ -158,8 +52,13 @@ class UserController extends Controller
 		->get();
 
 		$exams = $answers
-			->filter(fn($answer) => $answer->exams && is_null($answer->exams->section))
+			->filter(function ($answer) {
+				return $answer->exams &&
+					is_null($answer->exams->section);
+			})
 			->groupBy('exam_id');
+
+		$result = [];
 
 		foreach ($exams as $examId => $examAnswers) {
 
@@ -177,28 +76,8 @@ class UserController extends Controller
 					continue;
 				}
 
-				// Writing
+				// Writing لا يدخل ضمن Listening أو Reading
 				if ($subQuestion->is_complete == 'write') {
-
-					$expected = ExpectedAnswer::where(
-						'subquestion_id',
-						$subQuestion->id
-					)->first();
-
-					if (
-						$expected &&
-						in_array($answer->answer, [
-							$expected->one,
-							$expected->two,
-							$expected->three,
-							$expected->four,
-							$expected->five,
-							$expected->six,
-						])
-					) {
-						$listenSuccess++;
-					}
-
 					continue;
 				}
 
@@ -210,17 +89,22 @@ class UserController extends Controller
 					if ($answer->answer === $answer->expected_answer) {
 						$listenSuccess++;
 					}
+
+					continue;
 				}
 
 				// Reading
-				else {
-					if ($answer->answer === $answer->expected_answer) {
-						$readSuccess++;
-					}
+				if ($answer->answer === $answer->expected_answer) {
+					$readSuccess++;
 				}
 			}
 
-			// إجمالي الأسئلة
+			/*
+			|--------------------------------------------------------------------------
+			| حساب إجمالي الأسئلة
+			|--------------------------------------------------------------------------
+			*/
+
 			$questions = Question::where('exam_id', $exam->id)
 				->with('subquestions')
 				->get();
@@ -242,22 +126,36 @@ class UserController extends Controller
 				}
 			}
 
+			/*
+			|--------------------------------------------------------------------------
+			| Listening Result
+			|--------------------------------------------------------------------------
+			*/
+
 			$exam->count_listen_succes = $listenSuccess;
 			$exam->count_listen = $listenCount;
-			$exam->count_listen_percent = $listenCount
+
+			$exam->count_listen_percent = $listenCount > 0
 				? round(($listenSuccess / $listenCount) * 100, 1)
 				: 0;
 
+			/*
+			|--------------------------------------------------------------------------
+			| Reading Result
+			|--------------------------------------------------------------------------
+			*/
+
 			$exam->count_read_succes = $readSuccess;
 			$exam->count_read = $readCount;
-			$exam->count_read_percent = $readCount
+
+			$exam->count_read_percent = $readCount > 0
 				? round(($readSuccess / $readCount) * 100, 1)
 				: 0;
 
 			$result[] = $exam;
 		}
 
-		$exams = collect($result ?? []);
+		$exams = collect($result);
 
 		return view('admin.users.exam', compact('exams'));
 	}
@@ -280,7 +178,7 @@ class UserController extends Controller
 
 		$result = [];
 
-		foreach ($exams as $examAnswers) {
+		foreach ($exams as $examId => $examAnswers) {
 
 			$exam = $examAnswers->first()->exams;
 
@@ -296,25 +194,8 @@ class UserController extends Controller
 					continue;
 				}
 
-				// Writing
+				// Writing لا يدخل في Listening أو Reading
 				if ($subQuestion->is_complete == 'write') {
-
-					$expected = ExpectedAnswer::where(
-						'subquestion_id',
-						$subQuestion->id
-					)->first();
-
-					if ($expected && in_array($answer->answer, [
-						$expected->one,
-						$expected->two,
-						$expected->three,
-						$expected->four,
-						$expected->five,
-						$expected->six,
-					])) {
-						$listenSuccess++;
-					}
-
 					continue;
 				}
 
@@ -326,17 +207,22 @@ class UserController extends Controller
 					if ($answer->answer === $answer->expected_answer) {
 						$listenSuccess++;
 					}
+
+					continue;
 				}
 
 				// Reading
-				else {
-					if ($answer->answer === $answer->expected_answer) {
-						$readSuccess++;
-					}
+				if ($answer->answer === $answer->expected_answer) {
+					$readSuccess++;
 				}
 			}
 
-			// جميع أسئلة الامتحان
+			/*
+			|--------------------------------------------------------------------------
+			| إجمالي الأسئلة
+			|--------------------------------------------------------------------------
+			*/
+
 			$questions = Question::where('exam_id', $exam->id)
 				->with('subquestions')
 				->get();
@@ -358,16 +244,29 @@ class UserController extends Controller
 				}
 			}
 
-			// النتائج
+			/*
+			|--------------------------------------------------------------------------
+			| Listening
+			|--------------------------------------------------------------------------
+			*/
+
 			$exam->count_listen_succes = $listenSuccess;
 			$exam->count_listen = $listenCount;
-			$exam->count_listen_percent = $listenCount
+
+			$exam->count_listen_percent = $listenCount > 0
 				? round(($listenSuccess / $listenCount) * 100, 1)
 				: 0;
 
+			/*
+			|--------------------------------------------------------------------------
+			| Reading
+			|--------------------------------------------------------------------------
+			*/
+
 			$exam->count_read_succes = $readSuccess;
 			$exam->count_read = $readCount;
-			$exam->count_read_percent = $readCount
+
+			$exam->count_read_percent = $readCount > 0
 				? round(($readSuccess / $readCount) * 100, 1)
 				: 0;
 

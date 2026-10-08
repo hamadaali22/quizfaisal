@@ -72,7 +72,7 @@ Route::group(['middleware' => ['api'], 'namespace' => 'Api'], function () {
     Route::get('goethe-report-exams', 'QuestionController@goetheReportExams');
     Route::get('goethe-report-examss', 'QuestionController@goetheReportExamss');
 
-    Route::get('telc-user-exams', 'QuestionController@telcUserExams');
+    Route::get('telc-user-exams', 'QuestionController@UserExams');
 
     Route::post('edit-quize-test', 'QuestionController@editQuizeTest');
     Route::post('contact-us', 'HomeController@ContactUs');

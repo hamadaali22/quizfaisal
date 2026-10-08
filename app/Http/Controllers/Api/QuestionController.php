@@ -1088,114 +1088,217 @@ class QuestionController extends Controller
         return $this->returnDataa('data', $data,'');
     }
 
-    public function telcUserExams(Request $request){
-        $count_listen_succes=0;
-        $count_listen=0;
-        $count_read_succes=0;
-        $count_read=0;
-        $exams = Exam::
-        // where('section', 'telc')->
-        whereHas('examAnswers', function ($q) use ($request) {
-                $q->where('user_id', $request->user_id);
-            })
-            ->with(['examAnswers' => function ($q) use ($request) {
-                $q->where('user_id', $request->user_id);
-            }])
-            // ->orderBy('id', 'DESC')
-            ->get();
+    public function UserExams(Request $request)
+{
+    /*
+    |--------------------------------------------------------------------------
+    | كل إجابات الطالب
+    |--------------------------------------------------------------------------
+    */
 
-       foreach ($exams as $_item) {
-       
-            // $_item->date=$_item->created_at->format('Y-m-d');
-            $_item->name=$_item->name;
-            $count_listen_succes=0;
-        	$count_listen=0;
-        	$count_read_succes=0;
-        	$count_read=0;
-            // $one_exams=ExamAnswer::where("user_id" , $request->user_id)->where("exam_id" , $_item->id)->get();
-            foreach ($_item->examAnswers as $one_exam) {
-                $_item->date=$one_exam->created_at->format('Y-m-d');
-                $question=Question::where('id',$one_exam->question_id)->first();
-				$subquestion=SubQuestion::where('id',$one_exam->subquestion_id)->first();
-				if($question){
-                    if($subquestion){
-                        
-						if($subquestion->is_complete !='write'){
-						    
-							if($question->type =='listening'){
-							    
-    							if($one_exam->answer === $one_exam->expected_answer){
-    								$count_listen_succes +=1;
-    								
-    							}
-							}elseif($question->type =='listening and image'){
-								if($one_exam->answer === $one_exam->expected_answer){
-								$count_listen_succes +=1;
-							}
-							}else{
-								if($one_exam->answer === $one_exam->expected_answer){
-									$count_read_succes +=1;
-								}
-							}
-						}else{
-							$expected_answer=ExpectedAnswer::where('subquestion_id',$subquestion->id)->get();
-							foreach ($expected_answer as $expected) {
-								if($one_exam->answer == $expected->one){
-								$count_listen_succes +=1;
-								}elseif($one_exam->answer == $expected->two){
-									$count_listen_succes +=1;
-								}elseif($one_exam->answer == $expected->three){
-									$count_listen_succes +=1;
-								}elseif($one_exam->answer == $expected->four){
-									$count_listen_succes +=1;
-								}elseif($one_exam->answer == $expected->five){
-									$count_listen_succes +=1;
-								}elseif($one_exam->answer == $expected->six){
-									$count_listen_succes +=1;
-								}else {
-								}
-							}
-						}
-                    }
-				}
-			}
-			
-		    $allquestion=Question::where('exam_id',$_item->id)->get();
-			foreach ($allquestion as $sub) {
-			    $subquestion_listening=SubQuestion::where("question_id" , $sub->id)->get();
-			    $subquestion_read=SubQuestion::where("question_id" , $sub->id)->get();
-				if($sub->type =='listening'){
-					$count_listen +=count($subquestion_listening);
-				}elseif($sub->type =='listening and image'){
-					$count_listen +=count($subquestion_listening);
-				}else{
-					$count_read +=count($subquestion_read);
-				}
-			}
-			if($count_listen_succes !=0){
-				$count_listen_percent=($count_listen_succes / $count_listen) * 100;
-			}else{
-				$count_listen_percent=0;
-			}
-			if($count_read_succes !=0){
-				$count_read_percent=($count_read_succes / $count_read) * 100;
-			}else{
-				$count_read_percent=0;
-			}
+    $answers = ExamAnswer::with([
+        'exams',
+        'question'
+    ])
+    ->where('user_id', $request->user_id)
+    ->get();
 
-			$_item->count_read_succes= $count_read_succes;
-			$_item->count_read= $count_read;
-			$_item->count_read_percent=round($count_read_percent, 1);
-			$_item->count_listen_succes= $count_listen_succes;
-			$_item->count_listen= $count_listen;
-			$_item->count_listen_percent= round($count_listen_percent, 1);
-			
+    /*
+    |--------------------------------------------------------------------------
+    | تجميع الإجابات حسب الامتحان
+    |--------------------------------------------------------------------------
+    */
+
+    $exams = $answers->groupBy('exam_id');
+
+    $result = [];
+
+    /*
+    |--------------------------------------------------------------------------
+    | حساب نتيجة كل امتحان
+    |--------------------------------------------------------------------------
+    */
+
+    foreach ($exams as $examId => $examAnswers) {
+
+        $exam = $examAnswers->first()->exams;
+
+        if (!$exam) {
+            continue;
         }
-			
-		    
-			
-        return $this->returnDataa('data', $exams,'');
+
+        /*
+        |--------------------------------------------------------------------------
+        | متغيرات النتائج
+        |--------------------------------------------------------------------------
+        */
+
+        $count_listen_succes = 0;
+        $count_listen = 0;
+
+        $count_read_succes = 0;
+        $count_read = 0;
+
+        $count_write_marks = 0;
+        $count_write = 0;
+
+        /*
+        |--------------------------------------------------------------------------
+        | حساب إجابات الامتحان
+        |--------------------------------------------------------------------------
+        */
+
+        foreach ($examAnswers as $item) {
+
+            $question = $item->question;
+
+            if (!$question) {
+                continue;
+            }
+
+            /*
+            |--------------------------------------------------------------------------
+            | Listening
+            |--------------------------------------------------------------------------
+            */
+
+            if (
+                $question->type == 'listening' ||
+                $question->type == 'listening and image'
+            ) {
+
+                if ($item->answer === $item->expected_answer) {
+                    $count_listen_succes++;
+                }
+
+                $count_listen++;
+            }
+
+            /*
+            |--------------------------------------------------------------------------
+            | Reading
+            |--------------------------------------------------------------------------
+            */
+
+            elseif (
+                $question->type == 'reading' ||
+                $question->type == 'image' ||
+                $question->type == 'sub'
+            ) {
+
+                if ($item->answer === $item->expected_answer) {
+                    $count_read_succes++;
+                }
+
+                $count_read++;
+            }
+
+            /*
+            |--------------------------------------------------------------------------
+            | Writing
+            |--------------------------------------------------------------------------
+            */
+
+            elseif (
+                $question->type == 'writing' ||
+                $question->type == 'writing and image'
+            ) {
+
+                /*
+                | الدرجة الكاملة
+                */
+
+                $count_write += (float) $question->mark;
+
+                /*
+                | الدرجة التي حصل عليها الطالب من AI
+                */
+
+                $count_write_marks += (float) ($item->totalScore ?? 0);
+            }
+        }
+
+        /*
+        |--------------------------------------------------------------------------
+        | Listening %
+        |--------------------------------------------------------------------------
+        */
+
+        $count_listen_percent = $count_listen > 0
+            ? ($count_listen_succes / $count_listen) * 100
+            : 0;
+
+        /*
+        |--------------------------------------------------------------------------
+        | Reading %
+        |--------------------------------------------------------------------------
+        */
+
+        $count_read_percent = $count_read > 0
+            ? ($count_read_succes / $count_read) * 100
+            : 0;
+
+        /*
+        |--------------------------------------------------------------------------
+        | Writing %
+        |--------------------------------------------------------------------------
+        */
+
+        $count_write_percent = $count_write > 0
+            ? ($count_write_marks / $count_write) * 100
+            : 0;
+
+        /*
+        |--------------------------------------------------------------------------
+        | بيانات الامتحان
+        |--------------------------------------------------------------------------
+        */
+
+        $exam->count_read_succes = $count_read_succes;
+        $exam->count_read = $count_read;
+        $exam->count_read_percent = round($count_read_percent, 1);
+
+        $exam->count_listen_succes = $count_listen_succes;
+        $exam->count_listen = $count_listen;
+        $exam->count_listen_percent = round($count_listen_percent, 1);
+
+        $exam->count_write = $count_write;
+        $exam->count_write_marks = round($count_write_marks, 1);
+        $exam->count_write_percent = round($count_write_percent, 1);
+
+        /*
+        |--------------------------------------------------------------------------
+        | تاريخ الامتحان
+        |--------------------------------------------------------------------------
+        */
+
+        $lastAnswer = $examAnswers->sortByDesc('created_at')->first();
+
+        if ($lastAnswer) {
+            $exam->date = $lastAnswer->created_at->format('Y-m-d');
+        }
+
+        /*
+        |--------------------------------------------------------------------------
+        | عدد الإجابات
+        |--------------------------------------------------------------------------
+        */
+
+        $exam->count4 = $examAnswers->count();
+
+        $result[] = $exam;
     }
+
+    /*
+    |--------------------------------------------------------------------------
+    | النتيجة النهائية
+    |--------------------------------------------------------------------------
+    */
+
+    $exams = collect($result);
+
+    return $this->returnDataa('data', $exams, '');
+}
     public function telcUserExamss(Request $request){
         $xam_answer=ExamAnswer::where("user_id" , $request->user_id)->orderBy('id','DESC')->get();
         $values=[];

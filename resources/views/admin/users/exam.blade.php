@@ -94,28 +94,28 @@
 
 													<td class="text-center">
 														
-														عدد الأسئلة: {{ $_item->count_read }}
+														Number of questions: {{ $_item->count_read }}
 														<br>
-															اجابات صحيحة: {{ $_item->count_read_succes }}
+														Correct answers: {{ $_item->count_read_succes }}
 														<br>
-														النسبة المئوية: ({{ $_item->count_read_percent }}%)
+														Percentage: ({{ $_item->count_read_percent }}%)
 													</td>
 
 													<td class="text-center">
 														
-														عدد الأسئلة: {{ $_item->count_listen }}
+														Number of questions: {{ $_item->count_listen }}
 														<br>
-															اجابات صحيحة: {{ $_item->count_listen_succes }}
+														Correct answers: {{ $_item->count_listen_succes }}
 														<br>
-														النسبة المئوية: ({{ $_item->count_listen_percent }}%)
+														Percentage: ({{ $_item->count_listen_percent }}%)
 													</td>
 
 													<td class="text-center">
-													المجموع الكلي: {{ $_item->count_write }}
+														Total score: {{ $_item->count_write }}
 														<br>
-													مجموع النقاط الصحيحه {{ $_item->count_write_marks }}
+														Correct points: {{ $_item->count_write_marks }}
 														<br>
-														النسبة المئوية: ({{ $_item->count_write_percent }}%)
+														Percentage: ({{ $_item->count_write_percent }}%)
 													</td>
 
 												</tr>

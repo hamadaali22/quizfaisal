@@ -1431,131 +1431,7 @@ class QuestionController extends Controller
         return $this->returnDataa('data', $data,'');
     }
 
-    public function evaluate(Request $request)
-    {
-        // $request->validate([
-        //     'question' => 'required|string',
-        //     'student_text' => 'required|string',
-        //     'question_id' => 'required|integer',
-        // ]);
-
-        $question = $request->question;
-        $studentAnswer = trim($request->student_text);
-
-        // جلب السؤال
-        $examQuestion = Question::findOrFail($request->question_id);
-
-        // التأكد أن السؤال Writing
-        if (
-            $examQuestion->type !== 'writing' &&
-            $examQuestion->type !== 'writing and image'
-        ) {
-            return response()->json([
-                'success' => false,
-                'message' => 'This question is not a writing question.'
-            ], 422);
-        }
-
-        $promptText = $examQuestion->prompt;
-
-        $prompt = <<<PROMPT
-
-        You are an official Goethe German A1 writing examiner.
-
-        Evaluate the student's answer STRICTLY according to the following JSON rubric.
-
-        The rubric defines:
-        - task
-        - scoring
-        - calculation
-        - output format
-
-        You MUST follow it exactly.
-
-        Return ONLY valid JSON.
-
-        Do NOT use markdown.
-
-        Do NOT wrap the response inside ```json.
-
-        $promptText
-
-        =========================================
-        ORIGINAL WRITING TASK
-        =========================================
-
-        $question
-
-        =========================================
-        STUDENT ANSWER
-        =========================================
-
-        $studentAnswer
-
-        PROMPT;
-
-        $response = Http::post(
-            "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent?key="
-            . config('services.gemini.key'),
-            [
-                "contents" => [
-                    [
-                        "parts" => [
-                            [
-                                "text" => $prompt
-                            ]
-                        ]
-                    ]
-                ],
-                "generationConfig" => [
-                    "responseMimeType" => "application/json"
-                ]
-            ]
-        );
-
-        $result = data_get(
-            $response->json(),
-            'candidates.0.content.parts.0.text'
-        );
-
-        // Gemini لم يرجع أي نص
-        if (empty($result)) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Gemini returned no text.',
-                'status' => $response->status(),
-                'response' => $response->json()
-            ]);
-        }
-
-        // إزالة ```json و ```
-        $clean = preg_replace('/```json|```/i', '', trim($result));
-
-        // استخراج أول JSON موجود داخل النص
-        preg_match('/\{.*\}/s', $clean, $matches);
-
-        $cleanJson = $matches[0] ?? $clean;
-
-        // تحويل JSON إلى Array
-        $data = json_decode($cleanJson, true);
-
-        // لو JSON غير صالح
-        if (json_last_error() !== JSON_ERROR_NONE) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Invalid JSON returned from Gemini.',
-                'json_error' => json_last_error_msg(),
-                'raw_response' => $result,
-                'clean_json' => $cleanJson
-            ]);
-        }
-
-        // نجاح
-        return response()->json([
-            'success' => true,
-            'data' => $data
-        ]);
-    }
+    
     public function SaveExams(Request $request)
     {
         /*
@@ -1831,205 +1707,503 @@ class QuestionController extends Controller
     //     return $this -> returnDataa('data',$add,'تم الحفظ');
     // }
 
-public function results(Request $request)
-{
-    $count_listen_succes = 0;
-    $count_listen = 0;
-
-    $count_read_succes = 0;
-    $count_read = 0;
-
-    $count_write_marks = 0;
-    $count_write = 0;
-
-    $data = ExamAnswer::where('user_id', $request->user_id)
-        ->where('exam_id', $request->exam_id)
-        ->get();
-
-    /*
-    |--------------------------------------------------------------------------
-    | نأخذ آخر إجابة لكل SubQuestion
-    |--------------------------------------------------------------------------
-    */
-
-    $data = $data
-        ->groupBy('subquestion_id')
-        ->map(function ($answers) {
-            return $answers->last();
-        });
-
-    foreach ($data as $item) {
-
-        $question = Question::where('id', $item->question_id)->first();
-
-        $subquestion = SubQuestion::where(
-            'id',
-            $item->subquestion_id
-        )->first();
-
-        if ($question) {
-
-            /*
-            |--------------------------------------------------------------------------
-            | Listening / Reading
-            |--------------------------------------------------------------------------
-            */
-
-            if ($subquestion) {
-
-                if ($subquestion->is_complete != 'write') {
-
-                    // Listening
-                    if (
-                        $question->type == 'listening' ||
-                        $question->type == 'listening and image'
-                    ) {
-
-                        if ($item->answer === $item->expected_answer) {
-                            $count_listen_succes++;
-                        }
-
-                    } else {
-
-                        // Reading
-                        if ($item->answer === $item->expected_answer) {
-                            $count_read_succes++;
-                        }
-                    }
-
-                } else {
-
-                    /*
-                    |--------------------------------------------------------------------------
-                    | Writing
-                    |--------------------------------------------------------------------------
-                    */
-
-                    $expected_answer = ExpectedAnswer::where(
-                        'subquestion_id',
-                        $subquestion->id
-                    )->get();
-
-                    foreach ($expected_answer as $expected) {
-
+     public function resultsll(Request $request)
+    {
+        $count_listen_succes = 0;
+        $count_listen = 0;
+    
+        $count_read_succes = 0;
+        $count_read = 0;
+    
+        $count_write_marks = 0;
+        $count_write = 0;
+    
+        $data = ExamAnswer::where('user_id', $request->user_id)
+            ->where('exam_id', $request->exam_id)
+            ->get();
+    
+        /*
+        |--------------------------------------------------------------------------
+        | نأخذ آخر إجابة لكل SubQuestion
+        |--------------------------------------------------------------------------
+        */
+    
+        $data = $data
+            ->groupBy('subquestion_id')
+            ->map(function ($answers) {
+                return $answers->last();
+            });
+    
+        foreach ($data as $item) {
+    
+            $question = Question::where('id', $item->question_id)->first();
+    
+            $subquestion = SubQuestion::where(
+                'id',
+                $item->subquestion_id
+            )->first();
+    
+            if ($question) {
+    
+                /*
+                |--------------------------------------------------------------------------
+                | Listening / Reading
+                |--------------------------------------------------------------------------
+                */
+    
+                if ($subquestion) {
+    
+                    if ($subquestion->is_complete != 'write') {
+    
+                        // Listening
                         if (
-                            $item->answer == $expected->one ||
-                            $item->answer == $expected->two ||
-                            $item->answer == $expected->three ||
-                            $item->answer == $expected->four ||
-                            $item->answer == $expected->five ||
-                            $item->answer == $expected->six
+                            $question->type == 'listening' ||
+                            $question->type == 'listening and image'
                         ) {
-                            $count_write_marks++;
-                            break;
+    
+                            if ($item->answer === $item->expected_answer) {
+                                $count_listen_succes++;
+                            }
+    
+                        } else {
+    
+                            // Reading
+                            if ($item->answer === $item->expected_answer) {
+                                $count_read_succes++;
+                            }
+                        }
+    
+                    } else {
+    
+                        /*
+                        |--------------------------------------------------------------------------
+                        | Writing
+                        |--------------------------------------------------------------------------
+                        */
+    
+                        $expected_answer = ExpectedAnswer::where(
+                            'subquestion_id',
+                            $subquestion->id
+                        )->get();
+    
+                        foreach ($expected_answer as $expected) {
+    
+                            if (
+                                $item->answer == $expected->one ||
+                                $item->answer == $expected->two ||
+                                $item->answer == $expected->three ||
+                                $item->answer == $expected->four ||
+                                $item->answer == $expected->five ||
+                                $item->answer == $expected->six
+                            ) {
+                                $count_write_marks++;
+                                break;
+                            }
                         }
                     }
                 }
+    
+                $count_write_marks += $item->totalScore;
             }
-
-            $count_write_marks += $item->totalScore;
+    
+            $item->question = $question;
+    
+            $item->exam = Exam::where(
+                'id',
+                $item->exam_id
+            )->first();
+    
+            $item->user = User::where(
+                'id',
+                $item->user_id
+            )->first();
         }
-
-        $item->question = $question;
-
-        $item->exam = Exam::where(
-            'id',
-            $item->exam_id
-        )->first();
-
-        $item->user = User::where(
-            'id',
-            $item->user_id
-        )->first();
-    }
-
-    /*
-    |--------------------------------------------------------------------------
-    | حساب إجمالي الأسئلة
-    |--------------------------------------------------------------------------
-    */
-
-    $allquestion = Question::where(
-        'exam_id',
-        $request->exam_id
-    )->get();
-
-    foreach ($allquestion as $_item) {
-
-        if (
-            $_item->type == 'listening' ||
-            $_item->type == 'listening and image'
-        ) {
-
-            $subquestion_listening = SubQuestion::where(
-                'question_id',
-                $_item->id
-            )->get();
-
-            $count_listen += count($subquestion_listening);
-
-        } elseif (
-            $_item->type == 'writing' ||
-            $_item->type == 'writing and image'
-        ) {
-
-            $count_write += $_item->mark;
-
-        } else {
-
-            $subquestion_read = SubQuestion::where(
-                'question_id',
-                $_item->id
-            )->get();
-
-            $count_read += count($subquestion_read);
+    
+        /*
+        |--------------------------------------------------------------------------
+        | حساب إجمالي الأسئلة
+        |--------------------------------------------------------------------------
+        */
+    
+        $allquestion = Question::where(
+            'exam_id',
+            $request->exam_id
+        )->get();
+    
+        foreach ($allquestion as $_item) {
+    
+            if ($_item->type == 'listening' || $_item->type == 'listening and image') {
+    
+                $subquestion_listening = SubQuestion::where( 'question_id', $_item->id )->get();
+    
+                $count_listen += count($subquestion_listening);
+    
+            } elseif (
+                $_item->type == 'writing' ||
+                $_item->type == 'writing and image'
+            ) {
+    
+                $count_write += $_item->mark;
+    
+            } else {
+    
+                $subquestion_read = SubQuestion::where(
+                    'question_id',
+                    $_item->id
+                )->get();
+    
+                $count_read += count($subquestion_read);
+            }
         }
+    
+        /*
+        |--------------------------------------------------------------------------
+        | Percentages
+        |--------------------------------------------------------------------------
+        */
+    
+        $count_listen_percent = $count_listen > 0
+            ? ($count_listen_succes / $count_listen) * 100
+            : 0;
+    
+        $count_read_percent = $count_read > 0
+            ? ($count_read_succes / $count_read) * 100
+            : 0;
+    
+        $count_write_percent = $count_write > 0
+            ? ($count_write_marks / $count_write) * 100
+            : 0;
+    
+        /*
+        |--------------------------------------------------------------------------
+        | Result
+        |--------------------------------------------------------------------------
+        */
+    
+        $home = [
+            'count_listen_succes' => $count_listen_succes,
+            'count_listen' => $count_listen,
+            'count_listen_percent' => round($count_listen_percent, 1),
+    
+            'count_read_succes' => $count_read_succes,
+            'count_read' => $count_read,
+            'count_read_percent' => round($count_read_percent, 1),
+    
+            'count_write' => $count_write,
+            'count_write_marks' => round($count_write_marks, 1),
+            'count_write_percent' => round($count_write_percent, 1),
+        ];
+    
+        return $this->returnDataa(
+            'data',
+            $home,
+            ''
+        );
     }
+    public function results(Request $request)
+    {
+        $count_listen_succes = 0;
+        $count_listen = 0;
+    
+        $count_read_succes = 0;
+        $count_read = 0;
+    
+        $count_write_marks = 0;
+        $count_write = 0;
+    
+        $data = ExamAnswer::where("user_id", $request->user_id)
+            ->where("exam_id", $request->exam_id)
+            ->get();
+    
+        foreach ($data as $item) {
+            $question = Question::where('id', $item->question_id)->first();
+            if (!$question) {
+                continue;
+            }
+            /*
+            |--------------------------------------------------------------------------
+            | Listening
+            |--------------------------------------------------------------------------
+            */
+            if ($question->type == 'listening' || $question->type == 'listening and image') {
+                // عدد الـ Sub Questions
+                $count_listen++;
+                // هل الإجابة صحيحة؟
+                if ($item->answer === $item->expected_answer) {
+                    $count_listen_succes++;
+                }
+            }
+            /*
+            |--------------------------------------------------------------------------
+            | Reading
+            |--------------------------------------------------------------------------
+            */
+            elseif ( $question->type == 'reading' || $question->type == 'image' || $question->type == 'sub') {
+                // عدد الـ Sub Questions
+                $count_read++;
+    
+                // هل الإجابة صحيحة؟
+                if ($item->answer === $item->expected_answer) {
+                    $count_read_succes++;
+                }
+    
+            }
+    
+            /*
+            |--------------------------------------------------------------------------
+            | Writing
+            |--------------------------------------------------------------------------
+            */
+            elseif ( $question->type == 'writing' || $question->type == 'writing and image') {
+                // إجمالي الـ Mark المتاح للسؤال
+                $count_write += (float) $question->mark;
+    
+                // الدرجة التي حصل عليها الطالب
+                $count_write_marks += (float) ($item->totalScore ?? 0);
+            }
+    
+            // البيانات الإضافية
+            $item->question = $question;
+            $item->exam = Exam::where('id', $item->exam_id)->first();
+            $item->user = User::where('id', $item->user_id)->first();
+        }
+    
+        /*
+        |--------------------------------------------------------------------------
+        | Percentages
+        |--------------------------------------------------------------------------
+        */
+    
+        $count_listen_percent = $count_listen > 0
+            ? ($count_listen_succes / $count_listen) * 100
+            : 0;
+    
+        $count_read_percent = $count_read > 0
+            ? ($count_read_succes / $count_read) * 100
+            : 0;
+    
+        $count_write_percent = $count_write > 0
+            ? ($count_write_marks / $count_write) * 100
+            : 0;
+    
+        /*
+        |--------------------------------------------------------------------------
+        | Result
+        |--------------------------------------------------------------------------
+        */
+    
+        $home = [
+            'count_read_succes' => $count_read_succes,
+            'count_read' => $count_read,
+            'count_read_percent' => round($count_read_percent, 1),
+    
+            'count_listen_succes' => $count_listen_succes,
+            'count_listen' => $count_listen,
+            'count_listen_percent' => round($count_listen_percent, 1),
+    
+            'count_write' => $count_write,
+            'count_write_marks' => round($count_write_marks, 1),
+            'count_write_percent' => round($count_write_percent, 1),
+    
+            'count4' => count($data),
+        ];
+    
+        return $this->returnDataa('data', $home, '');
+    }
+    // public function results(Request $request)
+    // {
+    //     $count_listen_succes = 0;
+    //     $count_listen = 0;
 
-    /*
-    |--------------------------------------------------------------------------
-    | Percentages
-    |--------------------------------------------------------------------------
-    */
+    //     $count_read_succes = 0;
+    //     $count_read = 0;
 
-    $count_listen_percent = $count_listen > 0
-        ? ($count_listen_succes / $count_listen) * 100
-        : 0;
+    //     $count_write_marks = 0;
+    //     $count_write = 0;
 
-    $count_read_percent = $count_read > 0
-        ? ($count_read_succes / $count_read) * 100
-        : 0;
+    //     $data = ExamAnswer::where('user_id', $request->user_id)
+    //         ->where('exam_id', $request->exam_id)
+    //         ->get();
+    //         // $allquestion = Question::where(
+    //         //         'exam_id',
+    //         //         $request->exam_id
+    //         //     )->get();
+    //         //     $count4=count($allquestion);
+    //         //     dd($count4);
+    //     /*
+    //     |--------------------------------------------------------------------------
+    //     | نأخذ آخر إجابة لكل SubQuestion
+    //     |--------------------------------------------------------------------------
+    //     */
 
-    $count_write_percent = $count_write > 0
-        ? ($count_write_marks / $count_write) * 100
-        : 0;
+    //     $data = $data
+    //         ->groupBy('subquestion_id')
+    //         ->map(function ($answers) {
+    //             return $answers->last();
+    //         });
 
-    /*
-    |--------------------------------------------------------------------------
-    | Result
-    |--------------------------------------------------------------------------
-    */
+    //     foreach ($data as $item) {
 
-    $home = [
-        'count_listen_succes' => $count_listen_succes,
-        'count_listen' => $count_listen,
-        'count_listen_percent' => round($count_listen_percent, 1),
+    //         $question = Question::where('id', $item->question_id)->first();
 
-        'count_read_succes' => $count_read_succes,
-        'count_read' => $count_read,
-        'count_read_percent' => round($count_read_percent, 1),
+    //         $subquestion = SubQuestion::where(
+    //             'id',
+    //             $item->subquestion_id
+    //         )->first();
 
-        'count_write' => $count_write,
-        'count_write_marks' => round($count_write_marks, 1),
-        'count_write_percent' => round($count_write_percent, 1),
-    ];
+    //         if ($question) {
 
-    return $this->returnDataa(
-        'data',
-        $home,
-        ''
-    );
-}
+    //             /*
+    //             |--------------------------------------------------------------------------
+    //             | Listening / Reading
+    //             |--------------------------------------------------------------------------
+    //             */
+
+    //             if ($subquestion) {
+
+    //                 if ($subquestion->is_complete != 'write') {
+    //                     // Listening
+    //                     if ($question->type == 'listening' || $question->type == 'listening and image') {
+    //                         if ($item->answer === $item->expected_answer) {
+    //                             $count_listen_succes++;
+    //                         }
+    //                     } else {
+    //                         // Reading
+    //                         if ($item->answer === $item->expected_answer) {
+    //                             $count_read_succes++;
+    //                         }
+    //                     }
+
+    //                 } else {
+
+    //                     /*
+    //                     |--------------------------------------------------------------------------
+    //                     | Writing
+    //                     |--------------------------------------------------------------------------
+    //                     */
+
+    //                     $expected_answer = ExpectedAnswer::where( 'subquestion_id', $subquestion->id)->get();
+
+    //                     foreach ($expected_answer as $expected) {
+
+    //                         if (
+    //                             $item->answer == $expected->one ||
+    //                             $item->answer == $expected->two ||
+    //                             $item->answer == $expected->three ||
+    //                             $item->answer == $expected->four ||
+    //                             $item->answer == $expected->five ||
+    //                             $item->answer == $expected->six
+    //                         ) {
+    //                             $count_write_marks++;
+    //                             break;
+    //                         }
+    //                     }
+    //                 }
+    //             }
+
+    //             $count_write_marks += $item->totalScore;
+    //         }
+
+    //         $item->question = $question;
+
+    //         $item->exam = Exam::where(
+    //             'id',
+    //             $item->exam_id
+    //         )->first();
+
+    //         $item->user = User::where(
+    //             'id',
+    //             $item->user_id
+    //         )->first();
+    //     }
+
+    //     /*
+    //     |--------------------------------------------------------------------------
+    //     | حساب إجمالي الأسئلة
+    //     |--------------------------------------------------------------------------
+    //     */
+
+    //     $allquestion = Question::where(
+    //         'exam_id',
+    //         $request->exam_id
+    //     )->get();
+
+    //     foreach ($allquestion as $_item) {
+
+    //         if (
+    //             $_item->type == 'listening' ||
+    //             $_item->type == 'listening and image'
+    //         ) {
+
+    //             $subquestion_listening = SubQuestion::where(
+    //                 'question_id',
+    //                 $_item->id
+    //             )->get();
+
+    //             $count_listen += count($subquestion_listening);
+
+    //         } elseif (
+    //             $_item->type == 'writing' ||
+    //             $_item->type == 'writing and image'
+    //         ) {
+
+    //             $count_write += $_item->mark;
+
+    //         } else {
+
+    //             $subquestion_read = SubQuestion::where(
+    //                 'question_id',
+    //                 $_item->id
+    //             )->get();
+
+    //             $count_read += count($subquestion_read);
+    //         }
+    //     }
+
+    //     /*
+    //     |--------------------------------------------------------------------------
+    //     | Percentages
+    //     |--------------------------------------------------------------------------
+    //     */
+
+    //     $count_listen_percent = $count_listen > 0
+    //         ? ($count_listen_succes / $count_listen) * 100
+    //         : 0;
+
+    //     $count_read_percent = $count_read > 0
+    //         ? ($count_read_succes / $count_read) * 100
+    //         : 0;
+
+    //     $count_write_percent = $count_write > 0
+    //         ? ($count_write_marks / $count_write) * 100
+    //         : 0;
+
+    //     /*
+    //     |--------------------------------------------------------------------------
+    //     | Result
+    //     |--------------------------------------------------------------------------
+    //     */
+
+    //     $home = [
+    //         'count_listen_succes' => $count_listen_succes,
+    //         'count_listen' => $count_listen,
+    //         'count_listen_percent' => round($count_listen_percent, 1),
+
+    //         'count_read_succes' => $count_read_succes,
+    //         'count_read' => $count_read,
+    //         'count_read_percent' => round($count_read_percent, 1),
+
+    //         'count_write' => $count_write,
+    //         'count_write_marks' => round($count_write_marks, 1),
+    //         'count_write_percent' => round($count_write_percent, 1),
+    //     ];
+
+    //     return $this->returnDataa(
+    //         'data',
+    //         $home,
+    //         ''
+    //     );
+    // }
 
     // public function resultss(Request $request)
     // {
@@ -2175,5 +2349,131 @@ public function results(Request $request)
     //         return $this->returnDataa('data', $data,'');
     //     }
     // }
+
+    public function evaluate(Request $request)
+    {
+        // $request->validate([
+        //     'question' => 'required|string',
+        //     'student_text' => 'required|string',
+        //     'question_id' => 'required|integer',
+        // ]);
+
+        $question = $request->question;
+        $studentAnswer = trim($request->student_text);
+
+        // جلب السؤال
+        $examQuestion = Question::findOrFail($request->question_id);
+
+        // التأكد أن السؤال Writing
+        if (
+            $examQuestion->type !== 'writing' &&
+            $examQuestion->type !== 'writing and image'
+        ) {
+            return response()->json([
+                'success' => false,
+                'message' => 'This question is not a writing question.'
+            ], 422);
+        }
+
+        $promptText = $examQuestion->prompt;
+
+        $prompt = <<<PROMPT
+
+        You are an official Goethe German A1 writing examiner.
+
+        Evaluate the student's answer STRICTLY according to the following JSON rubric.
+
+        The rubric defines:
+        - task
+        - scoring
+        - calculation
+        - output format
+
+        You MUST follow it exactly.
+
+        Return ONLY valid JSON.
+
+        Do NOT use markdown.
+
+        Do NOT wrap the response inside ```json.
+
+        $promptText
+
+        =========================================
+        ORIGINAL WRITING TASK
+        =========================================
+
+        $question
+
+        =========================================
+        STUDENT ANSWER
+        =========================================
+
+        $studentAnswer
+
+        PROMPT;
+
+        $response = Http::post(
+            "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent?key="
+            . config('services.gemini.key'),
+            [
+                "contents" => [
+                    [
+                        "parts" => [
+                            [
+                                "text" => $prompt
+                            ]
+                        ]
+                    ]
+                ],
+                "generationConfig" => [
+                    "responseMimeType" => "application/json"
+                ]
+            ]
+        );
+
+        $result = data_get(
+            $response->json(),
+            'candidates.0.content.parts.0.text'
+        );
+
+        // Gemini لم يرجع أي نص
+        if (empty($result)) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Gemini returned no text.',
+                'status' => $response->status(),
+                'response' => $response->json()
+            ]);
+        }
+
+        // إزالة ```json و ```
+        $clean = preg_replace('/```json|```/i', '', trim($result));
+
+        // استخراج أول JSON موجود داخل النص
+        preg_match('/\{.*\}/s', $clean, $matches);
+
+        $cleanJson = $matches[0] ?? $clean;
+
+        // تحويل JSON إلى Array
+        $data = json_decode($cleanJson, true);
+
+        // لو JSON غير صالح
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Invalid JSON returned from Gemini.',
+                'json_error' => json_last_error_msg(),
+                'raw_response' => $result,
+                'clean_json' => $cleanJson
+            ]);
+        }
+
+        // نجاح
+        return response()->json([
+            'success' => true,
+            'data' => $data
+        ]);
+    }
 
 }

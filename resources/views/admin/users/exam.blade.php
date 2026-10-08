@@ -94,28 +94,28 @@
 
 													<td class="text-center">
 														
-														{{ $_item->count_read }}
+														عدد الأسئلة: {{ $_item->count_read }}
 														<br>
-														{{ $_item->count_read_succes }}
+														النتائج: {{ $_item->count_read_succes }}
 														<br>
-														{{ $_item->count_read_percent }}%
+														النسبة المئوية: {{ $_item->count_read_percent }}%
 													</td>
 
 													<td class="text-center">
 														
-														{{ $_item->count_listen }}
+														عدد الأسئلة: {{ $_item->count_listen }}
 														<br>
-														{{ $_item->count_listen_succes }}
+														النتائج: {{ $_item->count_listen_succes }}
 														<br>
-														{{ $_item->count_listen_percent }}%
+														النسبة المئوية: {{ $_item->count_listen_percent }}%
 													</td>
 
 													<td class="text-center">
-														{{ $_item->count_write }}
+														عدد الأسئلة: {{ $_item->count_write }}
 														<br>
-														{{ $_item->count_write_marks }}
+														النتائج: {{ $_item->count_write_marks }}
 														<br>
-														({{ $_item->count_write_percent }}%)
+														النسبة المئوية: {{ $_item->count_write_percent }}%
 													</td>
 
 												</tr>

@@ -98,7 +98,7 @@
 														<br>
 															اجابات صحيحة: {{ $_item->count_read_succes }}
 														<br>
-														النسبة المئوية: {{ $_item->count_read_percent }}%
+														النسبة المئوية: ({{ $_item->count_read_percent }}%)
 													</td>
 
 													<td class="text-center">
@@ -107,13 +107,13 @@
 														<br>
 															اجابات صحيحة: {{ $_item->count_listen_succes }}
 														<br>
-														النسبة المئوية: {{ $_item->count_listen_percent }}%
+														النسبة المئوية: ({{ $_item->count_listen_percent }}%)
 													</td>
 
 													<td class="text-center">
-														عدد الأسئلة: {{ $_item->count_write }}
+													المجموع الكلي: {{ $_item->count_write }}
 														<br>
-														اجابات صحيحة: {{ $_item->count_write_marks }}
+													مجموع النقاط الصحيحه {{ $_item->count_write_marks }}
 														<br>
 														النسبة المئوية: ({{ $_item->count_write_percent }}%)
 													</td>

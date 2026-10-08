@@ -200,13 +200,24 @@ class UserController extends Controller
     // }
     public function examsGoethe($id)
     {
+        /*
+        |--------------------------------------------------------------------------
+        | كل إجابات الطالب في امتحانات Goethe
+        |--------------------------------------------------------------------------
+        */
+
         $answers = ExamAnswer::with([
             'exams',
-            'question',
-            'subquestion'
+            'question'
         ])
         ->where('user_id', $id)
         ->get();
+
+        /*
+        |--------------------------------------------------------------------------
+        | نأخذ امتحانات Goethe فقط
+        |--------------------------------------------------------------------------
+        */
 
         $exams = $answers
             ->filter(function ($answer) {
@@ -217,62 +228,40 @@ class UserController extends Controller
 
         $result = [];
 
+        /*
+        |--------------------------------------------------------------------------
+        | نحسب نتيجة كل امتحان لوحده
+        |--------------------------------------------------------------------------
+        */
+
         foreach ($exams as $examId => $examAnswers) {
 
             $exam = $examAnswers->first()->exams;
 
-            $listenSuccess = 0;
-            $readSuccess = 0;
-
-            $writeMarks = 0;
-            $writeScore = 0;
-
             /*
             |--------------------------------------------------------------------------
-            | نأخذ آخر إجابة لكل سؤال
-            |--------------------------------------------------------------------------
-            |
-            | Listening / Reading
-            | ------------------
-            | نستخدم subquestion_id
-            |
-            | Writing
-            | -------
-            | لا يوجد subquestion
-            | لذلك نستخدم question_id
-            |
+            | نفس متغيرات resultsuser()
             |--------------------------------------------------------------------------
             */
 
-            $examAnswers = $examAnswers
-                ->groupBy(function ($answer) {
+            $count_listen_succes = 0;
+            $count_listen = 0;
 
-                    if (
-                        $answer->question &&
-                        (
-                            $answer->question->type == 'writing' ||
-                            $answer->question->type == 'writing and image'
-                        )
-                    ) {
-                        return 'writing_' . $answer->question_id;
-                    }
+            $count_read_succes = 0;
+            $count_read = 0;
 
-                    return 'sub_' . $answer->subquestion_id;
-                })
-                ->map(function ($answers) {
-                    return $answers->last();
-                });
+            $count_write_marks = 0;
+            $count_write = 0;
 
             /*
             |--------------------------------------------------------------------------
-            | حساب إجابات الطالب
+            | حساب إجابات هذا الامتحان
             |--------------------------------------------------------------------------
             */
 
-            foreach ($examAnswers as $answer) {
+            foreach ($examAnswers as $item) {
 
-                $question = $answer->question;
-                $subQuestion = $answer->subquestion;
+                $question = $item->question;
 
                 if (!$question) {
                     continue;
@@ -280,36 +269,6 @@ class UserController extends Controller
 
                 /*
                 |--------------------------------------------------------------------------
-                | Writing
-                |--------------------------------------------------------------------------
-                */
-
-                if (
-                    $question->type == 'writing' ||
-                    $question->type == 'writing and image'
-                ) {
-
-                    // الدرجة الكاملة للسؤال
-                    $writeMarks += (float) $question->mark;
-
-                    // الدرجة التي حصل عليها الطالب
-                    $writeScore += (float) ($answer->totalScore ?? 0);
-
-                    continue;
-                }
-
-                /*
-                |--------------------------------------------------------------------------
-                | لو ليس لديه SubQuestion
-                |--------------------------------------------------------------------------
-                */
-
-                if (!$subQuestion) {
-                    continue;
-                }
-
-                /*
-                |--------------------------------------------------------------------------
                 | Listening
                 |--------------------------------------------------------------------------
                 */
@@ -319,11 +278,12 @@ class UserController extends Controller
                     $question->type == 'listening and image'
                 ) {
 
-                    if ($answer->answer === $answer->expected_answer) {
-                        $listenSuccess++;
+                    if ($item->answer === $item->expected_answer) {
+                        $count_listen_succes++;
                     }
 
-                    continue;
+                    $count_listen++;
+
                 }
 
                 /*
@@ -332,48 +292,18 @@ class UserController extends Controller
                 |--------------------------------------------------------------------------
                 */
 
-                if ($answer->answer === $answer->expected_answer) {
-                    $readSuccess++;
-                }
-            }
-
-            /*
-            |--------------------------------------------------------------------------
-            | حساب إجمالي الأسئلة
-            |--------------------------------------------------------------------------
-            */
-
-            $questions = Question::where('exam_id', $exam->id)
-                ->with('subquestions')
-                ->get();
-
-            $listenCount = 0;
-            $readCount = 0;
-
-            /*
-            |--------------------------------------------------------------------------
-            | حساب عدد أسئلة Listening / Reading
-            |--------------------------------------------------------------------------
-            */
-
-            foreach ($questions as $question) {
-
-                $count = $question->subquestions->count();
-
-                /*
-                |--------------------------------------------------------------------------
-                | Listening
-                |--------------------------------------------------------------------------
-                */
-
-                if (
-                    $question->type == 'listening' ||
-                    $question->type == 'listening and image'
+                elseif (
+                    $question->type == 'reading' ||
+                    $question->type == 'image' ||
+                    $question->type == 'sub'
                 ) {
 
-                    $listenCount += $count;
+                    if ($item->answer === $item->expected_answer) {
+                        $count_read_succes++;
+                    }
 
-                    continue;
+                    $count_read++;
+
                 }
 
                 /*
@@ -382,64 +312,99 @@ class UserController extends Controller
                 |--------------------------------------------------------------------------
                 */
 
-                if (
+                elseif (
                     $question->type == 'writing' ||
                     $question->type == 'writing and image'
                 ) {
 
-                    continue;
+                    /*
+                    | الـ Mark الموجود في السؤال
+                    | مثال:
+                    | 30 + 30 + 40 = 100
+                    */
+
+                    $count_write += (float) $question->mark;
+
+                    /*
+                    | الدرجة التي حصل عليها الطالب
+                    | مثال:
+                    | 20 + 25 + 35 = 80
+                    */
+
+                    $count_write_marks += (float) ($item->totalScore ?? 0);
                 }
-
-                /*
-                |--------------------------------------------------------------------------
-                | Reading
-                |--------------------------------------------------------------------------
-                */
-
-                $readCount += $count;
             }
 
             /*
             |--------------------------------------------------------------------------
-            | Listening Result
+            | Listening %
             |--------------------------------------------------------------------------
             */
 
-            $exam->count_listen_succes = $listenSuccess;
-            $exam->count_listen = $listenCount;
-
-            $exam->count_listen_percent = $listenCount > 0
-                ? round(($listenSuccess / $listenCount) * 100, 1)
+            $count_listen_percent = $count_listen > 0
+                ? ($count_listen_succes / $count_listen) * 100
                 : 0;
 
             /*
             |--------------------------------------------------------------------------
-            | Reading Result
+            | Reading %
             |--------------------------------------------------------------------------
             */
 
-            $exam->count_read_succes = $readSuccess;
-            $exam->count_read = $readCount;
-
-            $exam->count_read_percent = $readCount > 0
-                ? round(($readSuccess / $readCount) * 100, 1)
+            $count_read_percent = $count_read > 0
+                ? ($count_read_succes / $count_read) * 100
                 : 0;
 
             /*
             |--------------------------------------------------------------------------
-            | Writing Result
+            | Writing %
             |--------------------------------------------------------------------------
             */
 
-            $exam->count_write = $writeMarks;
-            $exam->count_write_marks = round($writeScore, 1);
-
-            $exam->count_write_percent = $writeMarks > 0
-                ? round(($writeScore / $writeMarks) * 100, 1)
+            $count_write_percent = $count_write > 0
+                ? ($count_write_marks / $count_write) * 100
                 : 0;
+
+            /*
+            |--------------------------------------------------------------------------
+            | نضع النتائج داخل الـ Exam
+            |--------------------------------------------------------------------------
+            */
+
+            $exam->count_read_succes = $count_read_succes;
+            $exam->count_read = $count_read;
+            $exam->count_read_percent = round($count_read_percent, 1);
+
+            $exam->count_listen_succes = $count_listen_succes;
+            $exam->count_listen = $count_listen;
+            $exam->count_listen_percent = round($count_listen_percent, 1);
+
+            $exam->count_write = $count_write;
+            $exam->count_write_marks = round($count_write_marks, 1);
+            $exam->count_write_percent = round($count_write_percent, 1);
+
+            /*
+            |--------------------------------------------------------------------------
+            | إجمالي سجلات الإجابات
+            |--------------------------------------------------------------------------
+            */
+
+            $exam->count4 = count($examAnswers);
+
+            /*
+            |--------------------------------------------------------------------------
+            | إضافة الامتحان للنتيجة
+            |--------------------------------------------------------------------------
+            */
 
             $result[] = $exam;
         }
+
+        /*
+        |--------------------------------------------------------------------------
+        | تحويل النتائج إلى Collection
+        |--------------------------------------------------------------------------
+        */
 
         $exams = collect($result);
 
@@ -447,13 +412,24 @@ class UserController extends Controller
     }
     public function examsTelc($id)
     {
+        /*
+        |--------------------------------------------------------------------------
+        | كل إجابات الطالب في امتحانات TELC
+        |--------------------------------------------------------------------------
+        */
+
         $answers = ExamAnswer::with([
             'exams',
-            'question',
-            'subquestion'
+            'question'
         ])
         ->where('user_id', $id)
         ->get();
+
+        /*
+        |--------------------------------------------------------------------------
+        | نأخذ امتحانات TELC فقط
+        |--------------------------------------------------------------------------
+        */
 
         $exams = $answers
             ->filter(function ($answer) {
@@ -464,62 +440,40 @@ class UserController extends Controller
 
         $result = [];
 
+        /*
+        |--------------------------------------------------------------------------
+        | حساب نتيجة كل امتحان
+        |--------------------------------------------------------------------------
+        */
+
         foreach ($exams as $examId => $examAnswers) {
 
             $exam = $examAnswers->first()->exams;
 
-            $listenSuccess = 0;
-            $readSuccess = 0;
-
-            $writeMarks = 0;
-            $writeScore = 0;
-
             /*
             |--------------------------------------------------------------------------
-            | نأخذ آخر إجابة لكل سؤال
-            |--------------------------------------------------------------------------
-            |
-            | Listening / Reading
-            | ------------------
-            | نستخدم subquestion_id
-            |
-            | Writing
-            | -------
-            | لا يوجد subquestion
-            | لذلك نستخدم question_id
-            |
+            | نفس متغيرات resultsuser()
             |--------------------------------------------------------------------------
             */
 
-            $examAnswers = $examAnswers
-                ->groupBy(function ($answer) {
+            $count_listen_succes = 0;
+            $count_listen = 0;
 
-                    if (
-                        $answer->question &&
-                        (
-                            $answer->question->type == 'writing' ||
-                            $answer->question->type == 'writing and image'
-                        )
-                    ) {
-                        return 'writing_' . $answer->question_id;
-                    }
+            $count_read_succes = 0;
+            $count_read = 0;
 
-                    return 'sub_' . $answer->subquestion_id;
-                })
-                ->map(function ($answers) {
-                    return $answers->last();
-                });
+            $count_write_marks = 0;
+            $count_write = 0;
 
             /*
             |--------------------------------------------------------------------------
-            | حساب إجابات الطالب
+            | حساب إجابات هذا الامتحان
             |--------------------------------------------------------------------------
             */
 
-            foreach ($examAnswers as $answer) {
+            foreach ($examAnswers as $item) {
 
-                $question = $answer->question;
-                $subQuestion = $answer->subquestion;
+                $question = $item->question;
 
                 if (!$question) {
                     continue;
@@ -527,36 +481,6 @@ class UserController extends Controller
 
                 /*
                 |--------------------------------------------------------------------------
-                | Writing
-                |--------------------------------------------------------------------------
-                */
-
-                if (
-                    $question->type == 'writing' ||
-                    $question->type == 'writing and image'
-                ) {
-
-                    // الدرجة الكاملة للسؤال
-                    $writeMarks += (float) $question->mark;
-
-                    // الدرجة التي حصل عليها الطالب
-                    $writeScore += (float) ($answer->totalScore ?? 0);
-
-                    continue;
-                }
-
-                /*
-                |--------------------------------------------------------------------------
-                | لا يوجد SubQuestion
-                |--------------------------------------------------------------------------
-                */
-
-                if (!$subQuestion) {
-                    continue;
-                }
-
-                /*
-                |--------------------------------------------------------------------------
                 | Listening
                 |--------------------------------------------------------------------------
                 */
@@ -566,11 +490,11 @@ class UserController extends Controller
                     $question->type == 'listening and image'
                 ) {
 
-                    if ($answer->answer === $answer->expected_answer) {
-                        $listenSuccess++;
+                    if ($item->answer === $item->expected_answer) {
+                        $count_listen_succes++;
                     }
 
-                    continue;
+                    $count_listen++;
                 }
 
                 /*
@@ -579,42 +503,17 @@ class UserController extends Controller
                 |--------------------------------------------------------------------------
                 */
 
-                if ($answer->answer === $answer->expected_answer) {
-                    $readSuccess++;
-                }
-            }
-
-            /*
-            |--------------------------------------------------------------------------
-            | حساب إجمالي الأسئلة
-            |--------------------------------------------------------------------------
-            */
-
-            $questions = Question::where('exam_id', $exam->id)
-                ->with('subquestions')
-                ->get();
-
-            $listenCount = 0;
-            $readCount = 0;
-
-            foreach ($questions as $question) {
-
-                $count = $question->subquestions->count();
-
-                /*
-                |--------------------------------------------------------------------------
-                | Listening
-                |--------------------------------------------------------------------------
-                */
-
-                if (
-                    $question->type == 'listening' ||
-                    $question->type == 'listening and image'
+                elseif (
+                    $question->type == 'reading' ||
+                    $question->type == 'image' ||
+                    $question->type == 'sub'
                 ) {
 
-                    $listenCount += $count;
+                    if ($item->answer === $item->expected_answer) {
+                        $count_read_succes++;
+                    }
 
-                    continue;
+                    $count_read++;
                 }
 
                 /*
@@ -623,64 +522,89 @@ class UserController extends Controller
                 |--------------------------------------------------------------------------
                 */
 
-                if (
+                elseif (
                     $question->type == 'writing' ||
                     $question->type == 'writing and image'
                 ) {
 
-                    continue;
+                    /*
+                    | الدرجة الكاملة للسؤال
+                    */
+
+                    $count_write += (float) $question->mark;
+
+                    /*
+                    | الدرجة التي حصل عليها الطالب
+                    */
+
+                    $count_write_marks += (float) ($item->totalScore ?? 0);
                 }
-
-                /*
-                |--------------------------------------------------------------------------
-                | Reading
-                |--------------------------------------------------------------------------
-                */
-
-                $readCount += $count;
             }
 
             /*
             |--------------------------------------------------------------------------
-            | Listening Result
+            | Listening %
             |--------------------------------------------------------------------------
             */
 
-            $exam->count_listen_succes = $listenSuccess;
-            $exam->count_listen = $listenCount;
-
-            $exam->count_listen_percent = $listenCount > 0
-                ? round(($listenSuccess / $listenCount) * 100, 1)
+            $count_listen_percent = $count_listen > 0
+                ? ($count_listen_succes / $count_listen) * 100
                 : 0;
 
             /*
             |--------------------------------------------------------------------------
-            | Reading Result
+            | Reading %
             |--------------------------------------------------------------------------
             */
 
-            $exam->count_read_succes = $readSuccess;
-            $exam->count_read = $readCount;
-
-            $exam->count_read_percent = $readCount > 0
-                ? round(($readSuccess / $readCount) * 100, 1)
+            $count_read_percent = $count_read > 0
+                ? ($count_read_succes / $count_read) * 100
                 : 0;
 
             /*
             |--------------------------------------------------------------------------
-            | Writing Result
+            | Writing %
             |--------------------------------------------------------------------------
             */
 
-            $exam->count_write = $writeMarks;
-            $exam->count_write_marks = round($writeScore, 1);
-
-            $exam->count_write_percent = $writeMarks > 0
-                ? round(($writeScore / $writeMarks) * 100, 1)
+            $count_write_percent = $count_write > 0
+                ? ($count_write_marks / $count_write) * 100
                 : 0;
+
+            /*
+            |--------------------------------------------------------------------------
+            | وضع النتائج داخل Exam
+            |--------------------------------------------------------------------------
+            */
+
+            $exam->count_read_succes = $count_read_succes;
+            $exam->count_read = $count_read;
+            $exam->count_read_percent = round($count_read_percent, 1);
+
+            $exam->count_listen_succes = $count_listen_succes;
+            $exam->count_listen = $count_listen;
+            $exam->count_listen_percent = round($count_listen_percent, 1);
+
+            $exam->count_write = $count_write;
+            $exam->count_write_marks = round($count_write_marks, 1);
+            $exam->count_write_percent = round($count_write_percent, 1);
+
+            /*
+            |--------------------------------------------------------------------------
+            | إجمالي الإجابات
+            |--------------------------------------------------------------------------
+            */
+
+            $exam->count4 = count($examAnswers);
 
             $result[] = $exam;
         }
+
+        /*
+        |--------------------------------------------------------------------------
+        | النتائج النهائية
+        |--------------------------------------------------------------------------
+        */
 
         $exams = collect($result);
 

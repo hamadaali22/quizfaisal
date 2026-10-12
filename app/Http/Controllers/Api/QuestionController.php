@@ -2003,116 +2003,258 @@ class QuestionController extends Controller
             ''
         );
     }
+   
     public function results(Request $request)
     {
         $count_listen_succes = 0;
         $count_listen = 0;
-    
+
         $count_read_succes = 0;
         $count_read = 0;
-    
+
         $count_write_marks = 0;
         $count_write = 0;
-    
-        $data = ExamAnswer::where("user_id", $request->user_id)
-            ->where("exam_id", $request->exam_id)
-            ->get();
-    
+
+        $data = ExamAnswer::with([
+            'question',
+            'subquestion',
+            'exams'
+        ])
+        ->where('user_id', $request->user_id)
+        ->where('exam_id', $request->exam_id)
+        ->get();
+
         foreach ($data as $item) {
-            $question = Question::where('id', $item->question_id)->first();
+
+            $question = $item->question;
+
             if (!$question) {
                 continue;
             }
+
             /*
             |--------------------------------------------------------------------------
             | Listening
             |--------------------------------------------------------------------------
             */
-            if ($question->type == 'listening' || $question->type == 'listening and image') {
-                // عدد الـ Sub Questions
-                $count_listen++;
-                // هل الإجابة صحيحة؟
-                if ($item->answer === $item->expected_answer) {
-                    $count_listen_succes++;
+
+            if (
+                $question->type == 'listening' ||
+                $question->type == 'listening and image'
+            ) {
+                // احتساب الإجابات الفرعية فقط
+                if ($item->subquestion_id) {
+
+                    $count_listen++;
+
+                    if ($item->answer === $item->expected_answer) {
+                        $count_listen_succes++;
+                    }
                 }
             }
+
             /*
             |--------------------------------------------------------------------------
             | Reading
             |--------------------------------------------------------------------------
             */
-            elseif ( $question->type == 'reading' || $question->type == 'image' || $question->type == 'sub') {
-                // عدد الـ Sub Questions
-                $count_read++;
-    
-                // هل الإجابة صحيحة؟
-                if ($item->answer === $item->expected_answer) {
-                    $count_read_succes++;
+
+            elseif (
+                $question->type == 'reading' ||
+                $question->type == 'image' ||
+                $question->type == 'sub'
+            ) {
+                // احتساب الإجابات الفرعية فقط
+                if ($item->subquestion_id) {
+
+                    $count_read++;
+
+                    if ($item->answer === $item->expected_answer) {
+                        $count_read_succes++;
+                    }
                 }
-    
             }
-    
+
             /*
             |--------------------------------------------------------------------------
             | Writing
             |--------------------------------------------------------------------------
             */
-            elseif ( $question->type == 'writing' || $question->type == 'writing and image') {
-                // إجمالي الـ Mark المتاح للسؤال
+
+            elseif (
+                $question->type == 'writing' ||
+                $question->type == 'writing and image'
+            ) {
                 $count_write += (float) $question->mark;
-    
-                // الدرجة التي حصل عليها الطالب
+
                 $count_write_marks += (float) ($item->totalScore ?? 0);
             }
-    
-            // البيانات الإضافية
+
+            /*
+            |--------------------------------------------------------------------------
+            | Additional data
+            |--------------------------------------------------------------------------
+            */
+
             $item->question = $question;
-            $item->exam = Exam::where('id', $item->exam_id)->first();
-            $item->user = User::where('id', $item->user_id)->first();
+            $item->exam = $item->exams;
+            $item->user = User::find($item->user_id);
         }
-    
+
         /*
         |--------------------------------------------------------------------------
         | Percentages
         |--------------------------------------------------------------------------
         */
-    
+
         $count_listen_percent = $count_listen > 0
             ? ($count_listen_succes / $count_listen) * 100
             : 0;
-    
+
         $count_read_percent = $count_read > 0
             ? ($count_read_succes / $count_read) * 100
             : 0;
-    
+
         $count_write_percent = $count_write > 0
             ? ($count_write_marks / $count_write) * 100
             : 0;
-    
+
         /*
         |--------------------------------------------------------------------------
         | Result
         |--------------------------------------------------------------------------
         */
-    
+
         $home = [
             'count_read_succes' => $count_read_succes,
             'count_read' => $count_read,
             'count_read_percent' => round($count_read_percent, 1),
-    
+
             'count_listen_succes' => $count_listen_succes,
             'count_listen' => $count_listen,
             'count_listen_percent' => round($count_listen_percent, 1),
-    
+
             'count_write' => $count_write,
             'count_write_marks' => round($count_write_marks, 1),
             'count_write_percent' => round($count_write_percent, 1),
-    
-            'count4' => count($data),
+
+            'count4' => $data->count(),
         ];
-    
+
         return $this->returnDataa('data', $home, '');
     }
+
+
+    // public function results(Request $request)
+    // {
+    //     $count_listen_succes = 0;
+    //     $count_listen = 0;
+    
+    //     $count_read_succes = 0;
+    //     $count_read = 0;
+    
+    //     $count_write_marks = 0;
+    //     $count_write = 0;
+    
+    //     $data = ExamAnswer::where("user_id", $request->user_id)
+    //         ->where("exam_id", $request->exam_id)
+    //         ->get();
+    
+    //     foreach ($data as $item) {
+    //         $question = Question::where('id', $item->question_id)->first();
+    //         if (!$question) {
+    //             continue;
+    //         }
+    //         /*
+    //         |--------------------------------------------------------------------------
+    //         | Listening
+    //         |--------------------------------------------------------------------------
+    //         */
+    //         if ($question->type == 'listening' || $question->type == 'listening and image') {
+    //             // عدد الـ Sub Questions
+    //             $count_listen++;
+    //             // هل الإجابة صحيحة؟
+    //             if ($item->answer === $item->expected_answer) {
+    //                 $count_listen_succes++;
+    //             }
+    //         }
+    //         /*
+    //         |--------------------------------------------------------------------------
+    //         | Reading
+    //         |--------------------------------------------------------------------------
+    //         */
+    //         elseif ( $question->type == 'reading' || $question->type == 'image' || $question->type == 'sub') {
+    //             // عدد الـ Sub Questions
+    //             $count_read++;
+    
+    //             // هل الإجابة صحيحة؟
+    //             if ($item->answer === $item->expected_answer) {
+    //                 $count_read_succes++;
+    //             }
+    
+    //         }
+    
+    //         /*
+    //         |--------------------------------------------------------------------------
+    //         | Writing
+    //         |--------------------------------------------------------------------------
+    //         */
+    //         elseif ( $question->type == 'writing' || $question->type == 'writing and image') {
+    //             // إجمالي الـ Mark المتاح للسؤال
+    //             $count_write += (float) $question->mark;
+    
+    //             // الدرجة التي حصل عليها الطالب
+    //             $count_write_marks += (float) ($item->totalScore ?? 0);
+    //         }
+    
+    //         // البيانات الإضافية
+    //         $item->question = $question;
+    //         $item->exam = Exam::where('id', $item->exam_id)->first();
+    //         $item->user = User::where('id', $item->user_id)->first();
+    //     }
+    
+    //     /*
+    //     |--------------------------------------------------------------------------
+    //     | Percentages
+    //     |--------------------------------------------------------------------------
+    //     */
+    
+    //     $count_listen_percent = $count_listen > 0
+    //         ? ($count_listen_succes / $count_listen) * 100
+    //         : 0;
+    
+    //     $count_read_percent = $count_read > 0
+    //         ? ($count_read_succes / $count_read) * 100
+    //         : 0;
+    
+    //     $count_write_percent = $count_write > 0
+    //         ? ($count_write_marks / $count_write) * 100
+    //         : 0;
+    
+    //     /*
+    //     |--------------------------------------------------------------------------
+    //     | Result
+    //     |--------------------------------------------------------------------------
+    //     */
+    
+    //     $home = [
+    //         'count_read_succes' => $count_read_succes,
+    //         'count_read' => $count_read,
+    //         'count_read_percent' => round($count_read_percent, 1),
+    
+    //         'count_listen_succes' => $count_listen_succes,
+    //         'count_listen' => $count_listen,
+    //         'count_listen_percent' => round($count_listen_percent, 1),
+    
+    //         'count_write' => $count_write,
+    //         'count_write_marks' => round($count_write_marks, 1),
+    //         'count_write_percent' => round($count_write_percent, 1),
+    
+    //         'count4' => count($data),
+    //     ];
+    
+    //     return $this->returnDataa('data', $home, '');
+    // }
     // public function results(Request $request)
     // {
     //     $count_listen_succes = 0;

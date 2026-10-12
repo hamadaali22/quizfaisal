@@ -411,187 +411,8 @@ class UserController extends Controller
     //     return view('admin.users.exam', compact('exams'));
     // }
   
-// public function examsGoethe($id)
-// {
-//     $answers = ExamAnswer::with([
-//         'exams',
-//         'question'
-//     ])
-//     ->where('user_id', $id)
-//     ->get();
-
-//     // امتحانات Goethe فقط
-//     $exams = $answers
-//         ->filter(function ($answer) {
-//             return $answer->exams &&
-//                 is_null($answer->exams->section);
-//         })
-//         ->groupBy('exam_id');
-
-//     $result = [];
-
-//     foreach ($exams as $examId => $examAnswers) {
-
-//         $exam = $examAnswers->first()->exams;
-
-//         $count_listen_succes = 0;
-//         $count_listen = 0;
-
-//         $count_read_succes = 0;
-//         $count_read = 0;
-
-//         $count_write_marks = 0;
-//         $count_write = 0;
-
-//         /*
-//         |--------------------------------------------------------------------------
-//         | جميع الأسئلة الرئيسية في الامتحان
-//         |--------------------------------------------------------------------------
-//         */
-
-//         $questions = Question::where('exam_id', $examId)->get();
-
-//         $questionIds = $questions->pluck('id');
-
-//         /*
-//         |--------------------------------------------------------------------------
-//         | الأسئلة الفرعية من جدول SubQuestion
-//         |--------------------------------------------------------------------------
-//         */
-
-//         $subQuestions = SubQuestion::whereIn(
-//             'question_id',
-//             $questionIds
-//         )->get();
-
-//         $subQuestionsCount = $subQuestions->countBy('question_id');
-
-//         /*
-//         |--------------------------------------------------------------------------
-//         | حساب العدد الكلي للقراءة والاستماع والكتابي
-//         |--------------------------------------------------------------------------
-//         */
-
-//         foreach ($questions as $question) {
-
-//             $subCount = $subQuestionsCount->get($question->id, 0);
-
-//             if (
-//                 $question->type == 'listening' ||
-//                 $question->type == 'listening and image'
-//             ) {
-//                 $count_listen += $subCount;
-//             } elseif (
-//                 $question->type == 'reading' ||
-//                 $question->type == 'image' ||
-//                 $question->type == 'sub'
-//             ) {
-//                 $count_read += $subCount;
-//             } elseif (
-//                 $question->type == 'writing' ||
-//                 $question->type == 'writing and image'
-//             ) {
-//                 $count_write += (float) $question->mark;
-//             }
-//         }
-
-//         /*
-//         |--------------------------------------------------------------------------
-//         | حساب الإجابات الصحيحة ودرجات الكتابي
-//         |--------------------------------------------------------------------------
-//         */
-
-//         foreach ($examAnswers as $item) {
-
-//             $question = $item->question;
-
-//             if (!$question) {
-//                 continue;
-//             }
-
-//             if (
-//                 $question->type == 'listening' ||
-//                 $question->type == 'listening and image'
-//             ) {
-//                 if (
-//                     $item->subquestion_id &&
-//                     $item->answer === $item->expected_answer
-//                 ) {
-//                     $count_listen_succes++;
-//                 }
-//             } elseif (
-//                 $question->type == 'reading' ||
-//                 $question->type == 'image' ||
-//                 $question->type == 'sub'
-//             ) {
-//                 if (
-//                     $item->subquestion_id &&
-//                     $item->answer === $item->expected_answer
-//                 ) {
-//                     $count_read_succes++;
-//                 }
-//             } elseif (
-//                 $question->type == 'writing' ||
-//                 $question->type == 'writing and image'
-//             ) {
-//                 $count_write_marks += (float) ($item->totalScore ?? 0);
-//             }
-//         }
-
-//         /*
-//         |--------------------------------------------------------------------------
-//         | حساب النسب المئوية
-//         |--------------------------------------------------------------------------
-//         */
-
-//         $count_listen_percent = $count_listen > 0
-//             ? ($count_listen_succes / $count_listen) * 100
-//             : 0;
-
-//         $count_read_percent = $count_read > 0
-//             ? ($count_read_succes / $count_read) * 100
-//             : 0;
-
-//         $count_write_percent = $count_write > 0
-//             ? ($count_write_marks / $count_write) * 100
-//             : 0;
-
-//         /*
-//         |--------------------------------------------------------------------------
-//         | إضافة النتائج إلى الامتحان
-//         |--------------------------------------------------------------------------
-//         */
-
-//         $exam->count_read_succes = $count_read_succes;
-//         $exam->count_read = $count_read;
-//         $exam->count_read_percent = round($count_read_percent, 1);
-
-//         $exam->count_listen_succes = $count_listen_succes;
-//         $exam->count_listen = $count_listen;
-//         $exam->count_listen_percent = round($count_listen_percent, 1);
-
-//         $exam->count_write = $count_write;
-//         $exam->count_write_marks = round($count_write_marks, 1);
-//         $exam->count_write_percent = round($count_write_percent, 1);
-
-//         $exam->count4 = $examAnswers->count();
-
-//         $result[] = $exam;
-//     }
-
-//     $exams = collect($result);
-
-//     return view('admin.users.exam', compact('exams'));
-// }
-
 public function examsGoethe($id)
 {
-    /*
-    |--------------------------------------------------------------------------
-    | إجابات المستخدم
-    |--------------------------------------------------------------------------
-    */
-
     $answers = ExamAnswer::with([
         'exams',
         'question'
@@ -599,12 +420,7 @@ public function examsGoethe($id)
     ->where('user_id', $id)
     ->get();
 
-    /*
-    |--------------------------------------------------------------------------
-    | امتحانات Goethe فقط
-    |--------------------------------------------------------------------------
-    */
-
+    // امتحانات Goethe فقط
     $exams = $answers
         ->filter(function ($answer) {
             return $answer->exams &&
@@ -629,15 +445,49 @@ public function examsGoethe($id)
 
         /*
         |--------------------------------------------------------------------------
-        | الدرجات الكاملة للكتابي من الأسئلة الرئيسية
+        | جميع الأسئلة الرئيسية في الامتحان
         |--------------------------------------------------------------------------
         */
 
         $questions = Question::where('exam_id', $examId)->get();
 
+        $questionIds = $questions->pluck('id');
+
+        /*
+        |--------------------------------------------------------------------------
+        | الأسئلة الفرعية من جدول SubQuestion
+        |--------------------------------------------------------------------------
+        */
+
+        $subQuestions = SubQuestion::whereIn(
+            'question_id',
+            $questionIds
+        )->get();
+
+        $subQuestionsCount = $subQuestions->countBy('question_id');
+
+        /*
+        |--------------------------------------------------------------------------
+        | حساب العدد الكلي للقراءة والاستماع والكتابي
+        |--------------------------------------------------------------------------
+        */
+
         foreach ($questions as $question) {
 
+            $subCount = $subQuestionsCount->get($question->id, 0);
+
             if (
+                $question->type == 'listening' ||
+                $question->type == 'listening and image'
+            ) {
+                $count_listen += $subCount;
+            } elseif (
+                $question->type == 'reading' ||
+                $question->type == 'image' ||
+                $question->type == 'sub'
+            ) {
+                $count_read += $subCount;
+            } elseif (
                 $question->type == 'writing' ||
                 $question->type == 'writing and image'
             ) {
@@ -647,63 +497,7 @@ public function examsGoethe($id)
 
         /*
         |--------------------------------------------------------------------------
-        | حساب القراءة والاستماع من إجابات المستخدم
-        |--------------------------------------------------------------------------
-        */
-
-        $subAnswers = $examAnswers
-            ->filter(function ($item) {
-                return !is_null($item->subquestion_id);
-            })
-            ->unique('subquestion_id');
-
-        foreach ($subAnswers as $item) {
-
-            $question = $item->question;
-
-            if (!$question) {
-                continue;
-            }
-
-            /*
-            |--------------------------------------------------------------------------
-            | Listening
-            |--------------------------------------------------------------------------
-            */
-
-            if (
-                $question->type == 'listening' ||
-                $question->type == 'listening and image'
-            ) {
-                $count_listen++;
-
-                if ($item->answer === $item->expected_answer) {
-                    $count_listen_succes++;
-                }
-            }
-
-            /*
-            |--------------------------------------------------------------------------
-            | Reading
-            |--------------------------------------------------------------------------
-            */
-
-            elseif (
-                $question->type == 'reading' ||
-                $question->type == 'image' ||
-                $question->type == 'sub'
-            ) {
-                $count_read++;
-
-                if ($item->answer === $item->expected_answer) {
-                    $count_read_succes++;
-                }
-            }
-        }
-
-        /*
-        |--------------------------------------------------------------------------
-        | حساب درجات الكتابي من ExamAnswer
+        | حساب الإجابات الصحيحة ودرجات الكتابي
         |--------------------------------------------------------------------------
         */
 
@@ -716,6 +510,27 @@ public function examsGoethe($id)
             }
 
             if (
+                $question->type == 'listening' ||
+                $question->type == 'listening and image'
+            ) {
+                if (
+                    $item->subquestion_id &&
+                    $item->answer === $item->expected_answer
+                ) {
+                    $count_listen_succes++;
+                }
+            } elseif (
+                $question->type == 'reading' ||
+                $question->type == 'image' ||
+                $question->type == 'sub'
+            ) {
+                if (
+                    $item->subquestion_id &&
+                    $item->answer === $item->expected_answer
+                ) {
+                    $count_read_succes++;
+                }
+            } elseif (
                 $question->type == 'writing' ||
                 $question->type == 'writing and image'
             ) {
@@ -725,7 +540,7 @@ public function examsGoethe($id)
 
         /*
         |--------------------------------------------------------------------------
-        | النسب المئوية
+        | حساب النسب المئوية
         |--------------------------------------------------------------------------
         */
 
@@ -743,7 +558,7 @@ public function examsGoethe($id)
 
         /*
         |--------------------------------------------------------------------------
-        | حفظ النتائج داخل الامتحان
+        | إضافة النتائج إلى الامتحان
         |--------------------------------------------------------------------------
         */
 
@@ -769,8 +584,199 @@ public function examsGoethe($id)
     return view('admin.users.exam', compact('exams'));
 }
 
+    // public function examsGoethe($id)
+    // {
+    //     /*
+    //     |--------------------------------------------------------------------------
+    //     | إجابات المستخدم
+    //     |--------------------------------------------------------------------------
+    //     */
+
+    //     $answers = ExamAnswer::with([
+    //         'exams',
+    //         'question'
+    //     ])
+    //     ->where('user_id', $id)
+    //     ->get();
+
+    //     /*
+    //     |--------------------------------------------------------------------------
+    //     | امتحانات Goethe فقط
+    //     |--------------------------------------------------------------------------
+    //     */
+
+    //     $exams = $answers
+    //         ->filter(function ($answer) {
+    //             return $answer->exams &&
+    //                 is_null($answer->exams->section);
+    //         })
+    //         ->groupBy('exam_id');
+
+    //     $result = [];
+
+    //     foreach ($exams as $examId => $examAnswers) {
+
+    //         $exam = $examAnswers->first()->exams;
+
+    //         $count_listen_succes = 0;
+    //         $count_listen = 0;
+
+    //         $count_read_succes = 0;
+    //         $count_read = 0;
+
+    //         $count_write_marks = 0;
+    //         $count_write = 0;
+
+    //         /*
+    //         |--------------------------------------------------------------------------
+    //         | الدرجات الكاملة للكتابي من الأسئلة الرئيسية
+    //         |--------------------------------------------------------------------------
+    //         */
+
+    //         $questions = Question::where('exam_id', $examId)->get();
+
+    //         foreach ($questions as $question) {
+
+    //             if (
+    //                 $question->type == 'writing' ||
+    //                 $question->type == 'writing and image'
+    //             ) {
+    //                 $count_write += (float) $question->mark;
+    //             }
+    //         }
+
+    //         /*
+    //         |--------------------------------------------------------------------------
+    //         | حساب القراءة والاستماع من إجابات المستخدم
+    //         |--------------------------------------------------------------------------
+    //         */
+
+    //         $subAnswers = $examAnswers
+    //             ->filter(function ($item) {
+    //                 return !is_null($item->subquestion_id);
+    //             })
+    //             ->unique('subquestion_id');
+
+    //         foreach ($subAnswers as $item) {
+
+    //             $question = $item->question;
+
+    //             if (!$question) {
+    //                 continue;
+    //             }
+
+    //             /*
+    //             |--------------------------------------------------------------------------
+    //             | Listening
+    //             |--------------------------------------------------------------------------
+    //             */
+
+    //             if (
+    //                 $question->type == 'listening' ||
+    //                 $question->type == 'listening and image'
+    //             ) {
+    //                 $count_listen++;
+
+    //                 if ($item->answer === $item->expected_answer) {
+    //                     $count_listen_succes++;
+    //                 }
+    //             }
+
+    //             /*
+    //             |--------------------------------------------------------------------------
+    //             | Reading
+    //             |--------------------------------------------------------------------------
+    //             */
+
+    //             elseif (
+    //                 $question->type == 'reading' ||
+    //                 $question->type == 'image' ||
+    //                 $question->type == 'sub'
+    //             ) {
+    //                 $count_read++;
+
+    //                 if ($item->answer === $item->expected_answer) {
+    //                     $count_read_succes++;
+    //                 }
+    //             }
+    //         }
+
+    //         /*
+    //         |--------------------------------------------------------------------------
+    //         | حساب درجات الكتابي من ExamAnswer
+    //         |--------------------------------------------------------------------------
+    //         */
+
+    //         foreach ($examAnswers as $item) {
+
+    //             $question = $item->question;
+
+    //             if (!$question) {
+    //                 continue;
+    //             }
+
+    //             if (
+    //                 $question->type == 'writing' ||
+    //                 $question->type == 'writing and image'
+    //             ) {
+    //                 $count_write_marks += (float) ($item->totalScore ?? 0);
+    //             }
+    //         }
+
+    //         /*
+    //         |--------------------------------------------------------------------------
+    //         | النسب المئوية
+    //         |--------------------------------------------------------------------------
+    //         */
+
+    //         $count_listen_percent = $count_listen > 0
+    //             ? ($count_listen_succes / $count_listen) * 100
+    //             : 0;
+
+    //         $count_read_percent = $count_read > 0
+    //             ? ($count_read_succes / $count_read) * 100
+    //             : 0;
+
+    //         $count_write_percent = $count_write > 0
+    //             ? ($count_write_marks / $count_write) * 100
+    //             : 0;
+
+    //         /*
+    //         |--------------------------------------------------------------------------
+    //         | حفظ النتائج داخل الامتحان
+    //         |--------------------------------------------------------------------------
+    //         */
+
+    //         $exam->count_read_succes = $count_read_succes;
+    //         $exam->count_read = $count_read;
+    //         $exam->count_read_percent = round($count_read_percent, 1);
+
+    //         $exam->count_listen_succes = $count_listen_succes;
+    //         $exam->count_listen = $count_listen;
+    //         $exam->count_listen_percent = round($count_listen_percent, 1);
+
+    //         $exam->count_write = $count_write;
+    //         $exam->count_write_marks = round($count_write_marks, 1);
+    //         $exam->count_write_percent = round($count_write_percent, 1);
+
+    //         $exam->count4 = $examAnswers->count();
+
+    //         $result[] = $exam;
+    //     }
+
+    //     $exams = collect($result);
+
+    //     return view('admin.users.exam', compact('exams'));
+    // }
+
     public function examsTelc($id)
     {
+        /*
+        |--------------------------------------------------------------------------
+        | إجابات المستخدم
+        |--------------------------------------------------------------------------
+        */
+
         $answers = ExamAnswer::with([
             'exams',
             'question'
@@ -778,7 +784,12 @@ public function examsGoethe($id)
         ->where('user_id', $id)
         ->get();
 
-        // امتحانات TELC فقط
+        /*
+        |--------------------------------------------------------------------------
+        | امتحانات TELC فقط
+        |--------------------------------------------------------------------------
+        */
+
         $exams = $answers
             ->filter(function ($answer) {
                 return $answer->exams &&
@@ -803,49 +814,15 @@ public function examsGoethe($id)
 
             /*
             |--------------------------------------------------------------------------
-            | جميع الأسئلة الرئيسية في الامتحان
+            | الدرجات الكاملة للكتابي من الأسئلة الرئيسية
             |--------------------------------------------------------------------------
             */
 
             $questions = Question::where('exam_id', $examId)->get();
 
-            $questionIds = $questions->pluck('id');
-
-            /*
-            |--------------------------------------------------------------------------
-            | الأسئلة الفرعية من جدول SubQuestion
-            |--------------------------------------------------------------------------
-            */
-
-            $subQuestions = SubQuestion::whereIn(
-                'question_id',
-                $questionIds
-            )->get();
-
-            $subQuestionsCount = $subQuestions->countBy('question_id');
-
-            /*
-            |--------------------------------------------------------------------------
-            | حساب العدد الكلي للقراءة والاستماع والكتابي
-            |--------------------------------------------------------------------------
-            */
-
             foreach ($questions as $question) {
 
-                $subCount = $subQuestionsCount->get($question->id, 0);
-
                 if (
-                    $question->type == 'listening' ||
-                    $question->type == 'listening and image'
-                ) {
-                    $count_listen += $subCount;
-                } elseif (
-                    $question->type == 'reading' ||
-                    $question->type == 'image' ||
-                    $question->type == 'sub'
-                ) {
-                    $count_read += $subCount;
-                } elseif (
                     $question->type == 'writing' ||
                     $question->type == 'writing and image'
                 ) {
@@ -855,7 +832,63 @@ public function examsGoethe($id)
 
             /*
             |--------------------------------------------------------------------------
-            | حساب الإجابات الصحيحة ودرجات الكتابي
+            | حساب القراءة والاستماع من إجابات المستخدم
+            |--------------------------------------------------------------------------
+            */
+
+            $subAnswers = $examAnswers
+                ->filter(function ($item) {
+                    return !is_null($item->subquestion_id);
+                })
+                ->unique('subquestion_id');
+
+            foreach ($subAnswers as $item) {
+
+                $question = $item->question;
+
+                if (!$question) {
+                    continue;
+                }
+
+                /*
+                |--------------------------------------------------------------------------
+                | Listening
+                |--------------------------------------------------------------------------
+                */
+
+                if (
+                    $question->type == 'listening' ||
+                    $question->type == 'listening and image'
+                ) {
+                    $count_listen++;
+
+                    if ($item->answer === $item->expected_answer) {
+                        $count_listen_succes++;
+                    }
+                }
+
+                /*
+                |--------------------------------------------------------------------------
+                | Reading
+                |--------------------------------------------------------------------------
+                */
+
+                elseif (
+                    $question->type == 'reading' ||
+                    $question->type == 'image' ||
+                    $question->type == 'sub'
+                ) {
+                    $count_read++;
+
+                    if ($item->answer === $item->expected_answer) {
+                        $count_read_succes++;
+                    }
+                }
+            }
+
+            /*
+            |--------------------------------------------------------------------------
+            | حساب درجات الكتابي من ExamAnswer
             |--------------------------------------------------------------------------
             */
 
@@ -868,27 +901,6 @@ public function examsGoethe($id)
                 }
 
                 if (
-                    $question->type == 'listening' ||
-                    $question->type == 'listening and image'
-                ) {
-                    if (
-                        $item->subquestion_id &&
-                        $item->answer === $item->expected_answer
-                    ) {
-                        $count_listen_succes++;
-                    }
-                } elseif (
-                    $question->type == 'reading' ||
-                    $question->type == 'image' ||
-                    $question->type == 'sub'
-                ) {
-                    if (
-                        $item->subquestion_id &&
-                        $item->answer === $item->expected_answer
-                    ) {
-                        $count_read_succes++;
-                    }
-                } elseif (
                     $question->type == 'writing' ||
                     $question->type == 'writing and image'
                 ) {
@@ -898,7 +910,7 @@ public function examsGoethe($id)
 
             /*
             |--------------------------------------------------------------------------
-            | حساب النسب المئوية
+            | النسب المئوية
             |--------------------------------------------------------------------------
             */
 
@@ -916,7 +928,7 @@ public function examsGoethe($id)
 
             /*
             |--------------------------------------------------------------------------
-            | إضافة النتائج إلى الامتحان
+            | حفظ النتائج داخل الامتحان
             |--------------------------------------------------------------------------
             */
 
@@ -941,6 +953,179 @@ public function examsGoethe($id)
 
         return view('admin.users.exam', compact('exams'));
     }
+
+    // public function examsTelc($id)
+    // {
+    //     $answers = ExamAnswer::with([
+    //         'exams',
+    //         'question'
+    //     ])
+    //     ->where('user_id', $id)
+    //     ->get();
+
+    //     // امتحانات TELC فقط
+    //     $exams = $answers
+    //         ->filter(function ($answer) {
+    //             return $answer->exams &&
+    //                 $answer->exams->section === 'telc';
+    //         })
+    //         ->groupBy('exam_id');
+
+    //     $result = [];
+
+    //     foreach ($exams as $examId => $examAnswers) {
+
+    //         $exam = $examAnswers->first()->exams;
+
+    //         $count_listen_succes = 0;
+    //         $count_listen = 0;
+
+    //         $count_read_succes = 0;
+    //         $count_read = 0;
+
+    //         $count_write_marks = 0;
+    //         $count_write = 0;
+
+    //         /*
+    //         |--------------------------------------------------------------------------
+    //         | جميع الأسئلة الرئيسية في الامتحان
+    //         |--------------------------------------------------------------------------
+    //         */
+
+    //         $questions = Question::where('exam_id', $examId)->get();
+
+    //         $questionIds = $questions->pluck('id');
+
+    //         /*
+    //         |--------------------------------------------------------------------------
+    //         | الأسئلة الفرعية من جدول SubQuestion
+    //         |--------------------------------------------------------------------------
+    //         */
+
+    //         $subQuestions = SubQuestion::whereIn(
+    //             'question_id',
+    //             $questionIds
+    //         )->get();
+
+    //         $subQuestionsCount = $subQuestions->countBy('question_id');
+
+    //         /*
+    //         |--------------------------------------------------------------------------
+    //         | حساب العدد الكلي للقراءة والاستماع والكتابي
+    //         |--------------------------------------------------------------------------
+    //         */
+
+    //         foreach ($questions as $question) {
+
+    //             $subCount = $subQuestionsCount->get($question->id, 0);
+
+    //             if (
+    //                 $question->type == 'listening' ||
+    //                 $question->type == 'listening and image'
+    //             ) {
+    //                 $count_listen += $subCount;
+    //             } elseif (
+    //                 $question->type == 'reading' ||
+    //                 $question->type == 'image' ||
+    //                 $question->type == 'sub'
+    //             ) {
+    //                 $count_read += $subCount;
+    //             } elseif (
+    //                 $question->type == 'writing' ||
+    //                 $question->type == 'writing and image'
+    //             ) {
+    //                 $count_write += (float) $question->mark;
+    //             }
+    //         }
+
+    //         /*
+    //         |--------------------------------------------------------------------------
+    //         | حساب الإجابات الصحيحة ودرجات الكتابي
+    //         |--------------------------------------------------------------------------
+    //         */
+
+    //         foreach ($examAnswers as $item) {
+
+    //             $question = $item->question;
+
+    //             if (!$question) {
+    //                 continue;
+    //             }
+
+    //             if (
+    //                 $question->type == 'listening' ||
+    //                 $question->type == 'listening and image'
+    //             ) {
+    //                 if (
+    //                     $item->subquestion_id &&
+    //                     $item->answer === $item->expected_answer
+    //                 ) {
+    //                     $count_listen_succes++;
+    //                 }
+    //             } elseif (
+    //                 $question->type == 'reading' ||
+    //                 $question->type == 'image' ||
+    //                 $question->type == 'sub'
+    //             ) {
+    //                 if (
+    //                     $item->subquestion_id &&
+    //                     $item->answer === $item->expected_answer
+    //                 ) {
+    //                     $count_read_succes++;
+    //                 }
+    //             } elseif (
+    //                 $question->type == 'writing' ||
+    //                 $question->type == 'writing and image'
+    //             ) {
+    //                 $count_write_marks += (float) ($item->totalScore ?? 0);
+    //             }
+    //         }
+
+    //         /*
+    //         |--------------------------------------------------------------------------
+    //         | حساب النسب المئوية
+    //         |--------------------------------------------------------------------------
+    //         */
+
+    //         $count_listen_percent = $count_listen > 0
+    //             ? ($count_listen_succes / $count_listen) * 100
+    //             : 0;
+
+    //         $count_read_percent = $count_read > 0
+    //             ? ($count_read_succes / $count_read) * 100
+    //             : 0;
+
+    //         $count_write_percent = $count_write > 0
+    //             ? ($count_write_marks / $count_write) * 100
+    //             : 0;
+
+    //         /*
+    //         |--------------------------------------------------------------------------
+    //         | إضافة النتائج إلى الامتحان
+    //         |--------------------------------------------------------------------------
+    //         */
+
+    //         $exam->count_read_succes = $count_read_succes;
+    //         $exam->count_read = $count_read;
+    //         $exam->count_read_percent = round($count_read_percent, 1);
+
+    //         $exam->count_listen_succes = $count_listen_succes;
+    //         $exam->count_listen = $count_listen;
+    //         $exam->count_listen_percent = round($count_listen_percent, 1);
+
+    //         $exam->count_write = $count_write;
+    //         $exam->count_write_marks = round($count_write_marks, 1);
+    //         $exam->count_write_percent = round($count_write_percent, 1);
+
+    //         $exam->count4 = $examAnswers->count();
+
+    //         $result[] = $exam;
+    //     }
+
+    //     $exams = collect($result);
+
+    //     return view('admin.users.exam', compact('exams'));
+    // }
 
     // public function examsTelc($id)
     // {

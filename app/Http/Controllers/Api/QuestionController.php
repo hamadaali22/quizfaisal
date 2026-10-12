@@ -1299,234 +1299,510 @@ class QuestionController extends Controller
 //     return $this->returnDataa('data', $exams, '');
 // }
 
-public function UserExams(Request $request)
-{
-    /*
-    |--------------------------------------------------------------------------
-    | كل إجابات الطالب
-    |--------------------------------------------------------------------------
-    */
+// public function UserExams(Request $request)
+// {
+//     /*
+//     |--------------------------------------------------------------------------
+//     | كل إجابات الطالب
+//     |--------------------------------------------------------------------------
+//     */
 
-    $answers = ExamAnswer::with([
-        'exams',
-        'question'
-    ])
-    ->where('user_id', $request->user_id)
-    ->get();
+//     $answers = ExamAnswer::with([
+//         'exams',
+//         'question'
+//     ])
+//     ->where('user_id', $request->user_id)
+//     ->get();
 
-    /*
-    |--------------------------------------------------------------------------
-    | تجميع الإجابات حسب الامتحان
-    |--------------------------------------------------------------------------
-    */
+//     /*
+//     |--------------------------------------------------------------------------
+//     | تجميع الإجابات حسب الامتحان
+//     |--------------------------------------------------------------------------
+//     */
 
-    $exams = $answers->groupBy('exam_id');
+//     $exams = $answers->groupBy('exam_id');
 
-    $result = [];
+//     $result = [];
 
-    foreach ($exams as $examId => $examAnswers) {
+//     foreach ($exams as $examId => $examAnswers) {
 
-        $exam = $examAnswers->first()->exams;
+//         $exam = $examAnswers->first()->exams;
 
-        if (!$exam) {
-            continue;
-        }
+//         if (!$exam) {
+//             continue;
+//         }
 
+//         /*
+//         |--------------------------------------------------------------------------
+//         | متغيرات النتائج
+//         |--------------------------------------------------------------------------
+//         */
+
+//         $count_listen_succes = 0;
+//         $count_listen = 0;
+
+//         $count_read_succes = 0;
+//         $count_read = 0;
+
+//         $count_write_marks = 0;
+//         $count_write = 0;
+
+//         /*
+//         |--------------------------------------------------------------------------
+//         | جلب الأسئلة الرئيسية وأسئلتها الفرعية
+//         |--------------------------------------------------------------------------
+//         */
+
+//         $questions = Question::where('exam_id', $examId)->get();
+
+//         $questionIds = $questions->pluck('id');
+
+//         $subQuestions = SubQuestion::whereIn(
+//             'question_id',
+//             $questionIds
+//         )->get();
+
+//         $subQuestionsCount = $subQuestions->countBy('question_id');
+
+//         /*
+//         |--------------------------------------------------------------------------
+//         | حساب العدد الكلي من جدول SubQuestion
+//         |--------------------------------------------------------------------------
+//         */
+
+//         foreach ($questions as $question) {
+
+//             $subCount = $subQuestionsCount->get($question->id, 0);
+
+//             if (
+//                 $question->type == 'listening' ||
+//                 $question->type == 'listening and image'
+//             ) {
+//                 $count_listen += $subCount;
+//             } elseif (
+//                 $question->type == 'reading' ||
+//                 $question->type == 'image' ||
+//                 $question->type == 'sub'
+//             ) {
+//                 $count_read += $subCount;
+//             } elseif (
+//                 $question->type == 'writing' ||
+//                 $question->type == 'writing and image'
+//             ) {
+//                 $count_write += (float) $question->mark;
+//             }
+//         }
+
+//         /*
+//         |--------------------------------------------------------------------------
+//         | حساب الإجابات الصحيحة ودرجات الكتابي
+//         |--------------------------------------------------------------------------
+//         */
+
+//         foreach ($examAnswers as $item) {
+
+//             $question = $item->question;
+
+//             if (!$question) {
+//                 continue;
+//             }
+
+//             /*
+//             |--------------------------------------------------------------------------
+//             | Listening
+//             |--------------------------------------------------------------------------
+//             */
+
+//             if (
+//                 $question->type == 'listening' ||
+//                 $question->type == 'listening and image'
+//             ) {
+//                 if (
+//                     $item->subquestion_id &&
+//                     $item->answer === $item->expected_answer
+//                 ) {
+//                     $count_listen_succes++;
+//                 }
+//             }
+
+//             /*
+//             |--------------------------------------------------------------------------
+//             | Reading
+//             |--------------------------------------------------------------------------
+//             */
+
+//             elseif (
+//                 $question->type == 'reading' ||
+//                 $question->type == 'image' ||
+//                 $question->type == 'sub'
+//             ) {
+//                 if (
+//                     $item->subquestion_id &&
+//                     $item->answer === $item->expected_answer
+//                 ) {
+//                     $count_read_succes++;
+//                 }
+//             }
+
+//             /*
+//             |--------------------------------------------------------------------------
+//             | Writing
+//             |--------------------------------------------------------------------------
+//             */
+
+//             elseif (
+//                 $question->type == 'writing' ||
+//                 $question->type == 'writing and image'
+//             ) {
+//                 $count_write_marks += (float) ($item->totalScore ?? 0);
+//             }
+//         }
+
+//         /*
+//         |--------------------------------------------------------------------------
+//         | حساب النسب المئوية
+//         |--------------------------------------------------------------------------
+//         */
+
+//         $count_listen_percent = $count_listen > 0
+//             ? ($count_listen_succes / $count_listen) * 100
+//             : 0;
+
+//         $count_read_percent = $count_read > 0
+//             ? ($count_read_succes / $count_read) * 100
+//             : 0;
+
+//         $count_write_percent = $count_write > 0
+//             ? ($count_write_marks / $count_write) * 100
+//             : 0;
+
+//         /*
+//         |--------------------------------------------------------------------------
+//         | بيانات الامتحان
+//         |--------------------------------------------------------------------------
+//         */
+
+//         $exam->count_read_succes = $count_read_succes;
+//         $exam->count_read = $count_read;
+//         $exam->count_read_percent = round($count_read_percent, 1);
+
+//         $exam->count_listen_succes = $count_listen_succes;
+//         $exam->count_listen = $count_listen;
+//         $exam->count_listen_percent = round($count_listen_percent, 1);
+
+//         $exam->count_write = $count_write;
+//         $exam->count_write_marks = round($count_write_marks, 1);
+//         $exam->count_write_percent = round($count_write_percent, 1);
+
+//         /*
+//         |--------------------------------------------------------------------------
+//         | تاريخ آخر إجابة في الامتحان
+//         |--------------------------------------------------------------------------
+//         */
+
+//         $lastAnswer = $examAnswers->sortByDesc('created_at')->first();
+
+//         if ($lastAnswer && $lastAnswer->created_at) {
+//             $exam->date = $lastAnswer->created_at->format('Y-m-d');
+//         }
+
+//         /*
+//         |--------------------------------------------------------------------------
+//         | إجمالي سجلات الإجابات
+//         |--------------------------------------------------------------------------
+//         */
+
+//         $exam->count4 = $examAnswers->count();
+
+//         $result[] = $exam;
+//     }
+
+//     /*
+//     |--------------------------------------------------------------------------
+//     | إرجاع النتيجة
+//     |--------------------------------------------------------------------------
+//     */
+
+//     $exams = collect($result);
+
+//     return $this->returnDataa('data', $exams, '');
+// }
+
+
+    public function UserExams(Request $request)
+    {
         /*
         |--------------------------------------------------------------------------
-        | متغيرات النتائج
+        | كل إجابات الطالب
         |--------------------------------------------------------------------------
         */
 
-        $count_listen_succes = 0;
-        $count_listen = 0;
-
-        $count_read_succes = 0;
-        $count_read = 0;
-
-        $count_write_marks = 0;
-        $count_write = 0;
+        $answers = ExamAnswer::with([
+            'exams',
+            'question'
+        ])
+        ->where('user_id', $request->user_id)
+        ->get();
 
         /*
         |--------------------------------------------------------------------------
-        | جلب الأسئلة الرئيسية وأسئلتها الفرعية
+        | تجميع الإجابات حسب الامتحان
         |--------------------------------------------------------------------------
         */
 
-        $questions = Question::where('exam_id', $examId)->get();
+        $exams = $answers->groupBy('exam_id');
 
-        $questionIds = $questions->pluck('id');
+        $result = [];
 
-        $subQuestions = SubQuestion::whereIn(
-            'question_id',
-            $questionIds
-        )->get();
+        foreach ($exams as $examId => $examAnswers) {
 
-        $subQuestionsCount = $subQuestions->countBy('question_id');
+            $exam = $examAnswers->first()->exams;
 
-        /*
-        |--------------------------------------------------------------------------
-        | حساب العدد الكلي من جدول SubQuestion
-        |--------------------------------------------------------------------------
-        */
-
-        foreach ($questions as $question) {
-
-            $subCount = $subQuestionsCount->get($question->id, 0);
-
-            if (
-                $question->type == 'listening' ||
-                $question->type == 'listening and image'
-            ) {
-                $count_listen += $subCount;
-            } elseif (
-                $question->type == 'reading' ||
-                $question->type == 'image' ||
-                $question->type == 'sub'
-            ) {
-                $count_read += $subCount;
-            } elseif (
-                $question->type == 'writing' ||
-                $question->type == 'writing and image'
-            ) {
-                $count_write += (float) $question->mark;
-            }
-        }
-
-        /*
-        |--------------------------------------------------------------------------
-        | حساب الإجابات الصحيحة ودرجات الكتابي
-        |--------------------------------------------------------------------------
-        */
-
-        foreach ($examAnswers as $item) {
-
-            $question = $item->question;
-
-            if (!$question) {
+            if (!$exam) {
                 continue;
             }
 
             /*
             |--------------------------------------------------------------------------
-            | Listening
+            | متغيرات النتائج
             |--------------------------------------------------------------------------
             */
 
-            if (
-                $question->type == 'listening' ||
-                $question->type == 'listening and image'
-            ) {
+            $count_listen_succes = 0;
+            $count_listen = 0;
+
+            $count_read_succes = 0;
+            $count_read = 0;
+
+            $count_write_marks = 0;
+            $count_write = 0;
+
+            /*
+            |--------------------------------------------------------------------------
+            | جلب الأسئلة الرئيسية الخاصة بالامتحان
+            |--------------------------------------------------------------------------
+            */
+
+            $questions = Question::where('exam_id', $examId)->get();
+
+            $questionIds = $questions->pluck('id');
+
+            /*
+            |--------------------------------------------------------------------------
+            | جلب جميع الأسئلة الفرعية الخاصة بالامتحان
+            |--------------------------------------------------------------------------
+            */
+
+            $subQuestions = SubQuestion::whereIn(
+                'question_id',
+                $questionIds
+            )->get();
+
+            /*
+            |--------------------------------------------------------------------------
+            | حساب إجمالي الأسئلة الفرعية للاستماع والقراءة
+            |--------------------------------------------------------------------------
+            */
+
+            foreach ($subQuestions as $subQuestion) {
+
+                $question = $questions->firstWhere(
+                    'id',
+                    $subQuestion->question_id
+                );
+
+                if (!$question) {
+                    continue;
+                }
+
                 if (
-                    $item->subquestion_id &&
-                    $item->answer === $item->expected_answer
+                    $question->type == 'listening' ||
+                    $question->type == 'listening and image'
                 ) {
-                    $count_listen_succes++;
+                    $count_listen++;
+
+                } elseif (
+                    $question->type == 'reading' ||
+                    $question->type == 'image' ||
+                    $question->type == 'sub'
+                ) {
+                    $count_read++;
                 }
             }
 
             /*
             |--------------------------------------------------------------------------
-            | Reading
+            | حساب الدرجة الكاملة للكتابي
             |--------------------------------------------------------------------------
             */
 
-            elseif (
-                $question->type == 'reading' ||
-                $question->type == 'image' ||
-                $question->type == 'sub'
-            ) {
+            foreach ($questions as $question) {
+
                 if (
-                    $item->subquestion_id &&
-                    $item->answer === $item->expected_answer
+                    $question->type == 'writing' ||
+                    $question->type == 'writing and image'
                 ) {
-                    $count_read_succes++;
+                    $count_write += (float) $question->mark;
                 }
             }
 
             /*
             |--------------------------------------------------------------------------
-            | Writing
+            | حساب الإجابات الصحيحة للمستخدم في نفس الامتحان
             |--------------------------------------------------------------------------
             */
 
-            elseif (
-                $question->type == 'writing' ||
-                $question->type == 'writing and image'
-            ) {
-                $count_write_marks += (float) ($item->totalScore ?? 0);
+            $subAnswers = $examAnswers
+                ->filter(function ($item) {
+                    return !is_null($item->subquestion_id);
+                })
+                ->unique('subquestion_id');
+
+            foreach ($subAnswers as $item) {
+
+                $question = $item->question;
+
+                if (!$question) {
+                    continue;
+                }
+
+                // التأكد أن السؤال الرئيسي تابع لنفس الامتحان
+                if ((int) $question->exam_id !== (int) $examId) {
+                    continue;
+                }
+
+                /*
+                |--------------------------------------------------------------------------
+                | Listening
+                |--------------------------------------------------------------------------
+                */
+
+                if (
+                    $question->type == 'listening' ||
+                    $question->type == 'listening and image'
+                ) {
+
+                    if ($item->answer === $item->expected_answer) {
+                        $count_listen_succes++;
+                    }
+
+                }
+
+                /*
+                |--------------------------------------------------------------------------
+                | Reading
+                |--------------------------------------------------------------------------
+                */
+
+                elseif (
+                    $question->type == 'reading' ||
+                    $question->type == 'image' ||
+                    $question->type == 'sub'
+                ) {
+
+                    if ($item->answer === $item->expected_answer) {
+                        $count_read_succes++;
+                    }
+                }
             }
+
+            /*
+            |--------------------------------------------------------------------------
+            | حساب درجات الكتابي من إجابات المستخدم
+            |--------------------------------------------------------------------------
+            */
+
+            foreach ($examAnswers as $item) {
+
+                $question = $item->question;
+
+                if (!$question) {
+                    continue;
+                }
+
+                if ((int) $question->exam_id !== (int) $examId) {
+                    continue;
+                }
+
+                if (
+                    $question->type == 'writing' ||
+                    $question->type == 'writing and image'
+                ) {
+                    $count_write_marks += (float) ($item->totalScore ?? 0);
+                }
+            }
+
+            /*
+            |--------------------------------------------------------------------------
+            | حساب النسب المئوية
+            |--------------------------------------------------------------------------
+            */
+
+            $count_listen_percent = $count_listen > 0
+                ? ($count_listen_succes / $count_listen) * 100
+                : 0;
+
+            $count_read_percent = $count_read > 0
+                ? ($count_read_succes / $count_read) * 100
+                : 0;
+
+            $count_write_percent = $count_write > 0
+                ? ($count_write_marks / $count_write) * 100
+                : 0;
+
+            /*
+            |--------------------------------------------------------------------------
+            | بيانات الامتحان
+            |--------------------------------------------------------------------------
+            */
+
+            $exam->count_read_succes = $count_read_succes;
+            $exam->count_read = $count_read;
+            $exam->count_read_percent = round($count_read_percent, 1);
+
+            $exam->count_listen_succes = $count_listen_succes;
+            $exam->count_listen = $count_listen;
+            $exam->count_listen_percent = round($count_listen_percent, 1);
+
+            $exam->count_write = $count_write;
+            $exam->count_write_marks = round($count_write_marks, 1);
+            $exam->count_write_percent = round($count_write_percent, 1);
+
+            /*
+            |--------------------------------------------------------------------------
+            | تاريخ آخر إجابة في الامتحان
+            |--------------------------------------------------------------------------
+            */
+
+            $lastAnswer = $examAnswers->sortByDesc('created_at')->first();
+
+            if ($lastAnswer && $lastAnswer->created_at) {
+                $exam->date = $lastAnswer->created_at->format('Y-m-d');
+            }
+
+            /*
+            |--------------------------------------------------------------------------
+            | إجمالي سجلات الإجابات
+            |--------------------------------------------------------------------------
+            */
+
+            $exam->count4 = $examAnswers->count();
+
+            $result[] = $exam;
         }
 
         /*
         |--------------------------------------------------------------------------
-        | حساب النسب المئوية
+        | إرجاع النتيجة
         |--------------------------------------------------------------------------
         */
 
-        $count_listen_percent = $count_listen > 0
-            ? ($count_listen_succes / $count_listen) * 100
-            : 0;
+        $exams = collect($result);
 
-        $count_read_percent = $count_read > 0
-            ? ($count_read_succes / $count_read) * 100
-            : 0;
-
-        $count_write_percent = $count_write > 0
-            ? ($count_write_marks / $count_write) * 100
-            : 0;
-
-        /*
-        |--------------------------------------------------------------------------
-        | بيانات الامتحان
-        |--------------------------------------------------------------------------
-        */
-
-        $exam->count_read_succes = $count_read_succes;
-        $exam->count_read = $count_read;
-        $exam->count_read_percent = round($count_read_percent, 1);
-
-        $exam->count_listen_succes = $count_listen_succes;
-        $exam->count_listen = $count_listen;
-        $exam->count_listen_percent = round($count_listen_percent, 1);
-
-        $exam->count_write = $count_write;
-        $exam->count_write_marks = round($count_write_marks, 1);
-        $exam->count_write_percent = round($count_write_percent, 1);
-
-        /*
-        |--------------------------------------------------------------------------
-        | تاريخ آخر إجابة في الامتحان
-        |--------------------------------------------------------------------------
-        */
-
-        $lastAnswer = $examAnswers->sortByDesc('created_at')->first();
-
-        if ($lastAnswer && $lastAnswer->created_at) {
-            $exam->date = $lastAnswer->created_at->format('Y-m-d');
-        }
-
-        /*
-        |--------------------------------------------------------------------------
-        | إجمالي سجلات الإجابات
-        |--------------------------------------------------------------------------
-        */
-
-        $exam->count4 = $examAnswers->count();
-
-        $result[] = $exam;
+        return $this->returnDataa('data', $exams, '');
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    | إرجاع النتيجة
-    |--------------------------------------------------------------------------
-    */
 
-    $exams = collect($result);
-
-    return $this->returnDataa('data', $exams, '');
-}
 
     public function telcUserExamss(Request $request){
         $xam_answer=ExamAnswer::where("user_id" , $request->user_id)->orderBy('id','DESC')->get();
@@ -2232,7 +2508,8 @@ public function UserExams(Request $request)
             ''
         );
     }
-    public function results(Request $request)
+   
+public function results(Request $request)
 {
     $count_listen_succes = 0;
     $count_listen = 0;
@@ -2245,7 +2522,7 @@ public function UserExams(Request $request)
 
     /*
     |--------------------------------------------------------------------------
-    | إجابات الطالب
+    | إجابات الطالب في الامتحان المحدد فقط
     |--------------------------------------------------------------------------
     */
 
@@ -2266,7 +2543,7 @@ public function UserExams(Request $request)
 
     /*
     |--------------------------------------------------------------------------
-    | حساب العدد الكلي من جدول SubQuestion
+    | حساب إجمالي الأسئلة الفرعية من جدول SubQuestion
     |--------------------------------------------------------------------------
     */
 
@@ -2278,24 +2555,89 @@ public function UserExams(Request $request)
             $question->type == 'listening' ||
             $question->type == 'listening and image'
         ) {
+
             $count_listen += $subCount;
+
         } elseif (
             $question->type == 'reading' ||
             $question->type == 'image' ||
             $question->type == 'sub'
         ) {
+
             $count_read += $subCount;
+
         } elseif (
             $question->type == 'writing' ||
             $question->type == 'writing and image'
         ) {
+
             $count_write += (float) $question->mark;
         }
     }
 
     /*
     |--------------------------------------------------------------------------
-    | حساب الإجابات الصحيحة ودرجات الكتابي
+    | حساب الإجابات الصحيحة من ExamAnswer
+    |--------------------------------------------------------------------------
+    */
+
+    $subAnswers = $data
+        ->filter(function ($item) {
+            return !is_null($item->subquestion_id);
+        })
+        ->unique('subquestion_id');
+
+    foreach ($subAnswers as $item) {
+
+        $question = $item->question;
+
+        if (!$question) {
+            continue;
+        }
+
+        // التأكد أن السؤال الرئيسي تابع للامتحان المحدد
+        if ((int) $question->exam_id !== (int) $request->exam_id) {
+            continue;
+        }
+
+        /*
+        |--------------------------------------------------------------------------
+        | Listening
+        |--------------------------------------------------------------------------
+        */
+
+        if (
+            $question->type == 'listening' ||
+            $question->type == 'listening and image'
+        ) {
+
+            if ($item->answer === $item->expected_answer) {
+                $count_listen_succes++;
+            }
+
+        }
+
+        /*
+        |--------------------------------------------------------------------------
+        | Reading
+        |--------------------------------------------------------------------------
+        */
+
+        elseif (
+            $question->type == 'reading' ||
+            $question->type == 'image' ||
+            $question->type == 'sub'
+        ) {
+
+            if ($item->answer === $item->expected_answer) {
+                $count_read_succes++;
+            }
+        }
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | حساب درجات الكتابي من إجابات المستخدم
     |--------------------------------------------------------------------------
     */
 
@@ -2307,29 +2649,23 @@ public function UserExams(Request $request)
             continue;
         }
 
+        if ((int) $question->exam_id !== (int) $request->exam_id) {
+            continue;
+        }
+
         if (
-            $question->type == 'listening' ||
-            $question->type == 'listening and image'
-        ) {
-            if ($item->subquestion_id &&
-                $item->answer === $item->expected_answer) {
-                $count_listen_succes++;
-            }
-        } elseif (
-            $question->type == 'reading' ||
-            $question->type == 'image' ||
-            $question->type == 'sub'
-        ) {
-            if ($item->subquestion_id &&
-                $item->answer === $item->expected_answer) {
-                $count_read_succes++;
-            }
-        } elseif (
             $question->type == 'writing' ||
             $question->type == 'writing and image'
         ) {
+
             $count_write_marks += (float) ($item->totalScore ?? 0);
         }
+
+        /*
+        |--------------------------------------------------------------------------
+        | بيانات الامتحان والمستخدم لكل إجابة
+        |--------------------------------------------------------------------------
+        */
 
         $item->exam = Exam::find($item->exam_id);
         $item->user = User::find($item->user_id);
@@ -2337,7 +2673,7 @@ public function UserExams(Request $request)
 
     /*
     |--------------------------------------------------------------------------
-    | النسب المئوية
+    | حساب النسب المئوية
     |--------------------------------------------------------------------------
     */
 
@@ -2355,7 +2691,7 @@ public function UserExams(Request $request)
 
     /*
     |--------------------------------------------------------------------------
-    | النتيجة
+    | النتيجة النهائية
     |--------------------------------------------------------------------------
     */
 
@@ -2377,6 +2713,152 @@ public function UserExams(Request $request)
 
     return $this->returnDataa('data', $home, '');
 }
+
+//     public function results(Request $request)
+// {
+//     $count_listen_succes = 0;
+//     $count_listen = 0;
+
+//     $count_read_succes = 0;
+//     $count_read = 0;
+
+//     $count_write_marks = 0;
+//     $count_write = 0;
+
+//     /*
+//     |--------------------------------------------------------------------------
+//     | إجابات الطالب
+//     |--------------------------------------------------------------------------
+//     */
+
+//     $data = ExamAnswer::with(['question'])
+//         ->where('user_id', $request->user_id)
+//         ->where('exam_id', $request->exam_id)
+//         ->get();
+
+//     /*
+//     |--------------------------------------------------------------------------
+//     | الأسئلة الرئيسية التابعة للامتحان
+//     |--------------------------------------------------------------------------
+//     */
+
+//     $questions = Question::where('exam_id', $request->exam_id)
+//         ->with('subQuestions')
+//         ->get();
+
+//     /*
+//     |--------------------------------------------------------------------------
+//     | حساب العدد الكلي من جدول SubQuestion
+//     |--------------------------------------------------------------------------
+//     */
+
+//     foreach ($questions as $question) {
+
+//         $subCount = $question->subQuestions->count();
+
+//         if (
+//             $question->type == 'listening' ||
+//             $question->type == 'listening and image'
+//         ) {
+//             $count_listen += $subCount;
+//         } elseif (
+//             $question->type == 'reading' ||
+//             $question->type == 'image' ||
+//             $question->type == 'sub'
+//         ) {
+//             $count_read += $subCount;
+//         } elseif (
+//             $question->type == 'writing' ||
+//             $question->type == 'writing and image'
+//         ) {
+//             $count_write += (float) $question->mark;
+//         }
+//     }
+
+//     /*
+//     |--------------------------------------------------------------------------
+//     | حساب الإجابات الصحيحة ودرجات الكتابي
+//     |--------------------------------------------------------------------------
+//     */
+
+//     foreach ($data as $item) {
+
+//         $question = $item->question;
+
+//         if (!$question) {
+//             continue;
+//         }
+
+//         if (
+//             $question->type == 'listening' ||
+//             $question->type == 'listening and image'
+//         ) {
+//             if ($item->subquestion_id &&
+//                 $item->answer === $item->expected_answer) {
+//                 $count_listen_succes++;
+//             }
+//         } elseif (
+//             $question->type == 'reading' ||
+//             $question->type == 'image' ||
+//             $question->type == 'sub'
+//         ) {
+//             if ($item->subquestion_id &&
+//                 $item->answer === $item->expected_answer) {
+//                 $count_read_succes++;
+//             }
+//         } elseif (
+//             $question->type == 'writing' ||
+//             $question->type == 'writing and image'
+//         ) {
+//             $count_write_marks += (float) ($item->totalScore ?? 0);
+//         }
+
+//         $item->exam = Exam::find($item->exam_id);
+//         $item->user = User::find($item->user_id);
+//     }
+
+//     /*
+//     |--------------------------------------------------------------------------
+//     | النسب المئوية
+//     |--------------------------------------------------------------------------
+//     */
+
+//     $count_listen_percent = $count_listen > 0
+//         ? ($count_listen_succes / $count_listen) * 100
+//         : 0;
+
+//     $count_read_percent = $count_read > 0
+//         ? ($count_read_succes / $count_read) * 100
+//         : 0;
+
+//     $count_write_percent = $count_write > 0
+//         ? ($count_write_marks / $count_write) * 100
+//         : 0;
+
+//     /*
+//     |--------------------------------------------------------------------------
+//     | النتيجة
+//     |--------------------------------------------------------------------------
+//     */
+
+//     $home = [
+//         'count_read_succes' => $count_read_succes,
+//         'count_read' => $count_read,
+//         'count_read_percent' => round($count_read_percent, 1),
+
+//         'count_listen_succes' => $count_listen_succes,
+//         'count_listen' => $count_listen,
+//         'count_listen_percent' => round($count_listen_percent, 1),
+
+//         'count_write' => $count_write,
+//         'count_write_marks' => round($count_write_marks, 1),
+//         'count_write_percent' => round($count_write_percent, 1),
+
+//         'count4' => $data->count(),
+//     ];
+
+//     return $this->returnDataa('data', $home, '');
+// }
     // public function results(Request $request)
     // {
     //     $count_listen_succes = 0;

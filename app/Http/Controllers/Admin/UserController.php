@@ -1016,7 +1016,10 @@ class UserController extends Controller
         return view('admin.users.exam', compact('exams', 'id'));
     }
     public function ExamAnswerWriting($id,$exam){
-        $answers = ExamAnswer::with(['exams', 'question' ]) ->where('user_id', $id)->where('exam_id', $exam)->get();
+        $answers = ExamAnswer::with(['exams', 'question' ]) 
+                ->where('user_id', $id)
+                ->where('user_id', $id)
+                ->where('exam_id', $exam)->get();
         dd($answers);
         return view('admin.users.exam-answer-writing', compact('answers'));
     }

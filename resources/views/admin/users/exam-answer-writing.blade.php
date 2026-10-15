@@ -72,9 +72,9 @@
 											<tr>
 												<th>#</th>
 												<th>exam Name</th>
-												<th>Reading</th>
-												<th>Listening</th>
-												<th>Writing</th>
+												<th>totalScore</th>
+												<th>answers</th>
+												<th>correctedText</th>
 											</tr>
 										</thead>
 
@@ -86,10 +86,13 @@
 														{{ $_item->id }}
 													</td>
 													<td class="text-center">
-														{{ $_item->name }}
+														{{ $_item->exams->name }}
 													</td>
 													<td class="text-center">
 														{{ $_item->totalScore }}
+													</td>
+													<td class="text-center">
+														{{ $_item->answer }}
 													</td>
 													<td class="text-center">
 														{{ $_item->correctedText }}

@@ -81,47 +81,19 @@
 										<tbody>
 
 											@foreach ($answers as $_item)
-
 												<tr>
-
 													<td class="text-center">
 														{{ $_item->id }}
 													</td>
-
 													<td class="text-center">
 														{{ $_item->name }}
 													</td>
-
 													<td class="text-center">
-														
-														Number of questions: {{ $_item->count_read }}
-														<br>
-														Correct answers: {{ $_item->count_read_succes }}
-														<br>
-														Percentage: ({{ $_item->count_read_percent }}%)
+														{{ $_item->totalScore }}
 													</td>
-
 													<td class="text-center">
-														
-														Number of questions: {{ $_item->count_listen }}
-														<br>
-														Correct answers: {{ $_item->count_listen_succes }}
-														<br>
-														Percentage: ({{ $_item->count_listen_percent }}%)
+														{{ $_item->correctedText }}
 													</td>
-
-													<td class="text-center">
-														Total score: {{ $_item->count_write }}
-														<br>
-														Correct points: {{ $_item->count_write_marks }}
-														<br>
-														Percentage: ({{ $_item->count_write_percent }}%)
-														<br>
-														<a href="{{url('admin/exam-answer/writing/'.$id.'/'.$_item->id)}}">
-															<button type="button" class="btn btn-outline-success ">View Writing Answers</button>
-														</a>
-													</td>
-
 												</tr>
 
 											@endforeach

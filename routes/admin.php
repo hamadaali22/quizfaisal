@@ -167,6 +167,7 @@ Route::get('admin-login', 'Auth\LoginController@LoginAdmin')->name('admin-login'
 			Route::get('exam/goethe/{id}','UserController@examsGoethe');
 			Route::get('exam/telc/{id}','UserController@examsTelc');
 			Route::get('allexam','UserController@allexam');
+			Route::get('exam-answer/writing/{user_id}/{exam_id}','UserController@ExamAnswerWriting');
 
 		    Route::resource('answers','AnswerController');
 

@@ -116,6 +116,10 @@
 														Correct points: {{ $_item->count_write_marks }}
 														<br>
 														Percentage: ({{ $_item->count_write_percent }}%)
+														<br>
+														<a href="{{url('admin/exam-answer/writing/'.$id.'/'.$_item->id)}}">
+															<button type="button" class="btn btn-outline-success ">View Writing Answers</button>
+														</a>
 													</td>
 
 												</tr>

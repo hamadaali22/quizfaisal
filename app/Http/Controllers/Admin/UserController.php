@@ -1020,7 +1020,7 @@ class UserController extends Controller
                 ->where('user_id', $id)
                 ->where('exam_id', $exam)
                 ->where('questionType', "writing")->get();
-        dd($answers);
+        // dd($answers);
         return view('admin.users.exam-answer-writing', compact('answers'));
     }
     

@@ -25,7 +25,13 @@ class LoginController extends Controller
     {
         return view('admin.login');
     }
-
+    protected function credentials(Request $request)
+    {
+        return array_merge(
+            $request->only($this->username(), 'password'),
+            ['type' => 'admin']
+        );
+    }
     public function signOut() {
       Auth::logout();
       return redirect('/');

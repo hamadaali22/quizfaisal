@@ -119,7 +119,7 @@ PROMPT;
 
         $apiKeys = array_filter([
             config('services.gemini.key'),
-            env('GEMINI_API_KEY_2'),
+            
             env('GEMINI_API_KEY_3'),
             env('GEMINI_API_KEY_4'),
             env('GEMINI_API_KEY_5'),
@@ -128,6 +128,7 @@ PROMPT;
             env('GEMINI_API_KEY_8'),
             env('GEMINI_API_KEY_9'),
             env('GEMINI_API_KEY_10'),
+            env('GEMINI_API_KEY_2'),
         ]);
 
         if (empty($apiKeys)) {

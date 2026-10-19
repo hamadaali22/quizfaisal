@@ -18,21 +18,37 @@ class EvaluateWritingJob implements ShouldQueue
 
     public $examAnswerId;
 
-    // عدد محاولات الـ Queue
-    public $tries = 3;
+    // 0 = محاولات غير محدودة، الجوب مش هيتحذف غير لما يصحح
+    public $tries = 0;
 
-    // الانتظار بين محاولات الـ Queue
-    public $backoff = 10;
+    // مفيش حد أقصى لعدد الأخطاء
+    public $maxExceptions = null;
+
+    // أقصى وقت للمحاولة الواحدة (10 مفاتيح × 25 ثانية + هامش)
+    public $timeout = 300;
 
     public function __construct($examAnswerId)
     {
         $this->examAnswerId = $examAnswerId;
     }
 
+    // الانتظار بين المحاولات (Laravel 8+)
+    public function backoff()
+    {
+        return [10, 30, 60];
+    }
+
+    // نفس الحاجة لـ Laravel 7 وأقدم
+    public function retryAfter()
+    {
+        return 60;
+    }
+
     public function handle()
     {
         Log::info('WRITING JOB STARTED', [
             'examAnswerId' => $this->examAnswerId,
+            'attempt' => $this->attempts(),
         ]);
 
         $examAnswer = ExamAnswer::find($this->examAnswerId);
@@ -40,6 +56,20 @@ class EvaluateWritingJob implements ShouldQueue
         if (!$examAnswer) {
             Log::error('WRITING JOB ERROR: ExamAnswer not found', [
                 'examAnswerId' => $this->examAnswerId,
+            ]);
+
+            return;
+        }
+
+        /*
+        |--------------------------------------------------------------------------
+        | Already graded - skip
+        |--------------------------------------------------------------------------
+        */
+
+        if (!is_null($examAnswer->totalScore)) {
+            Log::info('WRITING JOB SKIPPED: Already graded', [
+                'examAnswerId' => $examAnswer->id,
             ]);
 
             return;
@@ -113,23 +143,13 @@ PROMPT;
 
         /*
         |--------------------------------------------------------------------------
-        | Gemini API Keys
+        | Gemini API Keys (from config/services.php)
         |--------------------------------------------------------------------------
         */
 
-        $apiKeys = array_filter([
-            config('services.gemini.key'),
-            
-            env('GEMINI_API_KEY_3'),
-            env('GEMINI_API_KEY_4'),
-            env('GEMINI_API_KEY_5'),
-            env('GEMINI_API_KEY_6'),
-            env('GEMINI_API_KEY_7'),
-            env('GEMINI_API_KEY_8'),
-            env('GEMINI_API_KEY_9'),
-            env('GEMINI_API_KEY_10'),
-            env('GEMINI_API_KEY_2'),
-        ]);
+        $apiKeys = array_values(array_filter(
+            (array) config('services.gemini.keys', [])
+        ));
 
         if (empty($apiKeys)) {
             Log::error('WRITING AI ERROR: No Gemini API keys configured');
@@ -137,13 +157,13 @@ PROMPT;
             throw new \Exception('No Gemini API keys configured');
         }
 
-        $response = null;
-
         /*
         |--------------------------------------------------------------------------
-        | Try Gemini Keys
+        | Try every key - any failure moves to the next key
         |--------------------------------------------------------------------------
         */
+
+        $response = null;
 
         foreach ($apiKeys as $index => $apiKey) {
 
@@ -154,24 +174,40 @@ PROMPT;
                 'keyNumber' => $keyNumber,
             ]);
 
-            $response = Http::post(
-                "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent?key="
-                . $apiKey,
-                [
-                    "contents" => [
+            try {
+                $response = Http::timeout(25)
+                    ->withHeaders([
+                        'x-goog-api-key' => $apiKey,
+                    ])
+                    ->post(
+                        'https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent',
                         [
-                            "parts" => [
+                            'contents' => [
                                 [
-                                    "text" => $prompt
-                                ]
-                            ]
+                                    'parts' => [
+                                        [
+                                            'text' => $prompt,
+                                        ],
+                                    ],
+                                ],
+                            ],
+                            'generationConfig' => [
+                                'responseMimeType' => 'application/json',
+                            ],
                         ]
-                    ],
-                    "generationConfig" => [
-                        "responseMimeType" => "application/json"
-                    ]
-                ]
-            );
+                    );
+            } catch (\Throwable $e) {
+
+                Log::warning('WRITING AI CONNECTION ERROR - TRYING NEXT KEY', [
+                    'examAnswerId' => $examAnswer->id,
+                    'keyNumber' => $keyNumber,
+                    'error' => $e->getMessage(),
+                ]);
+
+                $response = null;
+
+                continue;
+            }
 
             Log::info('WRITING AI RESPONSE RECEIVED', [
                 'examAnswerId' => $examAnswer->id,
@@ -179,64 +215,33 @@ PROMPT;
                 'status' => $response->status(),
             ]);
 
-            /*
-            |--------------------------------------------------------------------------
-            | Success
-            |--------------------------------------------------------------------------
-            */
-
             if ($response->successful()) {
                 break;
             }
 
-            /*
-            |--------------------------------------------------------------------------
-            | 503 - Try next key
-            |--------------------------------------------------------------------------
-            */
-
-            if ($response->status() === 503) {
-
-                Log::warning('WRITING AI 503 - TRYING NEXT KEY', [
-                    'examAnswerId' => $examAnswer->id,
-                    'keyNumber' => $keyNumber,
-                ]);
-
-                continue;
-            }
-
-            /*
-            |--------------------------------------------------------------------------
-            | Other HTTP errors
-            |--------------------------------------------------------------------------
-            */
-
-            Log::error('WRITING AI HTTP ERROR', [
+            Log::warning('WRITING AI HTTP ERROR - TRYING NEXT KEY', [
                 'examAnswerId' => $examAnswer->id,
                 'keyNumber' => $keyNumber,
                 'status' => $response->status(),
                 'response' => $response->json(),
             ]);
-
-            throw new \Exception(
-                'Gemini HTTP error: ' . $response->status()
-            );
         }
 
         /*
         |--------------------------------------------------------------------------
-        | Both keys failed
+        | All keys failed - back to the queue (never deleted)
         |--------------------------------------------------------------------------
         */
 
         if (!$response || !$response->successful()) {
 
-            Log::warning('WRITING AI ALL KEYS FAILED - QUEUE RETRY', [
+            Log::warning('WRITING AI ALL KEYS FAILED - WILL RETRY', [
                 'examAnswerId' => $examAnswer->id,
+                'attempt' => $this->attempts(),
             ]);
 
             throw new \Exception(
-                'All Gemini API keys returned an unavailable response'
+                'All Gemini API keys failed'
             );
         }
 
@@ -303,7 +308,7 @@ PROMPT;
 
         /*
         |--------------------------------------------------------------------------
-        | Extract Result
+        | Extract Result - no score means not graded, retry
         |--------------------------------------------------------------------------
         */
 
@@ -314,11 +319,22 @@ PROMPT;
             ?? null;
 
         Log::info('WRITING AI DATA', [
+            'examAnswerId' => $examAnswer->id,
             'data' => $data,
             'totalScore' => $totalScore,
             'correctedText' => $correctedText,
-            'examAnswerId' => $examAnswer->id,
         ]);
+
+        if (is_null($totalScore)) {
+
+            Log::error('WRITING AI MISSING total_score - WILL RETRY', [
+                'examAnswerId' => $examAnswer->id,
+            ]);
+
+            throw new \Exception(
+                'Gemini response has no total_score'
+            );
+        }
 
         /*
         |--------------------------------------------------------------------------
@@ -328,35 +344,11 @@ PROMPT;
 
         $examAnswer->totalScore = $totalScore;
         $examAnswer->correctedText = $correctedText;
-
-        Log::info('WRITING BEFORE SAVE', [
-            'examAnswerId' => $examAnswer->id,
-            'totalScore' => $examAnswer->totalScore,
-            'correctedText' => $examAnswer->correctedText,
-        ]);
-
         $examAnswer->save();
 
-        Log::info('WRITING AFTER SAVE', [
+        Log::info('WRITING JOB DONE', [
             'examAnswerId' => $examAnswer->id,
-        ]);
-
-        /*
-        |--------------------------------------------------------------------------
-        | Verify Database
-        |--------------------------------------------------------------------------
-        */
-
-        $savedAnswer = ExamAnswer::find($examAnswer->id);
-
-        Log::info('WRITING DB CHECK', [
-            'id' => $examAnswer->id,
-            'totalScore' => $savedAnswer
-                ? $savedAnswer->totalScore
-                : null,
-            'correctedText' => $savedAnswer
-                ? $savedAnswer->correctedText
-                : null,
+            'totalScore' => $examAnswer->totalScore,
         ]);
     }
 }

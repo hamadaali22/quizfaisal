@@ -1019,7 +1019,7 @@ class UserController extends Controller
         $answers = ExamAnswer::with(['exams', 'question' ]) 
                 ->where('user_id', $id)
                 ->where('exam_id', $exam)
-                ->where('questionType', "writing")->get();
+                ->whereIn('questionType', ['writing', 'writing and image'])->get();
         // dd($answers);
         return view('admin.users.exam-answer-writing', compact('answers'));
     }

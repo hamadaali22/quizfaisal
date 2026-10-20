@@ -1081,7 +1081,9 @@ class QuestionController extends Controller
                 }
             }
             $item->subquestion=$subquestion;
-
+            $item->writing_question=ExamAnswer::where("user_id" , $request->user_id)
+                                              ->where("exam_id" , $request->exam_id)->first();
+                
 
         }
         return $this->returnDataa('data', $data,'');
